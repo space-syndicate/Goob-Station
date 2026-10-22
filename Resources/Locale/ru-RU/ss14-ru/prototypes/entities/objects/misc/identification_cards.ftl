@@ -127,3 +127,15 @@ ent-SeniorOfficerIDCard = ID-карта инструктора СБ
 ent-UniversalIDCard = универсальная ID-карта
     .desc = ID-карта, которая позволит вам осуществить свои самые сокровенные желания.
     .suffix = Админ
+
+ent-SyndiOperativeIDCard = ID-карта оперативника Синдиката
+    .desc = { ent-SyndicateIDCard.desc }
+
+ent-SyndiCorpsmanIDCard = ID-карта медика Синдиката
+    .desc = { ent-SyndiOperativeIDCard.desc }
+
+ent-SyndiCommanderIDCard = ID-карта командира Синдиката
+    .desc = { ent-SyndiOperativeIDCard.desc }
+
+ent-XenoborgIDCard = ID-карта ксеноборг
+    .desc = { ent-IDCardStandard.desc }

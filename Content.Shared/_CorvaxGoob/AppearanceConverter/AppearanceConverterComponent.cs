@@ -84,7 +84,7 @@ public struct TransformProfile
 
     public Dictionary<string, DisplacementData>? FemaleDisplacements;
 
-    public string DNA;
+    public string? DNA;
 
     public string? Voice;
 
@@ -123,7 +123,7 @@ public struct AppearanceConverterVisualTransformProfile
 
     public string? Fingerprint;
 
-    public string DNA;
+    public string? DNA;
 
     public int? Age;
 

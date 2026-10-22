@@ -1,0 +1,224 @@
+- type: entity
+  name: lava lamp
+  id: LavaLamp
+  parent: BaseItem
+  description: A light emitting device, moths' favorite.
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Misc/lavalamp.rsi
+    layers:
+      - state: lavalamp
+      - state: lavalamp-on
+        shader: unshaded
+        visible: false
+        map: [ "light" ]
+  - type: Item
+    size: Small
+  - type: PointLight
+    enabled: false
+    netsync: false
+    radius: 3
+    energy: 2
+  - type: ItemToggle
+    soundActivate:
+      path: /Audio/Effects/Chemistry/bubbles.ogg
+      params:
+        pitch: 3
+        volume: -3
+    soundDeactivate:
+      path: /Audio/_CorvaxGoob/Machine/terminal_off.ogg
+      params:
+        pitch: 4
+        volume: -1
+  - type: ToggleableVisuals
+    spriteLayer: light
+  - type: ItemTogglePointLight
+  - type: Appearance
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 50
+  - type: SolutionContainerManager
+    solutions:
+      lamp:
+        maxVol: 5
+        reagents:
+        - ReagentId: Oil
+          Quantity: 3
+        - ReagentId: Phlogiston
+          Quantity: 2
+  - type: Temperature
+  - type: DamageOnLand
+    damage:
+      types:
+        Blunt: 5
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 4
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 5
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpillBehavior
+        solution: lamp
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetPlastic:
+            min: 1
+            max: 1
+        transferForensics: true
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Construction
+    graph: LavaLampExposion
+    node: start
+  - type: Physics
+    canCollide: false
+  - type: Tag
+    tags:
+    - Recyclable
+
+- type: entity
+  id: RedLavaLamp
+  suffix: Red
+  parent: LavaLamp
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Misc/lavalamp.rsi
+    layers:
+      - state: lavalamp
+      - state: lavalamp-on
+        shader: unshaded
+        visible: false
+        color: "#fb4747"
+        map: [ "light" ]
+  - type: PointLight
+    enabled: false
+    radius: 3
+    energy: 2.5
+    color: "#fb4747"
+
+- type: entity
+  id: BlueLavaLamp
+  suffix: Blue
+  parent: LavaLamp
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Misc/lavalamp.rsi
+    layers:
+      - state: lavalamp
+      - state: lavalamp-on
+        shader: unshaded
+        visible: false
+        color: "#39a1ff"
+        map: [ "light" ]
+  - type: PointLight
+    enabled: false
+    radius: 3
+    energy: 2.5
+    color: "#39a1ff"
+
+- type: entity
+  id: YellowLavaLamp
+  suffix: Yellow
+  parent: LavaLamp
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Misc/lavalamp.rsi
+    layers:
+      - state: lavalamp
+      - state: lavalamp-on
+        shader: unshaded
+        visible: false
+        color: "#ffde46"
+        map: [ "light" ]
+  - type: PointLight
+    enabled: false
+    radius: 3
+    energy: 2.5
+    color: "#ffde46"
+
+- type: entity
+  id: OrangeLavaLamp
+  suffix: Orange
+  parent: LavaLamp
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Misc/lavalamp.rsi
+    layers:
+      - state: lavalamp
+      - state: lavalamp-on
+        shader: unshaded
+        visible: false
+        color: "#ff8227"
+        map: [ "light" ]
+  - type: PointLight
+    enabled: false
+    radius: 3
+    energy: 2.5
+    color: "#ff8227"
+
+- type: entity
+  id: GreenLavaLamp
+  suffix: Green
+  parent: LavaLamp
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Misc/lavalamp.rsi
+    layers:
+      - state: lavalamp
+      - state: lavalamp-on
+        shader: unshaded
+        visible: false
+        color: "#52ff39"
+        map: [ "light" ]
+  - type: PointLight
+    enabled: false
+    radius: 3
+    energy: 2.5
+    color: "#52ff39"
+
+- type: entity
+  id: PinkLavaLamp
+  suffix: Pink
+  parent: LavaLamp
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Misc/lavalamp.rsi
+    layers:
+      - state: lavalamp
+      - state: lavalamp-on
+        shader: unshaded
+        visible: false
+        color: "#ff66cc"
+        map: [ "light" ]
+  - type: PointLight
+    enabled: false
+    radius: 3
+    energy: 2.5
+    color: "#ff66cc"
+
+- type: entity
+  id: RGBLavaLamp
+  suffix: RGB
+  parent: LavaLamp
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Misc/lavalamp.rsi
+    layers:
+      - state: lavalamp
+      - state: lavalamp-on
+        shader: unshaded
+        visible: false
+        map: [ "light" ]
+  - type: RgbLightController
+
+
+

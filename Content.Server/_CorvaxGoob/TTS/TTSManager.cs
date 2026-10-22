@@ -151,11 +151,9 @@ public sealed class TTSManager
 
     private string GenerateCacheKey(string speaker, string text)
     {
-        var key = $"{speaker}/{text}";
-        byte[] keyData = Encoding.UTF8.GetBytes(key);
-        var sha256 = System.Security.Cryptography.SHA256.Create();
-        var bytes = sha256.ComputeHash(keyData);
-        return Convert.ToHexString(bytes);
+        //var key = $"{speaker}/{text}";
+        //var bytes = System.Security.Cryptography.SHA256.HashData(Encoding.UTF8.GetBytes(key)); пробуем экономить цпу тайм
+        return $"{speaker}/{text.ToLowerInvariant()}"; //Convert.ToHexString(key);
     }
 
     private struct GenerateVoiceRequest

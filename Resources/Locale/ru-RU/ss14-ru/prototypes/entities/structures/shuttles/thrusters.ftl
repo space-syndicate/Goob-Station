@@ -19,3 +19,9 @@ ent-DebugGyroscope = { ent-BaseThruster }
 ent-ThrusterShuttleEvac = { ent-BaseThruster }
     .desc = { ent-BaseThruster.desc }
     .suffix = Эвакуация, Неоткрепляемый
+
+ent-ThrusterLarge = большой ракетный двигатель
+    .desc = { ent-BaseThruster.desc }
+
+ent-RustedThruster = ржавый ракетный двигатель
+    .desc = Неподлежащий ремонту двигатель, вышел из строя из-за износа. Пригоден только на металлолом.

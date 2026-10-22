@@ -1,0 +1,33 @@
+- type: entity
+  name: random scripture box
+  parent: BaseItem
+  id: BoxRandomBible
+  description: A box containing one random holy scripture.
+  components:
+  - type: Sprite
+    sprite: Objects/Storage/boxes.rsi
+    state: box
+  - type: SpawnItemsOnUse
+    items:
+      - id: MysteryFigureBoxTrash
+      - id: BibleSlabClockwork
+        prob: 16
+        orGroup: RandomBible
+      - id: BibleDruid
+        prob: 16
+        orGroup: RandomBible
+      - id: BibleCommunistManifesto
+        prob: 16
+        orGroup: RandomBible
+      - id: BibleNarsie
+        prob: 16
+        orGroup: RandomBible
+      - id: BibleNanoTrasen
+        prob: 16
+        orGroup: RandomBible
+      - id: BibleHonk
+        prob: 16
+        orGroup: RandomBible
+      - id: BibleNecronomicon
+        prob: 4
+        orGroup: RandomBible

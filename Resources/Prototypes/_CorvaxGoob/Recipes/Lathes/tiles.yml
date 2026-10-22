@@ -1,0 +1,249 @@
+# Wood
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodLargeRed
+  result: FloorTileItemWoodLargeRed
+  iconPath: /Textures/_Corvax/Tiles/wood_large_red.png
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodLargeLight
+  result: FloorTileItemWoodLargeLight
+  iconPath: /Textures/_Corvax/Tiles/wood_large_light.png
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodLargeDark
+  result: FloorTileItemWoodLargeDark
+  iconPath: /Textures/_Corvax/Tiles/wood_large_dark.png
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodLargeBlack
+  result: FloorTileItemWoodLargeBlack
+  iconPath: /Textures/_Corvax/Tiles/wood_large_black.png
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodRed
+  result: FloorTileItemWoodRed
+  iconPath: /Textures/_Corvax/Tiles/wood_red.png
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodLight
+  result: FloorTileItemWoodLight
+  iconPath: /Textures/_Corvax/Tiles/wood_light.png
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodDark
+  result: FloorTileItemWoodDark
+  iconPath: /Textures/_Corvax/Tiles/wood_dark.png
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodBlack
+  result: FloorTileItemWoodBlack
+  iconPath: /Textures/_Corvax/Tiles/wood_black.png
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodParquet
+  result: FloorTileItemWoodParquet
+  iconPath: /Textures/_Corvax/Tiles/wood_parquet.png
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodParquetRed
+  result: FloorTileItemWoodParquetRed
+  iconPath: /Textures/_Corvax/Tiles/wood_parquet_red.png
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodParquetLight
+  result: FloorTileItemWoodParquetLight
+  iconPath: /Textures/_Corvax/Tiles/wood_parquet_light.png
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodParquetDark
+  result: FloorTileItemWoodParquetDark
+  iconPath: /Textures/_Corvax/Tiles/wood_parquet_dark.png
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodParquetBlack
+  result: FloorTileItemWoodParquetBlack
+  iconPath: /Textures/_Corvax/Tiles/wood_parquet_black.png
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodChess
+  result: FloorTileItemWoodChess
+  iconPath: /Textures/_Corvax/Tiles/wood_chess.png
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodChessRed
+  result: FloorTileItemWoodChessRed
+  iconPath: /Textures/_Corvax/Tiles/wood_chess_red.png
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodChessLight
+  result: FloorTileItemWoodChessLight
+  iconPath: /Textures/_Corvax/Tiles/wood_chess_light.png
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodChessDark
+  result: FloorTileItemWoodChessDark
+  iconPath: /Textures/_Corvax/Tiles/wood_chess_dark.png
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodChessBlack
+  result: FloorTileItemWoodChessBlack
+  iconPath: /Textures/_Corvax/Tiles/wood_chess_black.png
+
+# Other
+
+- type: latheRecipe
+  id: FloorTileItemGold
+  result: FloorTileItemGold
+  categories:
+  - Tiles
+  materials:
+    Gold: 25
+  iconPath: /Textures/Tiles/gold.png
+
+- type: latheRecipe
+  id: FloorTileItemSilver
+  result: FloorTileItemSilver
+  categories:
+  - Tiles
+  materials:
+    Silver: 25
+  iconPath: /Textures/Tiles/silver.png
+
+- type: latheRecipe
+  parent: BaseSteelTileRecipe
+  id: FloorTileItemRockVault
+  result: FloorTileItemRockVault
+  iconPath: /Textures/Tiles/rock_vault.png
+
+- type: latheRecipe
+  parent: BaseSteelTileRecipe
+  id: FloorTileItemLino
+  result: FloorTileItemLino
+  iconPath: /Textures/Tiles/lino.png
+
+- type: latheRecipe
+  parent: BaseSteelTileRecipe
+  id: FloorTileItemArcadeBlue
+  result: FloorTileItemArcadeBlue
+  iconPath: /Textures/Tiles/arcadeblue.png
+
+- type: latheRecipe
+  parent: BaseSteelTileRecipe
+  id: FloorTileItemArcadeBlue2
+  result: FloorTileItemArcadeBlue2
+  iconPath: /Textures/Tiles/arcadeblue2.png
+
+- type: latheRecipe
+  parent: BaseSteelTileRecipe
+  id: FloorTileItemArcadeRed
+  result: FloorTileItemArcadeRed
+  iconPath: /Textures/Tiles/arcadered.png
+
+- type: latheRecipe
+  id: FloorTileItemCarpetClown
+  result: FloorTileItemCarpetClown
+  iconPath: /Textures/Tiles/carpetclown.png
+  categories:
+  - Tiles
+  materials:
+    Steel: 25
+
+- type: latheRecipe
+  id: FloorTileItemCarpetOffice
+  result: FloorTileItemCarpetOffice
+  iconPath: /Textures/Tiles/carpetoffice.png
+  categories:
+  - Tiles
+  materials:
+    Steel: 25
+
+# Faux
+
+- type: latheRecipe
+  parent: BaseFauxTileRecipe
+  id: FauxTileAstroSnowDug
+  result: FloorTileItemAstroSnowDug
+  iconPath: /Textures/Tiles/Planet/Snow/snow_dug.png
+
+- type: latheRecipe
+  parent: BaseFauxTileRecipe
+  id: FauxTileItemAstroChromite
+  result: FloorTileItemAstroChromite
+  iconPath: /Textures/Tiles/chromite.png
+
+# Shuttle
+
+- type: latheRecipe
+  parent: BaseFauxTileRecipe
+  id: FloorTileItemShuttleWhite
+  result: FloorTileItemShuttleWhite
+  iconPath: /Textures/Tiles/shuttlewhite.png
+
+- type: latheRecipe
+  parent: BaseFauxTileRecipe
+  id: FloorTileItemShuttleRed
+  result: FloorTileItemShuttleRed
+  iconPath: /Textures/Tiles/shuttlered.png
+
+- type: latheRecipe
+  parent: BaseFauxTileRecipe
+  id: FloorTileItemShuttleOrange
+  result: FloorTileItemShuttleOrange
+  iconPath: /Textures/Tiles/shuttleorange.png
+
+- type: latheRecipe
+  parent: BaseFauxTileRecipe
+  id: FloorTileItemShuttleGrey
+  result: FloorTileItemShuttleGrey
+  iconPath: /Textures/Tiles/shuttlegrey.png
+
+- type: latheRecipe
+  parent: BaseFauxTileRecipe
+  id: FloorTileItemShuttleBlue
+  result: FloorTileItemShuttleBlue
+  iconPath: /Textures/Tiles/shuttleblue.png
+
+- type: latheRecipe
+  parent: BaseFauxTileRecipe
+  id: FloorTileItemShuttlePurple
+  result: FloorTileItemShuttlePurple
+  iconPath: /Textures/Tiles/shuttlepurple.png
+
+- type: latheRecipe
+  parent: BaseFauxTileRecipe
+  id: FloorTileItemShuttleBlack
+  result: FloorTileItemShuttleBlack
+  iconPath: /Textures/Tiles/shuttleblack.png
+
+# Marble
+
+- type: latheRecipe
+  id: FloorTileItemUraniumMarble
+  result: FloorTileItemUraniumMarble
+  iconPath: /Textures/Tiles/uranium_marble.png
+  categories:
+  - Tiles
+  - Marble
+  materials:
+    Steel: 25
+    Uranium: 25
+    Glass: 25

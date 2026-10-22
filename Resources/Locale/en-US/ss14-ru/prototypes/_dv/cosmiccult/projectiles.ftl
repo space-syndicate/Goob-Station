@@ -1,8 +1,8 @@
 ent-ProjectileCosmicNova = Astral Nova
     .desc = Uh oh.
-ent-ProjectileRogueCosmicNova = Usurped Astral Nova
-    .desc = { ent-ProjectileCosmicNova.desc }
+ent-ProjectileCosmic = Malign Bolt
+    .desc = Ouch.
 ent-ProjectileCosmicRazor = Astral Bolt
-    .desc = Marks a target for additional damage.
+    .desc = Ouch.
 ent-BulletImpactEffectCosmic = { "" }
     .desc = { "" }

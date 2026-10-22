@@ -1,0 +1,53 @@
+- type: entity
+  id: SlotMachineFateDice
+  parent: BaseSlotMachine
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Structures/Machines/slotmachines/slotmachinehighroller.rsi
+    layers:
+      - state: slotmachine
+      - state: slotmachine_spin
+        visible: false
+        map: ["slotmachine_spin"]
+  - type: GenericVisualizer
+    visuals:
+      enum.SlotMachineVisuals.Spinning:
+        slotmachine_spin:
+          True: { visible: true }
+          False: { visible: false }
+  - type: Appearance
+  - type: Anchorable
+    flags: Anchorable
+  - type: SlotMachine
+    prizes:
+    - DiceOfFateLose
+    - DiceOfFateWin
+    deleteOnWin: true
+    limitSpins: true
+    countSpins: 7
+    spinDamage:
+      types:
+        Blunt: 30
+        Cellular: 15
+
+
+- type: prize
+  id: DiceOfFateLose
+  weight: 0.95
+  winSound: !type:SoundPathSpecifier
+    path: /Audio/Machines/buzz-two.ogg
+
+- type: prize
+  id: DiceOfFateWin
+  weight: 0.05
+  winSound: !type:SoundPathSpecifier
+    path: /Audio/_Goobstation/Machines/SlotMachine/slotmachine_godpot.ogg
+  prizeTable: !type:NestedSelector
+    tableId: SlotMachineDiceOfFateWin
+  winMessage: slotmachine-win-godpot
+
+- type: entityTable
+  id: SlotMachineDiceOfFateWin
+  table: !type:AllSelector
+    children:
+    - id: DiceOfFate

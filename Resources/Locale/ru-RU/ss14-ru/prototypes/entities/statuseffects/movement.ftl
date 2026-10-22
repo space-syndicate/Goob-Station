@@ -12,3 +12,9 @@ ent-StatusEffectFriction = трение
     .desc = { ent-MobStatusEffectDebuff.desc }
 ent-StatusEffectStunned = оглушение
     .desc = { ent-MobStatusEffectDebuff.desc }
+
+ent-StatusEffectSpeed = скорость
+    .desc = { ent-MobStatusEffectBase.desc }
+
+ent-ReagentSpeedStatusEffect = скорость от реагента
+    .desc = { ent-StatusEffectSpeed.desc }

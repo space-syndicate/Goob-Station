@@ -1,16 +1,3 @@
-// SPDX-FileCopyrightText: 2024 username <113782077+whateverusername0@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 whateverusername0 <whateveremail>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aviu00 <aviu00@protonmail.com>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 Misandry <mary@thughunt.ing>
-// SPDX-FileCopyrightText: 2025 Piras314 <p1r4s@proton.me>
-// SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 gluesniffler <linebarrelerenthusiast@gmail.com>
-// SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
-// SPDX-FileCopyrightText: 2025 yglop <95057024+yglop@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Goobstation.Common.Weapons.DelayedKnockdown;
@@ -33,24 +20,17 @@ public sealed partial class HereticAbilitySystem
     {
         base.SubscribeBlade();
 
-        SubscribeLocalEvent<HereticComponent, HereticDanceOfTheBrandEvent>(OnDanceOfTheBrand);
-        SubscribeLocalEvent<HereticComponent, EventHereticRealignment>(OnRealignment);
-        SubscribeLocalEvent<HereticComponent, HereticChampionStanceEvent>(OnChampionStance);
-        SubscribeLocalEvent<HereticComponent, EventHereticFuriousSteel>(OnFuriousSteel);
-
-        SubscribeLocalEvent<HereticComponent, HereticAscensionBladeEvent>(OnAscensionBlade);
+        SubscribeLocalEvent<EventHereticRealignment>(OnRealignment);
+        SubscribeLocalEvent<HereticChampionStanceEvent>(OnChampionStance);
+        SubscribeLocalEvent<EventHereticFuriousSteel>(OnFuriousSteel);
     }
 
-    private void OnDanceOfTheBrand(Entity<HereticComponent> ent, ref HereticDanceOfTheBrandEvent args)
+    private void OnRealignment(EventHereticRealignment args)
     {
-        var riposte = EnsureComp<RiposteeComponent>(ent);
-        riposte.Data.TryAdd("HereticBlade", new());
-    }
-
-    private void OnRealignment(Entity<HereticComponent> ent, ref EventHereticRealignment args)
-    {
-        if (!TryUseAbility(ent, args))
+        if (!TryUseAbility(args))
             return;
+
+        var ent = args.Performer;
 
         RemCompDeferred<KnockedDownComponent>(ent);
         RemCompDeferred<StunnedComponent>(ent);
@@ -76,23 +56,24 @@ public sealed partial class HereticAbilitySystem
         args.Handled = true;
     }
 
-    private void OnChampionStance(Entity<HereticComponent> ent, ref HereticChampionStanceEvent args)
+    private void OnChampionStance(HereticChampionStanceEvent args)
     {
-        foreach (var part in _body.GetBodyChildren(ent))
+        foreach (var part in _body.GetBodyChildren(args.Heretic))
         {
             if (!TryComp(part.Id, out WoundableComponent? woundable))
                 continue;
 
-            woundable.CanRemove = false;
+            woundable.CanRemove = args.Negative;
             Dirty(part.Id, woundable);
         }
-
-        EnsureComp<ChampionStanceComponent>(ent);
     }
-    private void OnFuriousSteel(Entity<HereticComponent> ent, ref EventHereticFuriousSteel args)
+
+    private void OnFuriousSteel(EventHereticFuriousSteel args)
     {
-        if (!TryUseAbility(ent, args))
+        if (!TryUseAbility(args))
             return;
+
+        var ent = args.Performer;
 
         _pblade.AddProtectiveBlade(ent);
         for (var i = 1; i < 3; i++)
@@ -108,10 +89,5 @@ public sealed partial class HereticAbilitySystem
         }
 
         args.Handled = true;
-    }
-
-    private void OnAscensionBlade(Entity<HereticComponent> ent, ref HereticAscensionBladeEvent args)
-    {
-        EnsureComp<SilverMaelstromComponent>(ent);
     }
 }

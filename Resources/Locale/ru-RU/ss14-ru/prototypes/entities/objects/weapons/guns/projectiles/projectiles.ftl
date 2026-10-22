@@ -102,3 +102,18 @@ ent-BulletLaserSpreadNarrow = узкий лазерный залп
     .desc = { ent-BulletLaser.desc }
 ent-BulletDisablerSmgSpread = оглушающий лазерный залп
     .desc = { ent-BulletDisablerSmg.desc }
+
+ent-BoltTempgunCold = замораживающий заряд
+    .desc = { ent-WatcherBolt.desc }
+
+ent-StickyHandPalm = ладонь руки липучки
+    .desc = { ent-GrapplingHook.desc }
+
+ent-BulletLaserMagnum = лазерный заряд магнума
+    .desc = { ent-BulletLaser.desc }
+
+ent-BulletLaserWindowPiercingMagnum = пролетающий окна заряд магнума
+    .desc = { ent-BulletLaser.desc }
+
+ent-EnergyCrossbowBolt = энергозаряд
+    .desc = Будет больно.

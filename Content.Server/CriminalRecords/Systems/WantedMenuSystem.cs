@@ -1,9 +1,5 @@
-// SPDX-FileCopyrightText: 2025 BeBright <98597725+be1bright@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-using Content.Server.StationRecords;
 using Content.Shared.Access.Components;
 using Content.Shared.CriminalRecords;
 using Content.Shared.IdentityManagement;
@@ -88,7 +84,8 @@ public sealed partial class CriminalRecordsConsoleSystem
         var requireReason = msg.Status is SecurityStatus.Wanted
             or SecurityStatus.Suspected
             or SecurityStatus.Search
-            or SecurityStatus.Dangerous;
+            or SecurityStatus.Dangerous
+            or SecurityStatus.Demote; // Goobstation
 
         if (requireReason != (msg.Reason != null))
             return;
@@ -153,6 +150,8 @@ public sealed partial class CriminalRecordsConsoleSystem
             (_, SecurityStatus.Search) => "search",
             // person is very dangerous
             (_, SecurityStatus.Dangerous) => "dangerous",
+            // person is demoted from their job
+            (_, SecurityStatus.Demote) => "demote", // Goobstation
             // person is no longer sus
             (SecurityStatus.Suspected, SecurityStatus.None) => "not-suspected",
             // going from wanted to none, must have been a mistake
@@ -167,11 +166,69 @@ public sealed partial class CriminalRecordsConsoleSystem
             (SecurityStatus.Search, SecurityStatus.None) => "not-search",
             // person is no longer dangerous
             (SecurityStatus.Dangerous, SecurityStatus.None) => "not-dangerous",
+            // person no longer demoted
+            (SecurityStatus.Demote, SecurityStatus.None) => "not-demoted", // Goobstation
             // this is impossible
             _ => "not-wanted"
         };
         _radio.SendRadioMessage(msg.Actor, Loc.GetString($"criminal-records-console-{statusString}", args),
             ent.Comp.SecurityChannel, ent);
+
+        UpdateUserInterface(ent);
+    }
+
+    // CorvaxGoob-SecurityFeatures
+    private void OnChangeDetainedStatus(Entity<IdExaminableComponent> ent, ref CriminalRecordChangeDetainedStatus msg)
+    {
+        if (!CheckSelected(ent, msg.Actor, out var mob, out var key))
+            return;
+
+        if (!_records.TryGetRecord<CriminalRecord>(key.Value, out var record))
+            return;
+
+        string? articles = null;
+
+        if (msg.Articles != null)
+        {
+            articles = msg.Articles.Trim();
+            if (articles.Length < 1 || articles.Length > ent.Comp.MaxStringLength)
+                return;
+        }
+
+        var oldStatus = record.Status;
+
+        var name = _records.RecordName(key.Value);
+        GetOfficer(mob.Value, out var officer);
+
+        // CorvaxGoob-SecurityFeatures-Start
+        var history = Loc.GetString("criminal-records-console-detained-record", ("articles", articles ?? Loc.GetString("criminal-records-console-unspecified")), ("duration", msg.Duration?.ToString() ?? Loc.GetString("criminal-records-console-unspecified")));
+        _criminalRecords.TryAddHistory(key.Value, history, officer, articles, msg.Duration, SecurityStatus.Detained);
+        // CorvaxGoob-SecurityFeatures-End
+
+        // will probably never fail given the checks above
+        name = _records.RecordName(key.Value);
+        officer = Loc.GetString("criminal-records-console-unknown-officer");
+        var jobName = "Unknown";
+
+        _records.TryGetRecord<GeneralStationRecord>(key.Value, out var entry);
+        if (entry != null)
+            jobName = entry.JobTitle;
+
+        var tryGetIdentityShortInfoEvent = new TryGetIdentityShortInfoEvent(null, mob.Value);
+        RaiseLocalEvent(tryGetIdentityShortInfoEvent);
+        if (tryGetIdentityShortInfoEvent.Title != null)
+            officer = tryGetIdentityShortInfoEvent.Title;
+
+        _criminalRecords.TryChangeStatus(key.Value, SecurityStatus.Detained, msg.Articles, officer);
+
+        (string, object)[] args;
+        if (articles != null)
+            args = new (string, object)[] { ("name", name), ("officer", officer), ("reason", articles), ("job", jobName) };
+        else
+            args = new (string, object)[] { ("name", name), ("officer", officer), ("job", jobName) };
+
+        _radio.SendRadioMessage(msg.Actor, Loc.GetString($"criminal-records-console-detained", args),
+            ent.Comp.SecurityChannel, msg.Actor);
 
         UpdateUserInterface(ent);
     }

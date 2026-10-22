@@ -48,8 +48,8 @@ ent-SurveillanceWirelessCameraMonitorCircuitboard = монитор беспро�
     .desc = Консольная плата для монитора беспроводных камер наблюдения.
 ent-ComputerTelevisionCircuitboard = телевизор (консольная плата)
     .desc = Консольная плата для телевизора.
-ent-ResearchComputerCircuitboard = исследовательская консоль (консольная плата)
-    .desc = Консольная плата для исследовательской консоли.
+ent-ResearchComputerCircuitboard = консоль исследований (консольная плата)
+    .desc = Консольная плата для консоль исследований.
 ent-AnalysisComputerCircuitboard = аналитическая консоль (консольная плата)
     .desc = Консольная плата для аналитической консоли.
 ent-TechDiskComputerCircuitboard = терминал технологических дисков (консольная плата)
@@ -64,7 +64,7 @@ ent-CommsComputerCircuitboard = консоль связи (консольная 
     .desc = Консольная плата для консоли связи.
 ent-SyndicateCommsComputerCircuitboard = консоль связи Синдиката (консольная плата)
     .desc = Консольная плата для консоли связи Синдиката.
-ent-CentcommCommsComputerCircuitboard = консоль связи Центрального командования (консольная плата)
+ent-CentcommCommsComputerCircuitboard = консоль связи ЦК(консольная плата)
     .desc = Консольная плата для консоли связи Центрального командования.
 ent-RadarConsoleCircuitboard = консоль сканера массы (консольная плата)
     .desc = { ent-BaseComputerCircuitboard.desc }
@@ -94,3 +94,12 @@ ent-RoboticsConsoleCircuitboard = консоль управления робот
     .desc = Консольная плата для консоли управления робототехникой.
 ent-StationAiUploadCircuitboard = консоль загрузки ИИ (консольная плата)
     .desc = Консольная плата для консоли загрузки ИИ.
+
+ent-XenoborgCameraMonitorCircuitboard = монитор камер ксеноборгов (консольная плата)
+    .desc = Консольная плата для монитора камер ксеноборгов.
+
+ent-WizardCommsComputerCircuitboard = консоль связи волшебника (консольная плата)
+    .desc = Консольная плата для консоли связи волшебника.
+
+ent-StationAiFixerCircuitboard = консоль восстановления ИИ (консольная плата)
+    .desc = Консольная плата для консоли восстановления ИИ.

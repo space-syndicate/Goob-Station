@@ -1,6 +1,6 @@
 construction-recipe-diagonal-shuttle-wall = стена шаттла (диагональ)
 construction-window-diagonal = окно (диагональ)
-construction-recipe-reinforced-window-diagonal = бронированное окно (диагональ)
+construction-recipe-reinforced-window-diagonal = бронеокно (диагональ)
 construction-recipe-clockwork-window-diagonal = заводное окно (диагональ)
 construction-recipe-plasma-window-diagonal = плазменное окно (диагональ)
 construction-recipe-reinforced-plasma-window-diagonal = плазменное бронеокно (диагональ)

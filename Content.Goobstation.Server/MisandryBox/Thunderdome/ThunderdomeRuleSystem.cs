@@ -1,4 +1,5 @@
 using Content.Goobstation.Common.Mind;
+using Content.Goobstation.Common.Mobs;
 using Content.Goobstation.Server.MisandryBox.Mind;
 using Content.Goobstation.Shared.MisandryBox.Mind;
 using Content.Goobstation.Shared.MisandryBox.Thunderdome;
@@ -27,6 +28,7 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mind.Components;
 using Content.Shared.Popups;
+using Content.Shared.Power;
 using Content.Shared.Preferences;
 using Content.Shared.Weapons.Ranged.Components;
 using Robust.Server.Audio;
@@ -40,6 +42,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Containers;
 using Robust.Shared.Spawners;
 using Robust.Shared.Timing;
+using Content.Server._CorvaxGoob.Skills;
 
 namespace Content.Goobstation.Server.MisandryBox.Thunderdome;
 
@@ -62,6 +65,8 @@ public sealed class ThunderdomeRuleSystem : EntitySystem
     [Dependency] private readonly TemporaryMindSystem _tempMind = default!;
     [Dependency] private readonly ILocalizationManager _loc = default!;
     [Dependency] private readonly GunSystem _gun = default!;
+
+    [Dependency] private readonly SkillsSystem _skills = default!;
 
     private const string RulePrototype = "ThunderdomeRule";
     private EntityUid? _ruleEntity;
@@ -94,6 +99,7 @@ public sealed class ThunderdomeRuleSystem : EntitySystem
         SubscribeLocalEvent<ThunderdomePlayerComponent, GetAntagSelectionBlockerEvent>(OnAntagSelectionBlocker);
         SubscribeLocalEvent<ThunderdomeOriginalBodyComponent, ExaminedEvent>(OnOriginalBodyExamined);
         SubscribeLocalEvent<ThunderdomePlayerComponent, PlayerDetachedEvent>(OnPlayerDetached);
+        SubscribeLocalEvent<ShouldLogMobStateChangeEvent>(OnShouldLogStateChange);
     }
 
     public override void Update(float frameTime)
@@ -258,7 +264,8 @@ public sealed class ThunderdomeRuleSystem : EntitySystem
     {
         if (!TryComp<ThunderdomeRuleComponent>(ruleEntity, out var rule)
             || !rule.Active
-            || session.AttachedEntity is not { Valid: true } ghostEntity)
+            || session.AttachedEntity is not { Valid: true } ghostEntity
+            || !HasComp<GhostComponent>(ghostEntity))
             return;
 
         var spawnCoords = GetRandomSpawnPoint(rule);
@@ -291,6 +298,8 @@ public sealed class ThunderdomeRuleSystem : EntitySystem
             return;
 
         rule.Players.Add(GetNetEntity(mob));
+
+        _skills.GrantAllSkills(mob); // CorvaxGoob-Skills
 
         _activeEuis.Remove(session);
 
@@ -461,6 +470,12 @@ public sealed class ThunderdomeRuleSystem : EntitySystem
     private static void OnAntagSelectionBlocker(Entity<ThunderdomePlayerComponent> ent, ref GetAntagSelectionBlockerEvent args)
     {
         args.Blocked = true;
+    }
+
+    private void OnShouldLogStateChange(ref ShouldLogMobStateChangeEvent args)
+    {
+        if (HasComp<ThunderdomePlayerComponent>(args.Target))
+            args.Cancelled = true;
     }
 
     private void OnOriginalBodyExamined(Entity<ThunderdomeOriginalBodyComponent> ent, ref ExaminedEvent args)
@@ -637,8 +652,7 @@ public sealed class ThunderdomeRuleSystem : EntitySystem
                     if (!inGun && TryComp<BallisticAmmoProviderComponent>(contained, out var ballistic))
                         RefillBallistic((contained, ballistic));
 
-                    if (!inGun && (HasComp<HitscanBatteryAmmoProviderComponent>(contained)
-                        || HasComp<ProjectileBatteryAmmoProviderComponent>(contained)))
+                    if (!inGun && (HasComp<BatteryAmmoProviderComponent>(contained)))
                         RefillBattery(contained);
 
                     if (!inGun && TryComp<RevolverAmmoProviderComponent>(contained, out var revolver))

@@ -7145,13 +7145,6 @@ entities:
     - type: Transform
       pos: 20.81159,7.456767
       parent: 2
-- proto: DefaultStationBeaconPowerBank
-  entities:
-  - uid: 959
-    components:
-    - type: Transform
-      pos: 27.5,-16.5
-      parent: 2
 - proto: DnaScramblerImplanter
   entities:
   - uid: 961

@@ -1,0 +1,13 @@
+ent-MobCosmicColossusBase = энтропический колосс
+    .desc = Колоссальное чудовище, покрытое зловещей броней и опутанное дендритными наростами.
+ent-MobCosmicColossusLone = { ent-MobCosmicColossusBase }
+    .desc = Древнее чудовище, покрытое зловещими пластинами и опутанное дендритными наростами.
+    .suffix = MidRoundAntag
+ent-MobCosmicColossus = { ent-MobCosmicColossusBase }
+    .desc = { ent-MobCosmicColossusBase.desc }
+ent-MobTileDamageZone = { "" }
+    .desc = { "" }
+ent-MobTileDamageArea = { "" }
+    .desc = { "" }
+ent-MobTileDamageIssuer = { "" }
+    .desc = { "" }

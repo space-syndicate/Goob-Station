@@ -1,8 +1,3 @@
-// SPDX-FileCopyrightText: 2024 deltanedas <39013340+deltanedas@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Эдуард <36124833+Ertanic@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Tayrtahn <tayrtahn@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Shared.Security;
@@ -48,4 +43,4 @@ public sealed partial record CriminalRecord
 /// A line of criminal activity and the time it was added at.
 /// </summary>
 [Serializable, NetSerializable]
-public record struct CrimeHistory(TimeSpan AddTime, string Crime, string? InitiatorName);
+public record struct CrimeHistory(TimeSpan AddTime, string Crime, string? InitiatorName, string? Articles = null, int? Duration = null, SecurityStatus? Status = null); // CorvaxGoob-SecurityFeatures

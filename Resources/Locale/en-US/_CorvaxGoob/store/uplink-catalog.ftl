@@ -3,3 +3,17 @@ uplink-syndicate-capture-device-scd-desc = A crimson capture gun that fires a te
 
 uplink-cat-maid-bundle-name = Cat Maid Bundle
 uplink-cat-maid-bundle-desc = OwO UwU :3 Nyaaa~
+
+uplink-blood-red-paper-box-name = A box of Syndicate paper
+uplink-blood-red-paper-box-desc = A box filled with blood-red paper with the Syndicate logo. This is a great propaganda tool if you've run out of free business cards.
+
+uplink-reinforcement-radio-syndicate-gorilla-name = Syndicate Gorilla Teleporter
+uplink-reinforcement-radio-syndicate-gorilla-desc =  Calls gorilla to assist you.
+
+uplink-dice-of-fate-name = Dice of Fate
+uplink-dice-of-fate-desc = A one-use d20. Roll it and find out your fate.
+uplink-toolbox-electrical-turret-name = Blueprint deployable ballistic turret
+uplink-toolbox-electrical-turret-desc = A blueprint, that allows the autolathe to print deployable ballistic turret.
+
+uplink-mimejutsu-name = Mimejutsu Manual
+uplink-mimejutsu-desc = A manual that teaches a single user Mimejutsu before self-destructing. Mimejutsu is an aggressive and debilitating fighting style that focuses on precise strikes - designed to quickly subdue targets by breaking bones, impairing movement, and shutting down their ability to speak.

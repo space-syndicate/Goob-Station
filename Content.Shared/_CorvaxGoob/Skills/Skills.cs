@@ -1,5 +1,3 @@
-using Robust.Shared.Serialization;
-
 namespace Content.Shared._CorvaxGoob.Skills;
 
 [Serializable]
@@ -10,6 +8,7 @@ public enum Skills
     Shooting,
     AdvancedBuilding,
     Surgery,
+    SelfSurgery,
     MedicalEquipment,
     Butchering
 }

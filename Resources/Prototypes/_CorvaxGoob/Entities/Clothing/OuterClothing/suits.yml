@@ -22,7 +22,7 @@
       sprite: _CorvaxGoob/Clothing/OuterClothing/Coats/disco.rsi
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ClothingOuterStorageBase, AllowSuitStorageClothingGasTanks]
   id: ClothingAtmosphericsOveralls
   name: atmospherics overalls
   description: A set of fireproof overalls, good for protecting thinner clothes from gas leaks.
@@ -39,3 +39,12 @@
       - state: equipped-OUTERCLOTHING-unshaded
         shader: shaded
       # Это так светооражающие элементы сделаны. Подробности в файле с ClothingOuterVestHazard
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Heat: 0.85
+        Caustic: 0.95
+  - type: FireProtection
+    reduction: 0.15

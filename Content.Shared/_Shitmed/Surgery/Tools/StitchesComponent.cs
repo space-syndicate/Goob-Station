@@ -8,7 +8,7 @@ namespace Content.Shared._Shitmed.Medical.Surgery.Tools;
 [RegisterComponent, NetworkedComponent]
 public sealed partial class StitchesComponent : Component, ISurgeryToolComponent
 {
-    public string ToolName => "stitches";
+    public string ToolName => "itemswitch-component-state-stitches"; // CorvaxGoob-localization
     [DataField]
     public bool? Used { get; set; } = null;
     [DataField]

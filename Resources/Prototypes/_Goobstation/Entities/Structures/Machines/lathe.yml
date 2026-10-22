@@ -1,26 +1,8 @@
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aviu00 <aviu00@protonmail.com>
-# SPDX-FileCopyrightText: 2025 BombasterDS <deniskaporoshok@gmail.com>
-# SPDX-FileCopyrightText: 2025 BombasterDS2 <shvalovdenis.workmail@gmail.com>
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 IrisTheAmped <iristheamped@gmail.com>
-# SPDX-FileCopyrightText: 2025 Marty <martynashagriefer@gmail.com>
-# SPDX-FileCopyrightText: 2025 NotActuallyMarty <martynashagriefer@gmail.com>
-# SPDX-FileCopyrightText: 2025 Rouden <149893554+Roudenn@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Roudenn <romabond091@gmail.com>
-# SPDX-FileCopyrightText: 2025 SomethingUnbearable <mewatcher102@gmail.com>
-# SPDX-FileCopyrightText: 2025 Speebro <100388782+Speebr0@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Speebro <speebro@notreal.com>
-# SPDX-FileCopyrightText: 2025 Ted Lukin <66275205+pheenty@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 deltanedas <39013340+deltanedas@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 pheenty <fedorlukin2006@gmail.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: entity
   id: EngineeringTechFab
-  parent: [BaseLatheLube, BaseSiloUtilizer]
+  parent: [BaseLatheLube]
   name: engineering techfab
   description: Prints equipment and circuitboards for use by engineering department.
   components:
@@ -52,11 +34,14 @@
     - CablesStatic
     - MaterialsStatic
     - LightsStatic
+    - LatheMiscStatic
     - PowerCellsStatic
     - ElectronicsStatic
     - MiscSignallersStatic
     - NailgunStatic
     - NailsStatic
+    - ReactorPartsBasic
+    - GlassStaticPack # CorvaxGoob
     dynamicPacks:
     - ConstructionBagOfHolding
     - AdvancedTools
@@ -74,9 +59,19 @@
     - BluespaceTheory
     - ScienceClothing
     - UpgradeKits
+    - AdvancedEmitters        # Omu - advanced emitters
     # CorvaxGoob Packs
     - WorkBeltsSharedDynamic # WorkBelts-Techfab
     - WokrBeltsEngDynamic # WorkBelts-Techfab
+    # Nuclear Reactor Packs
+    - ReactorCircuitboards
+    - ReactorFuelRods
+    - ReactorControlRods
+    - ReactorGasChannels
+    - ReactorHeatExchangers
+    - GasTurbineBlades
+    - GasTurbineStators
+    - NuclearSafetyTools
   - type: EmagLatheRecipes
     emagStaticPacks:
     - NailgunEvilStatic
@@ -89,10 +84,27 @@
         - Sheet
         - RawMaterial
         - Ingot
+        - SheetPlasma
+  # CorvaxGoob-start
+  - type: LatheAnnouncing
+    channels: [Engineering]
+  - type: BlueprintReceiver
+    whitelist:
+      tags:
+      - BlueprintEngineeringTechFab
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      blueprint: !type:Container
+  - type: EmptyOnMachineDeconstruct
+    containers:
+    - blueprint
+  # CorvaxGoob-end
 
 - type: entity
   id: CargoTechFab
-  parent: [BaseLatheLube, BaseSiloUtilizer]
+  parent: [BaseLatheLube]
   name: cargo techfab
   description: Prints equipment and circuitboards for use by cargo department.
   components:
@@ -118,7 +130,10 @@
     - ToolsStatic
     - SharedBoardsStatic
     - CargoBoardsStatic
+    - CargoBoardsStaticGoob
     - CablesStatic
+    - PartsStatic
+    - LatheMiscStatic
     - PowerCellsStatic
     - MiningToolsStatic
     - MiscSignallersStatic
@@ -126,6 +141,7 @@
     dynamicPacks:
     - AdvancedTools
     - Mining
+    - MiningLavaland # Lavaland Change
     - PowerCells
     - Equipment
     # - ServiceWeapons
@@ -156,10 +172,27 @@
         - Sheet
         - RawMaterial
         - Ingot
+        - SheetPlasma
+  # CorvaxGoob-start
+  - type: LatheAnnouncing
+    channels: [Supply]
+  - type: BlueprintReceiver
+    whitelist:
+      tags:
+      - BlueprintCargoTechFab
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      blueprint: !type:Container
+  - type: EmptyOnMachineDeconstruct
+    containers:
+    - blueprint
+  # CorvaxGoob-end
 
 - type: entity
   id: ScienceTechFab
-  parent: [BaseLatheLube, BaseSiloUtilizer]
+  parent: [BaseLatheLube]
   name: science techfab
   description: Prints equipment and circuitboards for use by science department.
   components:
@@ -187,8 +220,10 @@
     - CircuitFloorsStatic
     - MedicalBoardsStatic
     - MedicalBoardsStaticGoob
+    - ChemistryStatic
     - ToolsStatic
     - PartsStatic
+    - LatheMiscStatic
     - AtmosStatic
     - CablesStatic
     - MaterialsStatic
@@ -212,12 +247,14 @@
     - Chemistry
     - Janitor
     - Equipment
+    - MedicalBoards #Goob
     # - ServiceWeapons
     - Surgery
     - SpecOpsGoogles
     - EngineeringBoards
     - SharedBoards
     - ScienceBoards
+    - ScienceBoardsGoob
     - ShuttleBoards
     - ShuttleBoardsGoob
     - MedicalBoardsGoob
@@ -246,10 +283,27 @@
         - Sheet
         - RawMaterial
         - Ingot
+        - SheetPlasma
+  # CorvaxGoob-start
+  - type: LatheAnnouncing
+    channels: [Science]
+  - type: BlueprintReceiver
+    whitelist:
+      tags:
+      - BlueprintScienceTechFab
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      blueprint: !type:Container
+  - type: EmptyOnMachineDeconstruct
+    containers:
+    - blueprint
+  # CorvaxGoob-end
 
 - type: entity
   id: ServiceTechFab
-  parent: [BaseLatheLube, BaseSiloUtilizer]
+  parent: [BaseLatheLube]
   name: service techfab
   description: Prints equipment and circuitboards for use by service department.
   components:
@@ -280,6 +334,7 @@
     - PowerCellsStatic
     - LatheMiscStatic
     - HydroponicsStatic # CorvaxGoob
+    - PartsStatic
     - ChemistryStatic
     - TapeRecorderStatic
     - CondimentStatic
@@ -296,6 +351,8 @@
     - CameraBoards
     - ServiceTools
     - ServiceBoardsGoob # goob
+    - EntertainmentPack # goob
+    - BartendingPack # goob
     # Einstein Engines Packs
     - Translators
     # CorvaxGoob Packs
@@ -309,10 +366,27 @@
         - Sheet
         - RawMaterial
         - Ingot
+        - SheetPlasma
+  # CorvaxGoob-start
+  - type: LatheAnnouncing
+    channels: [Service]
+  - type: BlueprintReceiver
+    whitelist:
+      tags:
+      - BlueprintServiceTechFab
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      blueprint: !type:Container
+  - type: EmptyOnMachineDeconstruct
+    containers:
+    - blueprint
+  # CorvaxGoob-end
 
 - type: entity
   id: ERTTechFab
-  parent: [BaseLatheLube, BaseSiloUtilizer]
+  parent: [BaseLatheLube]
   name: ERT techfab
   description: Standard-issue ammunition and gear for Emergency Response Team deployments. Fast, basic, reliable.
   components:
@@ -346,3 +420,4 @@
           - Sheet
           - RawMaterial
           - Ingot
+          - SheetPlasma

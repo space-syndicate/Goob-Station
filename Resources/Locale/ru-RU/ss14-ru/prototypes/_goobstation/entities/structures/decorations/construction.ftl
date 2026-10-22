@@ -1,2 +1,2 @@
-ent-ConstructionBarricade = баррикада
+ent-ConstructionBarricade = строительное ограждение
     .desc = Надень каску!

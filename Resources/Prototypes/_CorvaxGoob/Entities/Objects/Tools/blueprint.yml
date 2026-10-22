@@ -1,0 +1,9 @@
+- type: entity
+  parent: BaseBlueprint
+  id: BlueprintToolboxElectricalTurret
+  name: turret in a toolbox blueprint
+  description: A blueprint with a schematic of a turret in a toolbox. It can be inserted into an autolathe.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - ToolboxElectricalTurret

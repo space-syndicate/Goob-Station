@@ -7,7 +7,7 @@
     - type: FlavorProfile
       flavors:
         - meaty
-    - type: Food
+    - type: Edible
       trash:
         - FoodBowlBig
       utensil:
@@ -151,7 +151,7 @@
     - Meat
 
 - type: entity
-  name: plow 
+  name: plow
   parent: FoodBowlBase
   id: FoodPlow
   description: Oh, Vasya, rice is fire

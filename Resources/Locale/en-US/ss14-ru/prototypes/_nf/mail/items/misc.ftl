@@ -1,15 +1,6 @@
-ent-DelayedSmoke = delayed smoke
-    .suffix = (10s)
-    .desc = { ent-BaseItem.desc }
 ent-AdminInstantEffectEMP7 = { ent-AdminInstantEffectBase }
     .suffix = EMP, 7 meters
     .desc = { ent-AdminInstantEffectBase.desc }
-ent-DelayedEMP = delayed EMP (7 meters)
-    .desc = { ent-BaseItem.desc }
-ent-SyringeCognizine = cognizine syringe
-    .desc = { ent-Syringe.desc }
-ent-SyringeOpporozidone = opporozidone syringe
-    .desc = { ent-Syringe.desc }
 ent-NecrosolChemistryBottle = necrosol bottle
     .desc = { ent-BaseChemistryBottleFilled.desc }
 ent-DrinkPremiumVodkaBottleFull = Moment of Clarity vodka bottle

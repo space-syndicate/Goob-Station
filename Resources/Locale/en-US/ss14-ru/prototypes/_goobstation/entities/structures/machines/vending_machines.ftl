@@ -6,7 +6,5 @@ ent-VendingMachineSolsnack = Mars Mart
     .desc = A SolCentric vending machine dispensing treats from home.
 ent-VendingMachineWeeb = Nippon-tan
     .desc = A distressingly ethnic vending machine loaded with high sucrose low calorie for lack of better words snacks.
-ent-VendingMachineMailDrobe = MailDrobe
-    .desc = Neither solar flares nor meteors nor plasma fire nor void of space stays these couriers from the swift completion of their appointed rounds.
 ent-VendingMachineSweetToof = sweet-toof co. candy
     .desc = A vending machine selling an unhealthy amount of candy. You'd have to have a 'sweet-tooth' to enjoy it.

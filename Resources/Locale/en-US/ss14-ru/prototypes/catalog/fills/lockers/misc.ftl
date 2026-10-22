@@ -1,6 +1,9 @@
 ent-LockerSyndicatePersonalFilled = { ent-LockerSyndicatePersonal }
-    .suffix = Filled
-    .desc = { ent-LockerSyndicatePersonal.desc }
+    .desc = It's a personal storage unit for operative gear.
+    .suffix = Nukie, Filled
+ent-LockerSyndicateWallFilled = { ent-LockerWallSyndicate }
+    .desc = It's a personal storage unit for operative gear.
+    .suffix = Nukie, Filled
 ent-ClosetEmergencyFilledRandom = { ent-ClosetEmergency }
     .suffix = Filled, Random
     .desc = { ent-ClosetEmergency.desc }

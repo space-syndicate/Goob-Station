@@ -6,3 +6,4 @@ slime-examined-stomach = [color=red]Вы видите, как внутри не�
 slime-examined-tamer = [color=green]Кажется, он рад вас видеть![/color]
 slime-interaction-tame = Похоже, вы теперь ему нравитесь!
 slime-interaction-tame-fail = Похоже, вы ему не интересны.
+slime-latch-fail-already-latched = Вы не можете прицепиться к { $ent }, к нему уже прицепился кто-то другой!

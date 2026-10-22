@@ -1,5 +1,5 @@
-// SPDX-FileCopyrightText: 2025 BombasterDS <deniskaporoshok@gmail.com>
-//
+/*
+// CorvaxGoob-Footprint-Refactoring
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Goobstation.Common.Footprints;
@@ -49,3 +49,4 @@ public sealed class FootprintSystem : EntitySystem
         }
     }
 }
+*/

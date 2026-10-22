@@ -1,0 +1,83 @@
+- type: reaction
+  id: SolidifyPlasma
+  impact: Low
+  quantized: true
+  reactants:
+    Plasma:
+      amount: 10
+    FrostOil:
+      amount: 5
+  effects:
+  - !type:SpawnEntity
+    entity: SheetPlasma1
+
+- type: reaction
+  id: SolidifyPlasmaHercuri
+  impact: Low
+  quantized: true
+  reactants:
+    Plasma:
+      amount: 10
+    Hercuri:
+      amount: 5
+  effects:
+  - !type:SpawnEntity
+    entity: SheetPlasma1
+
+- type: reaction
+  id: SolidifyUranium
+  impact: Low
+  quantized: true
+  reactants:
+    Uranium:
+      amount: 8
+    Radium:
+      amount: 2
+    FrostOil:
+      amount: 5
+  effects:
+  - !type:SpawnEntity
+    entity: SheetUranium1
+
+- type: reaction
+  id: SolidifyUraniumHercuri
+  impact: Low
+  quantized: true
+  reactants:
+    Uranium:
+      amount: 8
+    Radium:
+      amount: 2
+    Hercuri:
+      amount: 5
+  effects:
+  - !type:SpawnEntity
+    entity: SheetUranium1
+
+- type: reaction
+  id: SolidifyGlass
+  impact: Low
+  quantized: true
+  minTemp: 1000
+  reactants:
+    Silicon:
+      amount: 10
+    FrostOil:
+      amount: 5
+  effects:
+  - !type:SpawnEntity
+    entity: SheetGlass1
+
+- type: reaction
+  id: SolidifyGlassHercuri
+  impact: Low
+  quantized: true
+  minTemp: 1000
+  reactants:
+    Silicon:
+      amount: 10
+    Hercuri:
+      amount: 5
+  effects:
+  - !type:SpawnEntity
+    entity: SheetGlass1

@@ -4,7 +4,37 @@
   id: AdvancedRetractor
 
 - type: Tag
+  id: BagelTheatre
+
+- type: Tag
+  id: BagelCage
+
+- type: Tag
+  id: BlueprintCargoTechFab
+
+- type: Tag
+  id: BlueprintEngineeringTechFab
+
+- type: Tag
+  id: BlueprintExosuitFabricator
+
+- type: Tag
+  id: BlueprintMedicalTechFab
+
+- type: Tag
+  id: BlueprintSecurityTechFab
+
+- type: Tag
+  id: BlueprintScienceTechFab
+
+- type: Tag
+  id: BlueprintServiceTechFab
+
+- type: Tag
   id: BoneSetter
+
+- type: Tag
+  id: Bola
 
 - type: Tag
   id: CarcTile
@@ -40,6 +70,12 @@
   id: Hemostat
 
 - type: Tag
+  id: IgnorGrab
+
+- type: Tag
+  id: InfinityPaper
+
+- type: Tag
   id: LavalandJaunter
 
 - type: Tag
@@ -70,6 +106,9 @@
   id: Photo
 
 - type: Tag
+  id: PokerChip
+
+- type: Tag
   id: Retractor
 
 - type: Tag
@@ -95,3 +134,9 @@
 
 - type: Tag
   id: TelescopicShield
+
+- type: Tag
+  id: GasTurbineBlade
+
+- type: Tag
+  id: GasTurbineStator

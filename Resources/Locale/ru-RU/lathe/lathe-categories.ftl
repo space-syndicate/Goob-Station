@@ -27,7 +27,7 @@ lathe-category-maints = Техи
 lathe-category-steel = Стальная
 lathe-category-white = Белая
 lathe-category-wood = Деревянная
-lathe-category-marble = Marble
+lathe-category-marble = Мрамор
 # Science
 lathe-category-mechs = Мехи
 lathe-category-modules = Модули
@@ -44,3 +44,19 @@ lathe-category-command = Командование
 lathe-category-hats = Шляпы
 lathe-category-jumpsuits = Комбинезоны
 lathe-category-neck = Шея
+
+lathe-category-circuit-tile = Микросхема
+
+lathe-category-concrete-tile = Бетон
+
+lathe-category-dark-tile = Тёмная
+
+lathe-category-faux-tile = Искусственная
+
+lathe-category-maints-tile = Техи
+
+lathe-category-steel-tile = Сталь
+
+lathe-category-white-tile = Белая
+
+lathe-category-wood-tile = Деревянная

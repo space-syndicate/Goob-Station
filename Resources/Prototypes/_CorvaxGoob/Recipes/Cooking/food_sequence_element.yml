@@ -1,0 +1,69 @@
+- type: foodSequenceElement
+  id: VulpkaninCutlet
+  name: food-sequence-content-vulpkanin-cutlet
+  sprites:
+  - sprite: _CorvaxGoob/Objects/Consumable/Food/meat.rsi
+    state: vulp_cutlet-cooked
+  tags:
+  - Cooked
+  - Meat
+
+- type: foodSequenceElement
+  id: ArachnidCutlet
+  name: food-sequence-content-arachnid-cutlet
+  sprites:
+  - sprite: _CorvaxGoob/Objects/Consumable/Food/meat.rsi
+    state: arachnid_cutlet-cooked
+  tags:
+  - Cooked
+  - Meat
+
+- type: foodSequenceElement
+  id: SlimeCutlet
+  name: food-sequence-content-slime-cutlet
+  sprites:
+  - sprite: _CorvaxGoob/Objects/Consumable/Food/meat.rsi
+    state: slime_cutlet-cooked
+  tags:
+  - Cooked
+  - Meat
+
+- type: foodSequenceElement
+  id: TajaranCutlet
+  name: food-sequence-content-tajaran-cutlet
+  sprites:
+  - sprite: _CorvaxGoob/Objects/Consumable/Food/meat.rsi
+    state: tajaran_cutlet-cooked
+  tags:
+  - Cooked
+  - Meat
+
+- type: foodSequenceElement
+  id: VoxCutlet
+  name: food-sequence-content-vox-cutlet
+  sprites:
+  - sprite: _CorvaxGoob/Objects/Consumable/Food/meat.rsi
+    state: vox_cutlet-cooked
+  tags:
+  - Cooked
+  - Meat
+
+- type: foodSequenceElement
+  id: MothCutlet
+  name: food-sequence-content-moth-cutlet
+  sprites:
+  - sprite: _CorvaxGoob/Objects/Consumable/Food/meat.rsi
+    state: moth_cutlet-cooked
+  tags:
+  - Cooked
+  - Meat
+
+- type: foodSequenceElement
+  id: ResomiCutlet
+  name: food-sequence-content-resomi-cutlet
+  sprites:
+  - sprite: _CorvaxGoob/Objects/Consumable/Food/meat.rsi
+    state: resomi_cutlet-cooked
+  tags:
+  - Cooked
+  - Meat

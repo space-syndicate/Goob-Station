@@ -4,8 +4,8 @@ meta:
   engineVersion: 266.0.0
   forkId: ""
   forkVersion: ""
-  time: 03/21/2026 18:48:39
-  entityCount: 33542
+  time: 04/29/2026 09:58:59
+  entityCount: 33543
 maps:
 - 1
 grids:
@@ -21921,7 +21921,7 @@ entities:
       pos: -5.5,-12.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -438546.38
+      secondsUntilStateChange: -438901.4
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -23574,7 +23574,7 @@ entities:
       pos: -50.5,-9.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -213529.48
+      secondsUntilStateChange: -213884.52
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -93751,7 +93751,7 @@ entities:
       pos: 30.5,17.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -581741.9
+      secondsUntilStateChange: -582096.9
       state: Opening
   - uid: 11706
     components:
@@ -93760,7 +93760,7 @@ entities:
       pos: 33.5,16.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -721381.06
+      secondsUntilStateChange: -721736.06
       state: Opening
   - uid: 11707
     components:
@@ -110973,7 +110973,7 @@ entities:
       pos: -23.5,10.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -115560.266
+      secondsUntilStateChange: -115915.305
       state: Closing
   - uid: 13808
     components:
@@ -156039,7 +156039,7 @@ entities:
       parent: 2
 - proto: HolopadSecurityCourtroom
   entities:
-  - uid: 25702
+  - uid: 23309
     components:
     - type: Transform
       pos: -10.5,4.5
@@ -156282,7 +156282,7 @@ entities:
       pos: 9.5,-70.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -97876.414
+      secondsUntilStateChange: -98231.45
       state: Closing
 - proto: hydroponicsSoil
   entities:
@@ -156834,14 +156834,6 @@ entities:
       parent: 2
     - type: Fixtures
       fixtures: {}
-  - uid: 19591
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 38.5,-42.5
-      parent: 2
-    - type: Fixtures
-      fixtures: {}
   - uid: 19592
     components:
     - type: Transform
@@ -156853,6 +156845,14 @@ entities:
     components:
     - type: Transform
       pos: 21.5,-28.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
+  - uid: 23628
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 36.5,-43.5
       parent: 2
     - type: Fixtures
       fixtures: {}
@@ -159327,6 +159327,13 @@ entities:
     components:
     - type: Transform
       pos: -2.5489566,40.599983
+      parent: 2
+- proto: MagistrateGavel
+  entities:
+  - uid: 32922
+    components:
+    - type: Transform
+      pos: -11.587216,4.9691467
       parent: 2
 - proto: MailingUnit
   entities:
@@ -174307,10 +174314,10 @@ entities:
     - type: Transform
       pos: -7.5,8.5
       parent: 2
-  - uid: 23628
+  - uid: 25702
     components:
     - type: Transform
-      pos: -3.5,7.5
+      pos: -3.5,2.5
       parent: 2
   - uid: 27389
     components:
@@ -185521,6 +185528,13 @@ entities:
     - type: Transform
       pos: 61.5,-35.5
       parent: 2
+- proto: SpawnMobBingleCargo
+  entities:
+  - uid: 23195
+    components:
+    - type: Transform
+      pos: -30.5,-26.5
+      parent: 2
 - proto: SpawnMobBoxingKangaroo
   entities:
   - uid: 31337
@@ -185613,13 +185627,6 @@ entities:
     components:
     - type: Transform
       pos: 43.5,0.5
-      parent: 2
-- proto: SpawnMobGorillaLargo
-  entities:
-  - uid: 23195
-    components:
-    - type: Transform
-      pos: -30.5,-26.5
       parent: 2
 - proto: SpawnMobHonkBot
   entities:
@@ -185993,6 +186000,13 @@ entities:
     - type: Transform
       pos: 64.5,-3.5
       parent: 2
+- proto: SpawnPointMagistrate
+  entities:
+  - uid: 19591
+    components:
+    - type: Transform
+      pos: -12.5,4.5
+      parent: 2
 - proto: SpawnPointMedicalDoctor
   entities:
   - uid: 28485
@@ -186108,11 +186122,6 @@ entities:
       parent: 2
 - proto: SpawnPointNanotrasenRepresentative
   entities:
-  - uid: 23309
-    components:
-    - type: Transform
-      pos: -12.5,4.5
-      parent: 2
   - uid: 32756
     components:
     - type: Transform

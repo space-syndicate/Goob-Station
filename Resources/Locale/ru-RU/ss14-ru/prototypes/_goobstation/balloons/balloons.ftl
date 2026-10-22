@@ -1,5 +1,4 @@
-ent-BaseBalloon = базовый шарик
-    .desc = { ent-BaseStructureDynamic.desc }
+
 ent-RedBalloon = красный шарик
     .desc = Самый слабый шарик.
 ent-BlueBalloon = синий шарик

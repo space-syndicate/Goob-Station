@@ -5,3 +5,6 @@ ent-BlastDoorOpen = { ent-BlastDoor }
     .desc = { ent-BlastDoor.desc }
 ent-BlastDoorFrame = каркас гермозатвора
     .desc = { ent-BlastDoor.desc }
+
+ent-BlastDoorXeno = ксеногермозатвор
+    .desc = Не потеряйте руку!

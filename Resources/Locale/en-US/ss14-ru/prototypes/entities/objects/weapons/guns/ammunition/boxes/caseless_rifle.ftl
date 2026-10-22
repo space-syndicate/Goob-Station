@@ -7,4 +7,4 @@ ent-MagazineBoxCaselessRifleBig = ammunition box (9.5mm HP)
 ent-MagazineBoxCaselessRifle = ammunition box (9.5mm HP)
     .desc = A cardboard box of 9.5mm caseless rounds. Intended to hold general-purpose kinetic ammunition.
 ent-MagazineBoxCaselessRiflePractice = ammunition box (9.5mm practice)
-    .desc = A cardboard box of 9.5mm caseless rounds. Intended to hold non-harmful chalk ammunition.
+    .desc = A cardboard box of 9.5mm caseless rounds. Intended to hold harmless practice ammunition.

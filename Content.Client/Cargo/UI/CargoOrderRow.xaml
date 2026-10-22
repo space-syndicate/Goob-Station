@@ -1,7 +1,4 @@
 <!--
-SPDX-FileCopyrightText: 2021 Visne <39844191+Visne@users.noreply.github.com>
-SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-
 SPDX-License-Identifier: MIT
 -->
 <!-- basically all of this has been changed by goobstation to a new UI, See PR #4780-->
@@ -56,12 +53,21 @@ SPDX-License-Identifier: MIT
                        VerticalExpand="True"
                        StyleClasses="LabelSubText" />
 
-                <Label Name="Description"
+                <!-- CorvaxGoob-CargoFeatures-Start -->
+                <Label Name="DeliveryDestination"
                        Access="Public"
                        HorizontalExpand="True"
                        VerticalExpand="True"
                        StyleClasses="LabelSubText"
                        ClipText="True" />
+                <Label Name="Note"
+                       Access="Public"
+                       HorizontalExpand="True"
+                       VerticalExpand="True"
+                       StyleClasses="LabelSubText"
+                       ClipText="True" />
+                <!-- CorvaxGoob-CargoFeatures-End -->
+
             </BoxContainer>
         </BoxContainer>
 

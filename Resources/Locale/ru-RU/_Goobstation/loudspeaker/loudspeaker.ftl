@@ -2,3 +2,5 @@ loudspeaker-examine-toggleable = Функциональность громког
 loudspeaker-examine-generic = Имеет функционал громкоговорителя.
 loudspeaker-toggle = Переключить громкоговоритель
 loudspeaker-toggle-popup = Громкоговоритель { $state }.
+loudspeaker-state-on = включен
+loudspeaker-state-off = выключен

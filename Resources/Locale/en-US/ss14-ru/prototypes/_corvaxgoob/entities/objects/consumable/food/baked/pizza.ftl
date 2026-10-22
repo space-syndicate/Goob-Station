@@ -1,2 +1,12 @@
+ent-FoodPizzaPyrotton = pyrotton pizza
+    .desc = Flat fabric cotton dough with pyrotton topping. Incredible.
+ent-FoodPizzaPyrottonSlice = slice of pyrotton pizza
+    .desc = A slice of pyrotton pizza. Pyrotton included.
+ent-FoodPizzaCarptton = carptton pizza
+    .desc = Flat fabric cotton dough with plushie carp topping. Incredible.
+ent-FoodPizzaCarpttonSlice = slice of carptton pizza
+    .desc = A slice of carptton pizza. Plushie carp included.
 ent-FoodPizzaCrust = pizza crust
+    .desc = Pizza without toppings — just dough with ambition.
+ent-FoodCottonPizzaCrust = cotton pizza crust
     .desc = Pizza without toppings — just dough with ambition.

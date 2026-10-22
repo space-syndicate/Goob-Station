@@ -64,9 +64,7 @@ ent-ClothingUniformJumpsuitMilitaryEngineering = { ent-ClothingUniformJumpsuitEn
 ent-ClothingUniformJumpsuitMilitaryEngineeringChief = { ent-ClothingUniformJumpsuitChiefEngineer }
     .suffix = Военный
     .desc = { ent-ClothingUniformJumpsuitChiefEngineer.desc }
-ent-ClothingUniformJumpsuitMilitarySalvageSpecialist = { ent-ClothingUniformJumpsuitSalvageSpecialist }
-    .suffix = Военный
-    .desc = { ent-ClothingUniformJumpsuitSalvageSpecialist.desc }
+
 ent-ClothingUniformJumpsuitMilitaryCargo = { ent-ClothingUniformJumpsuitCargo }
     .suffix = Военный
     .desc = { ent-ClothingUniformJumpsuitCargo.desc }

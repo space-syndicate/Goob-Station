@@ -2,12 +2,12 @@ nuke-component-cant-anchor-floor = Крепёжным болтам не удаё
 nuke-component-cant-anchor-toggle = Для переключения крепёжных болтов требуется диск ядерной аутентификации!
 nuke-component-announcement-sender = Ядерная боеголовка
 nuke-component-announcement-armed = Внимание! Механизм самоуничтожения станции был активирован { $location }. До детонации { $time } секунд.
-nuke-component-announcement-unarmed = Механизм самоуничтожение станции деактивирован! Хорошего дня!
+nuke-component-announcement-unarmed = Механизм самоуничтожения станции деактивирован! Хорошего дня!
 nuke-component-announcement-send-codes = Внимание! Запрошенные коды самоуничтожения были отправлены на факс капитана.
 nuke-component-doafter-warning = Вы начинаете перебирать провода и кнопки, в попытке обезвредить ядерную бомбу. Это может занять некоторое время.
 # Nuke UI
 nuke-user-interface-title = Ядерная боеголовка
-nuke-disk-component-microwave = The disk sparks and fizzles a bit, but seems mostly unharmed?
+nuke-disk-component-microwave = Диск искрит и немного шипит, но в целом кажется неповреждённым?
 nuke-user-interface-arm-button = ВЗВЕСТИ
 nuke-user-interface-disarm-button = ОБЕЗВРЕДИТЬ
 nuke-user-interface-anchor-button = ЗАКРЕПИТЬ

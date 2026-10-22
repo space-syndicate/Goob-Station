@@ -22,7 +22,7 @@ role-subtype-ninja = Ниндзя
 role-subtype-nukie = Ядерный Оперативник
 role-subtype-traitor-reinforcement = Поддержка
 role-subtype-revolutionary = Революционер
-role-subtype-head-revolutionary = Глава РеВОЛЮЦИИ
+role-subtype-head-revolutionary = Глава Революции
 role-subtype-initial-infected = Нулевой заражённый
 role-subtype-zombie = Зомби
 role-subtype-dragon = Дракон
@@ -30,3 +30,5 @@ role-subtype-survivor = Выживший
 role-subtype-subverted = Дефектный
 role-subtype-paradox-clone = Парадокс
 role-subtype-wizard = Волшебник
+
+role-subtype-xenoborg = Ксеноборг

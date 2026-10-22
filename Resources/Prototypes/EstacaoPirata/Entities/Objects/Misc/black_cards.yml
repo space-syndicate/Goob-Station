@@ -1,10 +1,3 @@
-# SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
-# SPDX-FileCopyrightText: 2024 coderabbitai[bot] <136622811+coderabbitai[bot]@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Bandit <queenjess521@gmail.com>
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 RadsammyT <32146976+RadsammyT@users.noreply.github.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: entity
@@ -17,13 +10,14 @@
     size: Small
     shape:
     - 0,0,1,1
-  - type: Sprite
-    sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    layers:
-    - state: black_box
-    - state: black_box_open
-      map: [ "openLayer" ]
-      visible: false
+  - type: ItemCounter # FIXME
+    count:
+      components:
+      - CardDeck
+    composite: true
+    layerStates:
+      - fullLayer
+      - fullLayer
   - type: Storage
     maxItemSize: Normal
     grid:
@@ -62,7 +56,8 @@
   - type: CardHand
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: singlecard_down_black
+    state: back_black
+    drawdepth: SmallObjects
   - type: UserInterface
     interfaces:
       enum.CardUiKey.Key:
@@ -79,6 +74,7 @@
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
     state: deck_black_full
+    drawdepth: SmallObjects
   - type: Item
     size: Normal
   - type: CardDeck
@@ -95,8 +91,12 @@
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
     layers:
     - state: black_box
+      map: [ "closeLayer" ]
     - state: black_box_open
       map: [ "openLayer" ]
+      visible: false
+    - state: black_box_full
+      map: [ "fullLayer" ]
       visible: false
   - type: OpenTriggeredStorageFill
     contents:
@@ -111,6 +111,7 @@
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
     state: deck_black_full
+    drawdepth: SmallObjects
   - type: CardStack
     content:
     # Clubs
@@ -183,7 +184,7 @@
       collection: cardShove
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: singlecard_down_black
+    state: back_black
   - type: Rotatable
   - type: Item
     size: Small
@@ -192,7 +193,7 @@
   - type: Card
     backSpriteLayers:
     - sprite: EstacaoPirata/Objects/Misc/cards.rsi
-      state: singlecard_down_black
+      state: back_black
     flipped: true
 
 # region Black Cards
@@ -206,7 +207,8 @@
     name: card-sc-2-clubs
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_2_of_Clubs_black
+    state: clubs2
+    drawdepth: SmallObjects
 
 - type: entity
   parent: CardBase
@@ -217,7 +219,8 @@
     name: card-sc-3-clubs
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_3_of_Clubs_black
+    state: clubs3
+    drawdepth: SmallObjects
 
 - type: entity
   parent: CardBase
@@ -228,7 +231,8 @@
     name: card-sc-4-clubs
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_4_of_Clubs_black
+    state: clubs4
+    drawdepth: SmallObjects
 
 - type: entity
   parent: CardBase
@@ -239,7 +243,8 @@
     name: card-sc-5-clubs
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_5_of_Clubs_black
+    state: clubs5
+    drawdepth: SmallObjects
 
 - type: entity
   parent: CardBase
@@ -250,7 +255,8 @@
     name: card-sc-6-clubs
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_6_of_Clubs_black
+    state: clubs6
+    drawdepth: SmallObjects
 
 - type: entity
   parent: CardBase
@@ -261,7 +267,8 @@
     name: card-sc-7-clubs
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_7_of_Clubs_black
+    state: clubs7
+    drawdepth: SmallObjects
 
 - type: entity
   parent: CardBase
@@ -272,7 +279,8 @@
     name: card-sc-8-clubs
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_8_of_Clubs_black
+    state: clubs8
+    drawdepth: SmallObjects
 
 - type: entity
   parent: CardBase
@@ -283,7 +291,8 @@
     name: card-sc-9-clubs
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_9_of_Clubs_black
+    state: clubs9
+    drawdepth: SmallObjects
 
 - type: entity
   parent: CardBase
@@ -294,7 +303,8 @@
     name: card-sc-10-clubs
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_10_of_Clubs_black
+    state: clubs10
+    drawdepth: SmallObjects
 
 - type: entity
   parent: CardBase
@@ -305,8 +315,8 @@
     name: card-sc-ace-clubs
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_Ace_of_Clubs_black
-
+    state: clubs1
+    drawdepth: SmallObjects
 
 - type: entity
   parent: CardBase
@@ -317,7 +327,8 @@
     name: card-sc-jack-clubs
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_Jack_of_Clubs_black
+    state: clubs11
+    drawdepth: SmallObjects
 
 - type: entity
   parent: CardBase
@@ -328,7 +339,8 @@
     name: card-sc-king-clubs
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_King_of_Clubs_black
+    state: clubs13
+    drawdepth: SmallObjects
 
 - type: entity
   parent: CardBase
@@ -339,8 +351,8 @@
     name: card-sc-queen-clubs
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_Queen_of_Clubs_black
-
+    state: clubs12
+    drawdepth: SmallObjects
 
 - type: entity
   parent: CardBase
@@ -351,7 +363,8 @@
     name: card-sc-jack-diamonds
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_Jack_of_Diamonds_black
+    state: diamonds11
+    drawdepth: SmallObjects
 
 - type: entity
   parent: CardBase
@@ -362,7 +375,8 @@
     name: card-sc-queen-diamonds
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_Queen_of_Diamonds_black
+    state: diamonds12
+    drawdepth: SmallObjects
 
 - type: entity
   parent: CardBase
@@ -373,7 +387,8 @@
     name: card-sc-king-diamonds
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_King_of_Diamonds_black
+    state: diamonds13
+    drawdepth: SmallObjects
 
 - type: entity
   parent: CardBase
@@ -384,7 +399,8 @@
     name: card-sc-ace-diamonds
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_Ace_of_Diamonds_black
+    state: diamonds1
+    drawdepth: SmallObjects
 
 - type: entity
   parent: CardBase
@@ -395,7 +411,8 @@
     name: card-sc-2-diamonds
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_2_of_Diamonds_black
+    state: diamonds2
+    drawdepth: SmallObjects
 
 - type: entity
   parent: CardBase
@@ -406,7 +423,8 @@
     name: card-sc-3-diamonds
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_3_of_Diamonds_black
+    state: diamonds3
+    drawdepth: SmallObjects
 
 - type: entity
   parent: CardBase
@@ -417,7 +435,8 @@
     name: card-sc-4-diamonds
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_4_of_Diamonds_black
+    state: diamonds4
+    drawdepth: SmallObjects
 
 - type: entity
   parent: CardBase
@@ -428,7 +447,8 @@
     name: card-sc-5-diamonds
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_5_of_Diamonds_black
+    state: diamonds5
+    drawdepth: SmallObjects
 
 - type: entity
   parent: CardBase
@@ -439,7 +459,8 @@
     name: card-sc-6-diamonds
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_6_of_Diamonds_black
+    state: diamonds6
+    drawdepth: SmallObjects
 
 - type: entity
   parent: CardBase
@@ -450,7 +471,8 @@
     name: card-sc-7-diamonds
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_7_of_Diamonds_black
+    state: diamonds7
+    drawdepth: SmallObjects
 
 - type: entity
   parent: CardBase
@@ -461,7 +483,8 @@
     name: card-sc-8-diamonds
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_8_of_Diamonds_black
+    state: diamonds8
+    drawdepth: SmallObjects
 
 - type: entity
   parent: CardBase
@@ -472,7 +495,8 @@
     name: card-sc-9-diamonds
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_9_of_Diamonds_black
+    state: diamonds9
+    drawdepth: SmallObjects
 
 - type: entity
   parent: CardBase
@@ -483,7 +507,8 @@
     name: card-sc-10-diamonds
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_10_of_Diamonds_black
+    state: diamonds10
+    drawdepth: SmallObjects
 
 
 - type: entity
@@ -495,7 +520,8 @@
     name: card-sc-2-hearts
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_2_of_Hearts_black
+    state: hearts2
+    drawdepth: SmallObjects
 
 - type: entity
   parent: CardBase
@@ -506,7 +532,8 @@
     name: card-sc-3-hearts
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_3_of_Hearts_black
+    state: hearts3
+    drawdepth: SmallObjects
 
 - type: entity
   parent: CardBase
@@ -517,7 +544,8 @@
     name: card-sc-4-hearts
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_4_of_Hearts_black
+    state: hearts4
+    drawdepth: SmallObjects
 
 - type: entity
   parent: CardBase
@@ -528,7 +556,8 @@
     name: card-sc-5-hearts
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_5_of_Hearts_black
+    state: hearts5
+    drawdepth: SmallObjects
 
 - type: entity
   parent: CardBase
@@ -539,7 +568,8 @@
     name: card-sc-6-hearts
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_6_of_Hearts_black
+    state: hearts6
+    drawdepth: SmallObjects
 
 - type: entity
   parent: CardBase
@@ -550,7 +580,8 @@
     name: card-sc-7-hearts
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_7_of_Hearts_black
+    state: hearts7
+    drawdepth: SmallObjects
 
 - type: entity
   parent: CardBase
@@ -561,7 +592,8 @@
     name: card-sc-8-hearts
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_8_of_Hearts_black
+    state: hearts8
+    drawdepth: SmallObjects
 
 - type: entity
   parent: CardBase
@@ -572,7 +604,8 @@
     name: card-sc-9-hearts
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_9_of_Hearts_black
+    state: hearts9
+    drawdepth: SmallObjects
 
 - type: entity
   parent: CardBase
@@ -583,7 +616,8 @@
     name: card-sc-10-hearts
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_10_of_Hearts_black
+    state: hearts10
+    drawdepth: SmallObjects
 
 - type: entity
   parent: CardBase
@@ -594,7 +628,8 @@
     name: card-sc-king-hearts
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_King_of_Hearts_black
+    state: hearts13
+    drawdepth: SmallObjects
 
 - type: entity
   parent: CardBase
@@ -605,7 +640,8 @@
     name: card-sc-queen-hearts
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_Queen_of_Hearts_black
+    state: hearts12
+    drawdepth: SmallObjects
 
 - type: entity
   parent: CardBase
@@ -616,7 +652,8 @@
     name: card-sc-jack-hearts
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_Jack_of_Hearts_black
+    state: hearts11
+    drawdepth: SmallObjects
 
 - type: entity
   parent: CardBase
@@ -627,7 +664,8 @@
     name: card-sc-ace-hearts
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_Ace_of_Hearts_black
+    state: hearts1
+    drawdepth: SmallObjects
 
 
 - type: entity
@@ -639,7 +677,8 @@
     name: card-sc-2-spades
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_2_of_Spades_black
+    state: spades2
+    drawdepth: SmallObjects
 
 - type: entity
   parent: CardBase
@@ -650,7 +689,8 @@
     name: card-sc-3-spades
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_3_of_Spades_black
+    state: spades3
+    drawdepth: SmallObjects
 
 - type: entity
   parent: CardBase
@@ -661,7 +701,8 @@
     name: card-sc-4-spades
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_4_of_Spades_black
+    state: spades4
+    drawdepth: SmallObjects
 
 - type: entity
   parent: CardBase
@@ -672,7 +713,8 @@
     name: card-sc-5-spades
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_5_of_Spades_black
+    state: spades5
+    drawdepth: SmallObjects
 
 - type: entity
   parent: CardBase
@@ -683,7 +725,8 @@
     name: card-sc-6-spades
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_6_of_Spades_black
+    state: spades6
+    drawdepth: SmallObjects
 
 - type: entity
   parent: CardBase
@@ -694,7 +737,8 @@
     name: card-sc-7-spades
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_7_of_Spades_black
+    state: spades7
+    drawdepth: SmallObjects
 
 - type: entity
   parent: CardBase
@@ -705,7 +749,8 @@
     name: card-sc-8-spades
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_8_of_Spades_black
+    state: spades8
+    drawdepth: SmallObjects
 
 - type: entity
   parent: CardBase
@@ -716,8 +761,8 @@
     name: card-sc-9-spades
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_9_of_Spades_black
-
+    state: spades9
+    drawdepth: SmallObjects
 
 - type: entity
   parent: CardBase
@@ -728,7 +773,8 @@
     name: card-sc-10-spades
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_10_of_Spades_black
+    state: spades10
+    drawdepth: SmallObjects
 
 - type: entity
   parent: CardBase
@@ -739,7 +785,8 @@
     name: card-sc-king-spades
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_King_of_Spades_black
+    state: spades13
+    drawdepth: SmallObjects
 
 - type: entity
   parent: CardBase
@@ -750,7 +797,8 @@
     name: card-sc-queen-spades
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_Queen_of_Spades_black
+    state: spades12
+    drawdepth: SmallObjects
 
 - type: entity
   parent: CardBase
@@ -761,7 +809,8 @@
     name: card-sc-jack-spades
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_Jack_of_Spades_black
+    state: spades11
+    drawdepth: SmallObjects
 
 - type: entity
   parent: CardBase
@@ -772,7 +821,8 @@
     name: card-sc-ace-spades
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: sc_Ace_of_Spades_black
+    state: spades1
+    drawdepth: SmallObjects
 
 - type: entity
   parent: CardBase
@@ -783,7 +833,8 @@
     name: card-sc-joker
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
-    state: black_joker
+    state: joker
+    drawdepth: SmallObjects
   - type: EmbeddableProjectile
     sound: /Audio/Weapons/star_hit.ogg
   - type: ThrowingAngle

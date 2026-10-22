@@ -1,0 +1,109 @@
+- type: entity
+  parent: BoxCardboard
+  id: YellowPaperBox
+  name: box with yellow paper
+  description: It's a box filled with yellow paper.
+  components:
+   - type: StorageFill
+     contents:
+      - id: YellowPaper
+        amount: 9
+
+- type: entity
+  parent: BoxCardboard
+  id: RedPaperBox
+  name: box with red paper
+  description: It's a box filled with red paper.
+  components:
+   - type: StorageFill
+     contents:
+      - id: RedPaper
+        amount: 9
+
+- type: entity
+  parent: BoxCardboard
+  id: OrangePaperBox
+  name: box with orange paper
+  description: It's a box filled with orange paper.
+  components:
+   - type: StorageFill
+     contents:
+      - id: OrangePaper
+        amount: 9
+
+- type: entity
+  parent: BoxCardboard
+  id: GreenPaperBox
+  name: box with green paper
+  description: It's a box filled with green paper.
+  components:
+   - type: StorageFill
+     contents:
+      - id: GreenPaper
+        amount: 9
+
+- type: entity
+  parent: BoxCardboard
+  id: CyanPaperBox
+  name: box with cyan paper
+  description: It's a box filled with cyan paper.
+  components:
+   - type: StorageFill
+     contents:
+      - id: CyanPaper
+        amount: 9
+
+- type: entity
+  parent: BoxCardboard
+  id: BluePaperBox
+  name: box with blue paper
+  description: It's a box filled with blue paper.
+  components:
+   - type: StorageFill
+     contents:
+      - id: BluePaper
+        amount: 9
+
+- type: entity
+  parent: BoxCardboard
+  id: VioletPaperBox
+  name: box with violet paper
+  description: It's a box filled with violet paper.
+  components:
+   - type: StorageFill
+     contents:
+      - id: VioletPaper
+        amount: 9
+
+- type: entity
+  parent: BoxCardboard
+  id: PinkPaperBox
+  name: box with pink paper
+  description: It's a box filled with pink paper.
+  components:
+   - type: StorageFill
+     contents:
+      - id: PinkPaper
+        amount: 9
+
+- type: entity
+  parent: BoxCardboard
+  id: GreyPaperBox
+  name: box with grey paper
+  description: It's a like greytide box filled with grey paper.
+  components:
+   - type: StorageFill
+     contents:
+      - id: GreyPaper
+        amount: 9
+
+- type: entity
+  parent: [BoxCardboard, BaseSyndicateContraband]
+  id: BloodRedPaperBox
+  name: box with blood-red paper
+  description: It's a suspicious box filled with blood-red paper.
+  components:
+   - type: StorageFill
+     contents:
+      - id: BloodRedPaper
+        amount: 9

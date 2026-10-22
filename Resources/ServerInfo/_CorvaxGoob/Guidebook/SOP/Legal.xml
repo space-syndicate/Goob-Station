@@ -1,0 +1,59 @@
+<Document>
+  # Должностные СРП
+  ## СРП Магистрата
+  ### Магистрат обязан
+  <FTLTextpart Key="guidebook-SOP-Magistrate-must"/>
+
+  ### Магистрат имеет право
+  <FTLTextpart Key="guidebook-SOP-Magistrate-right"/>
+
+  ### Магистрату запрещено
+  <FTLTextpart Key="guidebook-SOP-Magistrate-prohibited"/>
+
+  ## СРП Адвоката
+  ### Адвокат обязан
+  <FTLTextpart Key="guidebook-SOP-Lawyer-must"/>
+
+  ### Адвокат имеет право
+  <FTLTextpart Key="guidebook-SOP-Lawyer-right"/>
+
+  ### Адвокату запрещено
+  <FTLTextpart Key="guidebook-SOP-Lawyer-prohibited"/>
+
+  ## СРП Агента внутренних дел
+  ### Агент внутренних дел обязан
+  <FTLTextpart Key="guidebook-SOP-IAA-must"/>
+
+  ### Агент внутренних дел имеет право
+  <FTLTextpart Key="guidebook-SOP-IAA-right"/>
+
+  ### Агенту внутренних дел запрещено
+  <FTLTextpart Key="guidebook-SOP-IAA-prohibited"/>
+
+  # Процедуры и протоколы
+  ## Процедура внутреннего расследования
+  <FTLTextpart Key="guidebook-SOP-legal-procedure-internal-investigation"/>
+
+  ## Процедура корпоративного суда
+  ### Общие положения
+  <FTLTextpart Key="guidebook-SOP-legal-court-general"/>
+
+  ### Общие нормы суда
+  <FTLTextpart Key="guidebook-SOP-legal-court-norms"/>
+
+  ### Обязанности сторон
+  <FTLTextpart Key="guidebook-SOP-legal-court-responsibilities"/>
+
+  ### Судебное разбирательство
+  <FTLTextpart Key="guidebook-SOP-legal-court-litigation"/>
+
+  ### Вынесение вердикта
+  <FTLTextpart Key="guidebook-SOP-legal-court-verdict"/>
+
+  ### Апелляция
+  <FTLTextpart Key="guidebook-SOP-legal-court-appeal"/>
+
+  ### Судебный надзор
+  <FTLTextpart Key="guidebook-SOP-legal-court-supervision"/>
+
+</Document>

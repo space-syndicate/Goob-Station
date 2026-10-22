@@ -37,12 +37,14 @@
     eyes: ClothingEyesGlassesSecurity
     id: WardenHelperPDA
     ears: ClothingHeadsetSecurity
-    pocket1: WeaponPistolMk58
+    pocket1: WeaponPistolMk58Empty
     pocket2: BookSpaceLaw
   storage:
     back:
     - Flash
     - MagazinePistol
+    - MagazinePistol
+    - MagazinePistolRubber
 
 - type: chameleonOutfit
   id: WardenHelperChameleonOutfit

@@ -1,4 +1,4 @@
-using Robust.Client.UserInterface;
+/*using Robust.Client.UserInterface;
 using Robust.Shared.Console;
 using Content.Shared.Administration;
 
@@ -18,3 +18,4 @@ public sealed class PollsCommand : LocalizedCommands
         _uiManager.GetUIController<PollUIController>().TogglePollWindow();
     }
 }
+*/

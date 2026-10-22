@@ -1,0 +1,28 @@
+- type: entity
+  id: RandomLavaLampSpawner
+  name: random lava lamp spawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: _CorvaxGoob/Objects/Misc/lavalamp.rsi
+      state: lavalamp
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: RandomLavaLamp
+
+- type: entityTable
+  id: RandomLavaLamp
+  table: !type:AllSelector
+    children:
+    - !type:GroupSelector
+      children:
+      - id: RGBLavaLamp
+        weight: 0.25
+      - id: RedLavaLamp
+      - id: PinkLavaLamp
+      - id: BlueLavaLamp
+      - id: OrangeLavaLamp
+      - id: GreenLavaLamp
+      - id: YellowLavaLamp

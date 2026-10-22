@@ -1,20 +1,3 @@
-// SPDX-FileCopyrightText: 2021 20kdc <asdd2808@gmail.com>
-// SPDX-FileCopyrightText: 2021 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2021 E F R <602406+Efruit@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2021 GraniteSidewalk <32942106+GraniteSidewalk@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2021 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
-// SPDX-FileCopyrightText: 2021 Vera Aguilera Puerto <6766154+Zumorica@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2021 Vera Aguilera Puerto <gradientvera@outlook.com>
-// SPDX-FileCopyrightText: 2021 Visne <39844191+Visne@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2021 Wrexbe <wrexbe@protonmail.com>
-// SPDX-FileCopyrightText: 2022 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 mirrorcult <lunarautomaton6@gmail.com>
-// SPDX-FileCopyrightText: 2023 TemporalOroboros <TemporalOroboros@gmail.com>
-// SPDX-FileCopyrightText: 2023 lzk <124214523+lzk228@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 slarticodefast <161409025+slarticodefast@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Shared.Singularity.Components;
@@ -41,6 +24,9 @@ namespace Content.Client.Singularity
         public const int MaxCount = 5;
 
         private const float MaxDistance = 20f;
+
+        private const float MinDistance = 1f;// Corvaxgoob-fix
+        private const float MaxDeformation = 2048f; // Corvaxgoob-fix
 
         public override OverlaySpace Space => OverlaySpace.WorldSpace;
         public override bool RequestScreenTexture => true;
@@ -139,7 +125,9 @@ namespace Content.Client.Singularity
                 var localPosition = _positions[i];
                 localPosition.Y = args.Viewport.Size.Y - localPosition.Y;
                 var delta = args.VisiblePosition - localPosition;
-                var distance = (delta / (args.Viewport.RenderScale * args.Viewport.Eye.Scale)).Length();
+                var distance = MathF.Max(
+                    (delta / (args.Viewport.RenderScale * args.Viewport.Eye.Scale)).Length(),
+                    MinDistance); // Corvaxgoob-fix
 
                 var deformation = _intensities[i] / MathF.Pow(distance, _falloffPowers[i]);
 
@@ -153,6 +141,8 @@ namespace Content.Client.Singularity
 
                 if (deformation > 0.8)
                     deformation = MathF.Pow(deformation, 0.3f);
+
+                deformation = MathF.Min(deformation, MaxDeformation); // Corvaxgoob-fix
 
                 finalCoords -= delta * deformation;
             }

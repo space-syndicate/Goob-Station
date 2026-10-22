@@ -1,0 +1,58 @@
+# CorvaxGoob-DiceOfFate : Corvax Wega Port (original author: Zekins3366)
+
+- type: entity
+  id: DiceOfFate
+  parent: d20Dice
+  components:
+  - type: DiceOfFate
+  - type: EmitSoundOnLand
+    sound:
+      collection: Dice
+
+- type: entity
+  id: RandomDiceImplanter
+  name: random dice implanter
+  parent: MarkerBase
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - StorageImplanter
+    - FreedomImplanter
+    - ScramImplanter
+    - EmpImplanter
+    - RadioImplanter
+    - MicroBombImplanter
+    - FakeMindShieldImplanter
+    deleteSpawnerAfterSpawn: true
+
+- type: entity
+  id: RandomAggressiveAnimal
+  name: random aggressive animal
+  parent: MarkerBase
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - MobGiantSpider
+    - MobCarp
+    - MobShark
+    - MobCarpMagic
+    - MobCarpHolo
+    - MobAdultSlimesBlue
+    - MobAdultSlimesGreen
+    - MobAdultSlimesYellow
+    deleteSpawnerAfterSpawn: true
+
+- type: entity
+  id: RandomSpellbook
+  name: random spellbook
+  parent: MarkerBase
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - FireballSpellbook
+    - BlinkBook
+    - ForceWallSpellbook
+    - SmiteBook
+    - KnockSpellbook
+    - SpawnSpellbook
+    deleteSpawnerAfterSpawn: true

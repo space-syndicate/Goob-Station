@@ -1,0 +1,684 @@
+- type: entity
+  name: raw vulpkanin meat
+  parent: FoodMeatHuman
+  id: FoodMeatVulpkanin
+  description: Gross.
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Consumable/Food/meat.rsi
+    state: vulp
+  - type: Construction
+    graph: VulpkaninSteak
+    node: start
+    defaultTarget: vulpkanin steak
+  - type: SliceableFood
+    count: 3
+    slice: FoodVulpkaninCutlet
+
+- type: entity
+  name: vulpkanin steak
+  parent: FoodMeatCooked
+  id: FoodMeatCookedVulpkanin
+  description: Gross.
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Consumable/Food/meat.rsi
+    layers:
+    - state: vulp-cooked
+  - type: SliceableFood
+    count: 3
+    slice: FoodVulpkaninCutletCooked
+
+- type: entity
+  name: raw vulpkanin cutlet
+  parent: FoodMeatBase
+  id: FoodVulpkaninCutlet
+  description: A raw meat cutlet.
+  components:
+  - type: Tag
+    tags:
+    - Raw
+    - Cutlet
+    - Meat
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Consumable/Food/meat.rsi
+    state: vulp_cutlet
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 3
+        - ReagentId: Fat
+          Quantity: 2
+  - type: Construction
+    graph: VulpkaninCutlet
+    node: start
+    defaultTarget: vulpkanin cutlet
+
+- type: entity
+  name: vulpkanin cutlet
+  parent: FoodMeatBase
+  id: FoodVulpkaninCutletCooked
+  description: A meat cutlet.
+  components:
+  - type: Tag
+    tags:
+    - Cooked
+    - Cutlet
+    - Meat
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Consumable/Food/meat.rsi
+    state: vulp_cutlet-cooked
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Protein
+          Quantity: 2
+  - type: Construction
+    graph: VulpkaninCutlet
+    node: vulpkanin cutlet
+  - type: FoodSequenceElement
+    entries:
+      Burger: VulpkaninCutlet
+      Taco: VulpkaninCutlet
+
+- type: entity
+  name: raw arachnid meat
+  parent: FoodMeatHuman
+  id: FoodMeatArachnid
+  description: Gross.
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Consumable/Food/meat.rsi
+    state: arachnid
+  - type: Construction
+    graph: ArachnidSteak
+    node: start
+    defaultTarget: arachnid steak
+  - type: SliceableFood
+    count: 3
+    slice: FoodArachnidCutlet
+
+- type: entity
+  name: arachnid steak
+  parent: FoodMeatCooked
+  id: FoodMeatCookedArachnid
+  description: Gross.
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Consumable/Food/meat.rsi
+    layers:
+    - state: arachnid-cooked
+  - type: SliceableFood
+    count: 3
+    slice: FoodArachnidCutletCooked
+
+- type: entity
+  name: raw arachnid cutlet
+  parent: FoodMeatBase
+  id: FoodArachnidCutlet
+  description: A raw meat cutlet.
+  components:
+  - type: Tag
+    tags:
+    - Raw
+    - Cutlet
+    - Meat
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Consumable/Food/meat.rsi
+    state: arachnid_cutlet
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 3
+        - ReagentId: Fat
+          Quantity: 2
+  - type: Construction
+    graph: ArachnidCutlet
+    node: start
+    defaultTarget: arachnidcutlet
+
+- type: entity
+  name: arachnid cutlet
+  parent: FoodMeatBase
+  id: FoodArachnidCutletCooked
+  description: A meat cutlet.
+  components:
+  - type: Tag
+    tags:
+    - Cooked
+    - Cutlet
+    - Meat
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Consumable/Food/meat.rsi
+    state: arachnid_cutlet-cooked
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Protein
+          Quantity: 2
+  - type: Construction
+    graph: ArachnidCutlet
+    node: arachnid cutlet
+  - type: FoodSequenceElement
+    entries:
+      Burger: ArachnidCutlet
+      Taco: ArachnidCutlet
+
+- type: entity
+  name: raw slime meat
+  parent: FoodMeatHuman
+  id: FoodMeatSlimeMeat # we have wizden slimeballs
+  description: Gross.
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Consumable/Food/meat.rsi
+    state: slime
+  - type: Construction
+    graph: SlimeSteak
+    node: start
+    defaultTarget: slime steak
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 3
+        - ReagentId: Slime
+          Quantity: 6
+  - type: FlavorProfile
+    flavors:
+      - meaty
+      - slimy
+  - type: SliceableFood
+    count: 3
+    slice: FoodSlimeCutlet
+
+- type: entity
+  name: slime steak
+  parent: FoodMeatCooked
+  id: FoodMeatCookedSlime
+  description: Gross.
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Consumable/Food/meat.rsi
+    layers:
+    - state: slime-cooked
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 7
+        - ReagentId: Protein
+          Quantity: 3
+        - ReagentId: Slime
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+      - meaty
+      - slimy
+  - type: SliceableFood
+    count: 3
+    slice: FoodSlimeCutletCooked
+
+- type: entity
+  name: raw slime cutlet
+  parent: FoodMeatBase
+  id: FoodSlimeCutlet
+  description: A raw meat cutlet.
+  components:
+  - type: Tag
+    tags:
+    - Raw
+    - Cutlet
+    - Meat
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Consumable/Food/meat.rsi
+    state: slime_cutlet
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 3
+        - ReagentId: Slime
+          Quantity: 4
+  - type: Construction
+    graph: SlimeCutlet
+    node: start
+    defaultTarget: slime cutlet
+
+- type: entity
+  name: slime cutlet
+  parent: FoodMeatBase
+  id: FoodSlimeCutletCooked
+  description: A meat cutlet.
+  components:
+  - type: Tag
+    tags:
+    - Cooked
+    - Cutlet
+    - Meat
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Consumable/Food/meat.rsi
+    state: slime_cutlet-cooked
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Protein
+          Quantity: 2
+        - ReagentId: Slime
+          Quantity: 3
+  - type: Construction
+    graph: SlimeCutlet
+    node: slime cutlet
+  - type: FoodSequenceElement
+    entries:
+      Burger: SlimeCutlet
+      Taco: SlimeCutlet
+
+- type: entity
+  name: raw tajaran meat
+  parent: FoodMeatHuman
+  id: FoodMeatTajaran
+  description: Gross.
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Consumable/Food/meat.rsi
+    state: tajaran
+  - type: Construction
+    graph: TajaranSteak
+    node: start
+    defaultTarget: tajaran steak
+  - type: SliceableFood
+    count: 3
+    slice: FoodTajaranCutlet
+
+- type: entity
+  name: tajaran steak
+  parent: FoodMeatCooked
+  id: FoodMeatCookedTajaran
+  description: Gross.
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Consumable/Food/meat.rsi
+    layers:
+    - state: tajaran-cooked
+  - type: SliceableFood
+    count: 3
+    slice: FoodTajaranCutletCooked
+
+- type: entity
+  name: raw tajaran cutlet
+  parent: FoodMeatBase
+  id: FoodTajaranCutlet
+  description: A raw meat cutlet.
+  components:
+  - type: Tag
+    tags:
+    - Raw
+    - Cutlet
+    - Meat
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Consumable/Food/meat.rsi
+    state: tajaran_cutlet
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 3
+        - ReagentId: Fat
+          Quantity: 2
+  - type: Construction
+    graph: TajaranCutlet
+    node: start
+    defaultTarget: tajaran cutlet
+
+- type: entity
+  name: tajaran cutlet
+  parent: FoodMeatBase
+  id: FoodTajaranCutletCooked
+  description: A meat cutlet.
+  components:
+  - type: Tag
+    tags:
+    - Cooked
+    - Cutlet
+    - Meat
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Consumable/Food/meat.rsi
+    state: tajaran_cutlet-cooked
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Protein
+          Quantity: 2
+  - type: Construction
+    graph: TajaranCutlet
+    node: tajaran cutlet
+  - type: FoodSequenceElement
+    entries:
+      Burger: TajaranCutlet
+      Taco: TajaranCutlet
+
+- type: entity
+  name: raw vox meat
+  parent: FoodMeatHuman
+  id: FoodMeatVox
+  description: Gross.
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Consumable/Food/meat.rsi
+    state: vox
+  - type: Construction
+    graph: VoxSteak
+    node: start
+    defaultTarget: vox steak
+  - type: FlavorProfile
+    flavors:
+    - chicken
+  - type: SliceableFood
+    count: 3
+    slice: FoodVoxCutlet
+
+- type: entity
+  name: vox steak
+  parent: FoodMeatCooked
+  id: FoodMeatCookedVox
+  description: Gross.
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Consumable/Food/meat.rsi
+    layers:
+    - state: vox-cooked
+  - type: FlavorProfile
+    flavors:
+    - chicken
+  - type: SliceableFood
+    count: 3
+    slice: FoodVoxCutletCooked
+
+- type: entity
+  name: raw vox cutlet
+  parent: FoodMeatBase
+  id: FoodVoxCutlet
+  description: A raw meat cutlet.
+  components:
+  - type: Tag
+    tags:
+    - Raw
+    - Cutlet
+    - Meat
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Consumable/Food/meat.rsi
+    state: vox_cutlet
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 3
+        - ReagentId: Fat
+          Quantity: 2
+  - type: Construction
+    graph: VoxCutlet
+    node: start
+    defaultTarget: vox cutlet
+
+- type: entity
+  name: vox cutlet
+  parent: FoodMeatBase
+  id: FoodVoxCutletCooked
+  description: A meat cutlet.
+  components:
+  - type: Tag
+    tags:
+    - Cooked
+    - Cutlet
+    - Meat
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Consumable/Food/meat.rsi
+    state: vox_cutlet-cooked
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Protein
+          Quantity: 2
+  - type: Construction
+    graph: VoxCutlet
+    node: vox cutlet
+  - type: FoodSequenceElement
+    entries:
+      Burger: VoxCutlet
+      Taco: VoxCutlet
+
+
+- type: entity
+  name: raw moth meat
+  parent: FoodMeatHuman
+  id: FoodMeatMoth
+  description: Gross.
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Consumable/Food/meat.rsi
+    state: moth
+  - type: Construction
+    graph: MothSteak
+    node: start
+    defaultTarget: moth steak
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Fiber
+          Quantity: 3
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 6
+  - type: FlavorProfile
+    flavors:
+      - meaty
+      - light
+  - type: SliceableFood
+    count: 3
+    slice: FoodMothCutlet
+
+- type: entity
+  name: moth steak
+  parent: FoodMeatCooked
+  id: FoodMeatCookedMoth
+  description: Gross.
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Consumable/Food/meat.rsi
+    layers:
+    - state: moth-cooked
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 7
+        - ReagentId: Protein
+          Quantity: 5
+        - ReagentId: Fiber
+          Quantity: 3
+  - type: FlavorProfile
+    flavors:
+      - meaty
+      - light
+  - type: SliceableFood
+    count: 3
+    slice: FoodMothCutletCooked
+
+- type: entity
+  name: raw moth cutlet
+  parent: FoodMeatBase
+  id: FoodMothCutlet
+  description: A raw meat cutlet.
+  components:
+  - type: Tag
+    tags:
+    - Raw
+    - Cutlet
+    - Meat
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Consumable/Food/meat.rsi
+    state: moth_cutlet
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Fiber
+          Quantity: 2
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 3
+  - type: Construction
+    graph: MothCutlet
+    node: start
+    defaultTarget: moth cutlet
+
+- type: entity
+  name: moth cutlet
+  parent: FoodMeatBase
+  id: FoodMothCutletCooked
+  description: A meat cutlet.
+  components:
+  - type: Tag
+    tags:
+    - Cooked
+    - Cutlet
+    - Meat
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Consumable/Food/meat.rsi
+    state: moth_cutlet-cooked
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Protein
+          Quantity: 2
+        - ReagentId: Fiber
+          Quantity: 1
+  - type: Construction
+    graph: MothCutlet
+    node: moth cutlet
+  - type: FoodSequenceElement
+    entries:
+      Burger: MothCutlet
+      Taco: MothCutlet
+
+- type: entity
+  name: raw resomi meat
+  parent: FoodMeatHuman
+  id: FoodMeatResomi
+  description: Gross.
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Consumable/Food/meat.rsi
+    state: resomi
+  - type: Construction
+    graph: ResomiSteak
+    node: start
+    defaultTarget: resomi steak
+  - type: FlavorProfile
+    flavors:
+    - chicken
+  - type: SliceableFood
+    count: 3
+    slice: FoodResomiCutlet
+
+- type: entity
+  name: resomi steak
+  parent: FoodMeatCooked
+  id: FoodMeatCookedResomi
+  description: Gross.
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Consumable/Food/meat.rsi
+    layers:
+    - state: resomi-cooked
+  - type: FlavorProfile
+    flavors:
+    - chicken
+  - type: SliceableFood
+    count: 3
+    slice: FoodResomiCutletCooked
+
+- type: entity
+  name: raw resomi cutlet
+  parent: FoodMeatBase
+  id: FoodResomiCutlet
+  description: A raw meat cutlet.
+  components:
+  - type: Tag
+    tags:
+    - Raw
+    - Cutlet
+    - Meat
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Consumable/Food/meat.rsi
+    state: resomi_cutlet
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 3
+        - ReagentId: Fat
+          Quantity: 2
+  - type: Construction
+    graph: ResomiCutlet
+    node: start
+    defaultTarget: resomi cutlet
+
+- type: entity
+  name: resomi cutlet
+  parent: FoodMeatBase
+  id: FoodResomiCutletCooked
+  description: A meat cutlet.
+  components:
+  - type: Tag
+    tags:
+    - Cooked
+    - Cutlet
+    - Meat
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Consumable/Food/meat.rsi
+    state: resomi_cutlet-cooked
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Protein
+          Quantity: 2
+  - type: Construction
+    graph: ResomiCutlet
+    node: resomi cutlet
+  - type: FoodSequenceElement
+    entries:
+      Burger: ResomiCutlet
+      Taco: ResomiCutlet

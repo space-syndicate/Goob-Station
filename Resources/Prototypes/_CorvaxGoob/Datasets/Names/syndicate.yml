@@ -1,0 +1,5 @@
+- type: localizedDataset
+  id: NamesSyndicateFootsoldierRole
+  values:
+    prefix: names-syndicate-footsoldier-role-dataset-
+    count: 20

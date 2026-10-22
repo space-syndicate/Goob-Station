@@ -106,4 +106,9 @@
   - type: AccessReader
     access: [["Engineering"], ["Research"]]
   - type: GuideHelp
-    guides: [ Power ] # TODO: Add BH guide
+    guides: [ Power ] # TODO: Add harvester guide to the guidebook.
+  - type: PowerMonitoringDevice
+    sprite: _CorvaxGoob/Bluespace/Crates/technological_secure.rsi
+    state: icon
+    group: APC
+    sourceNode: input

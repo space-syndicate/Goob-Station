@@ -1,6 +1,5 @@
 ### for technical and/or system messages
 
-
 ## General
 
 shell-command-success = Команда выполнена.
@@ -59,3 +58,7 @@ shell-argument-number-invalid = Аргумент { $index } должен быт�
 # Hints
 shell-argument-username-hint = <username>
 shell-argument-username-optional-hint = [username]
+
+shell-can-only-run-from-pre-round-lobby = Эту команду можно выполнить только пока игра в предраундовом лобби.
+
+shell-can-only-run-while-round-is-active = Эту команду можно выполнить только пока игра в раунде.

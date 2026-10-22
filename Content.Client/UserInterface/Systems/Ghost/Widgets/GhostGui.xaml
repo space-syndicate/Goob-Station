@@ -1,16 +1,10 @@
 <!--
-SPDX-FileCopyrightText: 2022 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
-SPDX-FileCopyrightText: 2022 Jacob Tong <10494922+ShadowCommander@users.noreply.github.com>
-SPDX-FileCopyrightText: 2022 Jezithyr <Jezithyr.@gmail.com>
-SPDX-FileCopyrightText: 2022 Kara <lunarautomaton6@gmail.com>
-SPDX-FileCopyrightText: 2024 Aiden <aiden@djkraz.com>
-SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 <widgets:GhostGui xmlns="https://spacestation14.io"
                   xmlns:widgets="clr-namespace:Content.Client.UserInterface.Systems.Ghost.Widgets"
+                  xmlns:corvax="clr-namespace:Content.Client._CorvaxGoob.Ghost"
                   HorizontalAlignment="Center">
     <BoxContainer Orientation="Horizontal">
         <Button Name="ReturnToBodyButton" Text="{Loc ghost-gui-return-to-body-button}" />
@@ -19,5 +13,6 @@ SPDX-License-Identifier: AGPL-3.0-or-later
         <Button Name="GhostBarButton" Text="{Loc 'ghost-target-window-ghostbar'}" />
         <!-- CorvaxGoob - Ghost Bar -->
         <Button Name="ThunderdomeButton" Text="{Loc thunderdome-ghost-button-default}" />
+        <corvax:GhostGoLobbyButton /> <!-- CorvaxGoob-GoLobby -->
     </BoxContainer>
 </widgets:GhostGui>

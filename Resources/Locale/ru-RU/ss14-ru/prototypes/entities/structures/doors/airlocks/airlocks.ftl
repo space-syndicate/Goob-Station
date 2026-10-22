@@ -43,7 +43,7 @@ ent-AirlockMining = { ent-AirlockCargo }
     .suffix = Шахтёры (Утилизаторы)
     .desc = { ent-AirlockCargo.desc }
 ent-AirlockCentralCommand = { ent-AirlockCommand }
-    .suffix = Центральное командование
+    .suffix = ЦК
     .desc = { ent-AirlockCommand.desc }
 ent-AirlockHatch = герметичный люк
     .desc = { ent-Airlock.desc }
@@ -92,8 +92,16 @@ ent-AirlockMiningGlass = { ent-AirlockCargoGlass }
     .suffix = Шахтёры (Утилизаторы)
     .desc = { ent-AirlockCargoGlass.desc }
 ent-AirlockCentralCommandGlass = { ent-AirlockCommandGlass }
-    .suffix = Центральное командование
+    .suffix = ЦК
     .desc = { ent-AirlockCommandGlass.desc }
 ent-AirlockStandardGlass = { ent-AirlockGlass }
     .suffix = Сервис
     .desc = { ent-AirlockGlass.desc }
+
+ent-AirlockXeno = { ent-Airlock }
+    .desc = { ent-Airlock.desc }
+    .suffix = Ксено
+
+ent-AirlockGlassXeno = { ent-AirlockGlass }
+    .desc = { ent-AirlockGlass.desc }
+    .suffix = Ксено

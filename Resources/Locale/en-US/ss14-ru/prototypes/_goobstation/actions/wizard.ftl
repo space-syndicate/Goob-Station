@@ -68,3 +68,5 @@ ent-ActionSummonStickmen = Summon Stick Minions
     .desc = Allows you to summon faithful stickmen allies to aide you in battle.
 ent-ActionTileToggle = Toggle tile movement
     .desc = Toggle tile movement for the target.
+ent-ActionRathenSpell = Rathen's Secret
+    .desc = Blast off any nearby victims ass.

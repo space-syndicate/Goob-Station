@@ -4,8 +4,8 @@ ent-ClothingHeadsetCargo = гарнитура отдела снабжения
     .desc = Гарнитура, используемая сотрудниками отдела снабжения.
 ent-ClothingHeadsetQM = гарнитура КМ
     .desc = Гарнитура, используемая квартирмейстером.
-ent-ClothingHeadsetCentCom = гарнитура Центком
-    .desc = Гарнитура, используемая верхушкой Nanotrasen.
+ent-ClothingHeadsetCentCom = гарнитура ЦК
+    .desc = Гарнитура, используемая верхушкой NanoTrasen.
 ent-ClothingHeadsetCommand = гарнитура командования
     .desc = Гарнитура с каналом командования.
 ent-ClothingHeadsetEngineering = гарнитура инженерного отдела
@@ -38,3 +38,6 @@ ent-ClothingHeadsetFreelance = гарнитура фрилансера
     .desc = Такими пользуются группы бродячих фрилансеров.
 ent-ClothingHeadsetWizard = гарнитура мага
     .desc = Такими пользуются группы космических магов.
+
+ent-ClothingHeadsetNinja = зелёная гарнитура
+    .desc = Кто откажется носить эту стильную чёрно-зелёную гарнитуру?

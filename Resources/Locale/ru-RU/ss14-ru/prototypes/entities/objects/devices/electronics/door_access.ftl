@@ -68,7 +68,7 @@ ent-DoorElectronicsCommand = { ent-DoorElectronics }
     .suffix = Командный, Закрыт
     .desc = { ent-DoorElectronics.desc }
 ent-DoorElectronicsCentralCommand = { ent-DoorElectronics }
-    .suffix = Центральное командование, Закрыт
+    .suffix = ЦК, Закрыт
     .desc = { ent-DoorElectronics.desc }
 ent-DoorElectronicsChiefMedicalOfficer = { ent-DoorElectronics }
     .suffix = Главный врач, Закрыт
@@ -115,3 +115,7 @@ ent-DoorElectronicsSyndicateAgent = { ent-DoorElectronics }
 ent-DoorElectronicsNukeop = { ent-DoorElectronics }
     .suffix = Ядерные Оперативники, Закрыт
     .desc = { ent-DoorElectronics.desc }
+
+ent-DoorElectronicsXenoborg = { ent-DoorElectronics }
+    .desc = { ent-DoorElectronics.desc }
+    .suffix = Ксеноборг, Закрыт

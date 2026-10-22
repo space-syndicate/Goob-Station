@@ -1,16 +1,13 @@
-﻿using Content.Shared._CorvaxGoob.OfferItem;
+using Content.Shared._CorvaxGoob.OfferItem;
 using Content.Shared.Alert;
-using Content.Shared.Hands.Components;
-using Content.Shared.Hands.EntitySystems;
 
 namespace Content.Server._CorvaxGoob.OfferItem;
 
 public sealed class OfferItemSystem : SharedOfferItemSystem
 {
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly AlertsSystem _alertsSystem = default!;
 
-    private float _offerAcc = 0;
+    private float _offerAcc;
     private const float OfferAccMax = 3f;
 
     public override void Update(float frameTime)
@@ -22,33 +19,23 @@ public sealed class OfferItemSystem : SharedOfferItemSystem
         else
             return;
 
-        var query = EntityQueryEnumerator<OfferItemComponent, HandsComponent>();
-        while (query.MoveNext(out var uid, out var offerItem, out var hands))
+        var query = EntityQueryEnumerator<OfferItemComponent>();
+        while (query.MoveNext(out var uid, out var offerItem))
         {
-            if (_hands.GetActiveHand(uid) == null)
-                continue;
-
-            // TODO implement a normal fix. More info on this:
-            // https://github.com/space-syndicate/space-station-14-next/blob/27f6125c828b5ad051f67a5f557bf67bd1d3c2be/Content.Server/_CorvaxNext/OfferItem/OfferItemSystem.cs#L31
-            if (offerItem.Hand is not null && hands.Hands[offerItem.Hand] == null)
-            {
-                if (offerItem.Target is not null)
-                {
-                    UnReceive(offerItem.Target.Value, offerItem: offerItem);
-                    offerItem.IsInOfferMode = false;
-                    Dirty(uid, offerItem);
-                }
-                else
-                    UnOffer(uid, offerItem);
-            }
-
-            if (!offerItem.IsInReceiveMode)
-            {
+            if (offerItem.IsInReceiveMode)
+                _alertsSystem.ShowAlert(uid, OfferAlert);
+            else
                 _alertsSystem.ClearAlert(uid, OfferAlert);
-                continue;
-            }
-
-            _alertsSystem.ShowAlert(uid, OfferAlert);
         }
     }
+
+    // Внутренние обёртки над переходами состояния для интеграционных тестов.
+    internal void StartOffer(EntityUid uid, OfferItemComponent comp, EntityUid item, string hand)
+        => base.StartOffer(uid, comp, item, hand);
+
+    internal void LinkOffer(EntityUid user, OfferItemComponent userComp, EntityUid target, OfferItemComponent targetComp)
+        => base.LinkOffer(user, userComp, target, targetComp);
+
+    internal void AcceptOffer(Entity<OfferItemComponent> ent)
+        => base.AcceptOffer(ent);
 }

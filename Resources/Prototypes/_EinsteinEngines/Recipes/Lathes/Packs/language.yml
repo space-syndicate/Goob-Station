@@ -1,7 +1,3 @@
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 John Willis <143434770+CerberusWolfie@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Marty <martynashagriefer@gmail.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: latheRecipePack
@@ -25,6 +21,7 @@
   - GruntishTranslator
   - XeeplianTranslator # CorvaxGoob
   - YowKriolTranslator # goob edit - yowie language
+  - HydraspeakTranslator # CorvaxGoob
 
 - type: latheRecipePack
   id: TranslatorImplanters
@@ -48,3 +45,4 @@
   - GruntishTranslatorImplanter
   - YowKriolTranslatorImplanter # goob edit - yowie language
   - SignTranslatorImplanter # goob edit
+  - HydraspeakTranslatorImplanter # CorvaxGoob

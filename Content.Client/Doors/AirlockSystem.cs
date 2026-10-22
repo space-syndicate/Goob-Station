@@ -1,14 +1,3 @@
-// SPDX-FileCopyrightText: 2022 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 TemporalOroboros <TemporalOroboros@gmail.com>
-// SPDX-FileCopyrightText: 2023 Tom Leys <tom@crump-leys.com>
-// SPDX-FileCopyrightText: 2023 metalgearsloth <comedian_vs_clown@hotmail.com>
-// SPDX-FileCopyrightText: 2023 nikthechampiongr <32041239+nikthechampiongr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 778b <33431126+778b@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 themias <89101928+themias@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 ShadowCommander <10494922+ShadowCommander@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Client.Wires.Visualizers;
@@ -87,59 +76,64 @@ public sealed class AirlockSystem : SharedAirlockSystem
         });
     }
 
+    // CorvaxGoob upstream fix port
     private void OnAppearanceChange(EntityUid uid, AirlockComponent comp, ref AppearanceChangeEvent args)
     {
         if (args.Sprite == null)
             return;
 
-        var boltedVisible = false;
-        var emergencyLightsVisible = false;
-        var unlitVisible = false;
-
         if (!_appearanceSystem.TryGetData<DoorState>(uid, DoorVisuals.State, out var state, args.Component))
             state = DoorState.Closed;
 
-        if (_appearanceSystem.TryGetData<bool>(uid, PowerDeviceVisuals.Powered, out var powered, args.Component)
-            && powered)
-        {
-            boltedVisible = _appearanceSystem.TryGetData<bool>(uid, DoorVisuals.BoltLights, out var lights, args.Component)
-                            && lights && (state == DoorState.Closed || state == DoorState.Welded);
+        _appearanceSystem.TryGetData<bool>(uid, PowerDeviceVisuals.Powered, out var hasPower, args.Component);
 
-            emergencyLightsVisible = _appearanceSystem.TryGetData<bool>(uid, DoorVisuals.EmergencyLights, out var eaLights, args.Component) && eaLights;
-            unlitVisible =
-                    (state == DoorState.Closing
-                ||  state == DoorState.Opening
-                ||  state == DoorState.Denying
-                || (state == DoorState.Open && comp.OpenUnlitVisible)
-                || (state == DoorState.Closed && comp.OpenUnlitVisible)) // CorvaxGoob-Resprite-Airlocks-Edit
-                    && !boltedVisible && !emergencyLightsVisible;
+        var showBaseUnlit = false;
+        var showBolted = false;
+        var showEmergency = false;
+
+        if (hasPower)
+        {
+            _appearanceSystem.TryGetData<bool>(uid, DoorVisuals.BoltLights, out var boltedVisible, args.Component);
+            showBolted = boltedVisible && (state == DoorState.Closed || state == DoorState.Welded);
+
+            _appearanceSystem.TryGetData<bool>(uid, DoorVisuals.EmergencyLights, out var emergencyVisible, args.Component);
+            showEmergency = emergencyVisible;
+
+            if (!showBolted && !showEmergency)
+            {
+                if (state == DoorState.Closing || state == DoorState.Opening || state == DoorState.Denying)
+                    showBaseUnlit = true;
+
+                if (state == DoorState.Open && comp.OpenUnlitVisible
+                    || state == DoorState.Closed && comp.OpenUnlitVisible) // CorvaxGoob-Resprite-Airlocks-Edit
+                    showBaseUnlit = true;
+
+                _appearanceSystem.TryGetData<bool>(uid, DoorVisuals.ClosedLights, out var closedLightsVisible, args.Component);
+                if (state == DoorState.Closed && closedLightsVisible)
+                    showBaseUnlit = true;
+            }
         }
 
-        _sprite.LayerSetVisible((uid, args.Sprite), DoorVisualLayers.BaseUnlit, unlitVisible);
-        _sprite.LayerSetVisible((uid, args.Sprite), DoorVisualLayers.BaseBolted, boltedVisible);
+        _sprite.LayerSetVisible((uid, args.Sprite), DoorVisualLayers.BaseUnlit, showBaseUnlit);
+        _sprite.LayerSetVisible((uid, args.Sprite), DoorVisualLayers.BaseBolted, showBolted);
         if (comp.EmergencyAccessLayer)
         {
-            _sprite.LayerSetVisible(
-                (uid, args.Sprite),
-                DoorVisualLayers.BaseEmergencyAccess,
-                    emergencyLightsVisible
-                &&  state != DoorState.Open
-                &&  state != DoorState.Opening
-                &&  state != DoorState.Closing
-                && !boltedVisible
-            );
+            var isDoorIdle = state != DoorState.Open && state != DoorState.Opening && state != DoorState.Closing;
+            _sprite.LayerSetVisible((uid, args.Sprite), DoorVisualLayers.BaseEmergencyAccess,
+                showEmergency && isDoorIdle && !showBolted);
         }
 
-        switch (state)
+        if (comp.OpenUnlitVisible)
         {
-            case DoorState.Open:
-                _sprite.LayerSetRsiState((uid, args.Sprite), DoorVisualLayers.BaseUnlit, comp.ClosingSpriteState);
-                _sprite.LayerSetAnimationTime((uid, args.Sprite), DoorVisualLayers.BaseUnlit, 0);
-                break;
-            case DoorState.Closed:
-                _sprite.LayerSetRsiState((uid, args.Sprite), DoorVisualLayers.BaseUnlit, comp.OpeningSpriteState);
-                _sprite.LayerSetAnimationTime((uid, args.Sprite), DoorVisualLayers.BaseUnlit, 0);
-                break;
+            switch (state)
+            {
+                case DoorState.Open:
+                    _sprite.LayerSetRsiState((uid, args.Sprite), DoorVisualLayers.BaseUnlit, comp.OpenSpriteState);
+                    break;
+                case DoorState.Closed:
+                    _sprite.LayerSetRsiState((uid, args.Sprite), DoorVisualLayers.BaseUnlit, comp.ClosedSpriteState);
+                    break;
+            }
         }
     }
 }

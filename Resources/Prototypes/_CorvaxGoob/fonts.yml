@@ -1,0 +1,7 @@
+- type: font
+  id: MSComicSans
+  path: /Fonts/_CorvaxGoob/MSComicSans/Comic-Sans-MS.ttf
+  
+- type: font
+  id: MSComicSansBold
+  path: /Fonts/_CorvaxGoob/MSComicSans/Comic-Sans-MS-bold.ttf

@@ -28,6 +28,15 @@ ntr-executive-tools-small-desc = A crate containing basic engineering tools.
 ntr-executive-pizza-small-name = Order a small pizza party
 ntr-executive-pizza-small-desc = Order a small pizza party bundle from NanoTrasen. As a good employee, you should share this with your coworkers... or eat it all yourself.
 
+ntr-executive-cargo-bingle-name = Call a cargo bingle
+ntr-executive-cargo-bingle-desc =  After capture, pitless bingles have their sharp teeth removed and are transported through stations to assist with heavy cargo lifting. Their emotional well-being is disregarded.
+
+ntr-executive-eva-crate-name = EVA crate
+ntr-executive-eva-crate-desc = A crate containing 2 pairs of EVA hardsuits, to keep you and your people alive in a catastrophic situation.
+
+ntr-executive-mindshield-crate-name = Mindshield crate
+ntr-executive-mindshield-crate-desc =  A crate containing 3 mindshield implants. Corporate advises you to buy them in cargo anyway.
+
 # personal
 
 ntr-executive-bsd-name = Call Blueshield Deputy
@@ -62,6 +71,21 @@ ntr-executive-combatmed-desc = For when you need more than just basic first aid 
 
 ntr-executive-cassette-name = Executive cassette player
 ntr-executive-cassette-desc = A cassette player to listen to tunes while you close important deals.
+
+ntr-executive-cooler-name = Premium water (?) cooler
+ntr-executive-cooler-desc = Made from the finest 24-karat hardened whiskey in the sector. Its shiny and golden, just like its insides. Comes with 500u of whiskey. Every fine executive has one of these in their room.
+
+ntr-executive-intern-coin-name = Single Intern Coin
+ntr-executive-intern-coin-desc = Summons one basic intern. Interns are on your full command, order them to complete tasks instead of you doing it by yourself, or play cards with them.
+
+ntr-executive-marlen-name = Marlen
+ntr-executive-marlen-desc = A stylish Centcomm umbrella, made by "NanoFashion" for the rich people of central command. Surprisingly durable.
+
+ntr-executive-soap-name = Centcomm soap
+ntr-executive-soap-desc = An expensive soap made with our finest... who am i kidding its just a soap covered in lube with a print.
+
+ntr-executive-cig-vendor-name = Executive cig vendor
+ntr-executive-cig-vendor-desc = For those who know that lung cancer is non-existent, Nanotrasen made this, a vendor full of ciggaretes and expensive flippos for you to smoke.
 
 # response teams
 
@@ -120,6 +144,13 @@ ntr-executive-shuttle-desc = Standard crate containing 4 thruster flatpacks, 1 s
 
 ntr-executive-id-name = Id card computer board
 ntr-executive-id-desc = High-value computer board to make an ID card console.
+
+ntr-executive-task-console-flatpack-name = task console flatpack
+ntr-executive-task-console-flatpack-desc = A normal flatpack containing a spare task console.
+
+# Evil
+ntr-executive-nuclear-codes-name = Nuclear codes
+ntr-executive-nuclear-codes-desc = Stand ready for my arrival, worm.
 
 # tiers
 

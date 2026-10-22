@@ -1,0 +1,15 @@
+- type: latheRecipe
+  id: OniCube
+  result: OniCube
+  completetime: 30
+  materials:
+    Biomass: 70
+    Plasma: 250
+
+- type: latheRecipe
+  id: HydrakinCube
+  result: HydrakinCube
+  completetime: 30
+  materials:
+    Biomass: 70
+    Plasma: 250

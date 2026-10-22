@@ -5,5 +5,5 @@ ent-HolopadCommandBSO = { ent-Holopad }
     .suffix = БСО
     .desc = { ent-Holopad.desc }
 ent-HolopadCentComm = { ent-HolopadBluespace }
-    .suffix = ЦентКом
+    .suffix = ЦК
     .desc = { ent-HolopadBluespace.desc }

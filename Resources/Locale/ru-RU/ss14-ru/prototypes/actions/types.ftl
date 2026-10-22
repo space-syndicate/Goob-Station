@@ -60,9 +60,15 @@ ent-ActionToggleWagging = Махать хвостом
     .desc = Начать/перестать махать хвостом.
 ent-ActionGravityJump = Прыгнуть
     .desc = Активирует продвинутую систему ускорения, перемещает вас на короткое расстояние в направлении взгляда.
-ent-ActionToggleRootable = action-name-toggle-rootable
-    .desc = action-description-toggle-rootable
+ent-ActionToggleRootable = Укоренение
+    .desc = Начните или прекратите укореняться к полу.
 ent-ActionChameleonController = Изменить одежду
     .desc = Быстро смените свой внешний вид!
 ent-FakeMindShieldToggleAction = [color=green]Переключить фальшивый Щит разума[/color]
     .desc = Переключить трансляцию фальшивого Щита разума
+
+ent-ActionShootWater = Пшикнуть водой!
+    .desc = Пшикните водой на ваших врагов.
+
+ent-ActionIntrinsicStore = Магазин
+    .desc = Открыть магазин

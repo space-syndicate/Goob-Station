@@ -55,3 +55,13 @@ spellbook-upgrade-fireball-name = Улучшение Огненного шара
 spellbook-upgrade-fireball-description = Позволяет улучшить Огненный шар до максимального 3-го уровня!
 spellbook-upgrade-jaunt-name = Улучшение Эфирного рывка
 spellbook-upgrade-jaunt-description = Позволяет улучшить Эфирный рывок до максимального 3-го уровня!
+
+spellbook-voidapplause-name = Хлопок пустоты
+
+spellbook-voidapplause-desc = Поменяйтесь местами с целью, разве вам не захотелось потанцевать буги?
+
+spellbook-polymorph-spider-name = Полиморф-паук
+
+spellbook-slip-name = Скользкая дорожка
+
+spellbook-slip-desc = Изучите древние приёмы уборщиков и прокляните вашу цель, чтобы та была скользкой.

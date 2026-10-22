@@ -1,7 +1,7 @@
 slasher-role-greeting = Вы чувствуете непреодолимую жажду мести... и синтвейв. Ночь только начинается, туман густой, и ваше мачете сверкает в свете неоновых звезд. Пришло время показать этим космонавтикам, почему стоит боятся технических помещений.
-ghost-role-information-slasher-name = Мясник
+ghost-role-information-slasher-name = Маньяк
 ghost-role-information-slasher-description = Убивайте и всячески терроризируйте простой экипаж!
-slasher-round-end-agent-name = Мясник
+slasher-round-end-agent-name = Маньяк
 slasher-summon-meatspike-popup = Прямо из земли появляется жуткий мясной крюк.
 slasher-staggerarea-victim = По вашей спине пробегает леденящий холод!
 slasher-staggerarea-popup = Вы вызываете волну ужаса.
@@ -24,12 +24,20 @@ slasher-corporealize-fail-camera = Вы не можете материализо
 slasher-corporealize-fail-nearby = Вы не можете материализоваться, пока кто-то рядом!
 slasher-corporealize-fail-inside-wall = Вы не можете материализоваться, пока находитесь в твёрдом объекте!
 reagent-name-slasherium = маньякиум
-reagent-desc-slasherium = Мощный химикат, используемый мясником для регенерации своего тела.
-objective-issuer-slasher = Мясник
+reagent-desc-slasherium = Мощный химикат, используемый маньяком для регенерации своего тела.
+objective-issuer-slasher = Маньяк
 slasher-objective-absorb-souls-title = Поглотить { $count } душ
 slasher-objective-absorb-souls-desc =
     Экипажу это уже не понадобится.
     Ты поможешь...
-roles-antag-slasher-name = Мясник
+roles-antag-slasher-name = Маньяк
 roles-antag-slasher-objectives = Убивайте и всячески терроризируйте простой экипаж!
 slasher-cannot-use-guns = Огнестрельное оружие нужно лишь тем, кто не ценит поножовщину...
+slasher-machete-no-hands = У вас нет рук!
+slasher-machete-hands-full = Ваши руки заняты!
+slasher-machete-already-holding = Вы уже держите своё мачете!
+slasher-soulsteal-unlock-possession = Ваша сила растёт. Теперь вы можете вселяться в других людей!
+slasher-massacre-already-activated = Бойня уже активна!
+slasher-relentless-grab-activate = Вы готовитесь схватить свою следующую жертву!
+alerts-slasher-seen-name = Статус наблюдения
+alerts-slasher-seen-desc = Показывает, наблюдают ли за вами в данный момент. Вы не можете входить в бестелесную форму или выходить из неё, пока за вами наблюдают.

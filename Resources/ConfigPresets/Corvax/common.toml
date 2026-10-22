@@ -19,7 +19,7 @@ maximum_width = 26
 [game]
 lobbyduration = 240
 map_pool = "CorvaxMapPool"
-round_restart_time = 180
+round_restart_time = 120
 fallbackpreset = "secret"
 defaultpreset = "secret"
 
@@ -41,3 +41,6 @@ icons_enabled = true
 
 [misc]
 space_whale_spawn = false
+
+[ghost.go_lobby]
+enabled = true

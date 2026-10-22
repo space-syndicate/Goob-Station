@@ -1,6 +1,3 @@
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Numerics;
@@ -65,6 +62,6 @@ public sealed partial class TileMovementComponent : Component
     /// Coordinates of the moving entity on the last physics tick. Null if the entity was not
     /// parented to the same entity last tick.
     /// </summary>
-    [AutoNetworkedField]
+    //[AutoNetworkedField] CorvaxGoob мне не нужен HandleTileMovement с Dirty раз в тик <3 оставьте себе
     public Vector2? LastTickLocalCoordinates;
 }

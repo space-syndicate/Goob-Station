@@ -25,3 +25,5 @@ ent-ClothingOuterArmorHereticFleshCostume = { ent-ClothingOuterArmorHereticCostu
 ent-ClothingOuterArmorHereticBladeCostume = { ent-ClothingOuterArmorHereticCostume }
     .suffix = Путь Клинка
     .desc = { ent-ClothingOuterArmorHereticCostume.desc }
+ent-ClothingOuterSchemaMonk = монашеское облачение
+    .desc = Знак полного отречения от мира и принятия подвига. Его носят те, кто избрал путь молитвы и борьбы за человеческую душу. В безмолвии космоса оно кажется особенно уместным.

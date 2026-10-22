@@ -126,7 +126,7 @@ public sealed partial class TTSTab : Control
 
             if (voice.ID == _selectedVoiceId)
             {
-                selectButton.AddStyleClass(StyleBase.ButtonCaution);
+                selectButton.AddStyleClass(StyleClass.Negative);
             }
 
             selectButton.OnPressed += _ =>
@@ -174,7 +174,7 @@ public sealed partial class TTSTab : Control
         if (profile == null)
             return;
 
-        _selectedVoiceId = profile.Voice;
+        _selectedVoiceId = profile.TTSVoice;
 
         _allVoices = _prototypeManager
             .EnumeratePrototypes<TTSVoicePrototype>()

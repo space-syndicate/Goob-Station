@@ -1,0 +1,33 @@
+using System.IO;
+using System.Linq;
+using System.Text.Encodings.Web;
+using System.Text.Json;
+using Content.Shared.Corvax.GuideGenerator;
+
+namespace Content.Server.Corvax.GuideGenerator;
+
+public static class EntityProjectGenerator
+{
+    private static readonly JsonSerializerOptions SerializeOptions = new()
+    {
+        WriteIndented = true,
+        Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+    };
+
+    public static HashSet<string> GetProjectEntityIds()
+    {
+        return EntityProjectHelper.GetProjectEntityIds();
+    }
+
+    public static void PublishJson(Stream stream)
+    {
+        var ids = GetProjectEntityIds();
+        if (ids.Count == 0)
+            return;
+
+        var sorted = ids.ToList();
+        sorted.Sort(StringComparer.Ordinal);
+
+        JsonSerializer.Serialize(stream, sorted, SerializeOptions);
+    }
+}

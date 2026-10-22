@@ -146,6 +146,7 @@
       state: generic_panel_open
   - type: FireControlConsole
   - type: ActivatableUI
+    blockSpectators: true # CorvaxGoob-GhostUIViewing
     key: enum.FireControlConsoleUiKey.Key
   - type: UserInterface
     interfaces:

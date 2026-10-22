@@ -43,3 +43,7 @@ ent-BoxSurvivalSyndicate = расширенный аварийный запас
 ent-BoxSurvivalSyndicateNitrogen = { ent-BoxSurvivalSyndicate }
     .suffix = Синдикат Азот N2
     .desc = { ent-BoxSurvivalSyndicate.desc }
+
+ent-BoxSurvivalMilitaryDouble = { ent-BoxCardboardSmall }
+    .desc = Коробка с базовым набором выживания. Согласно этикетке, она содержит двойной аварийный баллон.
+    .suffix = Военный Кислород O2

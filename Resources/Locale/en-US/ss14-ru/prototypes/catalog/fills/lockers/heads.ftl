@@ -38,5 +38,5 @@ ent-LockerHeadOfSecurityFilledHardsuit = { ent-LockerHeadOfSecurity }
     .suffix = Filled, Hardsuit
     .desc = { ent-LockerHeadOfSecurity.desc }
 ent-LockerFreezerVaultFilled = { ent-LockerFreezerBase }
-    .suffix = Vault, Locked
+    .suffix = Vault, Filled
     .desc = { ent-LockerFreezerBase.desc }

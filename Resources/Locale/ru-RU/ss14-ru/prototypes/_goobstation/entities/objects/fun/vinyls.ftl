@@ -1,3 +1,4 @@
+# Пластинки
 ent-BaseVinylDisk = виниловая пластинка
     .desc = Виниловая пластинка, с записанной на ней музыкой.
 ent-BaseVinylSleeve = конверт для пластинки
@@ -27,7 +28,7 @@ ent-VinylDiskYellow = виниловая пластинка "Смертельн�
 ent-VinylDiskGreen = виниловая пластинка "Ночное радио"
     .desc = { ent-BaseVinylDisk.desc }
 ent-VinylDiskPurple = виниловая пластинка "Приключение 3"
-    .desc = lets see it purple!
+    .desc = Да мне как-то фиолетово...
 ent-VinylDiskOrange = виниловая пластинка "Все такие живые"
     .desc = { ent-BaseVinylDisk.desc }
 ent-VinylDiskWhite = виниловая пластинка "Грув"
@@ -86,6 +87,9 @@ ent-VinylDiskForgotten = забытая виниловая пластинка
     .desc = Часть пластинки отсутствуют, но что-то вам подсказывает, что оно до сих пор способно проигрывать музыку. Но... стоит ли?
 ent-VinylDiskBroken = сломанная виниловая пластинка
     .desc = Как и большинство виниловых пластинок, эта в итоге оказалась сломанной.
+ent-VinylDiskTuff = виниловая пластика "Ловушечные оперативники"
+    .desc = { ent-BaseVinylDisk.desc }
+# Конверты
 ent-VinylSleeveAI = конверт для пластинки "ИИ"
     .desc = { ent-BaseVinylSleeve.desc }
 ent-VinylSleeveDevil = конверт для пластинки "Дьявол"
@@ -101,7 +105,7 @@ ent-VinylSleeveHockey = конверт для пластинки "Хоккей"
 ent-VinylSleeveRat = конверт для пластинки "Мышка"
     .desc = { ent-BaseVinylSleeve.desc }
 ent-VinylSleeveMgs = конверт для пластинки "Проказник"
-    .desc = Kept you waiting huh?
+    .desc = Заставил тебя ждать, а?
 ent-VinylSleeveQuestionable = конверт для пластинки "Вопросительный"
     .desc = Абстрактное искусство, любимое всеми.
 ent-VinylSleeveJanitor = конверт для пластинки "Уборщик"

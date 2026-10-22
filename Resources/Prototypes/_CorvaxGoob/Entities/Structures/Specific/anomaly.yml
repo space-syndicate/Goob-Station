@@ -1,0 +1,127 @@
+- type: entity
+  id: AnomalyGravityInstantCollapse
+  parent: AnomalyGravity
+  suffix: Gravity, Instant Collapse, DO NOT MAP
+  components:
+  - type: Anomaly
+    initialSeverityRange: !!tuple [1, 1]
+
+- type: entity
+  id: AnomalyElectricityInstantCollapse
+  parent: AnomalyElectricity
+  suffix: Electricity, Instant Collapse, DO NOT MAP
+  components:
+  - type: Anomaly
+    initialSeverityRange: !!tuple [1, 1]
+
+- type: entity
+  id: AnomalyFleshInstantCollapse
+  parent: AnomalyFlesh
+  suffix: Flesh, Instant Collapse, DO NOT MAP
+  components:
+  - type: Anomaly
+    initialSeverityRange: !!tuple [1, 1]
+
+- type: entity
+  id: AnomalyBluespaceInstantCollapse
+  parent: AnomalyBluespace
+  suffix: Bluespace, Instant Collapse, DO NOT MAP
+  components:
+  - type: Anomaly
+    initialSeverityRange: !!tuple [1, 1]
+
+- type: entity
+  id: AnomalyIceInstantCollapse
+  parent: AnomalyIce
+  suffix: Ice, Instant Collapse, DO NOT MAP
+  components:
+  - type: Anomaly
+    initialSeverityRange: !!tuple [1, 1]
+
+- type: entity
+  id: AnomalyRockUraniumInstantCollapse
+  parent: AnomalyRockUranium
+  suffix: Rock Uranium, Instant Collapse, DO NOT MAP
+  components:
+  - type: Anomaly
+    initialSeverityRange: !!tuple [1, 1]
+
+- type: entity
+  id: AnomalyRockBananiumInstantCollapse
+  parent: AnomalyRockBananium
+  suffix: Rock Bananium, Instant Collapse, DO NOT MAP
+  components:
+  - type: Anomaly
+    initialSeverityRange: !!tuple [1, 1]
+
+- type: entity
+  id: AnomalyRockQuartzInstantCollapse
+  parent: AnomalyRockQuartz
+  suffix: Rock Quartz, Instant Collapse, DO NOT MAP
+  components:
+  - type: Anomaly
+    initialSeverityRange: !!tuple [1, 1]
+
+- type: entity
+  id: AnomalyRockSilverInstantCollapse
+  parent: AnomalyRockSilver
+  suffix: Rock Silver, Instant Collapse, DO NOT MAP
+  components:
+  - type: Anomaly
+    initialSeverityRange: !!tuple [1, 1]
+
+- type: entity
+  id: AnomalyRockGoldInstantCollapse
+  parent: AnomalyRockGold
+  suffix: Rock Gold, Instant Collapse, DO NOT MAP
+  components:
+  - type: Anomaly
+    initialSeverityRange: !!tuple [1, 1]
+
+- type: entity
+  id: AnomalyRockIronInstantCollapse
+  parent: AnomalyRockIron
+  suffix: Rock Iron, Instant Collapse, DO NOT MAP
+  components:
+  - type: Anomaly
+    initialSeverityRange: !!tuple [1, 1]
+
+- type: entity
+  id: AnomalyRockCoalInstantCollapse
+  parent: AnomalyRockCoal
+  suffix: Rock Coal, Instant Collapse, DO NOT MAP
+  components:
+  - type: Anomaly
+    initialSeverityRange: !!tuple [1, 1]
+
+- type: entity
+  id: AnomalyFloraInstantCollapse
+  parent: AnomalyFlora
+  suffix: Flora, Instant Collapse, DO NOT MAP
+  components:
+  - type: Anomaly
+    initialSeverityRange: !!tuple [1, 1]
+
+- type: entity
+  id: AnomalyLiquidInstantCollapse
+  parent: AnomalyLiquid
+  suffix: Liquid, Instant Collapse, DO NOT MAP
+  components:
+  - type: Anomaly
+    initialSeverityRange: !!tuple [1, 1]
+
+- type: entity
+  id: AnomalyShadowInstantCollapse
+  parent: AnomalyShadow
+  suffix: Shadow, Instant Collapse, DO NOT MAP
+  components:
+  - type: Anomaly
+    initialSeverityRange: !!tuple [1, 1]
+
+- type: entity
+  id: AnomalyTechInstantCollapse
+  parent: AnomalyTech
+  suffix: Tech, Instant Collapse, DO NOT MAP
+  components:
+  - type: Anomaly
+    initialSeverityRange: !!tuple [1, 1]

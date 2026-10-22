@@ -1,6 +1,7 @@
 ent-LibrarianTranslatorImplanter = имплантер
     .suffix = Библиотекарский переводчик
     .desc = { ent-BaseTranslatorImplanter.desc }
+
 ent-ChevalTranslatorImplanter = имплантер
     .suffix = Продвинутый переводчик Шшечи
     .desc = { ent-BaseTranslatorImplanter.desc }

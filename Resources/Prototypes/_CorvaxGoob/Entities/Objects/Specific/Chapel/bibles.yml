@@ -1,0 +1,39 @@
+- type: selectableSet
+  id: BibleDruidSet
+  name: Священная Скрижаль Друидов
+  description: Повелеваю построить здесь заповедник.
+  sprite:
+    sprite: Objects/Specific/Chapel/mysteryofthedruids.rsi
+    state: icon
+  content:
+  - BibleDruid
+
+- type: selectableSet
+  id: BibleNarsieSet
+  name: Том Нар'Си
+  description: Том, покрытый кровью неверных.
+  sprite:
+    sprite: Objects/Specific/Chapel/tomeofnarsie.rsi
+    state: icon
+  content:
+  - BibleNarsie
+
+- type: selectableSet
+  id: BibleNanoTrasenSet
+  name: Кодекс Нанотрейзимус
+  description: Книга жалоб и предложений для Директората.
+  sprite:
+    sprite: Objects/Specific/Chapel/codexnanotrasimus.rsi
+    state: icon
+  content:
+  - BibleNanoTrasen
+
+- type: selectableSet
+  id: BibleHonkSet
+  name: Радость Хонкоматери
+  description: Возможно это книга анекдотов.
+  sprite:
+    sprite: Objects/Specific/Chapel/honk.rsi
+    state: icon
+  content:
+  - BibleHonk

@@ -9,3 +9,7 @@ ent-HandheldStationMapEmpty = { ent-HandheldStationMap }
 ent-HandheldStationMapUnpowered = { ent-BaseHandheldStationMap }
     .desc = { ent-BaseHandheldStationMap.desc }
     .suffix = Ручной, Не требует питания
+
+ent-HandheldStationMapNukeops = карта целевой станции
+    .desc = Отображает показания целевой станции.
+    .suffix = Ручной, Ядерный оперативник

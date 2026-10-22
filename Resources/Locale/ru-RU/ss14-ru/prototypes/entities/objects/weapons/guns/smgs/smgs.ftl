@@ -11,3 +11,10 @@ ent-WeaponSubMachineGunDrozd = Дрозд
 ent-WeaponSubMachineGunWt550 = WT550
     .desc = Отличный пистолет-пулемёт, производства NanoTrasen's Small Arms Division. Использует патроны калибра .35 авто.
     .suffix = Пистолет-пулемёт
+
+ent-WeaponSubMachineGunC20rROW = C-20r ROW
+    .desc = Пистолет-пулемёт C-20r с режимом стрельбы очередями для использования киборгами. На ходу создаёт патроны калибра .35 авто из встроенного самозарядного фабрикатора боеприпасов.
+
+ent-WeaponSubMachineGunBriefcase = коричневый чемодан
+    .desc = Пригодится для переноски предметов в руках.
+    .suffix = Оружие

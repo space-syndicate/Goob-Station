@@ -40,6 +40,8 @@ ent-MindRoleNukeopsMedic = Роль медик ядерных оперативн
     .desc = { ent-MindRoleNukeops.desc }
 ent-MindRoleNukeopsCommander = Роль командир ядерных оперативников
     .desc = { ent-MindRoleNukeops.desc }
+ent-MindRoleLoneops = Роль одиночного ядерного оперативника
+    .desc = { ent-MindRoleNukeops.desc }
 ent-MindRoleHeadRevolutionary = Роль глава революции
     .desc = { ent-BaseMindRoleAntag.desc }
 ent-MindRoleRevolutionary = Роль революционер
@@ -56,3 +58,12 @@ ent-MindRoleInitialInfected = Роль нулевой пациент
     .desc = { ent-BaseMindRoleAntag.desc }
 ent-MindRoleZombie = Роль зомби
     .desc = { ent-MindRoleGhostRoleTeamAntagonistFlock.desc }
+
+ent-MindRoleSurvivor = Роль выживший
+    .desc = { ent-BaseMindRoleAntag.desc }
+
+ent-MindRoleMothershipCore = Роль ядро материнского корабля
+    .desc = { ent-BaseMindRoleAntag.desc }
+
+ent-MindRoleXenoborg = Роль ксеноборг
+    .desc = { ent-BaseMindRoleAntag.desc }

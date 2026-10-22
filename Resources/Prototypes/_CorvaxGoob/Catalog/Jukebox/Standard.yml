@@ -1,0 +1,11 @@
+- type: jukebox
+  id: nuclearremake_full
+  name: A-Guy - Nuclear Operations (Remake)
+  path:
+    path: /Audio/_CorvaxGoob/Music/nuclearremake_full.ogg
+    
+- type: jukebox
+  id: nuclearoperations
+  name: A-Guy - Nuclear Operations
+  path:
+    path: /Audio/_CorvaxGoob/Music/nuclearoperations.ogg

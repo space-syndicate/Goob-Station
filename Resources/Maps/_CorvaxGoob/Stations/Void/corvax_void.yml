@@ -3,9 +3,9 @@ meta:
   category: Map
   engineVersion: 266.0.0
   forkId: syndicate-goob
-  forkVersion: 8e86a6ff3505ab0044ef126d85040cfc32a4c503
-  time: 02/18/2026 13:43:40
-  entityCount: 25343
+  forkVersion: 513fa71254c1ff351c96d052d4f5a6869ae24022
+  time: 04/24/2026 04:44:09
+  entityCount: 25344
 maps:
 - 1743
 grids:
@@ -21898,7 +21898,6 @@ entities:
       pos: 97.43912,126.06578
       parent: 1
     - type: Paper
-      contentSize: 30000
       content: >2-
                                                        1984
                                                      Роман
@@ -21986,13 +21985,6 @@ entities:
     components:
     - type: Transform
       pos: 97.139915,132.95757
-      parent: 1
-- proto: BookGrav
-  entities:
-  - uid: 20985
-    components:
-    - type: Transform
-      pos: 31.630875,169.63043
       parent: 1
 - proto: BookJanitorTale
   entities:
@@ -76564,6 +76556,13 @@ entities:
       parent: 1
     - type: FaxMachine
       name: Глава персонала
+  - uid: 22766
+    components:
+    - type: Transform
+      pos: 150.5,106.5
+      parent: 1
+    - type: FaxMachine
+      name: Суд
 - proto: FaxMachineCaptain
   entities:
   - uid: 6391
@@ -111770,6 +111769,13 @@ entities:
     - type: Transform
       pos: 97.534676,133.70866
       parent: 1
+- proto: MagistrateGavel
+  entities:
+  - uid: 25291
+    components:
+    - type: Transform
+      pos: 148.5628,106.55892
+      parent: 1
 - proto: MailTeleporter
   entities:
   - uid: 22457
@@ -129611,6 +129617,13 @@ entities:
     - type: Transform
       pos: 152.5,89.5
       parent: 1
+- proto: SpawnMobBingleCargo
+  entities:
+  - uid: 22698
+    components:
+    - type: Transform
+      pos: 77.5,61.5
+      parent: 1
 - proto: SpawnMobBoxingKangaroo
   entities:
   - uid: 20746
@@ -129764,13 +129777,6 @@ entities:
     components:
     - type: Transform
       pos: 122.5,66.5
-      parent: 1
-- proto: SpawnMobGorillaLargo
-  entities:
-  - uid: 22698
-    components:
-    - type: Transform
-      pos: 77.5,61.5
       parent: 1
 - proto: SpawnMobMcGriff
   entities:
@@ -130140,6 +130146,13 @@ entities:
     components:
     - type: Transform
       pos: 98.5,125.5
+      parent: 1
+- proto: SpawnPointMagistrate
+  entities:
+  - uid: 20985
+    components:
+    - type: Transform
+      pos: 149.5,107.5
       parent: 1
 - proto: SpawnPointMedicalDoctor
   entities:
@@ -139118,13 +139131,6 @@ entities:
     components:
     - type: Transform
       pos: 144.35014,127.74731
-      parent: 1
-- proto: ToyHammer
-  entities:
-  - uid: 22766
-    components:
-    - type: Transform
-      pos: 150.4844,106.25559
       parent: 1
 - proto: ToyMouse
   entities:

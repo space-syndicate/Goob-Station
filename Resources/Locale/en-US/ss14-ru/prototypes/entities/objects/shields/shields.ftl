@@ -1,5 +1,7 @@
 ent-BaseShield = base shield
     .desc = A shield!
+ent-BaseRepairableShield = base repairable shield
+    .desc = A repairable shield!
 ent-RiotShield = riot shield
     .desc = A large tower shield. Good for controlling crowds.
 ent-RiotLaserShield = laser shield
@@ -9,7 +11,7 @@ ent-RiotBulletShield = ballistic shield
 ent-WoodenBuckler = wooden buckler
     .desc = A small round wooden makeshift shield.
 ent-CardShield = cardboard shield
-    .desc = A shield that wont shield you from much.
+    .desc = A shield made of cardboard. Won't protect you from much.
 ent-MakeshiftShield = makeshift shield
     .desc = A rundown looking shield, not good for much.
 ent-WebShield = web shield

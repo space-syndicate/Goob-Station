@@ -141,4 +141,4 @@ holopad-ai-chute = ИИ - Транспортный блок
 holopad-station-bridge = Станция - Мостик
 holopad-station-cargo-bay = Станция - Грузовой отсек
 # CentComm
-holopad-centcomm-evac = Центком - Эвакуационный шаттл
+holopad-centcomm-evac = ЦК- Эвакуационный шаттл

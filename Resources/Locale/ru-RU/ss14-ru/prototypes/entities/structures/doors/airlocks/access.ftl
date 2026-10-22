@@ -95,7 +95,7 @@ ent-AirlockMedicalScienceLocked = { ent-AirlockScience }
     .suffix = Медицинский/Научный, Закрыт
     .desc = { ent-AirlockScience.desc }
 ent-AirlockCentralCommandLocked = { ent-AirlockCentralCommand }
-    .suffix = Центральное командование, Закрыт
+    .suffix = ЦК, Закрыт
     .desc = { ent-AirlockCentralCommand.desc }
 ent-AirlockCommandLocked = { ent-AirlockCommand }
     .suffix = Командование, Закрыт
@@ -224,7 +224,7 @@ ent-AirlockMedicalScienceGlassLocked = { ent-AirlockScienceGlass }
     .suffix = Медицинский/Science, Закрыт
     .desc = { ent-AirlockScienceGlass.desc }
 ent-AirlockCentralCommandGlassLocked = { ent-AirlockCentralCommandGlass }
-    .suffix = Центральное командование, Закрыт
+    .suffix = ЦК, Закрыт
     .desc = { ent-AirlockCentralCommandGlass.desc }
 ent-AirlockCommandGlassLocked = { ent-AirlockCommandGlass }
     .suffix = Командование, Закрыт
@@ -412,7 +412,7 @@ ent-AirlockExternalGlassShuttleEscape = { ent-AirlockGlassShuttle }
     .suffix = Внешний, Отбытие 3x4, Стеклянный, Стыковочный
     .desc = { ent-AirlockGlassShuttle.desc }
 ent-HighSecCentralCommandLocked = { ent-HighSecDoor }
-    .suffix = Центральное командование, Закрыт
+    .suffix = ЦК, Закрыт
     .desc = { ent-HighSecDoor.desc }
 ent-HighSecCommandLocked = { ent-HighSecDoor }
     .suffix = Командование, Закрыт
@@ -426,3 +426,19 @@ ent-HighSecArmoryLocked = { ent-HighSecDoor }
 ent-AirlockHatchSyndicate = { ent-AirlockHatch }
     .suffix = Синдикат, Закрыт
     .desc = { ent-AirlockHatch.desc }
+
+ent-AirlockChapelStandardGlassLocked = { ent-AirlockStandardGlass }
+    .desc = { ent-AirlockStandardGlass.desc }
+    .suffix = Храм, Закрыт
+
+ent-AirlockGlassShuttleXenoborgLocked = { ent-AirlockShuttleXenoborg }
+    .desc = { ent-AirlockShuttleXenoborg.desc }
+    .suffix = Внешний, Стыковочный, Ксеноборг, Закрыт
+
+ent-AirlockHatchSyndicateLocked = { ent-AirlockHatchSyndicate }
+    .desc = { ent-AirlockHatchSyndicate.desc }
+    .suffix = Синдикат, Закрыт
+
+ent-AirlockHatchMaintenanceLocked = { ent-AirlockHatchMaintenance }
+    .desc = { ent-AirlockHatchMaintenance.desc }
+    .suffix = Закрыт

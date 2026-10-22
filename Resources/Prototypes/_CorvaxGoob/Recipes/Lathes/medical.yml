@@ -1,0 +1,13 @@
+- type: latheRecipe
+  id: SprayBottleStypticPowderEmpty
+  result: SprayBottleStypticPowderEmpty
+  completetime: 2
+  materials:
+    Plastic: 100
+
+- type: latheRecipe
+  id: SprayBottleSilverSulfadiazineEmpty
+  result: SprayBottleSilverSulfadiazineEmpty
+  completetime: 2
+  materials:
+    Plastic: 100

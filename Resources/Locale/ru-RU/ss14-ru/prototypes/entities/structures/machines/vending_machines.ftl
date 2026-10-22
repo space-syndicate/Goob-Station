@@ -154,3 +154,9 @@ ent-VendingMachineChemicals = ХимкоМат
     .desc = Вероятно, не кофемашина.
 ent-VendingMachineChemicalsSyndicate = СиндиСоки
     .desc = Надеюсь, не из свежевыжатых синдикатовцев?
+
+ent-VendingMachineMedicalBase = НаноМед Гражданский
+    .desc = Это медицинский раздатчик препаратов. Только натуральные химикаты!
+
+ent-VendingMachineWallMedicalCivilian = НаноМед-Бандаж
+    .desc = Это настенный раздатчик медицинского снаряжения. Только натуральные химикаты!

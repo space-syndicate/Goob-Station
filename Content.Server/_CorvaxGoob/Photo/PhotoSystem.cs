@@ -1,3 +1,4 @@
+using Content.Goobstation.Shared.Blob.Components;
 using Content.Server.Hands.Systems;
 using Content.Server.Materials;
 using Content.Server.Players.PlayTimeTracking;
@@ -53,6 +54,9 @@ public sealed partial class PhotoSystem : SharedPhotoSystem
 
     private void OnOpenCameraInterface(EntityUid uid, PhotoCameraComponent component, AfterActivatableUIOpenEvent args)
     {
+        if (HasComp<ZombieBlobComponent>(uid)) // да, знаю, слегка щиткодный способ ограничить открытие фотика зомби блоба
+            return;
+
         UpdateCameraInterface(uid, component);
 
         component.User = args.User;

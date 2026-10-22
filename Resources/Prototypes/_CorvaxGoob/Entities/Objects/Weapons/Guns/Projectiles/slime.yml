@@ -1,0 +1,178 @@
+- type: entity
+  abstract: true
+  id: BulletReagentSlimeBase
+  name: reagent spit
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Caustic: 3
+    soundHit:
+      path: /Audio/Items/hypospray.ogg
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/xeno_toxic.rsi
+    layers:
+    - state: xeno_toxic
+  - type: Ammo
+    muzzleFlash: null
+  - type: SolutionInjectOnProjectileHit
+    transferAmount: 6
+    solution: ammo
+
+- type: entity
+  id: BulletReagentSlimeNocturine
+  parent: BulletReagentSlimeBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      ammo:
+        maxVol: 6
+        reagents:
+        - ReagentId: Nocturine
+          Quantity: 6
+
+- type: entity
+  id: BulletReagentSlimeBeer
+  parent: BulletReagentSlimeBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      ammo:
+        maxVol: 6
+        reagents:
+        - ReagentId: Beer
+          Quantity: 6
+
+- type: entity
+  id: BulletReagentSlimePax
+  parent: BulletReagentSlimeBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      ammo:
+        maxVol: 6
+        reagents:
+        - ReagentId: Pax
+          Quantity: 6
+
+- type: entity
+  id: BulletReagentSlimeTHC
+  parent: BulletReagentSlimeBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      ammo:
+        maxVol: 6
+        reagents:
+        - ReagentId: THC
+          Quantity: 6
+
+- type: entity
+  id: BulletReagentSlimeBicaridine
+  parent: BulletReagentSlimeBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      ammo:
+        maxVol: 6
+        reagents:
+        - ReagentId: Bicaridine
+          Quantity: 6
+
+- type: entity
+  id: BulletReagentSlimeToxin
+  parent: BulletReagentSlimeBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      ammo:
+        maxVol: 6
+        reagents:
+        - ReagentId: Toxin
+          Quantity: 6
+
+- type: entity
+  id: BulletReagentSlimeNapalm
+  parent: BulletReagentSlimeBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      ammo:
+        maxVol: 6
+        reagents:
+        - ReagentId: Napalm
+          Quantity: 6
+
+- type: entity
+  id: BulletReagentSlimeOmnizine
+  parent: BulletReagentSlimeBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      ammo:
+        maxVol: 6
+        reagents:
+        - ReagentId: Omnizine
+          Quantity: 6
+
+- type: entity
+  id: BulletReagentSlimeMuteToxin
+  parent: BulletReagentSlimeBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      ammo:
+        maxVol: 6
+        reagents:
+        - ReagentId: MuteToxin
+          Quantity: 6
+
+- type: entity
+  id: BulletReagentSlimeNorepinephricAcid
+  parent: BulletReagentSlimeBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      ammo:
+        maxVol: 6
+        reagents:
+        - ReagentId: NorepinephricAcid
+          Quantity: 6
+
+- type: entity
+  id: BulletReagentSlimeEphedrine
+  parent: BulletReagentSlimeBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      ammo:
+        maxVol: 6
+        reagents:
+        - ReagentId: Ephedrine
+          Quantity: 6
+
+- type: entity
+  id: BulletReagentSlimeRobustHarvest
+  parent: BulletReagentSlimeBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      ammo:
+        maxVol: 6
+        reagents:
+        - ReagentId: RobustHarvest
+          Quantity: 6

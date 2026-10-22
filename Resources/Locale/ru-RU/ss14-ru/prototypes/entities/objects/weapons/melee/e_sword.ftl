@@ -30,3 +30,7 @@ ent-CyborgEnergySwordDouble = { ent-EnergySwordDouble }
 ent-EnergyDaggerLoudBlue = { ent-EnergyDaggerLoud }
     .suffix = Синий
     .desc = { ent-EnergyDaggerLoud.desc }
+
+ent-CyborgEnergySword = { ent-EnergySword }
+    .desc = Очень громкий и опасный меч с лучом из чистой концентрированной плазмы. Разработан специально для киборгов Синдиката.
+    .suffix = Для боргов

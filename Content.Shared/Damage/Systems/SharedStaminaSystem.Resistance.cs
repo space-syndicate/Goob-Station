@@ -12,11 +12,14 @@ public partial class SharedStaminaSystem
         SubscribeLocalEvent<StaminaResistanceComponent, BeforeStaminaDamageEvent>(OnGetResistance);
         SubscribeLocalEvent<StaminaResistanceComponent, InventoryRelayedEvent<BeforeStaminaDamageEvent>>(RelayedResistance);
         SubscribeLocalEvent<StaminaResistanceComponent, ArmorExamineEvent>(OnArmorExamine);
+
+        SubscribeLocalEvent<StaminaResistanceComponent, InventoryRelayedEvent<CoefficientStaminaQueryEvent>>(OnCoefficientQuery); // CorvaxGoob-RubberAmmo
     }
 
     private void OnGetResistance(Entity<StaminaResistanceComponent> ent, ref BeforeStaminaDamageEvent args)
     {
-        args.Value *= ent.Comp.DamageCoefficient;
+        if (!args.FromMelee || ent.Comp.MeleeResistance) // DeltaV - StaminaResistance is only for disablers etc, blunt armor is for resisting baton. <- WHO THOUGHT THIS WAS A GOOD IDEA?
+            args.Value *= ent.Comp.DamageCoefficient;
     }
 
     private void RelayedResistance(Entity<StaminaResistanceComponent> ent, ref InventoryRelayedEvent<BeforeStaminaDamageEvent> args)
@@ -25,6 +28,12 @@ public partial class SharedStaminaSystem
             OnGetResistance(ent, ref args.Args);
     }
 
+    // CorvaxGoob-RubberAmmo
+    private void OnCoefficientQuery(Entity<StaminaResistanceComponent> ent, ref InventoryRelayedEvent<CoefficientStaminaQueryEvent> args)
+    {
+        if (ent.Comp.Worn)
+            args.Args.StaminaDamage *= ent.Comp.DamageCoefficient;
+    }
     private void OnArmorExamine(Entity<StaminaResistanceComponent> ent, ref ArmorExamineEvent args)
     {
         var value = MathF.Round((1f - ent.Comp.DamageCoefficient) * 100, 1);

@@ -1,6 +1,9 @@
-ent-DefaultStationBeaconLavalandRuin = { ent-DefaultStationBeacon }
-    .suffix = Command
-    .desc = { ent-DefaultStationBeacon.desc }
+ent-DefaultStationBeaconNoWarpPoints = station beacon
+    .desc = A small device that transmits information to station maps. Can be configured.
+    .suffix = General
+ent-DefaultStationBeaconLavalandRuin = { ent-DefaultStationBeaconNoWarpPoints }
+    .suffix = Lavaland Ruin
+    .desc = { ent-DefaultStationBeaconNoWarpPoints.desc }
 ent-DefaultStationBeaconRuinAbductor = { ent-DefaultStationBeaconLavalandRuin }
     .suffix = Ruin Abductor
     .desc = { ent-DefaultStationBeaconLavalandRuin.desc }

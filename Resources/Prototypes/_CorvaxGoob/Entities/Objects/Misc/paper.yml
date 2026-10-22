@@ -9,3 +9,217 @@
       stampedBy:
       - stampedName: stamp-component-stamped-name-centcom
         stampedColor: "#bb3232"
+
+- type: entity
+  parent: Paper
+  id: YellowPaper
+  name: yellow paper
+  description: 'A piece of yellow paper.'
+  components:
+  - type: Sprite
+    layers:
+    - state: paper
+      color: "#fffb1f"
+    - state: paper_words
+      map: ["enum.PaperVisualLayers.Writing"]
+      color: "#fffb1f"
+      visible: false
+    - state: paper_stamp-generic
+      map: ["enum.PaperVisualLayers.Stamp"]
+      color: "#fffb1f"
+      visible: false
+  - type: PaperVisuals
+    backgroundModulate: "#fffb1f"
+
+- type: entity
+  parent: Paper
+  id: RedPaper
+  name: red paper
+  description: 'A piece of red paper.'
+  components:
+  - type: Sprite
+    layers:
+    - state: paper
+      color: "#d40606"
+    - state: paper_words
+      map: ["enum.PaperVisualLayers.Writing"]
+      color: "#d40606"
+      visible: false
+    - state: paper_stamp-generic
+      map: ["enum.PaperVisualLayers.Stamp"]
+      color: "#d40606"
+      visible: false
+  - type: PaperVisuals
+    backgroundModulate: "#d40606"
+
+- type: entity
+  parent: Paper
+  id: OrangePaper
+  name: orange paper
+  description: 'A piece of orange paper.'
+  components:
+  - type: Sprite
+    layers:
+    - state: paper
+      color: "#ff9729"
+    - state: paper_words
+      map: ["enum.PaperVisualLayers.Writing"]
+      color: "#ff9729"
+      visible: false
+    - state: paper_stamp-generic
+      map: ["enum.PaperVisualLayers.Stamp"]
+      color: "#ff9729"
+      visible: false
+  - type: PaperVisuals
+    backgroundModulate: "#ff9729"
+
+- type: entity
+  parent: Paper
+  id: GreenPaper
+  name: green paper
+  description: 'A piece of green paper.'
+  components:
+  - type: Sprite
+    layers:
+    - state: paper
+      color: "#2a9e03"
+    - state: paper_words
+      map: ["enum.PaperVisualLayers.Writing"]
+      color: "#2a9e03"
+      visible: false
+    - state: paper_stamp-generic
+      map: ["enum.PaperVisualLayers.Stamp"]
+      color: "#2a9e03"
+      visible: false
+  - type: PaperVisuals
+    backgroundModulate: "#2a9e03"
+
+- type: entity
+  parent: Paper
+  id: CyanPaper
+  name: cyan paper
+  description: 'A piece of cyan paper.'
+  components:
+  - type: Sprite
+    layers:
+    - state: paper
+      color: "#13c0d4"
+    - state: paper_words
+      map: ["enum.PaperVisualLayers.Writing"]
+      color: "#13c0d4"
+      visible: false
+    - state: paper_stamp-generic
+      map: ["enum.PaperVisualLayers.Stamp"]
+      color: "#13c0d4"
+      visible: false
+  - type: PaperVisuals
+    backgroundModulate: "#13c0d4"
+    
+- type: entity
+  parent: Paper
+  id: BluePaper
+  name: blue paper
+  description: 'A piece of blue paper.'
+  components:
+  - type: Sprite
+    layers:
+    - state: paper
+      color: "#003db8"
+    - state: paper_words
+      map: ["enum.PaperVisualLayers.Writing"]
+      color: "#003db8"
+      visible: false
+    - state: paper_stamp-generic
+      map: ["enum.PaperVisualLayers.Stamp"]
+      color: "#003db8"
+      visible: false
+  - type: PaperVisuals
+    backgroundModulate: "#003db8"
+
+- type: entity
+  parent: Paper
+  id: VioletPaper
+  name: violet paper
+  description: 'A piece of violet paper.'
+  components:
+  - type: Sprite
+    layers:
+    - state: paper
+      color: "#8200ad"
+    - state: paper_words
+      map: ["enum.PaperVisualLayers.Writing"]
+      color: "#8200ad"
+      visible: false
+    - state: paper_stamp-generic
+      map: ["enum.PaperVisualLayers.Stamp"]
+      color: "#8200ad"
+      visible: false
+  - type: PaperVisuals
+    backgroundModulate: "#8200ad"
+    
+- type: entity
+  parent: Paper
+  id: PinkPaper
+  name: pink paper
+  description: 'A piece of pink paper.'
+  components:
+  - type: Sprite
+    layers:
+    - state: paper
+      color: "#ff00f2"
+    - state: paper_words
+      map: ["enum.PaperVisualLayers.Writing"]
+      color: "#ff00f2"
+      visible: false
+    - state: paper_stamp-generic
+      map: ["enum.PaperVisualLayers.Stamp"]
+      color: "#ff00f2"
+      visible: false
+  - type: PaperVisuals
+    backgroundModulate: "#ff00f2"
+    
+- type: entity
+  parent: Paper
+  id: GreyPaper
+  name: grey paper
+  description: 'A piece of greytide paper.'
+  components:
+  - type: Sprite
+    layers:
+    - state: paper
+      color: "#6b6b6b"
+    - state: paper_words
+      map: ["enum.PaperVisualLayers.Writing"]
+      color: "#6b6b6b"
+      visible: false
+    - state: paper_stamp-generic
+      map: ["enum.PaperVisualLayers.Stamp"]
+      color: "#6b6b6b"
+      visible: false
+  - type: PaperVisuals
+    backgroundModulate: "#6b6b6b"
+  
+- type: entity
+  parent: [Paper, BaseSyndicateContraband]
+  id: BloodRedPaper
+  name: blood-red paper
+  description: 'A piece of suspicious paper.'
+  components:
+  - type: Sprite
+    layers:
+    - state: paper
+      color: "#b50012"
+    - state: paper_words
+      map: ["enum.PaperVisualLayers.Writing"]
+      visible: false
+      color: "#b50012"
+    - state: paper_stamp-generic
+      map: ["enum.PaperVisualLayers.Stamp"]
+      color: "#b50012"
+      visible: false
+  - type: PaperVisuals
+    headerImagePath: "/Textures/Interface/Paper/paper_heading_syndicate_logo.svg.96dpi.png"
+    headerMargin: 8.0, 8.0, 8.0, 12.0
+    backgroundImagePath: "/Textures/Interface/Paper/paper_background_blood_red.svg.96dpi.png"
+    backgroundPatchMargin: 8.0, 8.0, 8.0, 8.0
+    contentMargin: 12.0, 12.0, 12.0, 12.0

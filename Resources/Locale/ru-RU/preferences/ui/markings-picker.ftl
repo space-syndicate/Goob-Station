@@ -24,3 +24,10 @@ markings-category-Snout = Морда
 markings-category-Chest = Грудь
 markings-category-Tail = Хвост
 markings-category-Overlay = Наложение
+
+humanoid-marking-modifier-base-layers = Базовый слой
+
+humanoid-marking-modifier-enable = Включить
+
+humanoid-marking-modifier-prototype-id = ID прототипа:
+

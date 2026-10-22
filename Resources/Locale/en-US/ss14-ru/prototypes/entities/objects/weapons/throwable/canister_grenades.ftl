@@ -1,0 +1,10 @@
+ent-SmokeGrenade = smoke grenade
+    .desc = A tactical grenade that releases a large, long-lasting cloud of smoke when used.
+ent-CleanerGrenade = cleanade
+    .desc = Special grenade for janitors, releasing large cloud of space cleaner foam.
+ent-TearGasGrenade = tear gas grenade
+    .desc = A riot control tear gas grenade. Causes irritation, pain and makes you cry your eyes out.
+ent-MetalFoamGrenade = metal foam grenade
+    .desc = An emergency tool used for patching hull breaches with special quick-set metal foam. Almost as good as real floors!
+ent-AirGrenade = air grenade
+    .desc = A special solid state chemical grenade used for quickly releasing standard air into a spaced area. Fills up to 30 tiles!

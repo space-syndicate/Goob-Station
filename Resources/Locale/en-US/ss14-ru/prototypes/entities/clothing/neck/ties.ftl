@@ -1,3 +1,5 @@
+ent-ClothingNeckTieBase = { ent-ClothingNeckBase }
+    .desc = { ent-ClothingNeckBase.desc }
 ent-ClothingNeckTieRed = red-tie
     .desc = A neosilk clip-on red tie.
 ent-ClothingNeckTieDet = detective's tie

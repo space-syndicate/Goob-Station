@@ -1,13 +1,3 @@
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
-// SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 Piras314 <p1r4s@proton.me>
-// SPDX-FileCopyrightText: 2025 SX-7 <sn1.test.preria.2002@gmail.com>
-// SPDX-FileCopyrightText: 2025 SolsticeOfTheWinter <solsticeofthewinter@gmail.com>
-// SPDX-FileCopyrightText: 2025 deltanedas <39013340+deltanedas@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 deltanedas <@deltanedas:kde.org>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Shared._DV.Polymorph;
@@ -39,6 +29,7 @@ using System.Numerics;
 using Content.Shared._EinsteinEngines.Contests;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Mind.Components;
+using Content.Goobstation.Common.Traits; // CorvaxGoob edit
 
 namespace Content.Shared._DV.Carrying;
 
@@ -172,16 +163,23 @@ public sealed class CarryingSystem : EntitySystem
         if (xform.ParentUid == xform.GridUid)
             return;
 
+        if (!ent.Comp.Carried.IsValid()) // CorvaxGoob fix
+            return;
+
         DropCarried(ent, ent.Comp.Carried);
     }
 
     private void OnMobStateChanged(Entity<CarryingComponent> ent, ref MobStateChangedEvent args)
     {
+        if (!ent.Comp.Carried.IsValid()) // CorvaxGoob fix 
+            return;
         DropCarried(ent, ent.Comp.Carried);
     }
 
     private void OnBeforePolymorphed(Entity<CarryingComponent> ent, ref BeforePolymorphedEvent args)
     {
+        if (!ent.Comp.Carried.IsValid()) // CorvaxGoob fix
+            return;
         if (HasComp<MindContainerComponent>(ent.Comp.Carried))
             DropCarried(ent, ent.Comp.Carried);
     }
@@ -326,6 +324,8 @@ public sealed class CarryingSystem : EntitySystem
     public void DropCarried(EntityUid carrier, EntityUid carried)
     {
         Drop(carried);
+        if (!carrier.IsValid())// CorvaxGoob fix 
+            return;
         RemComp<CarryingComponent>(carrier); // get rid of this first so we don't recursively fire that event
         RemComp<CarryingSlowdownComponent>(carrier);
         _virtualItem.DeleteInHandsMatching(carrier, carried);
@@ -334,8 +334,11 @@ public sealed class CarryingSystem : EntitySystem
 
     private void Drop(EntityUid carried)
     {
+        if (!Exists(carried)) // CorvaxGoob fix
+            return;
         RemComp<BeingCarriedComponent>(carried);
-        RemComp<KnockedDownComponent>(carried); // TODO SHITMED: make sure this doesnt let you make someone with no legs walk
+        if (!HasComp<LegsParalyzedComponent>(carried)) // CorvaxGoob edit
+            RemComp<KnockedDownComponent>(carried);
         _actionBlocker.UpdateCanMove(carried);
         Transform(carried).AttachToGridOrMap();
         _standingState.Stand(carried);
@@ -380,7 +383,11 @@ public sealed class CarryingSystem : EntitySystem
     }
 
     private void OnDelete(Entity<BeingCarriedComponent> ent, ref EntityTerminatingEvent args)
-        => DropCarried(ent.Comp.Carrier, ent.Owner);
+    {
+        if (!ent.Comp.Carrier.IsValid()) // CorvaxGoob fix
+            return;
+        DropCarried(ent.Comp.Carrier, ent.Owner);
+    }
 
     public override void Update(float frameTime)
     {

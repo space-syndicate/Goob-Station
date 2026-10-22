@@ -1,2 +1,10 @@
-ent-AshBush = dusty bush
+ent-BaseLavalandFlora = { "" }
+    .desc = { "" }
+ent-FloraAshBush = dusty bush
     .desc = A bush that is covered in ash. It may look like it's dead, but it's actually alive!
+ent-FloraAshSprouts = gray sprouts
+    .desc = Sprouts that look completely clean, they seem to have a very smooth surface.
+ent-FloraPaleSprouts = pale sprouts
+    .desc = Sprouts that look completely clean, they seem to have a very smooth surface. These ones look more natural.
+ent-FloraAshYellowFlowers = pale sprouts
+    .desc = A group of yellow flowers. They look weak, and yet still manage to survive in this place.

@@ -1,0 +1,15 @@
+- type: entity
+  id: ZookeeperTranslatorImplanter
+  parent: [ BaseTranslatorImplanter ]
+  suffix: Zookeeper
+  components:
+  - type: Implanter
+    implant: ZookeeperTranslatorImplant
+
+- type: entity
+  id: HydraspeakTranslatorImplanter
+  parent: BaseTranslatorImplanter
+  suffix: Hydraspeak
+  components:
+  - type: Implanter
+    implant: HydraspeakTranslatorImplant
