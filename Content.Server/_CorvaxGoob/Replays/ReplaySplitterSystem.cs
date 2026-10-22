@@ -1,10 +1,11 @@
 using Content.Server.GameTicking;
 using Content.Shared._CorvaxGoob.CCCVars;
 using Robust.Shared.Configuration;
-using Robust.Shared.Console;
+using Robust.Shared.ContentPack; 
 using Robust.Shared.GameObjects;
 using Robust.Shared.IoC;
 using Robust.Shared.Replays;
+using Robust.Shared.Timing;
 using System;
 
 namespace Content.Server.Replays;
@@ -14,15 +15,17 @@ namespace Content.Server.Replays;
 /// </summary>
 public sealed class ReplaySplitterSystem : EntitySystem
 {
-    [Dependency] private readonly IConsoleHost _console = default!;
     [Dependency] private readonly IReplayRecordingManager _replayManager = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
+
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly IResourceManager _resMan = default!;
 
     private long _maxCompressedBytes;
     private long _maxUncompressedBytes;
 
-    private float _timer;
-    private const float CheckIntervalSeconds = 15f;
+    private TimeSpan _nextCheckTime;
+    private static readonly TimeSpan CheckInterval = TimeSpan.FromSeconds(15);
 
     public override void Initialize()
     {
@@ -39,11 +42,10 @@ public sealed class ReplaySplitterSystem : EntitySystem
         if (!_replayManager.IsRecording)
             return;
 
-        _timer += frameTime;
-        if (_timer < CheckIntervalSeconds)
+        if (_timing.CurTime < _nextCheckTime)
             return;
 
-        _timer = 0f;
+        _nextCheckTime = _timing.CurTime + CheckInterval;
 
         var stats = _replayManager.GetReplayStats();
 
@@ -62,9 +64,9 @@ public sealed class ReplaySplitterSystem : EntitySystem
 
         var replayName = $"{dateStr}-round_{ticker.RoundId}-started_{timeStr}";
 
-        _console.ExecuteCommand("replay_recording_stop");
-        _console.ExecuteCommand($"replay_recording_start \"{replayName}\"");
+        _replayManager.StopRecording();
+        _replayManager.TryStartRecording(_resMan.UserData, replayName);
 
-        _console.ExecuteCommand($"echo [ReplaySplitter] Limit reached. New replay started: {replayName}");
+        Log.Info($"[ReplaySplitter] Limit reached. New replay started: {replayName}");
     }
 }
