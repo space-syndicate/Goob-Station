@@ -1,15 +1,3 @@
-# SPDX-FileCopyrightText: 2024 Fishbait <Fishbait@git.ml>
-# SPDX-FileCopyrightText: 2024 fishbait <gnesse@gmail.com>
-# SPDX-FileCopyrightText: 2024 lanse12 <cloudability.ez@gmail.com>
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
-# SPDX-FileCopyrightText: 2025 GitHubUser53123 <110841413+GitHubUser53123@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Ilya246 <57039557+Ilya246@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 JohnOakman <sremy2012@hotmail.fr>
-# SPDX-FileCopyrightText: 2025 Panela <107573283+AgentePanela@users.noreply.github.com>
-#
-# SPDX-License-Identifier: AGPL-3.0-or-later
-
 objective-issuer-blob = Blob
 
 
