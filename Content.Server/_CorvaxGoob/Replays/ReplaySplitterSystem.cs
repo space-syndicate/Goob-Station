@@ -1,5 +1,6 @@
 using Content.Server.GameTicking;
 using Content.Shared._CorvaxGoob.CCCVars;
+using Content.Shared.CCVar;
 using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack; 
 using Robust.Shared.GameObjects;
@@ -62,7 +63,11 @@ public sealed class ReplaySplitterSystem : EntitySystem
         var dateStr = DateTime.UtcNow.ToString("yyyy-MM-dd_HH-mm");
         var timeStr = ticker.RoundDuration().ToString(@"hh\-mm\-ss");
 
-        var replayName = $"{dateStr}-round_{ticker.RoundId}-started_{timeStr}";
+        var autoRecordName = _cfg.GetCVar(CCVars.ReplayAutoRecordName);
+        var replayName = autoRecordName.EndsWith(".zip", StringComparison.OrdinalIgnoreCase)
+            ? autoRecordName[..^4]
+            : autoRecordName;
+        replayName += $"-started_{timeStr}.zip";
 
         _replayManager.StopRecording();
         _replayManager.TryStartRecording(_resMan.UserData, replayName);
