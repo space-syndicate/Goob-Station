@@ -12,3 +12,17 @@
         reagents:
         - ReagentId: Opporozidone
           Quantity: 50
+
+- type: entity
+  parent: Jug
+  suffix: space cleaner
+  id: JugSpaceCleaner
+  components:
+  - type: Label
+    currentLabel: reagent-name-space-cleaner
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: SpaceCleaner
+          Quantity: 200

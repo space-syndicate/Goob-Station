@@ -23,3 +23,16 @@
       - id: SlotMachineFlatpack
       - id: CoinFlipperFlatPack
       - id: ClawMachineFlatPack
+
+- type: entity
+  id: CrateServiceJanicart
+  parent: CratePlastic
+  name: janicart crate
+  description: Contains a janicart with 3 jugs of space cleaner.
+  components:
+  - type: StorageFill
+    contents:
+      - id: VehicleJanicart
+      - id: VehicleKeyJanicart
+      - id: JugSpaceCleaner
+        amount: 3
