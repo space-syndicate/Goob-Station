@@ -27,3 +27,13 @@
   cost: 5000
   category: cargoproduct-category-name-fun
   group: market
+
+- type: cargoProduct
+  id: FunArtGlowingSupplies
+  icon:
+    sprite: Objects/Fun/crayons.rsi
+    state: box
+  product: CrateFunArtGlowSupplies
+  cost: 1000
+  category: cargoproduct-category-name-fun
+  group: market
