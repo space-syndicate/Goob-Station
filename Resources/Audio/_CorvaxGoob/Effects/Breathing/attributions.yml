@@ -1,0 +1,4 @@
+- files: ["internals_breathing1.ogg" "internals_breathing2.ogg" "internals_breathing3.ogg" "internals_breathing4.ogg" "internals_breathing5.ogg" "internals_breathing6.ogg" "internals_breathing7.ogg" "internals_breathing7.ogg" "internals_breathing8.ogg"]
+  license: "CC-by-SA"
+  copyright: "Taken from /TG/station 13"
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/mobs/humanoids/breathing"
