@@ -60,13 +60,23 @@ public sealed class ReplaySplitterSystem : EntitySystem
     {
         var ticker = Get<GameTicker>();
 
-        var dateStr = DateTime.UtcNow.ToString("yyyy-MM-dd_HH-mm");
         var timeStr = ticker.RoundDuration().ToString(@"hh\-mm\-ss");
 
         var autoRecordName = _cfg.GetCVar(CCVars.ReplayAutoRecordName);
-        var replayName = autoRecordName.EndsWith(".zip", StringComparison.OrdinalIgnoreCase)
-            ? autoRecordName[..^4]
-            : autoRecordName;
+
+        var time = DateTime.UtcNow;
+
+        var interpolatedAutoRecordName = autoRecordName
+            .Replace("{year}", time.Year.ToString("D4"))
+            .Replace("{month}", time.Month.ToString("D2"))
+            .Replace("{day}", time.Day.ToString("D2"))
+            .Replace("{hour}", time.Hour.ToString("D2"))
+            .Replace("{minute}", time.Minute.ToString("D2"))
+            .Replace("{round}", ticker.RoundId.ToString());
+
+        var replayName = interpolatedAutoRecordName.EndsWith(".zip", StringComparison.OrdinalIgnoreCase)
+            ? interpolatedAutoRecordName[..^4]
+            : interpolatedAutoRecordName;
         replayName += $"-started_{timeStr}.zip";
 
         _replayManager.StopRecording();
