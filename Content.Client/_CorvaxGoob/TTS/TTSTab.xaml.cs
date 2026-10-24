@@ -95,9 +95,8 @@ public sealed partial class TTSTab : Control
         {
             var name = Loc.GetString(voice.Name).ToLowerInvariant();
 
-            if (string.IsNullOrEmpty(searchText) ||
-                name.Contains(searchText) ||
-                voice.ID.ToLowerInvariant().Contains(searchText))
+            if (string.IsNullOrEmpty(searchText) || name.Contains(searchText)
+                || voice.ID.ToLowerInvariant().Contains(searchText))
             {
                 _filteredVoices.Add(voice);
             }
@@ -118,16 +117,11 @@ public sealed partial class TTSTab : Control
             var selectButton = new Button
             {
                 Text = displayName,
-                ToolTip = canSelectVoice ? voice.ID : Loc.GetString("humanoid-profile-editor-voice-tooltip-sponsoronly"),
+                ToolTip = canSelectVoice ? voice.ID : GetSponsorOnlyTooltip(voice.ID),
                 HorizontalExpand = true,
                 Disabled = !canSelectVoice,
-                StyleClasses = { StyleNano.ButtonOpenRight }
+                StyleClasses = { StyleClass.ButtonOpenRight }
             };
-
-            if (voice.ID == _selectedVoiceId)
-            {
-                selectButton.AddStyleClass(StyleClass.Negative);
-            }
 
             selectButton.OnPressed += _ =>
             {
@@ -142,13 +136,19 @@ public sealed partial class TTSTab : Control
                 Text = Loc.GetString("humanoid-profile-editor-voice-play"),
                 MinWidth = 30,
                 ToolTip = Loc.GetString("humanoid-profile-editor-voice-tooltip-play"),
-                StyleClasses = { StyleNano.ButtonOpenLeft }
+                StyleClasses = { StyleClass.ButtonOpenLeft }
             };
 
             previewButton.OnPressed += _ =>
             {
                 OnPreviewRequested?.Invoke(voice.ID);
             };
+
+            if (voice.ID == _selectedVoiceId)
+            {
+                selectButton.AddStyleClass(StyleClass.Negative);
+                previewButton.AddStyleClass(StyleClass.Negative);
+            }
 
             voiceContainer.AddChild(selectButton);
             voiceContainer.AddChild(previewButton);
@@ -158,6 +158,17 @@ public sealed partial class TTSTab : Control
 
         ResultsLabel.Text = Loc.GetString("humanoid-profile-editor-voice-match",
             ("filtered", _filteredVoices.Count), ("all", _allVoices.Count));
+    }
+
+    private string GetSponsorOnlyTooltip(string voiceId)
+    {
+        var sponsorsManager = IoCManager.Resolve<ISharedSponsorsManager>();
+        if (sponsorsManager?.TryGetTierNameForPrototype(voiceId, out var tier) == true)
+        {
+            return Loc.GetString("humanoid-profile-editor-voice-tooltip-sponsoronly-tier", ("tier", tier));
+        }
+
+        return Loc.GetString("humanoid-profile-editor-voice-tooltip-sponsoronly");
     }
 
     private bool CanUseVoice(TTSVoicePrototype voice)
