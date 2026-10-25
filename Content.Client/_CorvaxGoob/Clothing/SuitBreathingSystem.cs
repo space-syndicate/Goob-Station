@@ -1,4 +1,5 @@
 using Content.Shared._CorvaxGoob.Clothing;
+using Content.Shared.Alert;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Body.Systems;
 using Content.Shared.Inventory;
@@ -17,6 +18,7 @@ public sealed class SuitBreathingSystem : EntitySystem
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly SharedInternalsSystem _internals = default!;
+    [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
@@ -46,7 +48,10 @@ public sealed class SuitBreathingSystem : EntitySystem
 
         if (!TryComp<BreathToolComponent>(headUid, out var breathTool) ||
             !breathTool.IsFunctional ||
-            !_internals.AreInternalsWorking(localPlayer.Value))
+            !_internals.AreInternalsWorking(localPlayer.Value) ||
+            !_alerts.TryGetAlertState(localPlayer.Value, AlertKey.ForCategory("Internals"), out var internalsAlert) ||
+            internalsAlert.Severity != 1 ||
+            _alerts.IsShowingAlertCategory(localPlayer.Value, "Breathing"))
         {
             _activeStream = _audio.Stop(_activeStream);
             breathingComp.Timer = 0f;
