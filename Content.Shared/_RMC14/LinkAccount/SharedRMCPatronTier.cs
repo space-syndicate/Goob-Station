@@ -7,6 +7,7 @@ namespace Content.Shared._RMC14.LinkAccount;
 
 [Serializable, NetSerializable]
 public sealed record SharedRMCPatronTier(
+    ProtoId<PatronTierPrototype> Id, // Goob - patron tier prototypes
     bool ShowOnCredits,
     bool GhostColor,
     bool LobbyMessage,
