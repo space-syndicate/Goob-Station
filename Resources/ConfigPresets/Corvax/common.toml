@@ -44,3 +44,6 @@ space_whale_spawn = false
 
 [ghost.go_lobby]
 enabled = true
+
+[res]
+validate_prototype_upload = false
