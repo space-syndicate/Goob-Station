@@ -14,7 +14,7 @@ concurrency:
 jobs:
   this_aint_right:
     name: Submodule update in pr found
-    if: false # CorvaxGoob 
+    if: github.head_ref != 'upstream' # CorvaxGoob 
     runs-on: ubuntu-latest
     steps:
       - name: Fail
