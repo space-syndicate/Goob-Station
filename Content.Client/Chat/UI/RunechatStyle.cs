@@ -9,6 +9,7 @@ public static class RunechatStyle
 {
     public const string FontPath = "/Fonts/_ES/Grand9KPixelRegular.ttf";
     public const string WhisperFontPath = "/Fonts/_ES/Wormtown9k-Small.ttf";
+    public const string CyrillicFallbackFontPath = "/Fonts/_CorvaxGoob/Grand9KCyrillic/Grand9KPixelCyrillic.ttf"; // CorvaxGoob-RunechatCyrillic
     public const int MinFontSize = 6;
     public const int MaxFontSize = 24;
     private const float DesignPixelsPerEm = 8f;
@@ -22,7 +23,11 @@ public static class RunechatStyle
             return font;
 
         var cache = IoCManager.Resolve<IResourceCache>();
-        font = new VectorFont(cache.GetResource<FontResource>(path), size);
+        // CorvaxGoob-RunechatCyrillic-Start
+        font = new StackedFont(
+            new VectorFont(cache.GetResource<FontResource>(path), size),
+            new VectorFont(cache.GetResource<FontResource>(CyrillicFallbackFontPath), size));
+        // CorvaxGoob-RunechatCyrillic-End
         Fonts[(path, size)] = font;
         return font;
     }
