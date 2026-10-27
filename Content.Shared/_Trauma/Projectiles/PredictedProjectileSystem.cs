@@ -148,7 +148,7 @@ public sealed class PredictedProjectileSystem : EntitySystem
             return;
 
         // lag compensated hits don't go through PreventCollideEvent
-        if (component.IgnoredEntities.Contains(target))
+        if (component.IgnoredEntities.Contains(GetNetEntity(target))) // CorvaxGoob - NetEntity
             return;
 
         // it's here so this check is only done once before possible hit
@@ -205,9 +205,9 @@ public sealed class PredictedProjectileSystem : EntitySystem
         }
 
         // Trauma - don't hit the same thing twice if it keeps going, e.g. from lag compensation then actually colliding
-        if (!component.ProjectileSpent && !component.IgnoredEntities.Contains(target))
+        if (!component.ProjectileSpent && !component.IgnoredEntities.Contains(GetNetEntity(target))) // CorvaxGoob - NetEntity
         {
-            component.IgnoredEntities.Add(target);
+            component.IgnoredEntities.Add(GetNetEntity(target)); // CorvaxGoob - NetEntity
             Dirty(uid, component);
         }
 

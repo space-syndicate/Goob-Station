@@ -1,27 +1,28 @@
-- type: entity
-  parent: BaseSurgeryRemoveOrgan
-  id: SurgeryRemoveButt
-  name: Remove Butt
-  components:
-  - type: SurgeryPartCondition
-    parts: [ Groin ]
-  - type: SurgeryOrganCondition
-    organ:
-    - type: Butt
-
-- type: entity
-  parent: BaseSurgeryInsertOrgan
-  id: SurgeryInsertButt
-  name: Reattach Butt
-  components:
-  - type: Surgery
-    steps:
-    - SurgeryStepInsertOrgan
-    - SurgeryStepSealOrganWound
-  - type: SurgeryPartCondition
-    parts: [ Groin ]
-  - type: SurgeryOrganSlotCondition
-    organSlot: butt
-  - type: SurgeryOrganCondition
-    organ:
-    - type: Butt
+# CorvaxGoob-start нет, нам не нужна операция по удалению жопы
+#- type: entity
+#  parent: BaseSurgeryRemoveOrgan
+#  id: SurgeryRemoveButt
+#  name: Remove Butt
+#  components:
+#  - type: SurgeryPartCondition
+#    parts: [ Groin ]
+#  - type: SurgeryOrganCondition
+#    organ:
+#    - type: Butt
+# - type: entity
+#   parent: BaseSurgeryInsertOrgan
+#   id: SurgeryInsertButt
+#   name: Reattach Butt
+#   components:
+#   - type: Surgery
+#     steps:
+#     - SurgeryStepInsertOrgan
+#     - SurgeryStepSealOrganWound
+#   - type: SurgeryPartCondition
+#     parts: [ Groin ]
+#   - type: SurgeryOrganSlotCondition
+#     organSlot: butt
+#   - type: SurgeryOrganCondition
+#     organ:
+#     - type: Butt
+# CorvaxGoob-end

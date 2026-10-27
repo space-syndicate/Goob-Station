@@ -218,7 +218,7 @@ public abstract partial class SharedProjectileSystem : EntitySystem
         if (TryComp<RequireProjectileTargetComponent>(args.OtherEntity, out var requireTarget) && requireTarget.IgnoreThrow && requireTarget.Active)
             return;
 
-        if (component.IgnoredEntities.Contains(args.OtherEntity))
+        if (component.IgnoredEntities.Contains(GetNetEntity(args.OtherEntity))) // CorvaxGoob - NetEntity
         {
             args.Cancelled = true;
             return;

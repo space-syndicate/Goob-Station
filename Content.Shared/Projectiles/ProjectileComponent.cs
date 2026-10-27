@@ -116,7 +116,7 @@ public sealed partial class ProjectileComponent : Component
     public int NoPenetrateMask = 0;
 
     [AutoNetworkedField] // Trauma - networked for prediction
-    public List<EntityUid> IgnoredEntities = new();
+    public List<NetEntity> IgnoredEntities = new(); // CorvaxGoob - NetEntity
 
     [DataField]
     public Vector2 TargetCoordinates;
