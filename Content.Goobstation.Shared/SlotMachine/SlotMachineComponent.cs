@@ -41,6 +41,9 @@ public sealed partial class SlotMachineComponent : Component
 
     [DataField, AutoNetworkedField]
     public bool IsSpinning;
+
+    [ViewVariables]
+    public EntityUid? Spinner;
 }
 
 [Serializable, NetSerializable]

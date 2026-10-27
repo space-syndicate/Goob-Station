@@ -615,6 +615,7 @@
     - id: VehicleClowncarTrainee
     - id: ClownMegaphone # goob - loudspeakers
     - id: PinkPaperBox # CorvaxGoob
+    - id: PaintingFrameClown # Goobstation
 
 # Mime
 - type: entity
@@ -629,6 +630,9 @@
     stateBaseClosed: mime
     stateDoorOpen: mime_open
     stateDoorClosed: mime_door
+  - type: StorageFill # Goobstation
+    contents:
+    - id: PaintingFrameFrog
 
 # Representative
 - type: entity

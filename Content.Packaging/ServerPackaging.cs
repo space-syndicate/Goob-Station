@@ -79,49 +79,33 @@ public static class ServerPackaging
         }
 
         // Good variable naming right here.
+        string? builtTargetOs = null; // Goobstation
         foreach (var platform in Platforms)
         {
             if (!platforms.Contains(platform.Rid))
                 continue;
 
-            await BuildPlatform(platform, skipBuild, hybridAcz, configuration, logger);
+            await BuildPlatform(platform, skipBuild, hybridAcz, configuration, logger, builtTargetOs == platform.TargetOs); // Goobstation
+            builtTargetOs = platform.TargetOs; // Goobstation
         }
     }
 
-    private static async Task BuildPlatform(PlatformReg platform, bool skipBuild, bool hybridAcz, string configuration, IPackageLogger logger)
+    private static async Task BuildPlatform(PlatformReg platform, bool skipBuild, bool hybridAcz, string configuration, IPackageLogger logger, bool reuseContentBuild) // Goobstation
     {
-        logger.Info($"Building project for {platform.TargetOs}...");
+        logger.Info(reuseContentBuild ? $"Reusing {platform.TargetOs} build..." : $"Building project for {platform.TargetOs}..."); // Goobstation
 
         if (!skipBuild)
         {
-            var startInfo = new ProcessStartInfo
+            if (!reuseContentBuild) // Goobstation
             {
-                FileName = "dotnet",
-                ArgumentList =
-                {
-                    "build",
-                    Path.Combine("Content.Goobstation.Server", "Content.Goobstation.Server.csproj"), // Goob
-                    "-c", configuration,
-                    "--nologo",
-                    "/v:m",
-                    $"/p:TargetOs={platform.TargetOs}",
-                    "/t:Rebuild",
-                    "/p:FullRelease=true",
-                    "/m"
-                }
-            };
-            // CorvaxGoob-Secret-Start
-            if (UseSecrets)
-            {
-                logger.Info($"Secrets found. Building secret project for {platform}...");
-                await ProcessHelpers.RunCheck(new ProcessStartInfo
+                var startInfo = new ProcessStartInfo
                 {
                     FileName = "dotnet",
                     ArgumentList =
                     {
                         "build",
-                        Path.Combine("Secrets","Content.Corvax.Server", "Content.Corvax.Server.csproj"),
-                        "-c", "Release",
+                        Path.Combine("Content.Goobstation.Server", "Content.Goobstation.Server.csproj"), // Goob
+                        "-c", configuration,
                         "--nologo",
                         "/v:m",
                         $"/p:TargetOs={platform.TargetOs}",
@@ -129,11 +113,32 @@ public static class ServerPackaging
                         "/p:FullRelease=true",
                         "/m"
                     }
-                });
-            }
-            // CorvaxGoob-Secret-End
+                };
+                // CorvaxGoob-Secret-Start
+                if (UseSecrets)
+                {
+                    logger.Info($"Secrets found. Building secret project for {platform}...");
+                    await ProcessHelpers.RunCheck(new ProcessStartInfo
+                    {
+                        FileName = "dotnet",
+                        ArgumentList =
+                        {
+                            "build",
+                            Path.Combine("Secrets","Content.Corvax.Server", "Content.Corvax.Server.csproj"),
+                            "-c", "Release",
+                            "--nologo",
+                            "/v:m",
+                            $"/p:TargetOs={platform.TargetOs}",
+                            "/t:Rebuild",
+                            "/p:FullRelease=true",
+                            "/m"
+                        }
+                    });
+                }
+                // CorvaxGoob-Secret-End
 
-            await ProcessHelpers.RunCheck(startInfo);
+                await ProcessHelpers.RunCheck(startInfo);
+            }
 
             await PublishClientServer(platform.Rid, platform.TargetOs, configuration);
         }
