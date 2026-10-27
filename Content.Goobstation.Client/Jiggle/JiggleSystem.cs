@@ -1,7 +1,7 @@
 using System.Linq;
 using System.Numerics;
 using Content.Client.Graphics;
-using Content.Goobstation.Client.VoiceChat;
+// using Content.Goobstation.Client.VoiceChat; // CorvaxGoob: voice chat removed
 using Content.Goobstation.Shared.Jiggle;
 using Content.Shared.Mobs.Systems;
 using Robust.Client.GameObjects;
@@ -29,7 +29,7 @@ public sealed partial class JiggleSystem : EntitySystem
         .Concat(ContentPostShaderIds.BeforeOutlines)
         .ToArray();
 
-    private static readonly string[] After = { VoiceCanadianSystem.PostShaderId };
+    private static readonly string[] After = { "voice-canadian" }; // CorvaxGoob: VoiceCanadianSystem.PostShaderId, voice chat removed
 
     private const float MaxFrame = 0.1f;
     private const float MaxStep = 1f / 120f;

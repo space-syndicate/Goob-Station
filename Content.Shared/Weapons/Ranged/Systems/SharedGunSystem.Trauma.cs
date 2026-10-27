@@ -1,6 +1,8 @@
 using System.Numerics;
 using Content.Goobstation.Common.Projectiles;
 using Content.Goobstation.Common.Weapons.Ranged;
+using Content.Goobstation.Common.Weapons.NoWieldNeeded; // CorvaxGoob-Skills
+using Content.Shared._CorvaxGoob.Skills; // CorvaxGoob-Skills
 using Content.Shared._Lavaland.Weapons.Ranged.Events;
 using Content.Shared._Shitmed.Targeting;
 using Content.Shared._Trauma.Projectiles;
@@ -26,6 +28,9 @@ namespace Content.Shared.Weapons.Ranged.Systems;
 public abstract partial class SharedGunSystem
 {
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly SharedSkillsSystem _skills = default!; // CorvaxGoob-Skills
+
+    private const float SpreadWithoutSkill = MathHelper.PiOver6; // CorvaxGoob-Skills
 
     /// <summary>
     /// Get a predicted random instance for an entity, specific to this tick.
@@ -82,6 +87,16 @@ public abstract partial class SharedGunSystem
 
         var mapAngle = mapDirection.ToAngle();
         var angle = GetRecoilAngle(Timing.CurTime, gun, mapDirection.ToAngle(), user); // Goobstation user
+
+        // CorvaxGoob-Skills-Start
+        if (gun.Comp.RequiresSkill && user is not null && !_skills.HasSkill(user!.Value, Skills.Shooting) && !HasComp<NoWieldNeededComponent>(user!.Value))
+        {
+            var spread = -SpreadWithoutSkill / 2 + GetRandom(user!.Value, gun).NextFloat() * SpreadWithoutSkill;
+
+            mapAngle += spread;
+            angle += spread;
+        }
+        // CorvaxGoob-Skills-End
 
         userImpulse = true;
 

@@ -246,6 +246,11 @@ public sealed class PredictedProjectileSystem : EntitySystem
                 RaiseLocalEvent(effectEv);
             }
         }
+
+        // CorvaxGoob-RubberAmmo-Start
+        var afterEv = new AfterProjectileHitEvent(component.Damage * _damageable.UniversalProjectileDamageModifier, damage, target, component.Shooter);
+        RaiseLocalEvent(uid, ref afterEv);
+        // CorvaxGoob-RubberAmmo-End
     }
 
     private bool TryPenetrate(Entity<ProjectileComponent> projectile, DamageSpecifier damage, FixedPoint2 damageRequired,
