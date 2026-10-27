@@ -122,6 +122,7 @@ public sealed partial class WantedMenu : FancyWindow
     {
         if (status == SecurityStatus.Wanted
             || status == SecurityStatus.Suspected
+            || status == SecurityStatus.Hostile // CorvaxGoob
             || status == SecurityStatus.Search
             || status == SecurityStatus.Dangerous
             || status == SecurityStatus.Demote) // Goobstation
@@ -214,6 +215,8 @@ public sealed partial class WantedMenu : FancyWindow
             SecurityStatus.Detained => "hud_incarcerated",
             SecurityStatus.Discharged => "hud_discharged",
             SecurityStatus.Suspected => "hud_suspected",
+            SecurityStatus.Hostile => "hud_hostile", // CorvaxGoob
+            SecurityStatus.Eliminated => "hud_eliminated", // CorvaxGoob
             SecurityStatus.Search => "hud_search",
             SecurityStatus.Perma => "hud_perma",
             SecurityStatus.Dangerous => "hud_dangerous",
