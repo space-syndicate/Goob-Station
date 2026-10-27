@@ -94,6 +94,7 @@
     alertLevelOnDeactivate: red # CorvaxGoob-Announcements
     alertLevelOnOverride: omicron # Goobstation
   - type: InteractionOutline
+  - type: ESForcedFacingUi # Goob
   - type: ActivatableUI
     key: enum.NukeUiKey.Key
   - type: UserInterface

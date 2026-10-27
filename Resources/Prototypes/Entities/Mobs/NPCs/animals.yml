@@ -2125,6 +2125,9 @@
   - type: ActionGrant
     actions:
     - ActionMouseCall
+    - ActionMouseSwarm
+  - type: MouseSwarm
+  - type: LimbGnawer
   - type: MobCallSource
     whitelist:
       tags:
@@ -2207,6 +2210,8 @@
   - type: Item
     size: Tiny
     heldPrefix: 1
+  - type: MouseSwarm # Goobstation
+    state: mouse-1
 
 - type: entity
   parent: MobMouse
@@ -2236,6 +2241,8 @@
   - type: Item
     size: Tiny
     heldPrefix: 2
+  - type: MouseSwarm # Goobstation
+    state: mouse-2
 
 - type: entity
   name: cancer mouse
