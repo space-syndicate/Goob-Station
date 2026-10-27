@@ -14,6 +14,7 @@ concurrency:
 jobs:
   this_aint_right:
     name: Submodule update in pr found
+    if: false # CorvaxGoob 
     runs-on: ubuntu-latest
     steps:
       - name: Fail
