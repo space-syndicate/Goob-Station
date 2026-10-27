@@ -74,6 +74,7 @@
     knockdownTimeDelta: -1.5
   - type: StaminaResistance
     damageCoefficient: 0.7
+  - type: SandevistanJacket
 
 #blue ward coat
 - type: entity
