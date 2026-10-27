@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Goobstation.Common.Gatherable;
 using Content.Server.Gatherable.Components;
 using Content.Shared.Projectiles;
@@ -37,3 +39,4 @@ public sealed partial class GatherConditionSystem : AchievementConditionSystem<G
         }
     }
 }
+*/

@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Server.ImmovableRod;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
@@ -60,3 +62,4 @@ public sealed partial class RodSurvivedConditionSystem : AchievementConditionSys
         _toRemove.Clear();
     }
 }
+*/

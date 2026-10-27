@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Server.GameTicking;
 using Content.Shared.Damage.Systems;
 using Content.Shared.GameTicking;
@@ -50,3 +52,4 @@ public sealed partial class UndamagedConditionSystem : AchievementConditionSyste
         _eligible.Clear();
     }
 }
+*/

@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Events;
 
@@ -19,3 +21,4 @@ public sealed class GibbedConditionSystem : AchievementConditionSystem<GibbedCon
         ProgressAll(ent);
     }
 }
+*/

@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Goobstation.Common.CCVar;
 using Robust.Client.UserInterface.Controllers;
 using Robust.Shared.Configuration;
@@ -45,3 +47,4 @@ public sealed partial class VoiceChatGuideUIController : UIController
         _window = null;
     }
 }
+*/

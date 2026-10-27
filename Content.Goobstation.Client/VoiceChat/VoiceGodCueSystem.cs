@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Goobstation.Shared.VoiceChat;
 using Robust.Client.Graphics;
 using Robust.Shared.Enums;
@@ -110,3 +112,4 @@ public sealed partial class VoiceGodCueOverlay : Overlay
         handle.UseShader(null);
     }
 }
+*/

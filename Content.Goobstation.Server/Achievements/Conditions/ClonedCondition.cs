@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Shared.Cloning.Events;
 using Content.Shared.Mind.Components;
 
@@ -19,3 +21,4 @@ public sealed class ClonedConditionSystem : AchievementConditionSystem<ClonedCon
         ProgressAll(ent);
     }
 }
+*/

@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Server.Singularity.Events;
 using Content.Shared.Mobs.Components;
 
@@ -19,3 +21,4 @@ public sealed class SingularityConsumedConditionSystem : AchievementConditionSys
         ProgressAll(ent);
     }
 }
+*/

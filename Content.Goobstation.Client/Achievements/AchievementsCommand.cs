@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Shared.Administration;
 using Robust.Client.UserInterface;
 using Robust.Shared.Console;
@@ -16,3 +18,4 @@ public sealed partial class AchievementsCommand : LocalizedCommands
         _ui.GetUIController<AchievementsUIController>().ToggleWindow();
     }
 }
+*/

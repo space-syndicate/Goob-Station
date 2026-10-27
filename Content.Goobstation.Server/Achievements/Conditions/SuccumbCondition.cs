@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Server.Mobs;
 using Content.Shared.Mobs;
 using Robust.Shared.Player;
@@ -21,3 +23,4 @@ public sealed class SuccumbConditionSystem : AchievementConditionSystem<SuccumbC
             ProgressAll(ent);
     }
 }
+*/

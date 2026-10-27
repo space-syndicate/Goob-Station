@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Server.Players.PlayTimeTracking;
 using Content.Shared.Players.PlayTimeTracking;
 using Robust.Shared.Player;
@@ -43,3 +45,4 @@ public sealed partial class PlaytimeConditionSystem : AchievementConditionSystem
         }
     }
 }
+*/

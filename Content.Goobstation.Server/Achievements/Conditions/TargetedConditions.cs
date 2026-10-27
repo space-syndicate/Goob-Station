@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Goobstation.Common.Kitchen;
 using Content.Goobstation.Shared.Bible;
 using Content.Server.Access.Systems;
@@ -192,3 +194,4 @@ public sealed partial class ArtifactExplosionConditionSystem : AchievementCondit
         }
     }
 }
+*/

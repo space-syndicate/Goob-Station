@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Server.Mining;
 using Content.Shared.Examine;
 using Content.Shared.Weapons.Melee.Events;
@@ -39,3 +41,4 @@ public sealed class PunchMeteorConditionSystem : AchievementConditionSystem<Punc
             ProgressAll(args.User);
     }
 }
+*/

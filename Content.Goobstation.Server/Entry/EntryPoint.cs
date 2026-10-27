@@ -1,5 +1,5 @@
 
-using Content.Goobstation.Server.VoiceChat;
+// using Content.Goobstation.Server.VoiceChat; // CorvaxGoob
 using Content.Goobstation.Common.ServerCurrency;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Timing;

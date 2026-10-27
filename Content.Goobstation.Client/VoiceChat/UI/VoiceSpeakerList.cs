@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using Robust.Client.Graphics;
@@ -291,3 +293,4 @@ public sealed class VoiceSpeakerEntry : Control
         handle.DrawRect(new UIBox2(left, center - half, right, center + half), color);
     }
 }
+*/

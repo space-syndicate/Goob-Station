@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Goobstation.Shared.EntityConditions;
 using Content.Server.Instruments;
 using Content.Server.Objectives.Components;
@@ -275,3 +277,4 @@ public sealed partial class BandConditionSystem : PeriodicConditionSystem<BandCo
                && members.Contains(original);
     }
 }
+*/

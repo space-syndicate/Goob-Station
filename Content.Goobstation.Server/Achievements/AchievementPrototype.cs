@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Goobstation.Shared.Achievements;
 using Content.Shared.EntityConditions;
 using Robust.Shared.Prototypes;
@@ -39,3 +41,4 @@ public abstract partial class AchievementCondition
     [DataField]
     public EntityCondition[]? Requirements;
 }
+*/

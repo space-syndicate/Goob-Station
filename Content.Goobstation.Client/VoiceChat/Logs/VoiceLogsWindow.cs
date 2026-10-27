@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using System.Linq;
 using System.Numerics;
 using Content.Goobstation.Shared.VoiceChat;
@@ -497,3 +499,4 @@ public sealed partial class VoiceLogsWindow : DefaultWindow
         _updatingScroll = false;
     }
 }
+*/

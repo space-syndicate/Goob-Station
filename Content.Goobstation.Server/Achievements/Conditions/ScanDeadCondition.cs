@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Server.Medical;
 using Content.Shared.Item;
 using Content.Shared.MedicalScanner;
@@ -26,3 +28,4 @@ public sealed partial class ScanDeadConditionSystem : AchievementConditionSystem
         ProgressAll(args.User);
     }
 }
+*/

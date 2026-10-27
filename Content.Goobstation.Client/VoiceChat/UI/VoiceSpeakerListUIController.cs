@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Client.Gameplay;
 using Content.Client.Lobby;
 using Content.Client.Lobby.UI;
@@ -106,3 +108,4 @@ public sealed partial class VoiceSpeakerListUIController : UIController,
         _attachedScreen = null;
     }
 }
+*/

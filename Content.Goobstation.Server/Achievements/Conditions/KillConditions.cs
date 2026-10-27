@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Goobstation.Common.PlayerListener;
 using Content.Shared.EntityConditions;
 using Content.Shared.GameTicking;
@@ -138,3 +140,4 @@ public sealed partial class KillRageQuitConditionSystem : AchievementConditionSy
         _lastAttacker.Clear();
     }
 }
+*/

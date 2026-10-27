@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.IO;
@@ -763,3 +765,4 @@ public sealed class VoiceWebServer : IDisposable
         public int Count;
     }
 }
+*/

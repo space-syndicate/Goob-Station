@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Goobstation.Shared.Shadowling;
 using Content.Goobstation.Shared.Slasher;
 
@@ -36,3 +38,4 @@ public sealed class SlasherAscensionConditionSystem : AchievementConditionSystem
         ProgressAll(ev.Slasher);
     }
 }
+*/

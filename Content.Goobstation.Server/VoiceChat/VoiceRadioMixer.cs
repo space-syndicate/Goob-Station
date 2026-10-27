@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using System.Text;
 using Content.Goobstation.Shared.VoiceChat;
 using Robust.Shared.Network;
@@ -293,3 +295,4 @@ public sealed class VoiceRadioMixer(string channel, IServerNetManager net, Func<
         public TimeSpan LastUsed;
     }
 }
+*/

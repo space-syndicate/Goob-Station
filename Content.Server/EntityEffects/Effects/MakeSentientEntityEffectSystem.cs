@@ -6,6 +6,7 @@ using Content.Shared.Mind.Components;
 // CorvaxGoob-start
 using Content.Shared.Humanoid;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Systems; // CorvaxGoob
 // CorvaxGoob-end
 
 namespace Content.Server.EntityEffects.Effects;

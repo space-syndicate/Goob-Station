@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Server.Disposal.Unit;
 using Content.Server.Holiday.Christmas;
 using Content.Server.Power.EntitySystems;
@@ -339,3 +341,4 @@ public sealed partial class DestroyConditionSystem : AchievementConditionSystem<
         _lastAttacker.Clear();
     }
 }
+*/

@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Server.Nutrition.EntitySystems;
 using Content.Shared.GameTicking;
 using Content.Shared.Inventory;
@@ -39,3 +41,4 @@ public sealed partial class SmokeConditionSystem : AchievementConditionSystem<Sm
         _finished.Clear();
     }
 }
+*/

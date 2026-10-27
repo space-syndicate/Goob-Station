@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using System.Linq;
 using Content.Client.UserInterface.Controls;
 using Content.Goobstation.Shared.Achievements;
@@ -92,3 +94,4 @@ public sealed partial class AchievementsWindow : FancyWindow
         TabContainer.SetTabTitle(scroll, title);
     }
 }
+*/

@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Client.Gameplay;
 using Content.Client.Lobby;
 using Content.Goobstation.Client.VoiceChat.UI;
@@ -77,3 +79,4 @@ public sealed partial class VoiceJoinPromptUIController : UIController, IOnState
         UIManager.GetUIController<VoiceChatGuideUIController>().Open(true);
     }
 }
+*/

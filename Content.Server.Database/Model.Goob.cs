@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -43,3 +45,4 @@ public sealed class AchievementProgress
 
     public DateTime? UnlockedAt { get; set; }
 }
+*/

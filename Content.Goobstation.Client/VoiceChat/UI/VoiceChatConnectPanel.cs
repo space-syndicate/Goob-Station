@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Client.Stylesheets;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
@@ -154,3 +156,4 @@ public sealed partial class VoiceChatConnectPanel : BoxContainer
         _copy.Disabled = !ready;
     }
 }
+*/

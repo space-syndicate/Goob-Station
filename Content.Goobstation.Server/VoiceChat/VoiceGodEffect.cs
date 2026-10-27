@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Goobstation.Shared.VoiceChat;
 using NWaves.Effects;
 using NWaves.Filters.BiQuad;
@@ -149,3 +151,4 @@ public sealed class VoiceGodEffect
         }
     }
 }
+*/

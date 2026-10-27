@@ -11,6 +11,7 @@ public sealed class DrawLineSystem : EntitySystem
     [Dependency] private readonly IOverlayManager _overlay = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly TransformSystem _xform = default!;
+    [Dependency] private readonly SharedMapSystem _map = default!;
 
     private bool _visible;
 
@@ -45,7 +46,7 @@ public sealed class DrawLineSystem : EntitySystem
         if (grid == xform.GridUid && TryComp<MapGridComponent>(grid.Value, out var mapGrid))
         {
             tileSize = mapGrid.TileSize;
-            originTile = mapGrid.WorldToTile(mapPos);
+            originTile = _map.WorldToTile(grid.Value, mapGrid, mapPos);
         }
 
         var overlay = new DrawLineOverlay();

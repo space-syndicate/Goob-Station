@@ -1,5 +1,5 @@
 using Robust.Shared.GameStates;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._CorvaxGoob.TTS;
 
@@ -14,8 +14,8 @@ public sealed partial class TTSComponent : Component
     /// Prototype of used voice for TTS.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
-    [DataField("voice", customTypeSerializer: typeof(PrototypeIdSerializer<TTSVoicePrototype>))]
-    public string? VoicePrototypeId { get; set; } = "Taskmaster";
+    [DataField("voice")]
+    public ProtoId<TTSVoicePrototype>? VoicePrototypeId { get; set; } = "Taskmaster";
 
     /// <summary>
     /// Pitch of played TTS sound.

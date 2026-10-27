@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Server.Chat;
 using Content.Shared.Body.Components;
 using Content.Shared.Interaction.Events;
@@ -29,3 +31,4 @@ public sealed partial class SuicideConditionSystem : AchievementConditionSystem<
         ProgressAll(ent);
     }
 }
+*/

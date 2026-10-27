@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Whitelist;
 
@@ -32,3 +34,4 @@ public sealed partial class ToggleItemConditionSystem : AchievementConditionSyst
         }
     }
 }
+*/

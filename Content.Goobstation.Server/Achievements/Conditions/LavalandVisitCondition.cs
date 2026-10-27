@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Shared._Lavaland.Procedural.Components;
 using Robust.Server.Player;
 using Robust.Shared.Timing;
@@ -35,3 +37,4 @@ public sealed partial class LavalandVisitConditionSystem : AchievementConditionS
         }
     }
 }
+*/

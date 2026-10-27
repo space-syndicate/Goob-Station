@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Goobstation.Shared.SlotMachine;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -28,3 +30,4 @@ public sealed class PrizeWonConditionSystem : AchievementConditionSystem<PrizeWo
         }
     }
 }
+*/

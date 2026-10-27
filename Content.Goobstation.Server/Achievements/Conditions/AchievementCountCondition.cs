@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Goobstation.Shared.Achievements;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -41,3 +43,4 @@ public sealed class AchievementCountConditionSystem : AchievementConditionSystem
         }
     }
 }
+*/

@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Goobstation.Server.Blob.GameTicking;
 using Content.Goobstation.Shared.Blob.Components;
 using Content.Server.GameTicking.Rules.Components;
@@ -350,3 +352,4 @@ public sealed partial class ChronofieldConditionSystem : AchievementConditionSys
         }
     }
 }
+*/

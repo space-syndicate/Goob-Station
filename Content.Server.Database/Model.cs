@@ -298,7 +298,7 @@ namespace Content.Server.Database
                 .HasDefaultValue(HwidType.Legacy);
 
             ModelBan.OnModelCreating(modelBuilder);
-            GoobOnModelCreating(modelBuilder); // Goob
+            // GoobOnModelCreating(modelBuilder); // Goob // CorvaxGoob - achievements removed
 
             // Corvax-Goob нам такое не надо
             /*

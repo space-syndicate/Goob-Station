@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -243,3 +245,4 @@ public sealed partial class AchievementManager : IPostInjectInit
         public bool PendingUnlock;
     }
 }
+*/

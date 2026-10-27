@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using System.Threading;
 using System.Threading.Tasks;
 using Robust.Shared.Network;
@@ -33,3 +35,4 @@ public sealed partial class ServerDbManager
         return RunDbCommand(() => _db.GetAchievementStatsAsync(cancel));
     }
 }
+*/

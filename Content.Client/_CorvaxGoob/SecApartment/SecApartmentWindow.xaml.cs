@@ -19,7 +19,6 @@ using Robust.Shared.Utility;
 
 namespace Content.Client._CorvaxGoob.SecApartment;
 
-[Virtual]
 [GenerateTypedNameReferences]
 public sealed partial class SecApartmentWindow : BaseWindow
 {

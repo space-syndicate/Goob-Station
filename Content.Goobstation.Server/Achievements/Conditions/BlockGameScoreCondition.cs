@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Goobstation.Common.Arcade;
 using Robust.Shared.Player;
 
@@ -27,3 +29,4 @@ public sealed class BlockGameScoreConditionSystem : AchievementConditionSystem<B
         }
     }
 }
+*/

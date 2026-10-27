@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Shared.GameTicking;
 
 namespace Content.Goobstation.Server.Achievements.Conditions;
@@ -33,3 +35,4 @@ public sealed class SpawnConditionSystem : AchievementConditionSystem<SpawnCondi
         }
     }
 }
+*/

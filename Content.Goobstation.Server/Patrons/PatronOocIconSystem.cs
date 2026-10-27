@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Goobstation.Shared.Patrons;
 using Content.Server._RMC14.LinkAccount;
 
@@ -17,3 +19,4 @@ public sealed partial class PatronOocIconSystem : EntitySystem
         _linkAccount.SetOocIcon(args.SenderSession.UserId, ev.Icon?.Id);
     }
 }
+*/

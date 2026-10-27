@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Goobstation.Shared.Supermatter.Events;
 using Content.Server.Nuke;
 using Robust.Server.Player;
@@ -39,3 +41,4 @@ public sealed partial class CatastropheConditionSystem : AchievementConditionSys
         }
     }
 }
+*/

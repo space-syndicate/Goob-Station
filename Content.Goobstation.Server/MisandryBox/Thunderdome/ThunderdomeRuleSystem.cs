@@ -69,7 +69,7 @@ public sealed partial class ThunderdomeRuleSystem : EntitySystem
     [Dependency] private ILocalizationManager _loc = default!;
     [Dependency] private GunSystem _gun = default!;
 
-    [Dependency] private readonly SkillsSystem _skills = default!;
+    [Dependency] private SkillsSystem _skills = default!;
 
     private const string RulePrototype = "ThunderdomeRule";
     private EntityUid? _ruleEntity;

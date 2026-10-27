@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Goobstation.Shared.Devil.Contract;
 using Robust.Shared.Player;
 
@@ -19,3 +21,4 @@ public sealed class DevilContractConditionSystem : AchievementConditionSystem<De
         ProgressAll(ent);
     }
 }
+*/

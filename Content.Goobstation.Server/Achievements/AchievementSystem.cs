@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using System.Diagnostics.CodeAnalysis;
 using Content.Goobstation.Common.CCVar;
 using Content.Goobstation.Shared.Achievements;
@@ -177,3 +179,4 @@ public sealed partial class AchievementSystem : EntitySystem
         return _manager.CountUnlocked(session, category);
     }
 }
+*/

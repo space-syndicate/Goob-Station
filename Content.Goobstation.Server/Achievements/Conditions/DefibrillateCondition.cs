@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Shared.EntityConditions;
 using Content.Shared.Medical;
 using Content.Shared.Mobs.Components;
@@ -62,3 +64,4 @@ public sealed partial class DefibrillateConditionSystem : AchievementConditionSy
         }
     }
 }
+*/

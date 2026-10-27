@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Goobstation.Common.Abductor;
 using Content.Goobstation.Common.Materials;
 using Content.Goobstation.Common.MisandryBox;
@@ -128,3 +130,4 @@ public sealed class RecyclerGibbedConditionSystem : AchievementConditionSystem<R
         ProgressAll(ent);
     }
 }
+*/

@@ -160,7 +160,7 @@ public sealed partial class ProjectileSystem : SharedProjectileSystem // Goob
         }
 
         // CorvaxGoob-RubberAmmo-Start
-        var afterEv = new AfterProjectileHitEvent(component.Damage * _damageableSystem.UniversalProjectileDamageModifier, modifiedDamage, target, component.Shooter);
+        var afterEv = new AfterProjectileHitEvent(component.Damage * _damageableSystem.UniversalProjectileDamageModifier, damage, target, component.Shooter);
         RaiseLocalEvent(uid, ref afterEv);
         // CorvaxGoob-RubberAmmo-End
     }

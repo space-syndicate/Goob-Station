@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Goobstation.Shared.Blob.Components;
 using Content.Shared.Tools;
 using Content.Shared.Tools.Systems;
@@ -27,3 +29,4 @@ public sealed partial class BlobPryConditionSystem : AchievementConditionSystem<
             ProgressAll(args.User);
     }
 }
+*/

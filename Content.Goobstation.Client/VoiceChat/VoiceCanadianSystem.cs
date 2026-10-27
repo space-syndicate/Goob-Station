@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using System.Numerics;
 using Content.Client.Graphics;
 using Content.Goobstation.Shared.VoiceChat;
@@ -213,3 +215,4 @@ public sealed partial class VoiceCanadianSystem : EntitySystem
         public TimeSpan NextSwitch;
     }
 }
+*/

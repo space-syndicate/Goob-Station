@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Server.Hands.Systems;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
@@ -44,3 +46,4 @@ public sealed class MobStateEnteredConditionSystem : AchievementConditionSystem<
         _handled.Remove(args.Target);
     }
 }
+*/

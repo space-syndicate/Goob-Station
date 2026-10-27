@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using System.Numerics;
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Controls;
@@ -123,3 +125,4 @@ public sealed partial class VoiceChatGuideWindow : FancyWindow
             : Loc.GetString("voice-guide-unbound");
     }
 }
+*/

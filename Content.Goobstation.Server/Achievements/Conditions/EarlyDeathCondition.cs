@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Shared.GameTicking;
 using Content.Shared.Mobs;
 using Robust.Shared.Timing;
@@ -48,3 +50,4 @@ public sealed partial class EarlyDeathConditionSystem : AchievementConditionSyst
         _spawnTimes.Clear();
     }
 }
+*/

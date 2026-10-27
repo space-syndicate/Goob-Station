@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using System.Numerics;
 using Content.Client.Gameplay;
 using Content.Client.Lobby;
@@ -162,3 +164,4 @@ public sealed partial class AchievementsUIController : UIController,
         }
     }
 }
+*/

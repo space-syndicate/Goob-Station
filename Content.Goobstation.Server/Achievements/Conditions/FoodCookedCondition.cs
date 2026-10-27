@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Goobstation.Common.Kitchen;
 using Robust.Shared.Player;
 
@@ -19,3 +21,4 @@ public sealed class FoodCookedConditionSystem : AchievementConditionSystem<FoodC
         ProgressAll(ent, args.Count);
     }
 }
+*/

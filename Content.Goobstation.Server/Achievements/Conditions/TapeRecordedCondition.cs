@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Goobstation.Shared.TapeRecorder;
 using Robust.Shared.Player;
 
@@ -19,3 +21,4 @@ public sealed class TapeRecordedConditionSystem : AchievementConditionSystem<Tap
         ProgressAll(ent);
     }
 }
+*/

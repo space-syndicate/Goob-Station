@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Shared._Lavaland.Aggression;
 using Content.Shared.Whitelist;
 using Robust.Shared.Prototypes;
@@ -40,3 +42,4 @@ public sealed partial class BossKillConditionSystem : AchievementConditionSystem
         }
     }
 }
+*/

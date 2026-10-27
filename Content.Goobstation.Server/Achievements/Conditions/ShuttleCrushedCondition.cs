@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Goobstation.Common.Shuttles;
 using Content.Shared.Body.Components;
 
@@ -19,3 +21,4 @@ public sealed class ShuttleCrushedConditionSystem : AchievementConditionSystem<S
         ProgressAll(ent);
     }
 }
+*/

@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Robust.Shared.Prototypes;
 
 namespace Content.Goobstation.Server.Achievements;
@@ -41,3 +43,4 @@ public abstract partial class AchievementConditionSystem<T> : EntitySystem where
         }
     }
 }
+*/

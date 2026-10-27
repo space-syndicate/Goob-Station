@@ -7,7 +7,7 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-using Content.Goobstation.Client.VoiceChat;
+// using Content.Goobstation.Client.VoiceChat; // CorvaxGoob
 using Content.Goobstation.Client.JoinQueue;
 using Content.Goobstation.Common.ServerCurrency;
 using Robust.Shared.ContentPack;

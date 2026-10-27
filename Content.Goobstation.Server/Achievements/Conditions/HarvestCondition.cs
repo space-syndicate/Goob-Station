@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Goobstation.Common.Botany;
 using Robust.Shared.Player;
 
@@ -19,3 +21,4 @@ public sealed class HarvestConditionSystem : AchievementConditionSystem<HarvestC
         ProgressAll(ent);
     }
 }
+*/

@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Goobstation.Shared.Achievements;
 
 namespace Content.Goobstation.Client.Achievements;
@@ -43,3 +45,4 @@ public sealed class AchievementsSystem : EntitySystem
         Updated?.Invoke();
     }
 }
+*/

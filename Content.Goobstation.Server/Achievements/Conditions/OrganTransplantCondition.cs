@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Goobstation.Common.Surgery;
 using Robust.Shared.Player;
 
@@ -19,3 +21,4 @@ public sealed class OrganTransplantConditionSystem : AchievementConditionSystem<
         ProgressAll(ent);
     }
 }
+*/

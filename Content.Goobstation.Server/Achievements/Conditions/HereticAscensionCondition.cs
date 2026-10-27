@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Server.Heretic.EntitySystems;
 using Content.Shared.Heretic;
 using Content.Shared.Heretic.Prototypes;
@@ -34,3 +36,4 @@ public sealed class HereticAscensionConditionSystem : AchievementConditionSystem
         }
     }
 }
+*/

@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using System.Collections.Concurrent;
 using System.Threading.Tasks;
 using Content.Goobstation.Common.CCVar;
@@ -115,3 +117,4 @@ public sealed partial class VoiceLogSystem : EntitySystem
         });
     }
 }
+*/

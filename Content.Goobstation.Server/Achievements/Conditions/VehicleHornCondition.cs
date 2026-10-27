@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Goobstation.Shared.Vehicles;
 using Content.Shared.Whitelist;
 
@@ -29,3 +31,4 @@ public sealed partial class VehicleHornConditionSystem : AchievementConditionSys
         }
     }
 }
+*/

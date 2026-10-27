@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Shared.Doors.Components;
 using Content.Shared.Tools.Components;
 using Content.Shared.Tools.Systems;
@@ -23,3 +25,4 @@ public sealed class WeldDoorConditionSystem : AchievementConditionSystem<WeldDoo
         ProgressAll(args.User);
     }
 }
+*/

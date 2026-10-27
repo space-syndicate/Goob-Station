@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Shared.Damage; // CorvaxGoob-DiceOfFate
+using Content.Shared.Damage.Systems; // CorvaxGoob-DiceOfFate
 using Content.Shared.DoAfter;
 using Content.Shared.Popups;
 using Content.Shared.Interaction;
