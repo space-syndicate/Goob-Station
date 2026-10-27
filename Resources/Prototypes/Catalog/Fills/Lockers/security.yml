@@ -193,21 +193,21 @@
         #Goobend
     - id: FlippoEngravedLighter
     - id: FlashlightSeclite
-    - id: ForensicScanner
+    # - id: ForensicScanner # CorvaxGoob
     - id: LogProbeCartridge
-    - id: BoxForensicPad
+    # - id: BoxForensicPad # CorvaxGoob
     - id: DrinkDetFlask
     - id: ClothingHandsGlovesForensic
     - id: RubberStampDetective
-    - id: HoloprojectorSecurity
-    - id: BoxEvidenceMarkers
-    - id: HandLabeler
-    - id: BloodTrak # Goobstation
+    # - id: HoloprojectorSecurity # CorvaxGoob
+    # - id: BoxEvidenceMarkers # CorvaxGoob
+    # - id: HandLabeler # CorvaxGoob
+    # - id: BloodTrak # Goobstation # CorvaxGoob
     - id: Betty # Goobstation
     - id: BoxTapeRecorder # DeltaV
     - id: PoliceBaton # Goobstation
-    - id: ObraDinnClock # Goobstation
-    - id: PhotoCameraFilled # CorvaxGoob
+    # - id: ObraDinnClock # Goobstation # CorvaxGoob
+    - id: BriefcaseDetectiveFilled # CorvaxGoob
     - id: ClothingOuterHardsuitDetective # CorvaxGoob Чтобы мапперам не пришлось перемапливать шкафы на те что со скафом
 
 - type: entity

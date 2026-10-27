@@ -43,6 +43,13 @@ namespace Content.Server.Forensics
         [ViewVariables(VVAccess.ReadOnly), DataField("residues")]
         public List<string> Residues = new();
 
+        // CorvaxGoob
+        /// <summary>
+        /// Время сканирования
+        /// </summary>
+        [DataField("scanTime")]
+        public TimeSpan ScanTime = TimeSpan.Zero;
+
         /// <summary>
         /// What is the name of the entity that was scanned last?
         /// </summary>
@@ -95,6 +102,5 @@ namespace Content.Server.Forensics
         /// </summary>
         [DataField("machineOutput", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
         public string MachineOutput = "ForensicReportPaper";
-
     }
 }

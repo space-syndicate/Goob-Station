@@ -1,0 +1,104 @@
+- type: entity
+  name: evidence bag
+  parent: BaseItem
+  id: EvidenceBag
+  description: A bag for storing evidence. Detectives really dislike when important items are touched.
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Storages/evidencebag.rsi
+    layers:
+    - map: ["slot"]
+    - state: icon
+    - state: icon_paper
+      visible: false
+      map: ["enum.PaperLabelVisuals.Layer"]
+  - type: PaperLabel
+    labelSlot:
+      insertVerbText: comp-paper-label-insert
+      ejectVerbText: comp-paper-label-eject
+      whitelist:
+        components:
+        - Paper
+      blacklist:
+        tags:
+        - Book
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.PaperLabelVisuals.HasLabel:
+        enum.PaperLabelVisuals.Layer:
+          True: { visible: true }
+          False: { visible: false }
+  - type: Item
+    shape:
+    - 0,0,1,1
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 5
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+          params:
+            volume: -8
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: EvidenceBag
+    sizesInfo:
+      "Tiny": 1, 1
+      "Small": 1, 1
+      "Normal": 0.75, 0.75
+      "Large": 0.75, 0.75
+      "Huge": 0.5, 0.5
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 50
+  - type: ItemSlotsLock
+    slots:
+    - slot
+  - type: Lock
+    unlockOnClick: false
+    locked: false
+    lockingSound:
+      path: /Audio/Misc/zip.ogg
+    unlockingSound:
+      path: /Audio/Items/Handcuffs/rope_breakout.ogg
+    lockTime: 1
+    unlockTime: 2
+  - type: ItemSlots
+    slots:
+      slot:
+        insertDelay: 1
+        ejectOnBreak: true
+        whitelist:
+          components:
+          - Item
+        blacklist:
+          components:
+          - HeldSpeedModifier
+          - Storage
+          - EvidenceBag
+      paper_label:
+        ejectOnBreak: true
+        whitelist:
+          components:
+          - Paper
+        blacklist:
+          components:
+          - Book
+  - type: ItemSlotRenderer
+    renderTargetSize: 20, 18
+    mapping:
+      slot: slot
+  - type: ContainerContainer
+    containers:
+      slot: !type:ContainerSlot {}
