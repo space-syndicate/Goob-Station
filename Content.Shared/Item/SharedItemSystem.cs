@@ -78,7 +78,7 @@ public abstract class SharedItemSystem : EntitySystem
         if (TryComp<StorageComponent>(parentUid, out var parentStorage))
             if (!_storage.CanInsert(uid, parentUid, out _))
                 Container.Remove(uid, parentStorage.Container);
-        // CorvaxGoob-End
+        // CorvaxGoob-End   
 
         var ev = new ItemSizeChangedEvent(uid);
         RaiseLocalEvent(uid, ref ev, broadcast: true);

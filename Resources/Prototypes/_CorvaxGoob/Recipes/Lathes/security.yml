@@ -22,3 +22,9 @@
   result: MagazineBoxLargeCaliber
   materials:
     Steel: 1000
+
+- type: latheRecipe
+  id: EvidenceBag
+  result: EvidenceBag
+  materials:
+    Plastic: 250

@@ -16,6 +16,8 @@
     labelSlot:
       insertVerbText: comp-paper-label-insert
       ejectVerbText: comp-paper-label-eject
+      ejectOnBreak: true
+      priority: 1000
       whitelist:
         components:
         - Paper
@@ -87,14 +89,6 @@
           - HeldSpeedModifier
           - Storage
           - EvidenceBag
-      paper_label:
-        ejectOnBreak: true
-        whitelist:
-          components:
-          - Paper
-        blacklist:
-          components:
-          - Book
   - type: ItemSlotRenderer
     renderTargetSize: 20, 18
     mapping:
@@ -102,3 +96,4 @@
   - type: ContainerContainer
     containers:
       slot: !type:ContainerSlot {}
+      paper_label: !type:ContainerSlot
