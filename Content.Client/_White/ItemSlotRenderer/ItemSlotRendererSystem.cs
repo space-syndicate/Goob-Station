@@ -31,7 +31,7 @@ public sealed class ItemSlotRendererSystem : EntitySystem
     }
     private void OnInsertIntoContainer(EntityUid uid, ItemSlotRendererComponent comp, EntInsertedIntoContainerMessage args)
     {
-        if (args.Container is not ContainerSlot || !_timing.IsFirstTimePredicted)
+        if (args.Container is not ContainerSlot) // CorvaxGoob : Удалено условие на IsFirstTimePredicted. Не даёт отображаться другим клиентам
             return;
 
         comp.CachedEntities[args.Container.ID] = args.Entity;
@@ -39,7 +39,7 @@ public sealed class ItemSlotRendererSystem : EntitySystem
 
     private void OnRemoveFromContainer(EntityUid uid, ItemSlotRendererComponent comp, EntRemovedFromContainerMessage args)
     {
-        if (args.Container is not ContainerSlot || !_timing.IsFirstTimePredicted)
+        if (args.Container is not ContainerSlot) // CorvaxGoob : Удалено условие на IsFirstTimePredicted. Не даёт отображаться другим клиентам
             return;
 
         comp.CachedEntities[args.Container.ID] = null;
