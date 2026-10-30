@@ -64,12 +64,15 @@ public sealed partial class TogglePowerSystem : SharedTogglePowerSystem
         if (_timing.CurTime < togglePower.NextToggle)
             return;
 
+        var ev = new AttemptTogglePowerEvent(!togglePower.IsTurnedOn, user);
+        RaiseLocalEvent(entity, ref ev);
+        if (ev.Cancelled)
+            return;
+
         togglePower.NextToggle = _timing.CurTime + togglePower.ToggleInterval;
 
-        DoTogglePower((entity, togglePower));
+        SetPower((entity, togglePower), ev.Powered);
     }
-
-    public void DoTogglePower(Entity<TogglePowerComponent> entity) => SetPower(entity, !entity.Comp.IsTurnedOn);
 
     public void SetPower(Entity<TogglePowerComponent> entity, bool powered, bool playSound = true)
     {

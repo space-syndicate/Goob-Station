@@ -65,6 +65,7 @@
 - type: entity
   abstract: true
   id: ConstructibleMachine
+  parent: BaseOverTemperatureDamageOnly # CorvaxGoob
   components:
   - type: Animateable
   - type: Machine

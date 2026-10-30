@@ -1,6 +1,6 @@
 - type: entity
   id: BluespaceHarvester
-  parent: [ BaseMachine, ConstructibleMachine ]
+  parent: [ BaseOverTemperatureThresholdOnly, BaseMachine, ConstructibleMachine ]
   name: bluespace harvester
   description: Uses huge amounts of energy to extract matter from all corners of the universe.
   placement:

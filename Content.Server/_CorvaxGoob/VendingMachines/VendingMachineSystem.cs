@@ -17,6 +17,8 @@ using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Utility;
+using Content.Server._CorvaxGoob.OverTemperature;
+using Content.Shared.Temperature.Components;
 
 namespace Content.Server.VendingMachines
 {
@@ -262,6 +264,12 @@ namespace Content.Server.VendingMachines
         /// </summary>
         private void OnDestruction(EntityUid uid, VendingMachineComponent component, DestructionEventArgs args)
         {
+            if (TryComp<OverTemperatureComponent>(uid, out var overTemperature))
+            {
+                overTemperature.TemperatureThresholdEnabled = false;
+                overTemperature.TemperatureDamageEnabled = false;
+            }
+
             // When the vending machine is destroyed, all previously returned items stored inside it fall out.
             TryEjectStoredReturnedItems(uid, component, updateInventory: false, out _);
         }

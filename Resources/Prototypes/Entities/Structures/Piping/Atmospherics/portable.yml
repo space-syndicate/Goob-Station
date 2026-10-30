@@ -2,7 +2,7 @@
 
 - type: entity
   id: PortableScrubber
-  parent: [BaseMachinePowered, SmallConstructibleMachine, StructureWheeled]
+  parent: [BaseOverTemperatureDisabled, BaseMachinePowered, SmallConstructibleMachine, StructureWheeled ] # CorvaxGoob
   name: portable scrubber
   description: It scrubs, portably!
   components:

@@ -79,7 +79,7 @@ public sealed partial class TemperatureSystem
                 continue;
 
             var deltaTime = _gameTiming.CurTime - entity.Comp.LastUpdate;
-            if (entity.Comp.TakingDamage && deltaTime < entity.Comp.UpdateInterval)
+            if (entity.Comp.TakingDamage && deltaTime < entity.Comp.UpdateInterval || !entity.Comp.Enabled) // CorvaxGoob
                 continue;
 
             ChangeDamage(entity, deltaTime);
