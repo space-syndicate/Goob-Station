@@ -106,7 +106,7 @@
 
 - type: entity
   id: SpaceHeater
-  parent: [BaseMachinePowered, ConstructibleMachine]
+  parent: [BaseOverTemperatureDisabled, BaseMachinePowered, ConstructibleMachine] # CorvaxGoob
   name: space heater
   description: A bluespace technology device that alters local temperature. Commonly referred to as a "Space Heater".
   suffix: Unanchored
