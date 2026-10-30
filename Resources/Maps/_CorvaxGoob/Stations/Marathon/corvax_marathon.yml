@@ -15789,8 +15789,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 159
-      configurators:
-      - invalid
   - uid: 719
     components:
     - type: Transform
@@ -15800,8 +15798,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 107
-      configurators:
-      - invalid
   - uid: 720
     components:
     - type: Transform
@@ -15846,8 +15842,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 111
-      configurators:
-      - invalid
 - proto: AltarConvertWhite
   entities:
   - uid: 725
@@ -70903,8 +70897,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 159
-      configurators:
-      - invalid
   - uid: 10787
     components:
     - type: Transform
@@ -95101,8 +95093,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 107
-      configurators:
-      - invalid
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 13969
@@ -95113,8 +95103,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 159
-      configurators:
-      - invalid
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 13970
@@ -97098,8 +97086,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 159
-      configurators:
-      - invalid
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 14184
@@ -122284,26 +122270,17 @@ entities:
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -40.5,32.5
-    - type: DeviceNetwork
-      configurators:
-      - invalid
   - uid: 18318
     components:
     - type: Transform
       parent: 2
       pos: -42.5,34.5
-    - type: DeviceNetwork
-      configurators:
-      - invalid
   - uid: 18319
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -40.5,31.5
-    - type: DeviceNetwork
-      configurators:
-      - invalid
   - uid: 18320
     components:
     - type: Transform
@@ -122485,9 +122462,6 @@ entities:
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -40.5,30.5
-    - type: DeviceNetwork
-      configurators:
-      - invalid
   - uid: 18354
     components:
     - type: Transform
@@ -122849,9 +122823,6 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -40.5,33.5
-    - type: DeviceNetwork
-      configurators:
-      - invalid
     - type: Fixtures
       fixtures: {}
   - uid: 18382
@@ -129485,9 +129456,6 @@ entities:
       id: Генератор гравитации
       setupAvailableNetworks:
       - SurveillanceCameraEngineering
-    - type: DeviceNetwork
-      configurators:
-      - invalid
   - uid: 19341
     components:
     - type: Transform
@@ -130160,9 +130128,6 @@ entities:
     - type: Transform
       parent: 2
       pos: -8.5,-31.5
-    - type: DeviceNetwork
-      configurators:
-      - invalid
 - proto: SurveillanceCameraRouterGeneral
   entities:
   - uid: 19409
@@ -130183,10 +130148,6 @@ entities:
     components:
     - type: Transform
       parent: 2
-      pos: -8.5,-27.5
-    - type: DeviceNetwork
-      configurators:
-      - invalid
 - proto: SurveillanceCameraRouterSecurity
   entities:
   - uid: 19412
@@ -152305,8 +152266,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 23426
-      configurators:
-      - invalid
   - uid: 23420
     components:
     - type: Transform
