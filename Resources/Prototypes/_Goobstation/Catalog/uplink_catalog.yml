@@ -676,7 +676,6 @@
     whitelist:
     - HijackShuttleObjective
     - NukeDiskStealObjective
-  saleLimit: 1
 
 
 - type: listing
@@ -1134,6 +1133,14 @@
     Telecrystal: 30
   categories:
   - UplinkImplants
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - NukeOpsUplink
+      - LoneOpsUplink
+      - ContractorUplink
+      - ContravendUplink
 
 - type: listing
   id: UplinkAutosurgeonRecoilAbsorber

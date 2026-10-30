@@ -39,6 +39,7 @@
     color: "#fca3c0"
   - type: Appearance
   - type: WiresPanel
+  - type: WiresVisuals
   - type: AmbientSound
     enabled: false
     range: 3
@@ -64,12 +65,9 @@
           Stable: { state: anomaly-1 }
           Decaying: { state: anomaly-2 }
           Growing: { state: anomaly-3 }
-      enum.WiresVisuals.MaintenancePanelState:
-        enum.WiresVisualLayers.MaintenancePanel:
-          True: { visible: false }
-          False: { visible: true }
+  - type: ExplosionEffect # Goob
   - type: Explosive
-    explosionType: Default
+    explosionType: Transparent # Goob
     maxIntensity: 20
     intensitySlope: 30
     totalIntensity: 30
@@ -108,6 +106,7 @@
     enabled: false
   - type: Machine
     board: AnomalyVesselExperimentalCircuitboard
+  - type: ExplosionEffect # Goob
   - type: Explosive
     explosionType: Default
     maxIntensity: 50

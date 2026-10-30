@@ -37,6 +37,7 @@ public sealed class RMCLinkedAccount
 public sealed class RMCPatronTier
 {
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.None)] // Goob - tiers are defined by prototypes
     public int Id { get; set; }
 
     public bool ShowOnCredits { get; set; }

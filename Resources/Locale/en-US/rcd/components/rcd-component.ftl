@@ -55,7 +55,7 @@ rcd-component-electrical = Electrical
 rcd-component-lighting = Lighting
 rcd-component-piping = Piping
 rcd-component-atmosphericutility = Atmospheric Utility
-rcd-component-pumps = Pumps & Valves
+rcd-component-pumpsvalves = Pumps & Valves
 rcd-component-vents = Vents
 
 
@@ -64,4 +64,3 @@ rcd-component-vents = Vents
 rcd-component-deconstruct = deconstruct
 rcd-component-floor-steel = steel tile
 rcd-component-plating = hull plate
-rcd-component-pumpsvalves = pipe control

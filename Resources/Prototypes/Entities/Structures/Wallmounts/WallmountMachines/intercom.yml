@@ -103,10 +103,6 @@
                 volume: -4
   - type: GenericVisualizer
     visuals:
-      enum.WiresVisualLayers.MaintenancePanel:
-        enum.WiresVisualLayers.MaintenancePanel:
-          True: { visible: true }
-          False: { visible: false }
       enum.PowerDeviceVisuals.Powered:
         enum.PowerDeviceVisualLayers.Powered:
           True: { visible: true }

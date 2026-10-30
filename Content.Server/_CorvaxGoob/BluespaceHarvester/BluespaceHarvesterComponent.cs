@@ -160,8 +160,8 @@ public sealed partial class BluespaceHarvesterComponent : Component
     public float DrawRate;
 }
 
-[Serializable]
-public sealed class BluespaceHarvesterTap
+[Serializable, DataDefinition]
+public sealed partial class BluespaceHarvesterTap
 {
     /// <summary>
     /// The minimum level from which Visual is enabled.
