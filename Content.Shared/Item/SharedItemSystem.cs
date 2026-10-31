@@ -56,7 +56,7 @@ public abstract class SharedItemSystem : EntitySystem
         var parentUid = Transform(uid).ParentUid;
 
         if (TryComp<StorageComponent>(parentUid, out var parentStorage))
-            if (!_storage.CanInsert(uid, parentUid, out _))
+            if (!_storage.CanInsert(parentUid, uid, out _, parentStorage))
                 Container.Remove(uid, parentStorage.Container);
         // CorvaxGoob-End
 
@@ -76,7 +76,7 @@ public abstract class SharedItemSystem : EntitySystem
         var parentUid = Transform(uid).ParentUid;
 
         if (TryComp<StorageComponent>(parentUid, out var parentStorage))
-            if (!_storage.CanInsert(uid, parentUid, out _))
+            if (!_storage.CanInsert(parentUid, uid, out _, parentStorage))
                 Container.Remove(uid, parentStorage.Container);
         // CorvaxGoob-End   
 
