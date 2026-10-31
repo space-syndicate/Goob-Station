@@ -288,10 +288,20 @@ namespace Content.Server.Decals
             _dirtyChunks[id].Add(chunkIndices);
         }
 
-        public bool TryAddDecal(string id, EntityCoordinates coordinates, out uint decalId, Color? color = null, Angle? rotation = null, int zIndex = 0, bool cleanable = false)
+        public bool TryAddDecal(string id,
+            EntityCoordinates coordinates,
+            out uint decalId,
+            Color? color = null,
+            Angle? rotation = null,
+            int zIndex = 0,
+            bool cleanable = false,
+            bool glows = false,
+            float glowTime = 1200,
+            float glowEnergy = 0.3f
+            ) // CorvaxGoob-Edit: GlowingDecals
         {
             rotation ??= Angle.Zero;
-            var decal = new Decal(coordinates.Position, id, color, rotation.Value, zIndex, cleanable);
+            var decal = new Decal(coordinates.Position, id, color, rotation.Value, zIndex, cleanable, glows, glowTime, glowEnergy);
 
             return TryAddDecal(decal, coordinates, out decalId);
         }
@@ -312,6 +322,10 @@ namespace Content.Server.Decals
 
             if (!TryComp(gridId, out DecalGridComponent? comp))
                 return false;
+
+            // CorvaxGoob-GlowingDecals
+            if (decal.Glows && decal.GlowTime > 0)
+                decal.GlowUntil = _timing.CurTime + TimeSpan.FromSeconds(decal.GlowTime);
 
             decalId = comp.ChunkCollection.NextDecalId++;
             var chunkIndices = GetChunkIndices(decal.Coordinates);
@@ -433,6 +447,14 @@ namespace Content.Server.Decals
 
         public bool SetDecalCleanable(EntityUid gridId, uint decalId, bool value, DecalGridComponent? comp = null)
             => ModifyDecal(gridId, decalId, x => x.WithCleanable(value), comp);
+	// CorvaxGoob-Start
+        public bool SetDecalGlows(EntityUid gridId, uint decalId, bool value, DecalGridComponent? comp = null)
+            => ModifyDecal(gridId, decalId, x => x.WithGlows(value).WithGlowUntil(
+                value && x.GlowTime > 0 ? _timing.CurTime + TimeSpan.FromSeconds(x.GlowTime) : TimeSpan.Zero), comp);
+
+        public bool SetDecalGlowEnergy(EntityUid gridId, uint decalId, float value, DecalGridComponent? comp = null)
+            => ModifyDecal(gridId, decalId, x => x.WithGlowEnergy(value), comp);
+	// CorvaxGoob-End
 
         public bool SetDecalId(EntityUid gridId, uint decalId, string id, DecalGridComponent? comp = null)
         {

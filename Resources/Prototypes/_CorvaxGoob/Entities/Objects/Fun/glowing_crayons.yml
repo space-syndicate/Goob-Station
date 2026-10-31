@@ -1,0 +1,230 @@
+# glowing crayons
+
+- type: entity
+  abstract: true
+  parent: Crayon
+  id: CrayonGlowing
+  description: A colourful crayon, glowing crayon. Looks tastier, than the original. Mmmm...
+  components:
+  - type: Edible
+  - type: FlavorProfile
+    flavors:
+    - horrible
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Radium
+          Quantity: 1
+  - type: StaticPrice
+    price: 25
+  - type: PointLight
+    enabled: true
+    radius: 1.5
+    energy: 2
+  - type: LightFade
+    duration: 1200 # 20 minutes
+
+# monocolor crayons
+
+- type: entity
+  parent: CrayonGlowing
+  id: CrayonWhiteGlowing
+  name: glowing white crayon
+  components:
+  - type: Sprite
+    state: white
+  - type: Item
+    heldPrefix: glowing white
+  - type: Crayon
+    color: white
+    glows: true
+  - type: PointLight
+    color: white
+  - type: Tag
+    tags:
+    - Write
+    - Crayon
+    - CrayonWhiteGlowing
+    - Recyclable
+    - Trash
+
+- type: entity
+  parent: CrayonGlowing
+  id: CrayonRedGlowing
+  name: glowing red crayon
+  components:
+  - type: Sprite
+    state: red
+  - type: Item
+    heldPrefix: glowing red
+  - type: Crayon
+    color: red
+    glows: true
+  - type: PointLight
+    color: red
+  - type: Tag
+    tags:
+    - Write
+    - Crayon
+    - CrayonRedGlowing
+    - Recyclable
+    - Trash
+
+- type: entity
+  parent: CrayonGlowing
+  id: CrayonOrangeGlowing
+  name: glowing orange crayon
+  components:
+  - type: Sprite
+    state: orange
+  - type: Item
+    heldPrefix: glowing orange
+  - type: Crayon
+    color: orange
+    glows: true
+  - type: PointLight
+    color: orange
+  - type: Tag
+    tags:
+    - Write
+    - Crayon
+    - CrayonOrangeGlowing
+    - Recyclable
+    - Trash
+
+- type: entity
+  parent: CrayonGlowing
+  id: CrayonYellowGlowing
+  name: glowing yellow crayon
+  components:
+  - type: Sprite
+    state: yellow
+  - type: Item
+    heldPrefix: glowing yellow
+  - type: Crayon
+    color: yellow
+    glows: true
+  - type: PointLight
+    color: yellow
+  - type: Tag
+    tags:
+    - Write
+    - Crayon
+    - CrayonYellowGlowing
+    - Recyclable
+    - Trash
+
+- type: entity
+  parent: CrayonGlowing
+  id: CrayonGreenGlowing
+  name: glowing green crayon
+  components:
+  - type: Sprite
+    state: green
+  - type: Item
+    heldPrefix: glowing green
+  - type: Crayon
+    color: green
+    glows: true
+  - type: PointLight
+    color: green
+  - type: Tag
+    tags:
+    - Write
+    - Crayon
+    - CrayonGreenGlowing
+    - Recyclable
+    - Trash
+
+- type: entity
+  parent: CrayonGlowing
+  id: CrayonBlueGlowing
+  name: glowing blue crayon
+  components:
+  - type: Sprite
+    state: blue
+  - type: Item
+    heldPrefix: glowing blue
+  - type: Crayon
+    color: blue
+    glows: true
+  - type: PointLight
+    color: blue
+  - type: Tag
+    tags:
+    - Write
+    - Crayon
+    - CrayonBlueGlowing
+    - Recyclable
+    - Trash
+
+- type: entity
+  parent: CrayonGlowing
+  id: CrayonPurpleGlowing
+  name: glowing purple crayon
+  components:
+  - type: Sprite
+    state: purple
+  - type: Item
+    heldPrefix: glowing purple
+  - type: Crayon
+    color: purple
+    glows: true
+  - type: PointLight
+    color: purple
+  - type: Tag
+    tags:
+    - Write
+    - Crayon
+    - CrayonPurpleGlowing
+    - Recyclable
+    - Trash
+
+- type: entity
+  parent: CrayonBox
+  id: CrayonGlowingBox
+  name: glowing crayon box
+  description: It's a box of glowing crayons.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: CrayonRedGlowing
+        - id: CrayonOrangeGlowing
+        - id: CrayonYellowGlowing
+        - id: CrayonGreenGlowing
+        - id: CrayonBlueGlowing
+        - id: CrayonPurpleGlowing
+        - id: CrayonWhiteGlowing
+  - type: ItemMapper
+    mapLayers:
+      blue_box:
+        whitelist:
+          tags:
+          - CrayonBlueGlowing
+      green_box:
+        whitelist:
+          tags:
+          - CrayonGreenGlowing
+      orange_box:
+        whitelist:
+          tags:
+          - CrayonOrangeGlowing
+      purple_box:
+        whitelist:
+          tags:
+          - CrayonPurpleGlowing
+      red_box:
+        whitelist:
+          tags:
+          - CrayonRedGlowing
+      yellow_box:
+        whitelist:
+          tags:
+          - CrayonYellowGlowing
+      white_box:
+        whitelist:
+          tags:
+          - CrayonWhiteGlowing
