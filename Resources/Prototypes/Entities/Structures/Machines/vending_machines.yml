@@ -3,7 +3,7 @@
 # base
 - type: entity
   id: VendingMachine
-  parent: BaseMachinePowered
+  parent: [ BaseMachinePowered, BaseOverTemperatureDamageOnly ] # CorvaxGoob
   name: vending machine
   description: Just add capitalism!
   abstract: true

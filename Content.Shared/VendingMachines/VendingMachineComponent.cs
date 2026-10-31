@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Shared.Actions;
+using Content.Shared.Emag.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
@@ -306,4 +307,6 @@ namespace Content.Shared.VendingMachines
 
         public bool Broken;
     }
+
+    public record struct VendingMachineStateChangeEvent(bool Broken); // CorvaxGoob
 }

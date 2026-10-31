@@ -2,7 +2,7 @@
 
 - type: entity
   id: BaseLathe
-  parent: [ BaseMachinePowered, ConstructibleMachine, BaseAutomatedMachine ] # Goob: Automation
+  parent: [ BaseMachinePowered, ConstructibleMachine, BaseAutomatedMachine ] # Goob: Automation | # CorvaxGoob
   abstract: true
   name: lathe
   components:
@@ -106,6 +106,7 @@
     materialUseMultiplier: 0.5
     timeMultiplier: 1.5
   - type: LatheHeatProducing
+    energyPerSecond: 3000 # CorvaxGoob
   - type: ReagentSpeed
     modifiers:
       SpaceLube: 0.8 # being faster means less heat so lube needs to be nerfed
@@ -197,12 +198,36 @@
 
 - type: entity
   id: AutolatheHyperConvection
-  parent: [Autolathe, BaseHyperlathe]
+  parent: [BaseOverTemperatureThresholdOnly, Autolathe, BaseHyperlathe] # CorvaxGoob
   name: hyper convection autolathe
   description: A highly-experimental autolathe that harnesses the power of extreme heat to slowly create objects more cost-effectively.
   components:
   - type: Sprite
     sprite: Structures/Machines/autolathe_hypercon.rsi
+    # CorvaxGoob-Start
+    snapCardinals: true
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+    - state: info
+      map: ["info"]
+      shader: unshaded
+      visible: false
+  - type: GenericVisualizer
+    visuals:
+      enum.OverTemperatureStatusInfo.Status:
+        info:
+          Over: { visible: true, color: "#ff0022"}
+          Crit: { visible: true, color: "#ff3c00" }
+          Okay: { visible: false }
+  # CorvaxGoob-End
   - type: Machine
     board: AutolatheHyperConvectionMachineCircuitboard
 
@@ -281,12 +306,36 @@
 
 - type: entity
   id: ProtolatheHyperConvection
-  parent: [Protolathe, BaseHyperlathe]
+  parent: [BaseOverTemperatureThresholdOnly, Protolathe, BaseHyperlathe]
   name: hyper convection protolathe
   description: A highly-experimental protolathe that harnesses the power of extreme heat to slowly create objects more cost-effectively.
   components:
   - type: Sprite
     sprite: Structures/Machines/protolathe_hypercon.rsi
+    # CorvaxGoob-Start
+    snapCardinals: true
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+    - state: info
+      map: ["info"]
+      shader: unshaded
+      visible: false
+  - type: GenericVisualizer
+    visuals:
+      enum.OverTemperatureStatusInfo.Status:
+        info:
+          Over: { visible: true, color: "#ff0022"}
+          Crit: { visible: true, color: "#ff3c00" }
+          Okay: { visible: false }
+  # CorvaxGoob-End
   - type: Machine
     board: ProtolatheHyperConvectionMachineCircuitboard
 
@@ -307,6 +356,7 @@
       map: ["enum.PowerDeviceVisualLayers.Powered"]
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
+
   - type: Machine
     board: CircuitImprinterMachineCircuitboard
   - type: Lathe
@@ -349,12 +399,34 @@
 
 - type: entity
   id: CircuitImprinterHyperConvection
-  parent: [CircuitImprinter, BaseHyperlathe]
+  parent: [BaseOverTemperatureThresholdOnly, CircuitImprinter, BaseHyperlathe]
   name: hyper convection circuit imprinter
   description: A highly-experimental circuit imprinter that harnesses the power of extreme heat to slowly create objects more cost-effectively.
   components:
   - type: Sprite
     sprite: Structures/Machines/circuit_imprinter_hypercon.rsi
+    # CorvaxGoob-Start
+    snapCardinals: true
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+    - state: info
+      map: ["info"]
+      shader: unshaded
+      visible: false
+  - type: GenericVisualizer
+    visuals:
+      enum.OverTemperatureStatusInfo.Status:
+        info:
+          Over: { visible: true, color: "#ff0022"}
+          Crit: { visible: true, color: "#ff3c00" }
+          Okay: { visible: false }
+  # CorvaxGoob-End
   - type: Machine
     board: CircuitImprinterHyperConvectionMachineCircuitboard
 
@@ -843,7 +915,7 @@
     - type: AlmanacOreCounter # Goobstation
 
 - type: entity
-  parent: OreProcessor
+  parent: [BaseOverTemperatureThresholdOnly, OreProcessor ]
   id: OreProcessorIndustrial
   name: industrial ore processor
   description: An ore processor specifically designed for mass-producing metals in industrial applications.
@@ -852,6 +924,8 @@
     sprite: Structures/Machines/ore_processor_industrial.rsi
   - type: Machine
     board: OreProcessorIndustrialMachineCircuitboard
+  - type: LatheHeatProducing
+    energyPerSecond: 10000
   - type: Lathe
     materialUseMultiplier: 0.75
     timeMultiplier: 0.5
