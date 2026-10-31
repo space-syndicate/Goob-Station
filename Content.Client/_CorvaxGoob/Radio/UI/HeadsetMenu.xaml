@@ -1,0 +1,35 @@
+<!--
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                     xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                     Title="{Loc 'headset-ui-title'}"
+                     MinSize="360 240"
+                     SetSize="360 320">
+    <BoxContainer Orientation="Vertical"
+                  HorizontalExpand="True"
+                  VerticalExpand="True"
+                  Margin="6 4 6 6">
+        <BoxContainer Orientation="Horizontal" Margin="2 0 2 4">
+            <Control HorizontalExpand="True" />
+            <Button Name="ToggleAllSoundsButton" MinWidth="180" />
+        </BoxContainer>
+        <BoxContainer Orientation="Horizontal" Margin="2 0 16 4">
+            <Label Text="{Loc 'headset-ui-channel-name'}" HorizontalExpand="True" />
+            <CenterContainer MinWidth="72">
+                <Label Text="{Loc 'headset-ui-channel-enabled'}" Align="Center" />
+            </CenterContainer>
+            <CenterContainer MinWidth="72">
+                <Label Text="{Loc 'headset-ui-sound-enabled'}" Align="Center" />
+            </CenterContainer>
+        </BoxContainer>
+        <PanelContainer StyleClasses="LowDivider" />
+        <ScrollContainer HScrollEnabled="False" VerticalExpand="True" Margin="0 4 0 0">
+            <BoxContainer Name="ChannelRows"
+                          Orientation="Vertical"
+                          HorizontalExpand="True"
+                          VerticalExpand="True" />
+        </ScrollContainer>
+    </BoxContainer>
+</controls:FancyWindow>
