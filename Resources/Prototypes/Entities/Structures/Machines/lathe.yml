@@ -218,7 +218,7 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
     - state: info
       map: ["info"]
-      ushader: unshaded
+      shader: unshaded
       visible: false
   - type: GenericVisualizer
     visuals:
@@ -326,7 +326,7 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
     - state: info
       map: ["info"]
-      ushader: unshaded
+      shader: unshaded
       visible: false
   - type: GenericVisualizer
     visuals:
@@ -417,7 +417,7 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
     - state: info
       map: ["info"]
-      ushader: unshaded
+      shader: unshaded
       visible: false
   - type: GenericVisualizer
     visuals:
