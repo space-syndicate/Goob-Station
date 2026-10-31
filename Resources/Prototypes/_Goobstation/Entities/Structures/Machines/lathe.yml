@@ -41,6 +41,7 @@
     - NailgunStatic
     - NailsStatic
     - ReactorPartsBasic
+    - GlassStaticPack # CorvaxGoob
     dynamicPacks:
     - ConstructionBagOfHolding
     - AdvancedTools

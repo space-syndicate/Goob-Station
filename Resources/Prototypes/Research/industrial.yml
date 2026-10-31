@@ -214,7 +214,7 @@
   - HellfireFreezerMachineCircuitBoard
   - PortableScrubberMachineCircuitBoard
   - HolofanProjector
-  - RadiationBlockingProjector
+#  - RadiationBlockingProjector # Commented by CorvaxGoob
   technologyPrerequisites:
   - AtmosphericTech
   # Goobstation R&D Console rework start

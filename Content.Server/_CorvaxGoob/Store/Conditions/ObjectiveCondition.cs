@@ -1,7 +1,6 @@
 using Content.Shared.Mind;
 using Content.Shared.Store;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Set;
 
 namespace Content.Server._CorvaxGoob.Store.Conditions;
 
@@ -10,14 +9,14 @@ public sealed partial class ObjectiveCondition : ListingCondition
     /// <summary>
     /// A whitelist of objectives that can allow purchase this listing. Only one needs to be found.
     /// </summary>
-    [DataField("whitelist", customTypeSerializer: typeof(PrototypeIdHashSetSerializer<EntityPrototype>))]
-    public HashSet<string>? Whitelist;
+    [DataField("whitelist")]
+    public HashSet<EntProtoId>? Whitelist;
 
     /// <summary>
     /// A blacklist of objectives that can block purchase this listing. Only one needs to be found.
     /// </summary>
-    [DataField("blacklist", customTypeSerializer: typeof(PrototypeIdHashSetSerializer<EntityPrototype>))]
-    public HashSet<string>? Blacklist;
+    [DataField("blacklist")]
+    public HashSet<EntProtoId>? Blacklist;
 
     public override bool Condition(ListingConditionArgs args)
     {

@@ -3,6 +3,11 @@ using Content.Server.Speech.Components;
 using Content.Shared.EntityEffects;
 using Content.Shared.EntityEffects.Effects;
 using Content.Shared.Mind.Components;
+// CorvaxGoob-start
+using Content.Shared.Humanoid;
+using Content.Shared.Damage;
+using Content.Shared.Damage.Systems; // CorvaxGoob
+// CorvaxGoob-end
 
 namespace Content.Server.EntityEffects.Effects;
 
@@ -13,6 +18,8 @@ namespace Content.Server.EntityEffects.Effects;
 /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
 public sealed partial class MakeSentientEntityEffectSystem : EntityEffectSystem<MetaDataComponent, MakeSentient>
 {
+    [Dependency] private readonly DamageableSystem _damage = default!; // CorvaxGoob
+
     protected override void Effect(Entity<MetaDataComponent> entity, ref EntityEffectEvent<MakeSentient> args)
     {
         // Let affected entities speak normally to make this effect different from, say, the "random sentience" event
@@ -32,6 +39,16 @@ public sealed partial class MakeSentientEntityEffectSystem : EntityEffectSystem<
         // Don't add a ghost role to things that already have ghost roles
         if (TryComp(entity, out GhostRoleComponent? ghostRole))
             return;
+
+        // CorvaxGoob-start
+        // If the entity is a Humanoid, it deals poison damage.
+        if (TryComp<HumanoidAppearanceComponent>(entity, out var humanoid) && humanoid.Species != "Monkey" && humanoid.Species != "Kobold")
+        {
+            var poisonDamage = new DamageSpecifier { DamageDict = { { "Poison", 3 } } };
+            _damage.TryChangeDamage(entity.Owner, poisonDamage, ignoreResistances: true);
+            return;
+        }
+        // CorvaxGoob-end
 
         ghostRole = AddComp<GhostRoleComponent>(entity);
         EnsureComp<GhostTakeoverAvailableComponent>(entity);

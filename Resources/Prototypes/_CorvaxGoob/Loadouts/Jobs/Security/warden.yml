@@ -25,7 +25,7 @@
 - type: loadout
   id: WardenBackpackAlt
   equipment:
-    head: ClothingBackpackWarden
+    back: ClothingBackpackWarden
   effects:
   - !type:GroupLoadoutEffect
     proto: SeniorWardenBackpack

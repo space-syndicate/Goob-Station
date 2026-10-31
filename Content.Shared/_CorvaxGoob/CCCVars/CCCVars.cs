@@ -124,7 +124,7 @@ public sealed class CCCVars
     /// Will skills be applied to players.
     /// </summary>
     public static readonly CVarDef<bool> SkillsEnabled =
-        CVarDef.Create("skills.enabled", true, CVar.SERVERONLY);
+        CVarDef.Create("skills.enabled", true, CVar.SERVER | CVar.REPLICATED);
 
     /// <summary>
     /// Show MRP-designated jobs in the lobby and late join.
@@ -159,6 +159,14 @@ public sealed class CCCVars
     public static readonly CVarDef<float> PhotoPlayTimeHours =
         CVarDef.Create("photo.playtime_require_time", 20f, CVar.SERVERONLY);
 
+    /// <summary>
+    /// The size at which the server-side replay file will be split.
+    /// </summary>
+    public static readonly CVarDef<int> SplitCompressedSize =
+        CVarDef.Create("replay.split_compressed_size", 200 * 1024, CVar.SERVERONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<int> SplitUncompressedSize =
+        CVarDef.Create("replay.split_uncompressed_size", 800 * 1024, CVar.SERVERONLY | CVar.ARCHIVE);
     /// <summary>
     ///     Установить режим возвраждения.
     /// </summary>

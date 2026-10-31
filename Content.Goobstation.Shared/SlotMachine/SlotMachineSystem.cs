@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Shared.Damage; // CorvaxGoob-DiceOfFate
+using Content.Shared.Damage.Systems; // CorvaxGoob-DiceOfFate
 using Content.Shared.DoAfter;
 using Content.Shared.Popups;
 using Content.Shared.Interaction;
@@ -19,20 +20,20 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Goobstation.Shared.SlotMachine
 {
-    public sealed class SlotMachineSystem : EntitySystem
+    public sealed partial class SlotMachineSystem : EntitySystem
     {
-        [Dependency] private readonly IRobustRandom _random = default!;
-        [Dependency] private readonly SharedAudioSystem _audio = default!;
-        [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-        [Dependency] private readonly INetManager _net = default!;
-        [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
-        [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
-        [Dependency] private readonly SharedPowerReceiverSystem _power = default!;
-        [Dependency] private readonly SharedStackSystem _stackSystem = default!;
-        [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-        [Dependency] private readonly IPrototypeManager _proto = default!;
-        [Dependency] private readonly PrizeSystem _prize = default!;
-        [Dependency] private readonly DamageableSystem _damageable = default!; // CorvaxGoob-DiceOfFate
+        [Dependency] private IRobustRandom _random = default!;
+        [Dependency] private SharedAudioSystem _audio = default!;
+        [Dependency] private SharedDoAfterSystem _doAfter = default!;
+        [Dependency] private INetManager _net = default!;
+        [Dependency] private ItemSlotsSystem _itemSlots = default!;
+        [Dependency] private SharedPopupSystem _popupSystem = default!;
+        [Dependency] private SharedPowerReceiverSystem _power = default!;
+        [Dependency] private SharedStackSystem _stackSystem = default!;
+        [Dependency] private SharedAppearanceSystem _appearance = default!;
+        [Dependency] private IPrototypeManager _proto = default!;
+        [Dependency] private PrizeSystem _prize = default!;
+        [Dependency] private DamageableSystem _damageable = default!; // CorvaxGoob-DiceOfFate
 
         public override void Initialize()
         {
@@ -143,6 +144,7 @@ namespace Content.Goobstation.Shared.SlotMachine
              };
 
             ent.Comp.IsSpinning = true;
+            ent.Comp.Spinner = args.User;
 
             if (_net.IsServer) // The DoAfter causes a weird jitter if its predicted for some reason
             {
@@ -170,7 +172,8 @@ namespace Content.Goobstation.Shared.SlotMachine
             _appearance.SetData(ent.Owner, SlotMachineVisuals.Spinning, false);
 
             // CorvaxGoob-DiceOfFate-start
-            var prize = _prize.HandlePrize(ent.Comp.Prizes, ent.Owner);
+            var prize = _prize.HandlePrize(ent.Comp.Prizes, ent.Owner, ent.Comp.Spinner);
+            ent.Comp.Spinner = null;
 
             if (ent.Comp.DeleteOnWin && prize.PrizeTable != null && _net.IsServer)
                 QueueDel(ent.Owner);
