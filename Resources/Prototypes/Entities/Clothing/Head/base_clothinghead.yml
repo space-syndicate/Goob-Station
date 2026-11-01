@@ -152,7 +152,7 @@
     - Snout
     - HeadTop
     - HeadSide
-  - type: SuitBreathing
+  - type: SuitBreathing # CorvaxGoob
 
 - type: entity
   abstract: true
@@ -216,7 +216,7 @@
     - HeadTop
     - HeadSide
   - type: FaceHuggerBlocker # Goobstation
-  - type: SuitBreathing
+  - type: SuitBreathing # CorvaxGoob
 
 - type: entity
   abstract: true

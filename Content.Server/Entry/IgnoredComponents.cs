@@ -28,6 +28,7 @@ namespace Content.Server.Entry
             "ToggleableLightWieldable", // Goobstation
             "HideClothingLayerClothing", // Goobstation
             "ItemSlotRenderer", // WWDP EDIT
+            "SuitBreathing", // CorvaxGoob
         };
     }
 }
