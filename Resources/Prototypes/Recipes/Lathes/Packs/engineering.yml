@@ -66,10 +66,12 @@
   - PowerDrill
   - WelderExperimental
   - JawsOfLife
+  - ClothingShoesBootsMag # CorvaxGoob
 
 - type: latheRecipePack
   id: AtmosTools
   recipes:
+  - ClothingShoesBootsMagAtmos # CorvaxGoob
   - HolofanProjector
   - RadiationBlockingProjector
 
