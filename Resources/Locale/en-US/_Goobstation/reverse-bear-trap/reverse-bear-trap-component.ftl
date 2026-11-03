@@ -1,10 +1,3 @@
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
-# SPDX-FileCopyrightText: 2025 absurd-shaman <165011607+absurd-shaman@users.noreply.github.com>
-#
-# SPDX-License-Identifier: AGPL-3.0-or-later
-
-
 verb-trigger-timer-set = {$time} seconds
 verb-trigger-timer-set-current = {$time} seconds
 popup-trigger-timer-set = Trap timer set to {$time} seconds.

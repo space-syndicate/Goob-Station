@@ -1,9 +1,3 @@
-# SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
-#
-# SPDX-License-Identifier: AGPL-3.0-or-later
-
 advertisement-solsnack-1 = We cut all the red-tape so that you can have diarrhea!
 advertisement-solsnack-2 = Food safety standards are merely a suggestion if you know the right people!
 advertisement-solsnack-3 = Snacks from home, corruption included!

@@ -1,5 +1,3 @@
-# SPDX-License-Identifier: AGPL-3.0-or-later
-
 guide-entry-communication-channels = Communication channels
 
 guide-communication-channels-page-introduction =
