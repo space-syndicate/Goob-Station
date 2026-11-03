@@ -52,6 +52,7 @@
     - HeadTop
     - HeadSide
   - type: FaceHuggerBlocker
+  - type: SuitBreathing # CorvaxGoob
 
 - type: entity
   abstract: true
