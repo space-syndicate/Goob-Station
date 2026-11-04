@@ -106,6 +106,17 @@
         },
         {
             "name": "vulp_cutlet"
+        },
+        {
+            "name": "iriska"
+        },
+        {
+            "name": "iriska-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "iriska-inhand-right",
+            "directions": 4
         }
     ]
 }

@@ -54,3 +54,5 @@ ent-FoodResomiCutlet = raw resomi cutlet
     .desc = A raw meat cutlet.
 ent-FoodResomiCutletCooked = resomi cutlet
     .desc = A meat cutlet.
+ent-FoodMeatSnakeIriska = raw snake iriska meat
+    .desc = A long piece of snake meat, it smells like toffee.

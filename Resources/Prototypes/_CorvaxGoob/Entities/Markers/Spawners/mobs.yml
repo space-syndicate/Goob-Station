@@ -24,3 +24,15 @@
       prototypes:
         - MobBingleCargo
 
+- type: entity
+  name: Snake Iriska Spawner
+  id: SpawnMobSnakeIriska
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: green
+        - state: ai
+    - type: ConditionalSpawner
+      prototypes:
+        - MobSnakeIriska
