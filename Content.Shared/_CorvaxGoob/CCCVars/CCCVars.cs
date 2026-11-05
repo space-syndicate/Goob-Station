@@ -184,4 +184,14 @@ public sealed class CCCVars
     /// </summary>
     public static readonly CVarDef<float> GhostGoLobbyDeathTimeMinutes =
         CVarDef.Create("ghost.go_lobby.death_time", 15f, CVar.SERVERONLY);
+
+    /*
+     * Decals
+     */
+
+    /// <summary>
+    ///     Минимальный интервал (в секундах) между отправками изменённых чанков декалей игрокам. 0 - каждый тик.
+    /// </summary>
+    public static readonly CVarDef<float> DecalSendInterval =
+        CVarDef.Create("decals.send_interval", 0.2f, CVar.SERVERONLY);
 }

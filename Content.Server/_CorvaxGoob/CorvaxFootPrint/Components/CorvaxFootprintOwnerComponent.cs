@@ -112,4 +112,8 @@ public sealed partial class CorvaxFootprintOwnerComponent : Component
     /// <summary>Сколько альфы добавляет каждый слитый след, делая насыщенные места плотнее.</summary>
     [DataField]
     public float DecalAlphaAccumulation = 0.2f;
+
+    /// <summary>Слияние, меняющее каждый канал цвета меньше чем на это значение, не обновляет декаль.</summary>
+    [DataField]
+    public float MergeColorThreshold = 0.02f;
 }

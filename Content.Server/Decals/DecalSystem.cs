@@ -8,6 +8,7 @@ using Content.Shared.Chunking;
 using Content.Shared.Database;
 using Content.Shared.Decals;
 using Content.Shared.Maps;
+using Content.Shared._CorvaxGoob.CCCVars; // CorvaxGoob-DecalSendInterval
 using Microsoft.Extensions.ObjectPool;
 using Robust.Server.Player;
 using Robust.Shared;
@@ -45,6 +46,11 @@ namespace Content.Server.Decals
         private UpdatePlayerJob _updateJob;
         private List<ICommonSession> _sessions = new();
 
+        // CorvaxGoob-DecalSendInterval-Start
+        private float _sendInterval;
+        private float _sendAccumulator;
+        // CorvaxGoob-DecalSendInterval-End
+
         // If this ever gets parallelised then you'll want to increase the pooled count.
         private ObjectPool<HashSet<Vector2i>> _chunkIndexPool =
             new DefaultObjectPool<HashSet<Vector2i>>(
@@ -72,6 +78,7 @@ namespace Content.Server.Decals
             SubscribeLocalEvent<PostGridSplitEvent>(OnGridSplit);
 
             Subs.CVar(_conf, CVars.NetPVS, OnPvsToggle, true);
+            Subs.CVar(_conf, CCCVars.DecalSendInterval, value => _sendInterval = value, true); // CorvaxGoob-DecalSendInterval
         }
 
         private void OnPvsToggle(bool value)
@@ -445,6 +452,15 @@ namespace Content.Server.Decals
         public override void Update(float frameTime)
         {
             base.Update(frameTime);
+
+            // CorvaxGoob-DecalSendInterval-Start
+            // A changed chunk is resent whole to every viewer, so batch changes instead of resending each tick
+            _sendAccumulator += frameTime;
+            if (_sendAccumulator < _sendInterval)
+                return;
+
+            _sendAccumulator = 0;
+            // CorvaxGoob-DecalSendInterval-End
 
             foreach (var ent in _dirtyChunks.Keys)
             {
