@@ -85,6 +85,9 @@
   recipeUnlocks:
   - ClothingShoesBootsMagSci
   - ClothingShoesBootsMoon
+  - ClothingShoesBootsMag # CorvaxGoob-Start
+  - ClothingShoesBootsMagSec
+  - ClothingShoesBootsMagAtmos # CorvaxGoob-End
   # Goobstation R&D Console rework start
   position: -3,-1
   technologyPrerequisites:

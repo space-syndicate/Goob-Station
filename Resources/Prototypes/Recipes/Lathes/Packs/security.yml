@@ -92,6 +92,7 @@
   - PowerCageSmall
   - TelescopicShield
   - ClothingBackpackHarmpack
+  - ClothingShoesBootsMagSec # CorvaxGoob
 
 - type: latheRecipePack
   id: SecurityBoards

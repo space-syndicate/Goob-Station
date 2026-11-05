@@ -3,3 +3,5 @@ ent-ClothingShoesBootsMagAtmos = атмосферные магнитные са�
 ent-ClothingShoesBootsMagSyndieUnremoveable = { ent-ClothingShoesBootsMagSyndie }
     .suffix = Неснимаемый
     .desc = { ent-ClothingShoesBootsMagSyndie.desc }
+ent-ClothingShoesBootsMagSec = магнитные сапоги охраны
+    .desc = Специализированные магнитные сапоги, производимые для отдела СБ. Стильно.

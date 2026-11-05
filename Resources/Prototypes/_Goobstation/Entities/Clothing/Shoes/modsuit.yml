@@ -66,6 +66,17 @@
     - state: boots
     - state: boots-sealed
       map: [ "sealed" ]
+  - type: ItemToggle
+  - type: ToggleClothing
+    action: ActionToggleMagboots
+  - type: ComponentToggler
+    components:
+    - type: NoSlip
+  - type: Magboots
+    enabledPrefix: null
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
   - type: Clothing
     equipSound: /Audio/Mecha/mechmove03.ogg
     unequipSound: /Audio/Mecha/mechmove03.ogg
@@ -332,7 +343,7 @@
       - state: equipped-FEET-sealed-vox
       shoes-hydrakin:
       - state: equipped-FEET-sealed-hydrakin
-  
+
 - type: entity
   parent: ClothingShoesBase
   id: ClothingModsuitBootsBrigMed
