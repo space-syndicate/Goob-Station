@@ -247,9 +247,13 @@ public sealed class CorvaxFootprintSystem : EntitySystem
                      d => d.Id == decalId && AnglesEqual(d.Angle, angle)))
         {
             var old = decal.Color ?? color;
-            var mixed = Color.InterpolateBetween(old, color, comp.DecalBlendFactor);
             var alpha = MathF.Min(1f, old.A + color.A * comp.DecalAlphaAccumulation);
-            _decals.SetDecalColor(gridUid, index, mixed.WithAlpha(alpha));
+            var mixed = Color.InterpolateBetween(old, color, comp.DecalBlendFactor).WithAlpha(alpha);
+
+            // Каждое изменение декали заново рассылает весь её чанк, поэтому насыщенный след с тем же цветом не трогаем
+            if (alpha > old.A || !ColorsClose(old, mixed, comp.MergeColorThreshold))
+                _decals.SetDecalColor(gridUid, index, mixed);
+
             return;
         }
 
@@ -278,6 +282,11 @@ public sealed class CorvaxFootprintSystem : EntitySystem
 
     private static bool AnglesEqual(Angle a, Angle b)
         => Math.Abs(Angle.ShortestDistance(a, b).Theta) < 0.01;
+
+    private static bool ColorsClose(Color a, Color b, float threshold)
+        => MathF.Abs(a.R - b.R) < threshold
+           && MathF.Abs(a.G - b.G) < threshold
+           && MathF.Abs(a.B - b.B) < threshold;
 
     private static FixedPoint2 GetFootprintVolume(Entity<CorvaxFootprintOwnerComponent> entity, Entity<SolutionComponent> solution)
     {

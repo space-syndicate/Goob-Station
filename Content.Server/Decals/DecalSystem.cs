@@ -8,6 +8,7 @@ using Content.Shared.Chunking;
 using Content.Shared.Database;
 using Content.Shared.Decals;
 using Content.Shared.Maps;
+using Content.Shared._CorvaxGoob.CCCVars; // CorvaxGoob-DecalSendInterval
 using Microsoft.Extensions.ObjectPool;
 using Robust.Server.Player;
 using Robust.Shared;
@@ -45,6 +46,12 @@ namespace Content.Server.Decals
         private UpdatePlayerJob _updateJob;
         private List<ICommonSession> _sessions = new();
 
+        // CorvaxGoob-DecalSendInterval-Start
+        private float _sendInterval;
+        private float _sendAccumulator;
+        private bool _flushDirtyChunks;
+        // CorvaxGoob-DecalSendInterval-End
+
         // If this ever gets parallelised then you'll want to increase the pooled count.
         private ObjectPool<HashSet<Vector2i>> _chunkIndexPool =
             new DefaultObjectPool<HashSet<Vector2i>>(
@@ -72,6 +79,7 @@ namespace Content.Server.Decals
             SubscribeLocalEvent<PostGridSplitEvent>(OnGridSplit);
 
             Subs.CVar(_conf, CVars.NetPVS, OnPvsToggle, true);
+            Subs.CVar(_conf, CCCVars.DecalSendInterval, value => _sendInterval = value, true); // CorvaxGoob-DecalSendInterval
         }
 
         private void OnPvsToggle(bool value)
@@ -446,15 +454,21 @@ namespace Content.Server.Decals
         {
             base.Update(frameTime);
 
-            foreach (var ent in _dirtyChunks.Keys)
+            // CorvaxGoob-DecalSendInterval-Start
+            // A changed chunk is resent whole to every viewer, so batch changes instead of resending each tick
+            _sendAccumulator += frameTime;
+            _flushDirtyChunks = _sendAccumulator >= _sendInterval;
+            if (_flushDirtyChunks)
             {
-                if (TryGetEntity(ent, out var uid) && TryComp(uid, out DecalGridComponent? decals))
-                    Dirty(uid.Value, decals);
+                _sendAccumulator = 0;
+                FlushDirtyChunks();
             }
+            // CorvaxGoob-DecalSendInterval-End
 
             if (!PvsEnabled)
             {
-                _dirtyChunks.Clear();
+                if (_flushDirtyChunks) // CorvaxGoob-DecalSendInterval
+                    _dirtyChunks.Clear();
                 return;
             }
 
@@ -474,8 +488,29 @@ namespace Content.Server.Decals
                     _parMan.ProcessNow(_updateJob, _sessions.Count);
             }
 
-            _dirtyChunks.Clear();
+            if (_flushDirtyChunks) // CorvaxGoob-DecalSendInterval
+                _dirtyChunks.Clear();
         }
+
+        // CorvaxGoob-DecalSendInterval-Start
+        private void FlushDirtyChunks()
+        {
+            foreach (var (netGrid, indices) in _dirtyChunks)
+            {
+                if (!TryGetEntity(netGrid, out var uid) || !TryComp(uid, out DecalGridComponent? decals))
+                    continue;
+
+                // Delta states only include chunks modified after the client's last acked tick, so restamp delayed changes
+                foreach (var index in indices)
+                {
+                    if (decals.ChunkCollection.ChunkCollection.TryGetValue(index, out var chunk))
+                        chunk.LastModified = _timing.CurTick;
+                }
+
+                Dirty(uid.Value, decals);
+            }
+        }
+        // CorvaxGoob-DecalSendInterval-End
 
         public void UpdatePlayer(ICommonSession player)
         {
@@ -534,7 +569,13 @@ namespace Content.Server.Decals
             foreach (var (netGrid, gridChunks) in chunksInRange)
             {
                 var newChunks = _chunkIndexPool.Get();
-                _dirtyChunks.TryGetValue(netGrid, out var dirtyChunks);
+
+                // CorvaxGoob-DecalSendInterval-Start
+                // Chunks entering view are still sent every tick, only changed ones wait for the flush
+                HashSet<Vector2i>? dirtyChunks = null;
+                if (_flushDirtyChunks)
+                    _dirtyChunks.TryGetValue(netGrid, out dirtyChunks);
+                // CorvaxGoob-DecalSendInterval-End
 
                 if (!previouslySent.TryGetValue(netGrid, out var previousChunks))
                     newChunks.UnionWith(gridChunks);
