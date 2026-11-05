@@ -14,3 +14,18 @@
       state: icon
   - type: InstantAction
     event: !type:ToggleNightVisionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionToggleJanicartCleaning
+  name: Toggle floor cleaning
+  description: Toggles cleaning floor.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 1
+    icon:
+      sprite: Objects/Specific/Janitorial/spray_bottle.rsi
+      state: cleaner
+  - type: InstantAction
+    event: !type:ToggleJanicartCleaningActionEvent
