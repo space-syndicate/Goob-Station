@@ -182,8 +182,7 @@ public sealed partial class PaperSystem : EntitySystem // Goob
         return new StampDisplayInfo
         {
             StampedName = stamp.StampedName,
-            StampedColor = stamp.StampedColor, // Goob stamp
-            StampLargeIcon = stamp.StampLargeIcon // goob Stamp
+            StampedColor = stamp.StampedColor
         };
     }
 
