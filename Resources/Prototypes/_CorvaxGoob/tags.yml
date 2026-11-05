@@ -130,6 +130,12 @@
   id: Skills
 
 - type: Tag
+  id: SiloMaterialCloth
+
+- type: Tag
+  id: SiloMaterialWood
+
+- type: Tag
   id: TelescopicBaton
 
 - type: Tag
