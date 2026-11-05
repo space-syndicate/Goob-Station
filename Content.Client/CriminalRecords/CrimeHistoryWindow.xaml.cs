@@ -104,8 +104,6 @@ public sealed partial class CrimeHistoryWindow : FancyWindow
             _index = (uint) args.ItemIndex;
             DeleteButton.Disabled = false;
 
-            if (_printableIndexs.TryGetValue(_index.Value, out var printable) && !printable) // CorvaxGoob-SecurityFeatures
-                _index = null;
         };
         History.OnItemDeselected += args =>
         {
@@ -118,7 +116,9 @@ public sealed partial class CrimeHistoryWindow : FancyWindow
     // CorvaxGoob-SecurityFeatures
     protected override void FrameUpdate(FrameEventArgs args)
     {
-        PrintButton.Disabled = _component?.NextPrintTime >= _timing.CurTime || _index is null ? true : false;
+        PrintButton.Disabled = _index is not { } index
+            || (_printableIndexs.TryGetValue(index, out var printable) && !printable)
+            || _component?.NextPrintTime >= _timing.CurTime;
     }
 
     public void UpdateHistory(CriminalRecord record, bool access)

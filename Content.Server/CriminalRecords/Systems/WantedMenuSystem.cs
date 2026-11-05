@@ -83,6 +83,7 @@ public sealed partial class CriminalRecordsConsoleSystem
         // prevent malf client violating wanted/reason nullability
         var requireReason = msg.Status is SecurityStatus.Wanted
             or SecurityStatus.Suspected
+            or SecurityStatus.Hostile // CorvaxGoob
             or SecurityStatus.Search
             or SecurityStatus.Dangerous
             or SecurityStatus.Demote; // Goobstation
@@ -125,11 +126,14 @@ public sealed partial class CriminalRecordsConsoleSystem
 
         _criminalRecords.TryChangeStatus(key.Value, msg.Status, msg.Reason, officer);
 
+        /*  CorvaxGoob Edit Start
         (string, object)[] args;
         if (reason != null)
             args = new (string, object)[] { ("name", name), ("officer", officer), ("reason", reason), ("job", jobName) };
         else
             args = new (string, object)[] { ("name", name), ("officer", officer), ("job", jobName) };
+
+            CorvaxGoob End */
 
         // figure out which radio message to send depending on transition
         var statusString = (oldStatus, msg.Status) switch
@@ -168,11 +172,32 @@ public sealed partial class CriminalRecordsConsoleSystem
             (SecurityStatus.Dangerous, SecurityStatus.None) => "not-dangerous",
             // person no longer demoted
             (SecurityStatus.Demote, SecurityStatus.None) => "not-demoted", // Goobstation
+            // CorvaxGoob Start
+            // person has been marked as hostile
+            (_, SecurityStatus.Hostile) => "hostile",
+            // person has been marked as eliminated
+            (_, SecurityStatus.Eliminated) => "eliminated",
+            // released marker removed
+            (SecurityStatus.Discharged, SecurityStatus.None) => "not-discharged",
+            // person is no longer marked as hostile
+            (SecurityStatus.Hostile, SecurityStatus.None) => "not-hostile",
+            // person's eliminated status has been cleared
+            (SecurityStatus.Eliminated, SecurityStatus.None) => "not-eliminated",
+            // CorvaxGoob End
             // this is impossible
             _ => "not-wanted"
         };
-        _radio.SendRadioMessage(msg.Actor, Loc.GetString($"criminal-records-console-{statusString}", args),
-            ent.Comp.SecurityChannel, ent);
+
+        // CorvaxGoob Edit Start
+        TryAddSecHudStatusHistory(key.Value, msg.Status, statusString, reason, officer);
+
+        var radioStatusString = msg.Status == SecurityStatus.None
+            ? "cleared"
+            : statusString;
+
+        _radio.SendRadioMessage(msg.Actor, FormatStatusChangeRadioMessage(radioStatusString, name, officer, jobName, reason),
+            ent.Comp.SecurityChannel, ent, escapeMarkup: false);
+        // CorvaxGoob End
 
         UpdateUserInterface(ent);
     }
@@ -194,6 +219,9 @@ public sealed partial class CriminalRecordsConsoleSystem
             if (articles.Length < 1 || articles.Length > ent.Comp.MaxStringLength)
                 return;
         }
+
+        if (!IsValidDetainedDuration(msg.Duration))
+            return;
 
         var oldStatus = record.Status;
 
@@ -219,16 +247,18 @@ public sealed partial class CriminalRecordsConsoleSystem
         if (tryGetIdentityShortInfoEvent.Title != null)
             officer = tryGetIdentityShortInfoEvent.Title;
 
-        _criminalRecords.TryChangeStatus(key.Value, SecurityStatus.Detained, msg.Articles, officer);
+        _criminalRecords.TryChangeStatus(key.Value, SecurityStatus.Detained, articles, officer);
 
+        /*  CorvaxGoob Edit Start
         (string, object)[] args;
         if (articles != null)
             args = new (string, object)[] { ("name", name), ("officer", officer), ("reason", articles), ("job", jobName) };
         else
             args = new (string, object)[] { ("name", name), ("officer", officer), ("job", jobName) };
+            CorvaxGoob End */
 
-        _radio.SendRadioMessage(msg.Actor, Loc.GetString($"criminal-records-console-detained", args),
-            ent.Comp.SecurityChannel, msg.Actor);
+        _radio.SendRadioMessage(msg.Actor, FormatStatusChangeRadioMessage("detained", name, officer, jobName, articles),
+            ent.Comp.SecurityChannel, msg.Actor, escapeMarkup: false); // CorvaxGoob Edit
 
         UpdateUserInterface(ent);
     }
