@@ -46,7 +46,7 @@ public sealed partial class CorvaxFootprintOwnerComponent : Component
     ///     Чем меньше, тем следы чаще
     /// </summary>
     [DataField]
-    public float FootDistance = 0.7f;
+    public float FootDistance = 0.5f;
 
     /// <summary>
     ///     Сколько тайлов надо приодолеть ползком, чтобы оставить следующий отпечаток. 
@@ -103,7 +103,7 @@ public sealed partial class CorvaxFootprintOwnerComponent : Component
     ///     Радиус (в тайлах), внутри которого следы одного направления сливаются вместо спавна новой декали.
     /// </summary>
     [DataField]
-    public float GroupRadius = 0.4f;
+    public float GroupRadius = 0.35f;
 
     /// <summary>Насколько сильно цвет нового следа подмешивается в уже слитый (0..1).</summary>
     [DataField]
