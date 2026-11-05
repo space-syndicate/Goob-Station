@@ -250,8 +250,8 @@ public sealed class CorvaxFootprintSystem : EntitySystem
             var alpha = MathF.Min(1f, old.A + color.A * comp.DecalAlphaAccumulation);
             var mixed = Color.InterpolateBetween(old, color, comp.DecalBlendFactor).WithAlpha(alpha);
 
-            // Каждое изменение декали заново рассылает весь её чанк, незаметные пропускаем
-            if (!ColorsClose(old, mixed, comp.MergeColorThreshold))
+            // Каждое изменение декали заново рассылает весь её чанк, поэтому насыщенный след с тем же цветом не трогаем
+            if (alpha > old.A || !ColorsClose(old, mixed, comp.MergeColorThreshold))
                 _decals.SetDecalColor(gridUid, index, mixed);
 
             return;
@@ -286,8 +286,7 @@ public sealed class CorvaxFootprintSystem : EntitySystem
     private static bool ColorsClose(Color a, Color b, float threshold)
         => MathF.Abs(a.R - b.R) < threshold
            && MathF.Abs(a.G - b.G) < threshold
-           && MathF.Abs(a.B - b.B) < threshold
-           && MathF.Abs(a.A - b.A) < threshold;
+           && MathF.Abs(a.B - b.B) < threshold;
 
     private static FixedPoint2 GetFootprintVolume(Entity<CorvaxFootprintOwnerComponent> entity, Entity<SolutionComponent> solution)
     {

@@ -113,7 +113,7 @@ public sealed partial class CorvaxFootprintOwnerComponent : Component
     [DataField]
     public float DecalAlphaAccumulation = 0.2f;
 
-    /// <summary>Слияние, меняющее каждый канал цвета меньше чем на это значение, не обновляет декаль.</summary>
+    /// <summary>Слияние без прироста альфы, меняющее каждый канал RGB меньше чем на это значение, не обновляет декаль.</summary>
     [DataField]
     public float MergeColorThreshold = 0.02f;
 }

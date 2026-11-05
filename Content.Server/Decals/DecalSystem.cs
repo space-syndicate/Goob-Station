@@ -49,6 +49,7 @@ namespace Content.Server.Decals
         // CorvaxGoob-DecalSendInterval-Start
         private float _sendInterval;
         private float _sendAccumulator;
+        private bool _flushDirtyChunks;
         // CorvaxGoob-DecalSendInterval-End
 
         // If this ever gets parallelised then you'll want to increase the pooled count.
@@ -456,21 +457,18 @@ namespace Content.Server.Decals
             // CorvaxGoob-DecalSendInterval-Start
             // A changed chunk is resent whole to every viewer, so batch changes instead of resending each tick
             _sendAccumulator += frameTime;
-            if (_sendAccumulator < _sendInterval)
-                return;
-
-            _sendAccumulator = 0;
-            // CorvaxGoob-DecalSendInterval-End
-
-            foreach (var ent in _dirtyChunks.Keys)
+            _flushDirtyChunks = _sendAccumulator >= _sendInterval;
+            if (_flushDirtyChunks)
             {
-                if (TryGetEntity(ent, out var uid) && TryComp(uid, out DecalGridComponent? decals))
-                    Dirty(uid.Value, decals);
+                _sendAccumulator = 0;
+                FlushDirtyChunks();
             }
+            // CorvaxGoob-DecalSendInterval-End
 
             if (!PvsEnabled)
             {
-                _dirtyChunks.Clear();
+                if (_flushDirtyChunks) // CorvaxGoob-DecalSendInterval
+                    _dirtyChunks.Clear();
                 return;
             }
 
@@ -490,8 +488,29 @@ namespace Content.Server.Decals
                     _parMan.ProcessNow(_updateJob, _sessions.Count);
             }
 
-            _dirtyChunks.Clear();
+            if (_flushDirtyChunks) // CorvaxGoob-DecalSendInterval
+                _dirtyChunks.Clear();
         }
+
+        // CorvaxGoob-DecalSendInterval-Start
+        private void FlushDirtyChunks()
+        {
+            foreach (var (netGrid, indices) in _dirtyChunks)
+            {
+                if (!TryGetEntity(netGrid, out var uid) || !TryComp(uid, out DecalGridComponent? decals))
+                    continue;
+
+                // Delta states only include chunks modified after the client's last acked tick, so restamp delayed changes
+                foreach (var index in indices)
+                {
+                    if (decals.ChunkCollection.ChunkCollection.TryGetValue(index, out var chunk))
+                        chunk.LastModified = _timing.CurTick;
+                }
+
+                Dirty(uid.Value, decals);
+            }
+        }
+        // CorvaxGoob-DecalSendInterval-End
 
         public void UpdatePlayer(ICommonSession player)
         {
@@ -550,7 +569,13 @@ namespace Content.Server.Decals
             foreach (var (netGrid, gridChunks) in chunksInRange)
             {
                 var newChunks = _chunkIndexPool.Get();
-                _dirtyChunks.TryGetValue(netGrid, out var dirtyChunks);
+
+                // CorvaxGoob-DecalSendInterval-Start
+                // Chunks entering view are still sent every tick, only changed ones wait for the flush
+                HashSet<Vector2i>? dirtyChunks = null;
+                if (_flushDirtyChunks)
+                    _dirtyChunks.TryGetValue(netGrid, out dirtyChunks);
+                // CorvaxGoob-DecalSendInterval-End
 
                 if (!previouslySent.TryGetValue(netGrid, out var previousChunks))
                     newChunks.UnionWith(gridChunks);
