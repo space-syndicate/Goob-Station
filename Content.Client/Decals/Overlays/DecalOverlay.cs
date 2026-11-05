@@ -7,18 +7,28 @@ using Robust.Client.Graphics;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Enumerators;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;  // CorvaxGoob-GlowingDecals
 
 namespace Content.Client.Decals.Overlays
 {
     public sealed class DecalOverlay : GridOverlay
     {
+        private static readonly ProtoId<ShaderPrototype> EmissiveShader = "Emissive"; // CorvaxGoob-GlowingDecals
+
         private readonly SpriteSystem _sprites;
         private readonly IEntityManager _entManager;
         private readonly IPrototypeManager _prototypeManager;
+        private readonly IGameTiming _timing = default!;  // CorvaxGoob-GlowingDecals
 
         private readonly Dictionary<string, (Texture Texture, bool SnapCardinals)> _cachedTextures = new(64);
 
         private readonly List<(uint Id, Decal Decal)> _decals = new();
+
+        // CorvaxGoob-Start
+        private readonly ShaderInstance _emissiveShader;
+        private readonly Dictionary<(EntityUid Grid, uint Id), ShaderInstance> _glowingDecalsShaders = new();
+        private readonly HashSet<uint> _decalsIDs = new();
+        // CorvaxGoob-End
 
         public DecalOverlay(
             SpriteSystem sprites,
@@ -28,6 +38,8 @@ namespace Content.Client.Decals.Overlays
             _sprites = sprites;
             _entManager = entManager;
             _prototypeManager = prototypeManager;
+            _emissiveShader = _prototypeManager.Index(EmissiveShader).InstanceUnique();
+            _timing = IoCManager.Resolve<IGameTiming>(); // CorvaxGoob-GlowingDecals
         }
 
         protected override void Draw(in OverlayDrawArgs args)
@@ -54,6 +66,7 @@ namespace Content.Client.Decals.Overlays
             var gridAABB = xformSystem.GetInvWorldMatrix(xform).TransformBox(args.WorldBounds.Enlarged(1f));
             var chunkEnumerator = new ChunkIndicesEnumerator(gridAABB, SharedDecalSystem.ChunkSize);
             _decals.Clear();
+            _decalsIDs.Clear(); // CorvaxGoob-GlowingDecals
 
             while (chunkEnumerator.MoveNext(out var index))
             {
@@ -66,8 +79,17 @@ namespace Content.Client.Decals.Overlays
                         continue;
 
                     _decals.Add((id, decal));
+                    _decalsIDs.Add(id); // CorvaxGoob-GlowingDecals
                 }
             }
+
+            // CorvaxGoob-Start
+            foreach (var key in _glowingDecalsShaders.Keys)
+            {
+                if (key.Grid == owner && !_decalsIDs.Contains(key.Id))
+                    _glowingDecalsShaders.Remove(key);
+            }
+            // CorvaxGoob-End
 
             if (_decals.Count == 0)
                 return;
@@ -85,7 +107,9 @@ namespace Content.Client.Decals.Overlays
             var (_, worldRot, worldMatrix) = xformSystem.GetWorldPositionRotationMatrix(xform);
             handle.SetTransform(worldMatrix);
 
-            foreach (var (_, decal) in _decals)
+            var defShader = handle.GetShader(); // CorvaxGoob-GlowingDecals
+
+            foreach (var (decalId, decal) in _decals)  // CorvaxGoob-Edit: GlowingDecals
             {
                 if (!_cachedTextures.TryGetValue(decal.Id, out var cache))
                 {
@@ -109,10 +133,51 @@ namespace Content.Client.Decals.Overlays
 
                 var angle = decal.Angle - cardinal;
 
+                // CorvaxGoob-Start
+                if (decal.Glows)
+                {
+                    var drawGlow = true;
+                    float glowEnergy;
+
+                    if (decal.GlowUntil == TimeSpan.Zero)
+                    {
+                        glowEnergy = decal.GlowEnergy;
+                    }
+                    else
+                    {
+                        var remaining = (decal.GlowUntil - _timing.CurTime).TotalSeconds;
+                        if (remaining <= 0.01)
+                        {
+                            _glowingDecalsShaders.Remove((owner, decalId));
+                            drawGlow = false;
+                            glowEnergy = 0f;
+                        }
+                        else
+                        {
+                            glowEnergy = Math.Clamp(
+                                (float)(remaining / decal.GlowTime) * decal.GlowEnergy, 0f, decal.GlowEnergy);
+                        }
+                    }
+
+                    if (drawGlow)
+                    {
+                        if (!_glowingDecalsShaders.TryGetValue((owner, decalId), out var decalShader))
+                        {
+                            decalShader = _emissiveShader.Duplicate();
+                            _glowingDecalsShaders[(owner, decalId)] = decalShader;
+                        }
+                        handle.UseShader(decalShader);
+                        decalShader.SetParameter("glowEnergy", glowEnergy);
+                    }
+                }
+                // Corvax-Goob-End
+
                 if (angle.Equals(Angle.Zero))
                     handle.DrawTexture(cache.Texture, decal.Coordinates, decal.Color);
                 else
                     handle.DrawTexture(cache.Texture, decal.Coordinates, angle, decal.Color);
+
+                handle.UseShader(defShader); // CorvaxGoob-GlowingDecals
             }
 
             handle.SetTransform(Matrix3x2.Identity);

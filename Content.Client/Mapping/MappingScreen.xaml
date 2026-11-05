@@ -31,6 +31,16 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                               Text="{Loc decal-placer-window-enable-snap}" />
                     <CheckBox Name="DecalEnableCleanable"
                               Text="{Loc decal-placer-window-enable-cleanable}" />
+                    <CheckBox Name="DecalEnableGlow"
+                              Text="{Loc 'decal-placer-window-enable-glow'}" /><!-- CorvaxGoob -->
+                    <BoxContainer Orientation="Horizontal"><!-- CorvaxGoob -->
+                        <Label Text="{Loc 'decal-placer-window-glow-time'}" Margin="0 0 0 1" />
+                        <SpinBox Name="DecalGlowTime" HorizontalExpand ="True" />
+                    </BoxContainer>
+                    <BoxContainer Orientation="Horizontal"><!-- CorvaxGoob -->
+                        <Label Text="{Loc 'decal-placer-window-glow-energy'}" Margin="0 0 0 1" />
+                        <Slider Name="DecalGlowEnergy" HorizontalExpand ="True" />
+                    </BoxContainer>
                     <BoxContainer Name="DecalSpinBoxContainer" Orientation="Horizontal">
                         <Label Text="{Loc decal-placer-window-rotation}" Margin="0 0 0 1" />
                     </BoxContainer>
