@@ -203,7 +203,7 @@
   - type: DamageStateVisuals
     states:
       Alive:
-        Base: snake
+        Base: iriska
       Critical:
         Base: dead
       Dead:
