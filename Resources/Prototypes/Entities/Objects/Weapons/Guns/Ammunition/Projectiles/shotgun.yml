@@ -59,7 +59,7 @@
   - type: ProjectileSpread
     proto: PelletShotgun
     count: 6
-    spread: 15
+    spread: 20 # CorvaxGoob sec rebalance start
 
 - type: entity
   parent: BaseBulletIncendiary
@@ -207,7 +207,7 @@
   - type: Projectile
     damage:
       types:
-        Radiation: 5
+        Radiation: 2 # CorvaxGoob sec rebalance
         Piercing: 5
 
 - type: entity
@@ -218,7 +218,7 @@
   - type: ProjectileSpread
     proto: PelletShotgunUranium
     count: 5
-    spread: 6
+    spread: 20 # CorvaxGoob sec rebalance
 
 - type: entity
   parent: BaseBullet

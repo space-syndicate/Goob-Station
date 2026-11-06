@@ -64,7 +64,7 @@
   - WeaponTemperatureGun # Goobstation
   - WeaponMechCombatFiredartLaser # Goobstation
   - WeaponEnergyIonRifle # Goobstation - CR second energy bolt update(and ion)
-  - PowerCellIonRevolver # Goobstation
+  # - PowerCellIonRevolver # Goobstation # CorvaxGoob sec rebalance
   # Goobstation R&D Console rework start
   position: 4,0
   technologyPrerequisites:
@@ -101,7 +101,7 @@
     state: uranium
   discipline: Arsenal
   tier: 1
-  cost: 7500
+  cost: 15000 # CorvaxGoob sec rebalance
   recipeUnlocks:
   - MagazineRifleUranium
   - MagazinePistolUranium
@@ -118,6 +118,7 @@
   position: 3,2
   technologyPrerequisites:
   - DraconicMunitions
+  - NuclearPowerRecycling # CorvaxGoob sec rebalance
   # Goobstation R&D Console rework end
 
 - type: technology
@@ -216,13 +217,16 @@
   recipeUnlocks:
   - WeaponXrayCannon
   - HoloprojectorSecurityAdvanced # Goobstation
-  - PowerCellXrayRevolver # Goobstation
-  - PowerCellXraySMG # Goobstation
-  - PowerCellXraySniper # Goobstation
+  # CorvaxGoob sec rebalance start
+  # - PowerCellXrayRevolver # Goobstation
+  # - PowerCellXraySMG # Goobstation
+  # - PowerCellXraySniper # Goobstation
+  # CorvaxGoob sec rebalance end
   - AntiMindControlDevice # Goobstation
   # Goobstation R&D Console rework start
   technologyPrerequisites:
   - WeaponizedLaserManipulation
+  - UraniumMunitions # CorvaxGoob sec rebalance
   position: 5,1
   # Goobstation R&D Console rework end
 
