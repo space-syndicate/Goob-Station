@@ -174,3 +174,62 @@
         - DoorBumpOpener
         - StunImmune
         - FootstepSound
+
+- type: entity
+  name: Iriska
+  parent: SimpleMobBase
+  id: MobSnakeIriska
+  description: The cutest little snake in the whole world.
+  components:
+  - type: VentCrawler # goobstation - Ventcrawl
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: iriska
+      sprite: _CorvaxGoob/Mobs/Pets/iriska.rsi
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.25
+        density: 10
+        mask:
+        - SmallMobMask
+        layer:
+        - SmallMobLayer
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: iriska
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatSnakeIriska
+      amount: 1
+  - type: InteractionPopup
+    successChance: 0.6
+    interactSuccessString: petting-success-reptile
+    interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
+    interactSuccessSound:
+      path: /Audio/Animals/snake_hiss.ogg
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 50
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: Scale
+  - type: LanguageKnowledge # Einstein Engines - Language
+    speaks:
+    - Hissing
+    understands:
+    - Hissing
+    - TauCetiBasic
