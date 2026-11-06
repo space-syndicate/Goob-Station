@@ -686,7 +686,7 @@
 - type: entity
   parent: FoodMeatBase
   id: FoodMeatSnakeIriska
-  name: raw snake iriska meat
+  name: raw snake Iriska meat
   description: A long piece of snake meat, it smells like toffee.
   components:
   - type: Tag

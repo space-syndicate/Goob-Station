@@ -54,5 +54,5 @@ ent-FoodResomiCutlet = сырая котлета из резоми
     .desc = { ent-FoodMeatCutlet.desc }
 ent-FoodResomiCutletCooked = котлета из резоми
     .desc = { ent-FoodMeatCutletCooked.desc }
-ent-FoodMeatSnakeIriska = сырое мясо ириски
+ent-FoodMeatSnakeIriska = сырое мясо Ириски
     .desc = Длинный кусок змеиного мяса, пахнет ирисками.

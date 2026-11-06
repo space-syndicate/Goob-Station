@@ -25,7 +25,7 @@
         - MobBingleCargo
 
 - type: entity
-  name: Snake Iriska Spawner
+  name: snake Iriska Spawner
   id: SpawnMobSnakeIriska
   parent: MarkerBase
   components:
