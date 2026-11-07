@@ -61,7 +61,7 @@
       collection: MetalThud
     activatedDamage:
         types:
-            Heat: 8
+            Heat: 7 # CorvaxGoob: 8 > 7
   - type: ItemToggleSize
     activatedSize: Large
   - type: ItemToggleHot
