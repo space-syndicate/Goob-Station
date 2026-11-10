@@ -19,6 +19,7 @@
         Blunt: 5
     soundHit:
       collection: MetalThud
+  - type: IgnoreSkills
   - type: CombatMode
   - type: NoSlip
   - type: StaticPrice
