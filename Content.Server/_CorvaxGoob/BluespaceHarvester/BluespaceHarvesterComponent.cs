@@ -101,7 +101,7 @@ public sealed partial class BluespaceHarvesterComponent : Component
     /// Tries once every 1 second, with this chance to create a rift if DangerLimit is exceeded.
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public float RiftChance = 0.08f;
+    public float RiftChance = 0f;
 
     /// <summary>
     /// Replaces RiftChance when hacked by Emag.

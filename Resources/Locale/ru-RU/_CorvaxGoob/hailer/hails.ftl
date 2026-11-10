@@ -32,6 +32,8 @@ hail-mode-agressive-20 = Сэр, на землю!
 hail-mode-agressive-21 = Стой на месте!
 hail-mode-agressive-22 = Без резких движений!
 hail-mode-agressive-23 = Сдавайся!
+hail-mode-agressive-23 = Руки за голову!
+hail-mode-agressive-23 = Покажи мне руки!
 
 hail-mode-emag-name = @I!#$(GVJ!)
 hail-mode-emag-1 = Ты покойник!
@@ -58,4 +60,3 @@ hail-mode-emag-21 = Молись, пока есть время!
 hail-mode-emag-22 = Время драть задницы!
 hail-mode-emag-23 = Щас я надеру тебе задницу!
 hail-mode-emag-24 = Ты будешь завидовать мёртвым!
-

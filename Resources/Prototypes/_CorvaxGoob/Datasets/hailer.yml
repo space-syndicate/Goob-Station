@@ -8,7 +8,7 @@
   id: HailerMessagersAgressive
   values:
     prefix: hail-mode-agressive-
-    count: 23
+    count: 25
 
 - type: localizedDataset
   id: HailerMessagersEmag
