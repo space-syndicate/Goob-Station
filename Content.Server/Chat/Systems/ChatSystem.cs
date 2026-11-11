@@ -845,7 +845,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             ("entity", ent),
             ("message", FormattedMessage.RemoveMarkupPermissive(action))); // Goob - Fix (malformed markup throws)
 
-        if (checkEmote && !TryEmoteChatInput(source, action, forced)) // goob edit
+        if (checkEmote && !TryEmoteChatInput(source, action))
             return;
 
         SendInVoiceRange(

@@ -2,6 +2,7 @@
 // using Content.Goobstation.Server.VoiceChat; // CorvaxGoob
 using Content.Goobstation.Common.ServerCurrency;
 using Robust.Shared.ContentPack;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
 namespace Content.Goobstation.Server.Entry;
@@ -20,6 +21,8 @@ public sealed class EntryPoint : GameServer
         // ServerGoobContentIoC.Register(); // deleted by CorvaxGoob
 
         IoCManager.BuildGraph();
+
+        IoCManager.Resolve<IPrototypeManager>().RegisterIgnore("newsEntry");
 
         /* deleted by CorvaxGoob
         _voiceManager = IoCManager.Resolve<VoiceChatManager>();

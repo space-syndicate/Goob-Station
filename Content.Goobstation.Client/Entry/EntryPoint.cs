@@ -9,6 +9,7 @@
 
 // using Content.Goobstation.Client.VoiceChat; // CorvaxGoob
 using Content.Goobstation.Client.JoinQueue;
+using Content.Goobstation.Client.News;
 using Content.Goobstation.Common.ServerCurrency;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Prototypes;
@@ -20,6 +21,7 @@ public sealed partial class EntryPoint : GameClient
     /* CorvaxGoob
     [Dependency] private VoiceChatManager _voiceManager = default!;
     [Dependency] private JoinQueueManager _joinQueue = default!;
+    [Dependency] private NewsManager _news = default!;
     [Dependency] private PollManager _pollManager = default!;
     [Dependency] private ICommonCurrencyManager _currMan = default!;
     */
@@ -44,6 +46,7 @@ public sealed partial class EntryPoint : GameClient
         _joinQueue.Initialize();
         _pollManager.Initialize();
         _currMan.Initialize();
+        _news.Initialize();
         */
     }
 

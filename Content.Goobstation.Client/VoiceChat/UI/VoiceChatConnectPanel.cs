@@ -1,12 +1,15 @@
 // Fully deleted by CorvaxGoob
 /*
+using System.Diagnostics.CodeAnalysis;
+using Content.Client.Guidebook.Richtext;
 using Content.Client.Stylesheets;
+using Content.Goobstation.UIKit.UserInterface.Lobby;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 
 namespace Content.Goobstation.Client.VoiceChat.UI;
 
-public sealed partial class VoiceChatConnectPanel : BoxContainer
+public sealed partial class VoiceChatConnectPanel : BoxContainer, IDocumentTag
 {
     [Dependency] private IClipboardManager _clipboard = default!;
     [Dependency] private VoiceChatManager _voice = default!;
@@ -31,13 +34,13 @@ public sealed partial class VoiceChatConnectPanel : BoxContainer
         _open = new Button
         {
             Text = Loc.GetString("voice-link-open"),
-            StyleClasses = { StyleClass.ButtonOpenRight },
+            StyleClasses = { HullStyleClasses.Plate },
             HorizontalExpand = true,
         };
         _copy = new Button
         {
             Text = Loc.GetString("voice-link-copy"),
-            StyleClasses = { StyleClass.ButtonOpenLeft },
+            StyleClasses = { HullStyleClasses.Plate },
             HorizontalExpand = true,
         };
         _open.OnPressed += _ => _voice.OpenLink();
@@ -52,6 +55,7 @@ public sealed partial class VoiceChatConnectPanel : BoxContainer
             Orientation = LayoutOrientation.Horizontal,
             VerticalAlignment = VAlignment.Bottom,
             VerticalExpand = true,
+            SeparationOverride = 6,
         };
         buttons.AddChild(_open);
         buttons.AddChild(_copy);
@@ -66,18 +70,18 @@ public sealed partial class VoiceChatConnectPanel : BoxContainer
         computer.AddChild(new Label
         {
             Text = Loc.GetString("voice-link-computer-title"),
-            StyleClasses = { StyleClass.LabelHeading },
+            StyleClasses = { HullStyleClasses.PostTitle },
         });
         computer.AddChild(new Label
         {
             Text = Loc.GetString("voice-link-computer-text"),
-            StyleClasses = { StyleClass.LabelSubText },
+            StyleClasses = { HullStyleClasses.Muted },
         });
         computer.AddChild(buttons);
 
         _pageUrl = new Label
         {
-            StyleClasses = { StyleClass.LabelKeyText },
+            StyleClasses = { HullStyleClasses.FactValue },
         };
         _code = new Label
         {
@@ -95,12 +99,12 @@ public sealed partial class VoiceChatConnectPanel : BoxContainer
         phone.AddChild(new Label
         {
             Text = Loc.GetString("voice-link-phone-title"),
-            StyleClasses = { StyleClass.LabelHeading },
+            StyleClasses = { HullStyleClasses.PostTitle },
         });
         phone.AddChild(new Label
         {
             Text = Loc.GetString("voice-link-phone-text"),
-            StyleClasses = { StyleClass.LabelSubText },
+            StyleClasses = { HullStyleClasses.Muted },
         });
         phone.AddChild(_pageUrl);
         phone.AddChild(_code);
@@ -118,8 +122,14 @@ public sealed partial class VoiceChatConnectPanel : BoxContainer
         AddChild(new Label
         {
             Text = Loc.GetString("voice-link-expiry"),
-            StyleClasses = { StyleClass.LabelSubText },
+            StyleClasses = { HullStyleClasses.Muted },
         });
+    }
+
+    public bool TryParseTag(Dictionary<string, string> args, [NotNullWhen(true)] out Control? control)
+    {
+        control = this;
+        return true;
     }
 
     protected override void EnteredTree()
@@ -128,6 +138,9 @@ public sealed partial class VoiceChatConnectPanel : BoxContainer
 
         _voice.LinkChanged += UpdateState;
         _voice.WebConnectedChanged += OnWebConnectedChanged;
+
+        _voice.RequestLink();
+
         UpdateState();
     }
 
