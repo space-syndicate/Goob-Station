@@ -1,3 +1,4 @@
+using Content.Client._CorvaxGoob.Weapons.Melee.SwipeCombat; // CorvaxGoob-SwipeCombat
 using Content.Shared.MouseRotator;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
@@ -15,6 +16,7 @@ public sealed partial class MouseRotatorSystem : SharedMouseRotatorSystem
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private IEyeManager _eye = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SwipeCombatInputSystem _swipeCombat = default!; // CorvaxGoob-SwipeCombat
 
     public override void Update(float frameTime)
     {
@@ -26,6 +28,10 @@ public sealed partial class MouseRotatorSystem : SharedMouseRotatorSystem
         var player = _player.LocalEntity;
 
         if (player == null || !TryComp<MouseRotatorComponent>(player, out var rotator))
+            return;
+
+        // CorvaxGoob-SwipeCombat: во время свайпа курсор зафиксирован, персонаж не поворачивается
+        if (_swipeCombat.IsSwiping)
             return;
 
         var xform = Transform(player.Value);
