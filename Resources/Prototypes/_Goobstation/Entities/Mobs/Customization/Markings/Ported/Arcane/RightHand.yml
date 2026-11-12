@@ -46,61 +46,63 @@
   - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/IPC/ipc_parts.rsi
     state: bshipc_r_hand
 
-- type: marking
-  id: CyberlimbRHandHephaestusTitan
-  bodyPart: RHand
-  markingCategory: RightHand
-  speciesRestriction: [Dwarf, Felinid, Human, IPC]
-  coloring:
-    default:
-      type:
-        !type:SimpleColoring
-          color: "#FFFFFF"
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Cyberlimbs/hephaestus_titan.rsi
-    state: r_hand
+# CorvaxGoob-start: delete duble
+#- type: marking
+#  id: CyberlimbRHandHephaestusTitan
+#  bodyPart: RHand
+#  markingCategory: RightHand
+#  speciesRestriction: [Dwarf, Felinid, Human, IPC]
+#  coloring:
+#    default:
+#      type:
+#        !type:SimpleColoring
+#          color: "#FFFFFF"
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Cyberlimbs/hephaestus_titan.rsi
+#    state: r_hand
 
-- type: marking
-  id: CyberlimbRHandMorpheus
-  bodyPart: RHand
-  markingCategory: RightHand
-  speciesRestriction: [Dwarf, Felinid, Human]
-  coloring:
-    default:
-      type:
-        !type:SimpleColoring
-          color: "#FFFFFF"
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Cyberlimbs/morpheus.rsi
-    state: r_hand
+#- type: marking
+#  id: CyberlimbRHandMorpheus
+#  bodyPart: RHand
+#  markingCategory: RightHand
+#  speciesRestriction: [Dwarf, Felinid, Human]
+#  coloring:
+#    default:
+#      type:
+#        !type:SimpleColoring
+#          color: "#FFFFFF"
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Cyberlimbs/morpheus.rsi
+#    state: r_hand
 
-- type: marking
-  id: CyberlimbRHandXion
-  bodyPart: RHand
-  markingCategory: RightHand
-  speciesRestriction: [Dwarf, Felinid, Human, IPC]
-  coloring:
-    default:
-      type:
-        !type:SimpleColoring
-          color: "#FFFFFF"
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Cyberlimbs/xion.rsi
-    state: r_hand
+#- type: marking
+#  id: CyberlimbRHandXion
+#  bodyPart: RHand
+#  markingCategory: RightHand
+#  speciesRestriction: [Dwarf, Felinid, Human, IPC]
+#  coloring:
+#    default:
+#      type:
+#        !type:SimpleColoring
+#          color: "#FFFFFF"
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Cyberlimbs/xion.rsi
+#    state: r_hand
 
-- type: marking
-  id: CyberlimbRHandZenghu
-  bodyPart: RHand
-  markingCategory: RightHand
-  speciesRestriction: [Dwarf, Felinid, Human]
-  coloring:
-    default:
-      type:
-        !type:SimpleColoring
-          color: "#FFFFFF"
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Cyberlimbs/zenghu.rsi
-    state: r_hand
+#- type: marking
+#  id: CyberlimbRHandZenghu
+#  bodyPart: RHand
+#  markingCategory: RightHand
+#  speciesRestriction: [Dwarf, Felinid, Human]
+#  coloring:
+#    default:
+#      type:
+#        !type:SimpleColoring
+#          color: "#FFFFFF"
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Cyberlimbs/zenghu.rsi
+#    state: r_hand
+# CorvaxGoob-end
 
 - type: marking
   id: IPCRHand

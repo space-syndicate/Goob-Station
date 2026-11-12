@@ -55,75 +55,77 @@
   - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/IPC/ipc_parts.rsi
     state: bshipc_l_arm
 
-- type: marking
-  id: CyberlimbLArmBishop
-  bodyPart: LArm
-  markingCategory: LeftArm
-  speciesRestriction: [Dwarf, Felinid, Human]
-  coloring:
-    default:
-      type:
-        !type:SimpleColoring
-          color: "#FFFFFF"
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Cyberlimbs/bishop.rsi
-    state: l_arm
+# CorvaxGoob-start: delete duble
+#- type: marking
+#  id: CyberlimbLArmBishop
+#  bodyPart: LArm
+#  markingCategory: LeftArm
+#  speciesRestriction: [Dwarf, Felinid, Human]
+#  coloring:
+#    default:
+#      type:
+#        !type:SimpleColoring
+#          color: "#FFFFFF"
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Cyberlimbs/bishop.rsi
+#    state: l_arm
 
-- type: marking
-  id: CyberlimbLArmMorpheus
-  bodyPart: LArm
-  markingCategory: LeftArm
-  speciesRestriction: [Dwarf, Felinid, Human]
-  coloring:
-    default:
-      type:
-        !type:SimpleColoring
-          color: "#FFFFFF"
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Cyberlimbs/morpheus.rsi
-    state: l_arm
+#- type: marking
+#  id: CyberlimbLArmMorpheus
+#  bodyPart: LArm
+#  markingCategory: LeftArm
+#  speciesRestriction: [Dwarf, Felinid, Human]
+#  coloring:
+#    default:
+#      type:
+#        !type:SimpleColoring
+#          color: "#FFFFFF"
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Cyberlimbs/morpheus.rsi
+#    state: l_arm
 
-- type: marking
-  id: CyberlimbLArmNanotrasen
-  bodyPart: LArm
-  markingCategory: LeftArm
-  speciesRestriction: [Dwarf, Felinid, Human]
-  coloring:
-    default:
-      type:
-        !type:SimpleColoring
-          color: "#FFFFFF"
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Cyberlimbs/nanotrasen.rsi
-    state: l_arm
+#- type: marking
+#  id: CyberlimbLArmNanotrasen
+#  bodyPart: LArm
+#  markingCategory: LeftArm
+#  speciesRestriction: [Dwarf, Felinid, Human]
+#  coloring:
+#    default:
+#      type:
+#        !type:SimpleColoring
+#          color: "#FFFFFF"
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Cyberlimbs/nanotrasen.rsi
+#    state: l_arm
 
-- type: marking
-  id: CyberlimbLArmXion
-  bodyPart: LArm
-  markingCategory: LeftArm
-  speciesRestriction: [Dwarf, Felinid, Human, IPC]
-  coloring:
-    default:
-      type:
-        !type:SimpleColoring
-          color: "#FFFFFF"
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Cyberlimbs/xion.rsi
-    state: l_arm
+#- type: marking
+#  id: CyberlimbLArmXion
+#  bodyPart: LArm
+#  markingCategory: LeftArm
+#  speciesRestriction: [Dwarf, Felinid, Human, IPC]
+#  coloring:
+#    default:
+#      type:
+#        !type:SimpleColoring
+#          color: "#FFFFFF"
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Cyberlimbs/xion.rsi
+#    state: l_arm
 
-- type: marking
-  id: CyberlimbLArmZenghu
-  bodyPart: LArm
-  markingCategory: LeftArm
-  speciesRestriction: [Dwarf, Felinid, Human]
-  coloring:
-    default:
-      type:
-        !type:SimpleColoring
-          color: "#FFFFFF"
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Cyberlimbs/zenghu.rsi
-    state: l_arm
+#- type: marking
+#  id: CyberlimbLArmZenghu
+#  bodyPart: LArm
+#  markingCategory: LeftArm
+#  speciesRestriction: [Dwarf, Felinid, Human]
+#  coloring:
+#    default:
+#      type:
+#        !type:SimpleColoring
+#          color: "#FFFFFF"
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Cyberlimbs/zenghu.rsi
+#    state: l_arm
+# CorvaxGoob-end
 
 - type: marking
   id: HI2LArm

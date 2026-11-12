@@ -29,10 +29,8 @@
 
 - type: selectableSet
   id: BibleSet
-  # Corvax-Goob-Localization-start
-  name: Святая Библия
-  description: Разорви все узы, кроме тех, что связывают меня с твоей службой и сердцем.
-  # Corvax-Goob-Localization-end
+  name: selectable-set-bible-holy-name # CorvaxGoob-Localization
+  description: selectable-set-bible-holy-description # CorvaxGoob-Localization
   sprite:
     sprite: Objects/Specific/Chapel/bible.rsi
     state: icon
@@ -41,10 +39,8 @@
 
 - type: selectableSet
   id: QuaranSet
-  # Corvax-Goob-Localization-start
-  name: Коран
-  description: Так какое же из милостей вашего Господа вы, "люди и джинны", отвергнете?
-  # Corvax-Goob-Localization-end
+  name: selectable-set-bible-quran-name # CorvaxGoob-Localization
+  description: selectable-set-bible-quran-description # CorvaxGoob-Localization
   sprite:
     sprite: _Goobstation/Objects/Specific/Chapel/allah.rsi
     state: icon
@@ -53,10 +49,8 @@
 
 - type: selectableSet
   id: TanakhSet
-  # Corvax-Goob-Localization-start
-  name: Свитки Танаха
-  description: Обучая других, ты учишься сам.
-  # Corvax-Goob-Localization-end
+  name: selectable-set-bible-tanakh-name # CorvaxGoob-Localization
+  description: selectable-set-bible-tanakh-description # CorvaxGoob-Localization
   sprite:
     sprite: _Goobstation/Wizard/Objects/scroll.rsi
     state: scroll2
@@ -95,8 +89,8 @@
 
 - type: selectableSet
   id: BibleDruidSet
-  name: "Druidical tablet"
-  description: "It's the mystery of the druids!"
+  name: selectable-set-bible-druid-name # CorvaxGoob-Localization
+  description: selectable-set-bible-druid-description # CorvaxGoob-Localization
   sprite:
     sprite: Objects/Specific/Chapel/mysteryofthedruids.rsi
     state: icon
@@ -125,8 +119,8 @@
 
 - type: selectableSet
   id: BibleNarsieSet
-  name: "Tome of Nar'sie"
-  description: "What could possibly go wrong with a book covered in blood?"
+  name: selectable-set-bible-narsie-name # CorvaxGoob-Localization
+  description: selectable-set-bible-narsie-description # CorvaxGoob-Localization
   sprite:
     sprite: Objects/Specific/Chapel/tomeofnarsie.rsi
     state: icon
@@ -135,8 +129,8 @@
 
 - type: selectableSet
   id: BibleNanoTrasenSet
-  name: "Codex Nanotrasimus"
-  description: "A familiar book containing the Sacred Operating Procedures."
+  name: selectable-set-bible-nanotrasen-name # CorvaxGoob-Localization
+  description: selectable-set-bible-nanotrasen-description # CorvaxGoob-Localization
   sprite:
     sprite: Objects/Specific/Chapel/codexnanotrasimus.rsi
     state: icon
@@ -145,8 +139,8 @@
 
 - type: selectableSet
   id: BibleHonkSet
-  name: Mirth of The Honkmother
-  description: "Oh great and glorious Mother, Mistress of Mirth, Matron of Mask and Merriments, Blessed is she amongst us jesters."
+  name: selectable-set-bible-honk-name # CorvaxGoob-Localization
+  description: selectable-set-bible-honk-description # CorvaxGoob-Localization
   sprite:
     sprite: Objects/Specific/Chapel/honk.rsi
     state: icon

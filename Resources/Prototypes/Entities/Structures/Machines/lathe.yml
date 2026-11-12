@@ -733,7 +733,7 @@
     - MedicalBoardsGoob
     - Janitor
     - Genetics
-    - MedicalCloning
+    #- MedicalCloning # CorvaxGoob
     # Einstein Engines Packs
     - Translators # Language
     - TranslatorImplanters # Language

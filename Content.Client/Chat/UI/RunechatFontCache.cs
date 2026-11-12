@@ -17,7 +17,11 @@ public sealed class RunechatFontCache
         if (_fonts.TryGetValue((path, size), out var font))
             return font;
 
-        font = new VectorFont(_resources.GetResource<FontResource>(path), size);
+        // CorvaxGoob-RunechatCyrillic-Start
+        font = new StackedFont(
+            new VectorFont(_resources.GetResource<FontResource>(path), size),
+            new VectorFont(_resources.GetResource<FontResource>(RunechatStyle.CyrillicFallbackFontPath), size));
+        // CorvaxGoob-RunechatCyrillic-End
         _fonts[(path, size)] = font;
         return font;
     }

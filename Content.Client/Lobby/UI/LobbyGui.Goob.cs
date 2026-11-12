@@ -1,5 +1,5 @@
 using System.Numerics;
-using Content.Client._RMC14.LinkAccount;
+// using Content.Client._RMC14.LinkAccount; // CorvaxGoob-Coins
 using Content.Client.Administration.UI.CustomControls;
 using Content.Client.Changelog;
 using Content.Client.Credits;
@@ -172,9 +172,11 @@ public sealed partial class LobbyGui
         AddLink("server-info-telegram-button", CCVars.InfoLinksTelegram);
         AddLink("rmc-ui-patreon", CCVars.InfoLinksPatreon);
 
+        /* CorvaxGoob-Coins-start
         var linkAccount = new Button { Text = Loc.GetString("rmc-ui-link-discord-account") };
         linkAccount.OnPressed += _ => UserInterfaceManager.GetUIController<LinkAccountUIController>().ToggleWindow();
         items.Add(linkAccount);
+        CorvaxGoob-Coins-end */
 
         AddLink("server-info-report-button", CCVars.InfoLinksBugReport);
 
@@ -198,16 +200,18 @@ public sealed partial class LobbyGui
         var options = new Button { Text = Loc.GetString("ui-lobby-options-button") };
         options.OnPressed += _ => UserInterfaceManager.GetUIController<OptionsUIController>().ToggleWindow();
 
+        /* Deleted by CorvaxGoob
         var achievements = new CommandButton
         {
             Command = "achievements",
             Text = Loc.GetString("achievements-button"),
         };
+        */
 
         var leave = new Button { Text = Loc.GetString("ui-lobby-leave-button") };
         leave.OnPressed += _ => _consoleHost.ExecuteCommand("disconnect");
 
-        return new List<BaseButton> { options, new VoteCallMenuButton(), achievements, leave };
+        return new List<BaseButton> { options, new VoteCallMenuButton(), /* achievements, */ leave }; // CorvaxGoob
     }
 
     private void CreateMenu(BaseButton anchor, List<BaseButton> items)

@@ -10,8 +10,10 @@
       department: Security
       time: 252000 #70 hrs
   equipment:
-    pocket1: WeaponPistolMk58Gold
-  storage:
-    back:
-    - MagazinePistolGold
+    pocket1: WeaponPistolMk58GoldEmpty # CorvaxGoob
+  # CorvaxGoob-start
+  #storage:
+  #  back:
+  #  - MagazinePistolGold
+  # CorvaxGoob-end
   groupBy: "Main weapon"

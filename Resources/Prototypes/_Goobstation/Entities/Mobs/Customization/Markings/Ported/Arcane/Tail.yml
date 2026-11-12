@@ -368,27 +368,29 @@
   - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Reptilian/long_tails.rsi
     state: t-rex-tail-feath
 
-- type: marking
-  id: TailRingAnimated
-  bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Tajaran]
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
-    state: tail_m_wagging
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
-    state: tail_ring_wagging
+# CorvaxGoob-start: delete duble
+#- type: marking
+#  id: TailRingAnimated
+#  bodyPart: Tail
+#  markingCategory: Tail
+#  speciesRestriction: [Tajaran]
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
+#    state: tail_m_wagging
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
+#    state: tail_ring_wagging
 
-- type: marking
-  id: TailSkeletonAnimated
-  bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Tajaran]
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
-    state: tail_m_wagging
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
-    state: tail_skeleton_wagging
+#- type: marking
+#  id: TailSkeletonAnimated
+#  bodyPart: Tail
+#  markingCategory: Tail
+#  speciesRestriction: [Tajaran]
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
+#    state: tail_m_wagging
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
+#    state: tail_skeleton_wagging
+# CorvaxGoob-end
 
 - type: marking
   id: TailSnake
@@ -420,38 +422,40 @@
   - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/tails32x32.rsi
     state: snake_stripe_alt_secondary_wagging
 
-- type: marking
-  id: TailTipAnimated
-  bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Tajaran]
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
-    state: tail_m_wagging
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
-    state: tail_tip_wagging
+# CorvaxGoob-start: delete duble
+#- type: marking
+#  id: TailTipAnimated
+#  bodyPart: Tail
+#  markingCategory: Tail
+#  speciesRestriction: [Tajaran]
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
+#    state: tail_m_wagging
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
+#    state: tail_tip_wagging
 
-- type: marking
-  id: TailWingler1Animated
-  bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Tajaran]
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
-    state: tail_fluffy_wagging
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
-    state: wingler_1_wagging
+#- type: marking
+#  id: TailWingler1Animated
+#  bodyPart: Tail
+#  markingCategory: Tail
+#  speciesRestriction: [Tajaran]
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
+#    state: tail_fluffy_wagging
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
+#    state: wingler_1_wagging
 
-- type: marking
-  id: TailWingler3Animated
-  bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Tajaran]
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
-    state: tail_fluffy_wagging
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
-    state: wingler_3_wagging
+#- type: marking
+#  id: TailWingler3Animated
+#  bodyPart: Tail
+#  markingCategory: Tail
+#  speciesRestriction: [Tajaran]
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
+#    state: tail_fluffy_wagging
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
+#    state: wingler_3_wagging
+# CorvaxGoob-end
 
 - type: marking
   id: TajaranFluffyTailAnim
@@ -462,34 +466,36 @@
   - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Tajaran/tails.rsi
     state: tail_fluffy_anim
 
-- type: marking
-  id: TajaranTailFluffy
-  wagging: TajaranTailFluffyAnimated
-  bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Tajaran]
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
-    state: tail_fluffy
+# CorvaxGoob-start: delete duble
+#- type: marking
+#  id: TajaranTailFluffy
+#  wagging: TajaranTailFluffyAnimated
+#  bodyPart: Tail
+#  markingCategory: Tail
+#  speciesRestriction: [Tajaran]
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
+#    state: tail_fluffy
 
-- type: marking
-  id: TajaranTailFluffyAnimated
-  bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Tajaran]
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
-    state: tail_fluffy_wagging
+#- type: marking
+#  id: TajaranTailFluffyAnimated
+#  bodyPart: Tail
+#  markingCategory: Tail
+#  speciesRestriction: [Tajaran]
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
+#    state: tail_fluffy_wagging
 
-- type: marking
-  id: TajaranTailM
-  wagging: TajaranTailMWag
-  bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Tajaran]
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
-    state: tail_m
+#- type: marking
+#  id: TajaranTailM
+#  wagging: TajaranTailMWag
+#  bodyPart: Tail
+#  markingCategory: Tail
+#  speciesRestriction: [Tajaran]
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
+#    state: tail_m
+# CorvaxGoob-end
 
 - type: marking
   id: TajaranTailMWag

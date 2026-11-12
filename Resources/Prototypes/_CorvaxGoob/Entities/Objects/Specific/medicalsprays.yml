@@ -7,6 +7,9 @@
   - type: Sprite
     sprite: _Goobstation/Objects/Medical/Stypticspray.rsi
     state: icon
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    inHandsMaxFillLevels: 0
   - type: Tag
     tags:
     - Spray
@@ -20,6 +23,9 @@
   - type: Sprite
     sprite: _Goobstation/Objects/Medical/Silverspray.rsi
     state: icon
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    inHandsMaxFillLevels: 0
   - type: Tag
     tags:
     - Spray

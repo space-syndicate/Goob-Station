@@ -46,61 +46,63 @@
   - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/IPC/ipc_parts.rsi
     state: bshipc_l_hand
 
-- type: marking
-  id: CyberlimbLHandHephaestusTitan
-  bodyPart: LHand
-  markingCategory: LeftHand
-  speciesRestriction: [Dwarf, Felinid, Human, IPC]
-  coloring:
-    default:
-      type:
-        !type:SimpleColoring
-          color: "#FFFFFF"
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Cyberlimbs/hephaestus_titan.rsi
-    state: l_hand
+# CorvaxGoob-start: delete duble
+#- type: marking
+#  id: CyberlimbLHandHephaestusTitan
+#  bodyPart: LHand
+#  markingCategory: LeftHand
+#  speciesRestriction: [Dwarf, Felinid, Human, IPC]
+#  coloring:
+#    default:
+#      type:
+#        !type:SimpleColoring
+#          color: "#FFFFFF"
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Cyberlimbs/hephaestus_titan.rsi
+#    state: l_hand
 
-- type: marking
-  id: CyberlimbLHandMorpheus
-  bodyPart: LHand
-  markingCategory: LeftHand
-  speciesRestriction: [Dwarf, Felinid, Human]
-  coloring:
-    default:
-      type:
-        !type:SimpleColoring
-          color: "#FFFFFF"
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Cyberlimbs/morpheus.rsi
-    state: l_hand
+#- type: marking
+#  id: CyberlimbLHandMorpheus
+#  bodyPart: LHand
+#  markingCategory: LeftHand
+#  speciesRestriction: [Dwarf, Felinid, Human]
+#  coloring:
+#    default:
+#      type:
+#        !type:SimpleColoring
+#          color: "#FFFFFF"
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Cyberlimbs/morpheus.rsi
+#    state: l_hand
 
-- type: marking
-  id: CyberlimbLHandXion
-  bodyPart: LHand
-  markingCategory: LeftHand
-  speciesRestriction: [Dwarf, Felinid, Human, IPC]
-  coloring:
-    default:
-      type:
-        !type:SimpleColoring
-          color: "#FFFFFF"
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Cyberlimbs/xion.rsi
-    state: l_hand
+#- type: marking
+#  id: CyberlimbLHandXion
+#  bodyPart: LHand
+#  markingCategory: LeftHand
+#  speciesRestriction: [Dwarf, Felinid, Human, IPC]
+#  coloring:
+#    default:
+#      type:
+#        !type:SimpleColoring
+#          color: "#FFFFFF"
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Cyberlimbs/xion.rsi
+#    state: l_hand
 
-- type: marking
-  id: CyberlimbLHandZenghu
-  bodyPart: LHand
-  markingCategory: LeftHand
-  speciesRestriction: [Dwarf, Felinid, Human]
-  coloring:
-    default:
-      type:
-        !type:SimpleColoring
-          color: "#FFFFFF"
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Cyberlimbs/zenghu.rsi
-    state: l_hand
+#- type: marking
+#  id: CyberlimbLHandZenghu
+#  bodyPart: LHand
+#  markingCategory: LeftHand
+#  speciesRestriction: [Dwarf, Felinid, Human]
+#  coloring:
+#    default:
+#      type:
+#        !type:SimpleColoring
+#          color: "#FFFFFF"
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Cyberlimbs/zenghu.rsi
+#    state: l_hand
+# CorvaxGoob-end
 
 - type: marking
   id: IPCLHand

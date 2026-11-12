@@ -42,7 +42,7 @@ public sealed class TileBaseDoll : IDisposable
 
     public void Queue(HumanoidCharacterProfile profile)
     {
-        _pending = profile.WithHeight(1f).WithWidth(1f);
+        _pending = profile; // CorvaxGoob
     }
 
     public void Update(TimeSpan now)

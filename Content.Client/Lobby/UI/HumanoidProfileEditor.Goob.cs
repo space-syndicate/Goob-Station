@@ -96,7 +96,10 @@ public sealed partial class HumanoidProfileEditor
         if (Profile == null)
             return;
 
-        var appearance = HumanoidCharacterAppearance.EnsureValid(Profile.Appearance, Profile.Species, Profile.Sex);
+        // CorvaxGoob-Sponsors-Start
+        var sponsorPrototypes = _sponsorsManager?.GetClientPrototypes().ToArray() ?? [];
+        var appearance = HumanoidCharacterAppearance.EnsureValid(Profile.Appearance, Profile.Species, Profile.Sex, sponsorPrototypes);
+        // CorvaxGoob-Sponsors-End
 
         if (!SpeciesAllows(MarkingCategories.Hair, appearance.HairStyleId, HairStyles.DefaultHairStyle))
             appearance = appearance.WithHairStyleName(HairStyles.DefaultHairStyle);

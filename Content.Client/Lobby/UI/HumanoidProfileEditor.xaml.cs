@@ -12,6 +12,7 @@ using Content.Client.Sprite;
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Systems.Chat;
 using Content.Client.UserInterface.Systems.Guidebook;
+using Content.Corvax.Interfaces.Shared; // CorvaxGoob-Sponsors
 using Content.Shared._CorvaxGoob;
 using Content.Shared._CorvaxGoob.CCCVars;
 using Content.Shared.CCVar;
@@ -77,6 +78,8 @@ namespace Content.Client.Lobby.UI
         private HighlightProfileEditorMenu? _highlightEditor; // CorvaxGoob
 
         private TTSTab? _ttsTab;// CorvaxGoob-TTS
+
+        private ISharedSponsorsManager? _sponsorsManager; // CorvaxGoob-Sponsors
 
         private bool _exporting;
         private bool _imaging;
@@ -149,6 +152,7 @@ namespace Content.Client.Lobby.UI
             _requirements = requirements;
             _controller = UserInterfaceManager.GetUIController<LobbyUIController>();
             _sprite = _entManager.System<SpriteSystem>();
+            IoCManager.Instance!.TryResolveType(out _sponsorsManager); // CorvaxGoob-Sponsors
 
             _maxNameLength = _cfgManager.GetCVar(CCVars.MaxNameLength);
             _allowFlavorText = _cfgManager.GetCVar(CCVars.FlavorText);
@@ -476,7 +480,7 @@ namespace Content.Client.Lobby.UI
 
             RefreshTraits();
 
-            TabContainer.SetTabTitle(3, Loc.GetString("humanoid-profile-editor-traits-tab")); // CorvaxGoob-TTS-Edit
+            TabContainer.SetTabTitle(4, Loc.GetString("humanoid-profile-editor-traits-tab")); // CorvaxGoob-TTS-Edit
 
             #region Markings
 

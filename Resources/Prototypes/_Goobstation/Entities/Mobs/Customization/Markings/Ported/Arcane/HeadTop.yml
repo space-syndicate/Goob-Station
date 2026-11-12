@@ -130,20 +130,22 @@
   - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Rodentia/ears.rsi
     state: mouse_ears
 
-- type: marking
-  id: TajaranInears
-  bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Tajaran]
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_head.rsi
-    state: inears
+# CorvaxGoob-start: delete duble
+#- type: marking
+#  id: TajaranInears
+#  bodyPart: HeadTop
+#  markingCategory: HeadTop
+#  speciesRestriction: [Tajaran]
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_head.rsi
+#    state: inears
 
-- type: marking
-  id: TajaranOutears
-  bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Tajaran]
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_head.rsi
-    state: outears
+#- type: marking
+#  id: TajaranOutears
+#  bodyPart: HeadTop
+#  markingCategory: HeadTop
+#  speciesRestriction: [Tajaran]
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_head.rsi
+#    state: outears
+# CorvaxGoob-end

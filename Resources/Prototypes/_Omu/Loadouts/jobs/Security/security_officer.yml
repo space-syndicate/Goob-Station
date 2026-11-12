@@ -3,8 +3,10 @@
   id: SecurityOfficerMk58
   dummyEntity: WeaponPistolMk58
   equipment:
-    pocket1: WeaponPistolMk58
-  storage:
-    back:
-    - MagazinePistol
+    pocket1: WeaponPistolMk58Empty # CorvaxGoob
+  # CorvaxGoob-start
+  #storage:
+  #  back:
+  #  - MagazinePistol
+  # CorvaxGoob-end
   groupBy: "Main weapon"

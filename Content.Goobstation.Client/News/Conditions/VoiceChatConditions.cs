@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using Content.Goobstation.Client.VoiceChat;
 using Content.Goobstation.Common.CCVar;
 using Robust.Shared.Configuration;
@@ -19,3 +21,4 @@ public sealed partial class VoiceMicDisconnected : NewsCondition
         return !deps.Resolve<VoiceChatManager>().WebConnected;
     }
 }
+*/

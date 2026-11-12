@@ -16,13 +16,15 @@
   - sprite: _Goobstation/Mobs/Customization/Ported/Floofstation/_ADT/Mobs/Customization/Human/custom.rsi
     state: beard-beardchin
 
-- type: marking
-  id: HumanFacialHairHandlebar
-  bodyPart: FacialHair
-  markingCategory: FacialHair
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Floofstation/_Corvax/Mobs/Customization/human_facial_hair.rsi
-    state: handlebar
+# CorvaxGoob-start: delete duble
+#- type: marking
+#  id: HumanFacialHairHandlebar
+#  bodyPart: FacialHair
+#  markingCategory: FacialHair
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Floofstation/_Corvax/Mobs/Customization/human_facial_hair.rsi
+#    state: handlebar
+# CorvaxGoob-end
 
 - type: marking
   id: HumanFacialHairSuperLong

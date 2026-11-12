@@ -2,7 +2,7 @@ using System.Linq;
 using System.Numerics;
 using Content.Client.Graphics;
 using Content.Goobstation.Client.Jiggle;
-using Content.Goobstation.Client.VoiceChat;
+// using Content.Goobstation.Client.VoiceChat; // CorvaxGoob
 using Content.Goobstation.Shared.ModSuits.Modules;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
@@ -34,7 +34,7 @@ public sealed partial class ModSphereVisualsSystem : EntitySystem
         .Concat(ContentPostShaderIds.BeforeOutlines)
         .ToArray();
 
-    private static readonly string[] After = { JiggleSystem.PostShaderId, VoiceCanadianSystem.PostShaderId };
+    private static readonly string[] After = { JiggleSystem.PostShaderId /*, VoiceCanadianSystem.PostShaderId */ }; // CorvaxGoob
 
     private const float MorphTime = 0.3f;
     private const float VisualRadius = 10f / EyeManager.PixelsPerMeter;

@@ -2955,12 +2955,14 @@
       spawned:
         - id: MaterialBananium1
           amount: 1
-    - type: SolutionRegeneration
-      solution: melee
-      generated:
-        reagents:
-        - ReagentId: CrapoToxin
-          Quantity: 1
+    # CorvaxGoob-start
+    #- type: SolutionRegeneration
+    #  solution: melee
+    #  generated:
+    #    reagents:
+    #    - ReagentId: CrapoToxin
+    #      Quantity: 1
+    # CorvaxGoob-end
     - type: DamageStateVisuals
       states:
         Alive:

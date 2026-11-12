@@ -147,68 +147,70 @@
   - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Reptilian/head.rsi
     state: t-rex-head-teeth
 
-- type: marking
-  id: TajaranEyeStripesHead
-  bodyPart: Head
-  markingCategory: Head
-  speciesRestriction: [Tajaran]
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_head.rsi
-    state: eye_stripes_head
+# CorvaxGoob-start: delete duble
+#- type: marking
+#  id: TajaranEyeStripesHead
+#  bodyPart: Head
+#  markingCategory: Head
+#  speciesRestriction: [Tajaran]
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_head.rsi
+#    state: eye_stripes_head
 
-- type: marking
-  id: TajaranManeHead
-  bodyPart: Head
-  markingCategory: Head
-  speciesRestriction: [Tajaran]
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_head.rsi
-    state: mane_head
+#- type: marking
+#  id: TajaranManeHead
+#  bodyPart: Head
+#  markingCategory: Head
+#  speciesRestriction: [Tajaran]
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_head.rsi
+#    state: mane_head
 
-- type: marking
-  id: TajaranPatch2
-  bodyPart: Head
-  markingCategory: Head
-  speciesRestriction: [Tajaran]
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_head.rsi
-    state: patch_2
+#- type: marking
+#  id: TajaranPatch2
+#  bodyPart: Head
+#  markingCategory: Head
+#  speciesRestriction: [Tajaran]
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_head.rsi
+#    state: patch_2
 
-- type: marking
-  id: TajaranRaccoon-head
-  bodyPart: Head
-  markingCategory: Head
-  speciesRestriction: [Tajaran]
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_head.rsi
-    state: raccoon-head
+#- type: marking
+#  id: TajaranRaccoon-head
+#  bodyPart: Head
+#  markingCategory: Head
+#  speciesRestriction: [Tajaran]
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_head.rsi
+#    state: raccoon-head
 
-- type: marking
-  id: TajaranStarHead
-  bodyPart: Head
-  markingCategory: Head
-  speciesRestriction: [Tajaran]
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_head.rsi
-    state: star_head
+#- type: marking
+#  id: TajaranStarHead
+#  bodyPart: Head
+#  markingCategory: Head
+#  speciesRestriction: [Tajaran]
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_head.rsi
+#    state: star_head
 
-- type: marking
-  id: TajaranTigerFace
-  bodyPart: Head
-  markingCategory: Head
-  speciesRestriction: [Tajaran]
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_head.rsi
-    state: tiger_face
+#- type: marking
+#  id: TajaranTigerFace
+#  bodyPart: Head
+#  markingCategory: Head
+#  speciesRestriction: [Tajaran]
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_head.rsi
+#    state: tiger_face
 
-- type: marking
-  id: TajaranTigerHead
-  bodyPart: Head
-  markingCategory: Head
-  speciesRestriction: [Tajaran]
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_head.rsi
-    state: tiger_head
+#- type: marking
+#  id: TajaranTigerHead
+#  bodyPart: Head
+#  markingCategory: Head
+#  speciesRestriction: [Tajaran]
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_head.rsi
+#    state: tiger_head
+# CorvaxGoob-end
 
 - type: marking
   id: TriceratopsHead

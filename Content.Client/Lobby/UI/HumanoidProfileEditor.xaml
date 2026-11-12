@@ -76,14 +76,15 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                     <Label Text="{Loc 'humanoid-profile-editor-pronouns-label'}" StyleClasses="HullFieldLabel" MinWidth="130" VAlign="Center" />
                     <hull:SegmentedOptions Name="PronounsButton" />
                 </BoxContainer>
-                <BoxContainer Orientation="Horizontal" SeparationOverride="6" Visible="False" Name="BarksContainer">
+                <!-- CorvaxGoob-Revert : DB conflicts -->
+                <!-- <BoxContainer Orientation="Horizontal" SeparationOverride="6" Visible="False" Name="BarksContainer">
                     <Label Text="{Loc 'humanoid-profile-editor-voice-label'}" StyleClasses="HullFieldLabel" MinWidth="130" VAlign="Top" />
                     <PanelContainer StyleClasses="HullInset" HorizontalExpand="True">
                         <ScrollContainer HScrollEnabled="False" ReturnMeasure="True" MaxHeight="180">
                             <hull:VoiceList Name="BarkVoiceButton" Margin="4" />
                         </ScrollContainer>
                     </PanelContainer>
-                </BoxContainer>
+                </BoxContainer> -->
 
                 <Label Text="{Loc 'humanoid-profile-editor-section-arrival'}" StyleClasses="HullSection" Margin="0 8 0 0" />
                 <BoxContainer Orientation="Horizontal" SeparationOverride="6">
@@ -101,7 +102,8 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                 <ScrollContainer Name="BodyScroll" HScrollEnabled="False" ReturnMeasure="True" MaxHeight="360" Margin="8 6 4 6">
                     <BoxContainer Orientation="Vertical" SeparationOverride="6" Margin="0 0 8 0">
                     <Label Text="{Loc 'humanoid-profile-editor-section-body'}" StyleClasses="HullSection" />
-                    <BoxContainer Orientation="Horizontal" SeparationOverride="6">
+                    <!-- CorvaxGoob-Revert : DB conflicts -->
+                    <!-- <BoxContainer Orientation="Horizontal" SeparationOverride="6">
                         <Label Name="HeightLabel" StyleClasses="HullFieldLabel" MinWidth="130" VAlign="Center" />
                         <Slider Name="HeightSlider" StyleClasses="HullSlider" MinValue="0.5" Value="1" MaxValue="1.5" HorizontalExpand="True" VerticalAlignment="Center" />
                         <Button Name="HeightReset" Text="{Loc 'ui-options-bind-reset'}" StyleClasses="HullPlate" />
@@ -111,7 +113,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                         <Slider Name="WidthSlider" StyleClasses="HullSlider" MinValue="0.5" Value="1" MaxValue="1.5" HorizontalExpand="True" VerticalAlignment="Center" />
                         <Button Name="WidthReset" Text="{Loc 'ui-options-bind-reset'}" StyleClasses="HullPlate" />
                     </BoxContainer>
-                    <Label Name="WeightLabel" StyleClasses="HullFieldLabel" />
+                    <Label Name="WeightLabel" StyleClasses="HullFieldLabel" /> -->
 
                     <Label Text="{Loc 'humanoid-profile-editor-skin-color-label'}" StyleClasses="HullSection" Margin="0 8 0 0" />
                     <hull:ColorTrackSlider Name="Skin" HorizontalExpand="True" MinValue="0" MaxValue="100" Value="20" MinHeight="22" />

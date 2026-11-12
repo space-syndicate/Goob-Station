@@ -55,61 +55,63 @@
   - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/IPC/ipc_parts.rsi
     state: bshipc_l_leg
 
-- type: marking
-  id: CyberlimbLLegMorpheus
-  bodyPart: LLeg
-  markingCategory: LeftLeg
-  speciesRestriction: [Dwarf, Felinid, Human]
-  coloring:
-    default:
-      type:
-        !type:SimpleColoring
-          color: "#FFFFFF"
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Cyberlimbs/morpheus.rsi
-    state: l_leg
+# CorvaxGoob-start: delete duble
+#- type: marking
+#  id: CyberlimbLLegMorpheus
+#  bodyPart: LLeg
+#  markingCategory: LeftLeg
+#  speciesRestriction: [Dwarf, Felinid, Human]
+#  coloring:
+#    default:
+#      type:
+#        !type:SimpleColoring
+#          color: "#FFFFFF"
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Cyberlimbs/morpheus.rsi
+#    state: l_leg
 
-- type: marking
-  id: CyberlimbLLegNanotrasen
-  bodyPart: LLeg
-  markingCategory: LeftLeg
-  speciesRestriction: [Dwarf, Felinid, Human]
-  coloring:
-    default:
-      type:
-        !type:SimpleColoring
-          color: "#FFFFFF"
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Cyberlimbs/nanotrasen.rsi
-    state: l_leg
+#- type: marking
+#  id: CyberlimbLLegNanotrasen
+#  bodyPart: LLeg
+#  markingCategory: LeftLeg
+#  speciesRestriction: [Dwarf, Felinid, Human]
+#  coloring:
+#    default:
+#      type:
+#        !type:SimpleColoring
+#          color: "#FFFFFF"
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Cyberlimbs/nanotrasen.rsi
+#    state: l_leg
 
-- type: marking
-  id: CyberlimbLLegXion
-  bodyPart: LLeg
-  markingCategory: LeftLeg
-  speciesRestriction: [Dwarf, Felinid, Human]
-  coloring:
-    default:
-      type:
-        !type:SimpleColoring
-          color: "#FFFFFF"
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Cyberlimbs/xion.rsi
-    state: l_leg
+#- type: marking
+#  id: CyberlimbLLegXion
+#  bodyPart: LLeg
+#  markingCategory: LeftLeg
+#  speciesRestriction: [Dwarf, Felinid, Human]
+#  coloring:
+#    default:
+#      type:
+#        !type:SimpleColoring
+#          color: "#FFFFFF"
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Cyberlimbs/xion.rsi
+#    state: l_leg
 
-- type: marking
-  id: CyberlimbLLegZenghu
-  bodyPart: LLeg
-  markingCategory: LeftLeg
-  speciesRestriction: [Dwarf, Felinid, Human]
-  coloring:
-    default:
-      type:
-        !type:SimpleColoring
-          color: "#FFFFFF"
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Cyberlimbs/zenghu.rsi
-    state: l_leg
+#- type: marking
+#  id: CyberlimbLLegZenghu
+#  bodyPart: LLeg
+#  markingCategory: LeftLeg
+#  speciesRestriction: [Dwarf, Felinid, Human]
+#  coloring:
+#    default:
+#      type:
+#        !type:SimpleColoring
+#          color: "#FFFFFF"
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Cyberlimbs/zenghu.rsi
+#    state: l_leg
+# CorvaxGoob-end
 
 - type: marking
   id: HI2LLeg

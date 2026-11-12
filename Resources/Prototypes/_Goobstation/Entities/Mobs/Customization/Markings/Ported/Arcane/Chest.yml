@@ -86,103 +86,105 @@
   - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Moth/body.rsi
     state: belly
 
-- type: marking
-  id: CyberlimbTorsoBishop
-  bodyPart: Chest
-  markingCategory: Chest
-  speciesRestriction: [Dwarf, Felinid, Human]
-  coloring:
-    default:
-      type:
-        !type:SimpleColoring
-          color: "#FFFFFF"
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Cyberlimbs/bishop.rsi
-    state: torso
+# CorvaxGoob-start: delete duble
+#- type: marking
+#  id: CyberlimbTorsoBishop
+#  bodyPart: Chest
+#  markingCategory: Chest
+#  speciesRestriction: [Dwarf, Felinid, Human]
+#  coloring:
+#    default:
+#      type:
+#        !type:SimpleColoring
+#          color: "#FFFFFF"
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Cyberlimbs/bishop.rsi
+#    state: torso
 
-- type: marking
-  id: CyberlimbTorsoHephaestus
-  bodyPart: Chest
-  markingCategory: Chest
-  speciesRestriction: [Dwarf, Felinid, Human]
-  coloring:
-    default:
-      type:
-        !type:SimpleColoring
-          color: "#FFFFFF"
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Cyberlimbs/hephaestus.rsi
-    state: torso
+#- type: marking
+#  id: CyberlimbTorsoHephaestus
+#  bodyPart: Chest
+#  markingCategory: Chest
+#  speciesRestriction: [Dwarf, Felinid, Human]
+#  coloring:
+#    default:
+#      type:
+#        !type:SimpleColoring
+#          color: "#FFFFFF"
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Cyberlimbs/hephaestus.rsi
+#    state: torso
 
-- type: marking
-  id: CyberlimbTorsoHephaestusTitan
-  bodyPart: Chest
-  markingCategory: Chest
-  speciesRestriction: [Dwarf, Felinid, Human]
-  coloring:
-    default:
-      type:
-        !type:SimpleColoring
-          color: "#FFFFFF"
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Cyberlimbs/hephaestus_titan.rsi
-    state: torso
+#- type: marking
+#  id: CyberlimbTorsoHephaestusTitan
+#  bodyPart: Chest
+#  markingCategory: Chest
+#  speciesRestriction: [Dwarf, Felinid, Human]
+#  coloring:
+#    default:
+#      type:
+#        !type:SimpleColoring
+#          color: "#FFFFFF"
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Cyberlimbs/hephaestus_titan.rsi
+#    state: torso
 
-- type: marking
-  id: CyberlimbTorsoMorpheus
-  bodyPart: Chest
-  markingCategory: Chest
-  speciesRestriction: [Dwarf, Felinid, Human]
-  coloring:
-    default:
-      type:
-        !type:SimpleColoring
-          color: "#FFFFFF"
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Cyberlimbs/morpheus.rsi
-    state: torso
+#- type: marking
+#  id: CyberlimbTorsoMorpheus
+#  bodyPart: Chest
+#  markingCategory: Chest
+#  speciesRestriction: [Dwarf, Felinid, Human]
+#  coloring:
+#    default:
+#      type:
+#        !type:SimpleColoring
+#          color: "#FFFFFF"
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Cyberlimbs/morpheus.rsi
+#    state: torso
 
-- type: marking
-  id: CyberlimbTorsoNanotrasen
-  bodyPart: Chest
-  markingCategory: Chest
-  speciesRestriction: [Dwarf, Felinid, Human]
-  coloring:
-    default:
-      type:
-        !type:SimpleColoring
-          color: "#FFFFFF"
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Cyberlimbs/nanotrasen.rsi
-    state: torso
+#- type: marking
+#  id: CyberlimbTorsoNanotrasen
+#  bodyPart: Chest
+#  markingCategory: Chest
+#  speciesRestriction: [Dwarf, Felinid, Human]
+#  coloring:
+#    default:
+#      type:
+#        !type:SimpleColoring
+#          color: "#FFFFFF"
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Cyberlimbs/nanotrasen.rsi
+#    state: torso
 
-- type: marking
-  id: CyberlimbTorsoXion
-  bodyPart: Chest
-  markingCategory: Chest
-  speciesRestriction: [Dwarf, Felinid, Human]
-  coloring:
-    default:
-      type:
-        !type:SimpleColoring
-          color: "#FFFFFF"
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Cyberlimbs/xion.rsi
-    state: torso
+#- type: marking
+#  id: CyberlimbTorsoXion
+#  bodyPart: Chest
+#  markingCategory: Chest
+#  speciesRestriction: [Dwarf, Felinid, Human]
+#  coloring:
+#    default:
+#      type:
+#        !type:SimpleColoring
+#          color: "#FFFFFF"
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Cyberlimbs/xion.rsi
+#    state: torso
 
-- type: marking
-  id: CyberlimbTorsoZenghu
-  bodyPart: Chest
-  markingCategory: Chest
-  speciesRestriction: [Dwarf, Felinid, Human]
-  coloring:
-    default:
-      type:
-        !type:SimpleColoring
-          color: "#FFFFFF"
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Cyberlimbs/zenghu.rsi
-    state: torso
+#- type: marking
+#  id: CyberlimbTorsoZenghu
+#  bodyPart: Chest
+#  markingCategory: Chest
+#  speciesRestriction: [Dwarf, Felinid, Human]
+#  coloring:
+#    default:
+#      type:
+#        !type:SimpleColoring
+#          color: "#FFFFFF"
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/Cyberlimbs/zenghu.rsi
+#    state: torso
+# CorvaxGoob-end
 
 - type: marking
   id: HI2Chest
@@ -247,32 +249,34 @@
   - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/IPC/ipc_parts.rsi
     state: staripc_chest
 
-- type: marking
-  id: TajaranBelly1
-  bodyPart: Chest
-  markingCategory: Chest
-  speciesRestriction: [Tajaran]
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_chest.rsi
-    state: belly1
+# CorvaxGoob-start: delete duble
+#- type: marking
+#  id: TajaranBelly1
+#  bodyPart: Chest
+#  markingCategory: Chest
+#  speciesRestriction: [Tajaran]
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_chest.rsi
+#    state: belly1
 
-- type: marking
-  id: TajaranBelly3
-  bodyPart: Chest
-  markingCategory: Chest
-  speciesRestriction: [Tajaran]
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_chest.rsi
-    state: belly3
+#- type: marking
+#  id: TajaranBelly3
+#  bodyPart: Chest
+#  markingCategory: Chest
+#  speciesRestriction: [Tajaran]
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_chest.rsi
+#    state: belly3
 
-- type: marking
-  id: TajaranChest
-  bodyPart: Chest
-  markingCategory: Chest
-  speciesRestriction: [Tajaran]
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_chest.rsi
-    state: chest
+#- type: marking
+#  id: TajaranChest
+#  bodyPart: Chest
+#  markingCategory: Chest
+#  speciesRestriction: [Tajaran]
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_chest.rsi
+#    state: chest
+# CorvaxGoob-end
 
 - type: marking
   id: WTMChest

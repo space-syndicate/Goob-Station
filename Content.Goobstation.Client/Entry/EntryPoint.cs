@@ -21,15 +21,16 @@ public sealed partial class EntryPoint : GameClient
     /* CorvaxGoob
     [Dependency] private VoiceChatManager _voiceManager = default!;
     [Dependency] private JoinQueueManager _joinQueue = default!;
-    [Dependency] private NewsManager _news = default!;
     [Dependency] private PollManager _pollManager = default!;
     [Dependency] private ICommonCurrencyManager _currMan = default!;
     */
+    [Dependency] private NewsManager _news = default!; // CorvaxGoob
     [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     public override void Init()
     {
         // ContentGoobClientIoC.Register(); CorvaxGoob
+        IoCManager.Register<NewsManager>(); // CorvaxGoob
 
         IoCManager.BuildGraph();
         IoCManager.InjectDependencies(this);
@@ -46,8 +47,8 @@ public sealed partial class EntryPoint : GameClient
         _joinQueue.Initialize();
         _pollManager.Initialize();
         _currMan.Initialize();
-        _news.Initialize();
         */
+        _news.Initialize(); // CorvaxGoob
     }
 
     /*

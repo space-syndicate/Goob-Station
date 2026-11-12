@@ -325,167 +325,169 @@
   - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Arcane/Mobs/Customization/hair.rsi
     state: hairfoam
 
-- type: marking
-  id: TajaranHairBangs
-  bodyPart: Hair
-  markingCategory: Hair
-  speciesRestriction: [Tajaran]
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_hairs.rsi
-    state: bangs
+# CorvaxGoob-start: delete duble
+#- type: marking
+#  id: TajaranHairBangs
+#  bodyPart: Hair
+#  markingCategory: Hair
+#  speciesRestriction: [Tajaran]
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_hairs.rsi
+#    state: bangs
 
-- type: marking
-  id: TajaranHairBedhead
-  bodyPart: Hair
-  markingCategory: Hair
-  speciesRestriction: [Tajaran]
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_hairs.rsi
-    state: bedhead
+#- type: marking
+#  id: TajaranHairBedhead
+#  bodyPart: Hair
+#  markingCategory: Hair
+#  speciesRestriction: [Tajaran]
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_hairs.rsi
+#    state: bedhead
 
-- type: marking
-  id: TajaranHairBob
-  bodyPart: Hair
-  markingCategory: Hair
-  speciesRestriction: [Tajaran]
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_hairs.rsi
-    state: bob
+#- type: marking
+#  id: TajaranHairBob
+#  bodyPart: Hair
+#  markingCategory: Hair
+#  speciesRestriction: [Tajaran]
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_hairs.rsi
+#    state: bob
 
-- type: marking
-  id: TajaranHairClean
-  bodyPart: Hair
-  markingCategory: Hair
-  speciesRestriction: [Tajaran]
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_hairs.rsi
-    state: clean
+#- type: marking
+#  id: TajaranHairClean
+#  bodyPart: Hair
+#  markingCategory: Hair
+#  speciesRestriction: [Tajaran]
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_hairs.rsi
+#    state: clean
 
-- type: marking
-  id: TajaranHairCurly
-  bodyPart: Hair
-  markingCategory: Hair
-  speciesRestriction: [Tajaran]
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_hairs.rsi
-    state: curly
+#- type: marking
+#  id: TajaranHairCurly
+#  bodyPart: Hair
+#  markingCategory: Hair
+#  speciesRestriction: [Tajaran]
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_hairs.rsi
+#    state: curly
 
-- type: marking
-  id: TajaranHairEyebrows
-  bodyPart: Hair
-  markingCategory: Hair
-  speciesRestriction: [Tajaran]
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_hairs.rsi
-    state: eyebrows
+#- type: marking
+#  id: TajaranHairEyebrows
+#  bodyPart: Hair
+#  markingCategory: Hair
+#  speciesRestriction: [Tajaran]
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_hairs.rsi
+#    state: eyebrows
 
-- type: marking
-  id: TajaranHairFingerwave
-  bodyPart: Hair
-  markingCategory: Hair
-  speciesRestriction: [Tajaran]
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_hairs.rsi
-    state: fingerwave
+#- type: marking
+#  id: TajaranHairFingerwave
+#  bodyPart: Hair
+#  markingCategory: Hair
+#  speciesRestriction: [Tajaran]
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_hairs.rsi
+#    state: fingerwave
 
-- type: marking
-  id: TajaranHairLong
-  bodyPart: Hair
-  markingCategory: Hair
-  speciesRestriction: [Tajaran]
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_hairs.rsi
-    state: long
+#- type: marking
+#  id: TajaranHairLong
+#  bodyPart: Hair
+#  markingCategory: Hair
+#  speciesRestriction: [Tajaran]
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_hairs.rsi
+#    state: long
 
-- type: marking
-  id: TajaranHairMessy
-  bodyPart: Hair
-  markingCategory: Hair
-  speciesRestriction: [Tajaran]
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_hairs.rsi
-    state: messy
+#- type: marking
+#  id: TajaranHairMessy
+#  bodyPart: Hair
+#  markingCategory: Hair
+#  speciesRestriction: [Tajaran]
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_hairs.rsi
+#    state: messy
 
-- type: marking
-  id: TajaranHairMohawk
-  bodyPart: Hair
-  markingCategory: Hair
-  speciesRestriction: [Tajaran]
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_hairs.rsi
-    state: mohawk
+#- type: marking
+#  id: TajaranHairMohawk
+#  bodyPart: Hair
+#  markingCategory: Hair
+#  speciesRestriction: [Tajaran]
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_hairs.rsi
+#    state: mohawk
 
-- type: marking
-  id: TajaranHairPlait
-  bodyPart: Hair
-  markingCategory: Hair
-  speciesRestriction: [Tajaran]
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_hairs.rsi
-    state: plait
+#- type: marking
+#  id: TajaranHairPlait
+#  bodyPart: Hair
+#  markingCategory: Hair
+#  speciesRestriction: [Tajaran]
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_hairs.rsi
+#    state: plait
 
-- type: marking
-  id: TajaranHairPonytail
-  bodyPart: Hair
-  markingCategory: Hair
-  speciesRestriction: [Tajaran]
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_hairs.rsi
-    state: ponytail
+#- type: marking
+#  id: TajaranHairPonytail
+#  bodyPart: Hair
+#  markingCategory: Hair
+#  speciesRestriction: [Tajaran]
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_hairs.rsi
+#    state: ponytail
 
-- type: marking
-  id: TajaranHairRattail
-  bodyPart: Hair
-  markingCategory: Hair
-  speciesRestriction: [Tajaran]
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_hairs.rsi
-    state: rattail
+#- type: marking
+#  id: TajaranHairRattail
+#  bodyPart: Hair
+#  markingCategory: Hair
+#  speciesRestriction: [Tajaran]
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_hairs.rsi
+#    state: rattail
 
-- type: marking
-  id: TajaranHairShaggy
-  bodyPart: Hair
-  markingCategory: Hair
-  speciesRestriction: [Tajaran]
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_hairs.rsi
-    state: shaggy
+#- type: marking
+#  id: TajaranHairShaggy
+#  bodyPart: Hair
+#  markingCategory: Hair
+#  speciesRestriction: [Tajaran]
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_hairs.rsi
+#    state: shaggy
 
-- type: marking
-  id: TajaranHairStraight
-  bodyPart: Hair
-  markingCategory: Hair
-  speciesRestriction: [Tajaran]
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_hairs.rsi
-    state: straight
+#- type: marking
+#  id: TajaranHairStraight
+#  bodyPart: Hair
+#  markingCategory: Hair
+#  speciesRestriction: [Tajaran]
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_hairs.rsi
+#    state: straight
 
-- type: marking
-  id: TajaranHairVictory
-  bodyPart: Hair
-  markingCategory: Hair
-  speciesRestriction: [Tajaran]
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_hairs.rsi
-    state: victory
+#- type: marking
+#  id: TajaranHairVictory
+#  bodyPart: Hair
+#  markingCategory: Hair
+#  speciesRestriction: [Tajaran]
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_hairs.rsi
+#    state: victory
 
-- type: marking
-  id: TajaranSpikey
-  bodyPart: Hair
-  markingCategory: Hair
-  speciesRestriction: [Tajaran]
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_hairs.rsi
-    state: spikey
+#- type: marking
+#  id: TajaranSpikey
+#  bodyPart: Hair
+#  markingCategory: Hair
+#  speciesRestriction: [Tajaran]
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_hairs.rsi
+#    state: spikey
 
-- type: marking
-  id: TajaranTajaranHairLadiesretro
-  bodyPart: Hair
-  markingCategory: Hair
-  speciesRestriction: [Tajaran]
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_hairs.rsi
-    state: ladiesretro
+#- type: marking
+#  id: TajaranTajaranHairLadiesretro
+#  bodyPart: Hair
+#  markingCategory: Hair
+#  speciesRestriction: [Tajaran]
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Arcane/_Orion/Mobs/Customization/Tajaran/tajaran_hairs.rsi
+#    state: ladiesretro
+# CorvaxGoob-end
 
 - type: marking
   id: amazon

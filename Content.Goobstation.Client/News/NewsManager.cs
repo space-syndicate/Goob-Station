@@ -1,7 +1,7 @@
 using System.Globalization;
 using System.Linq;
 using Content.Client.Guidebook;
-using Content.Goobstation.Client.VoiceChat;
+// using Content.Goobstation.Client.VoiceChat; // CorvaxGoob
 using Content.Goobstation.Common.CCVar;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
@@ -19,7 +19,7 @@ public sealed partial class NewsManager
     [Dependency] private DocumentParsingManager _parsing = default!;
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private IResourceManager _res = default!;
-    [Dependency] private VoiceChatManager _voice = default!;
+    // [Dependency] private VoiceChatManager _voice = default!; // CorvaxGoob
 
     public const int FeedLimit = 10;
     private const string NeverShow = "never";
@@ -45,7 +45,7 @@ public sealed partial class NewsManager
 
         _cfg.OnValueChanged(GoobCVars.NewsPinned, _ => Refresh());
         _cfg.OnValueChanged(GoobCVars.VoiceChatEnabled, _ => Refresh());
-        _voice.WebConnectedChanged += _ => Refresh();
+        // _voice.WebConnectedChanged += _ => Refresh(); // CorvaxGoob
         _proto.PrototypesReloaded += OnPrototypesReloaded;
 
         Refresh();

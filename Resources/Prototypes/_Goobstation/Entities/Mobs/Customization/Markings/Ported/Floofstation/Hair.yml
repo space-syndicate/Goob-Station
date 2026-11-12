@@ -24,13 +24,15 @@
   - sprite: _Goobstation/Mobs/Customization/Ported/Floofstation/_ADT/Mobs/Customization/Human/custom.rsi
     state: hair-womenbun
 
-- type: marking
-  id: HumanHairAfricanPigtails
-  bodyPart: Hair
-  markingCategory: Hair
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Floofstation/_Corvax/Mobs/Customization/human_hair.rsi
-    state: africanpigtails
+# CorvaxGoob-start: delete duble
+#- type: marking
+#  id: HumanHairAfricanPigtails
+#  bodyPart: Hair
+#  markingCategory: Hair
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Floofstation/_Corvax/Mobs/Customization/human_hair.rsi
+#    state: africanpigtails
+# CorvaxGoob-end
 
 - type: marking
   id: HumanHairAfropuffDouble
@@ -120,13 +122,15 @@
   - sprite: _Goobstation/Mobs/Customization/Ported/Floofstation/_EE/Mobs/Customization/human_hair.rsi
     state: fullshave
 
-- type: marking
-  id: HumanHairLong4
-  bodyPart: Hair
-  markingCategory: Hair
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Floofstation/_ADT/Mobs/Customization/Human/custom.rsi
-    state: hair-longhair
+# CorvaxGoob-start: delete duble
+#- type: marking
+#  id: HumanHairLong4
+#  bodyPart: Hair
+#  markingCategory: Hair
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Floofstation/_ADT/Mobs/Customization/Human/custom.rsi
+#    state: hair-longhair
+# CorvaxGoob-end
 
 - type: marking
   id: HumanHairMessyClassic

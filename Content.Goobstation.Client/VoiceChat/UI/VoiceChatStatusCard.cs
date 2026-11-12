@@ -1,3 +1,5 @@
+// Fully deleted by CorvaxGoob
+/*
 using System.Diagnostics.CodeAnalysis;
 using Content.Client.Guidebook.Richtext;
 using Content.Goobstation.UIKit.UserInterface.Lobby;
@@ -75,3 +77,4 @@ public sealed partial class VoiceChatStatusCard : BoxContainer, IDocumentTag
         _connect.Disabled = _voice.LinkUrl == null;
     }
 }
+*/

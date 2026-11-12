@@ -1,47 +1,49 @@
 # Ported from https://github.com/VanguardControl/Wolfgate/tree/f629218f44001244bddf67dc3fd46affd3a56e2f
 
-- type: marking
-  id: FoxTail
-  wagging: FoxTailAnimated
-  bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Vulpkanin]
-  layering:
-    vulp_tail_BEHIND: TailBehind
-    vulp_tail_inner_BEHIND: TailBehind
-  colorLinks:
-    vulp_tail_BEHIND: vulp_tail_FRONT
-    vulp_tail_inner_BEHIND: vulp_tail_inner_FRONT
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Wolfgate/_WF/Genitals/Mobs/Customization/TailSplit/_Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
-    state: vulp_tail_FRONT
-  - sprite: _Goobstation/Mobs/Customization/Ported/Wolfgate/_WF/Genitals/Mobs/Customization/TailSplit/_Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
-    state: vulp_tail_inner_FRONT
-  - sprite: _Goobstation/Mobs/Customization/Ported/Wolfgate/_WF/Genitals/Mobs/Customization/TailSplit/_Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
-    state: vulp_tail_BEHIND
-  - sprite: _Goobstation/Mobs/Customization/Ported/Wolfgate/_WF/Genitals/Mobs/Customization/TailSplit/_Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
-    state: vulp_tail_inner_BEHIND
+# CorvaxGoob-start: delete duble
+#- type: marking
+#  id: FoxTail
+#  wagging: FoxTailAnimated
+#  bodyPart: Tail
+#  markingCategory: Tail
+#  speciesRestriction: [Vulpkanin]
+#  layering:
+#    vulp_tail_BEHIND: TailBehind
+#    vulp_tail_inner_BEHIND: TailBehind
+#  colorLinks:
+#    vulp_tail_BEHIND: vulp_tail_FRONT
+#    vulp_tail_inner_BEHIND: vulp_tail_inner_FRONT
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Wolfgate/_WF/Genitals/Mobs/Customization/TailSplit/_Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
+#    state: vulp_tail_FRONT
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Wolfgate/_WF/Genitals/Mobs/Customization/TailSplit/_Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
+#    state: vulp_tail_inner_FRONT
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Wolfgate/_WF/Genitals/Mobs/Customization/TailSplit/_Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
+#    state: vulp_tail_BEHIND
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Wolfgate/_WF/Genitals/Mobs/Customization/TailSplit/_Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
+#    state: vulp_tail_inner_BEHIND
 
-- type: marking
-  id: FoxTailAnimated
-  bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Vulpkanin]
-  layering:
-    tail_fox_waggin_BEHIND: TailBehind
-    tail_fox_inner_waggin_BEHIND: TailBehind
-  colorLinks:
-    tail_fox_waggin_BEHIND: tail_fox_waggin_FRONT
-    tail_fox_inner_waggin_BEHIND: tail_fox_inner_waggin_FRONT
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Wolfgate/_WF/Genitals/Mobs/Customization/TailSplit/_Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
-    state: tail_fox_waggin_FRONT
-  - sprite: _Goobstation/Mobs/Customization/Ported/Wolfgate/_WF/Genitals/Mobs/Customization/TailSplit/_Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
-    state: tail_fox_inner_waggin_FRONT
-  - sprite: _Goobstation/Mobs/Customization/Ported/Wolfgate/_WF/Genitals/Mobs/Customization/TailSplit/_Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
-    state: tail_fox_waggin_BEHIND
-  - sprite: _Goobstation/Mobs/Customization/Ported/Wolfgate/_WF/Genitals/Mobs/Customization/TailSplit/_Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
-    state: tail_fox_inner_waggin_BEHIND
+#- type: marking
+#  id: FoxTailAnimated
+#  bodyPart: Tail
+#  markingCategory: Tail
+#  speciesRestriction: [Vulpkanin]
+#  layering:
+#    tail_fox_waggin_BEHIND: TailBehind
+#    tail_fox_inner_waggin_BEHIND: TailBehind
+#  colorLinks:
+#    tail_fox_waggin_BEHIND: tail_fox_waggin_FRONT
+#    tail_fox_inner_waggin_BEHIND: tail_fox_inner_waggin_FRONT
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Wolfgate/_WF/Genitals/Mobs/Customization/TailSplit/_Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
+#    state: tail_fox_waggin_FRONT
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Wolfgate/_WF/Genitals/Mobs/Customization/TailSplit/_Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
+#    state: tail_fox_inner_waggin_FRONT
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Wolfgate/_WF/Genitals/Mobs/Customization/TailSplit/_Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
+#    state: tail_fox_waggin_BEHIND
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Wolfgate/_WF/Genitals/Mobs/Customization/TailSplit/_Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
+#    state: tail_fox_inner_waggin_BEHIND
+# CorvaxGoob-end
 
 - type: marking
   id: SynthTailComposite
@@ -1529,45 +1531,47 @@
   - sprite: _Goobstation/Mobs/Customization/Ported/Wolfgate/_WF/MeridianMarkings/wings_48x32.rsi
     state: tri_wings_tertiary_BEHIND
 
-- type: marking
-  id: WolfTail
-  wagging: WolfTailAnimated
-  bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Vulpkanin]
-  layering:
-    wolf_tail_BEHIND: TailBehind
-    wolf_tail_inner_BEHIND: TailBehind
-  colorLinks:
-    wolf_tail_BEHIND: wolf_tail_FRONT
-    wolf_tail_inner_BEHIND: wolf_tail_inner_FRONT
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Wolfgate/_WF/Genitals/Mobs/Customization/TailSplit/_Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
-    state: wolf_tail_FRONT
-  - sprite: _Goobstation/Mobs/Customization/Ported/Wolfgate/_WF/Genitals/Mobs/Customization/TailSplit/_Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
-    state: wolf_tail_inner_FRONT
-  - sprite: _Goobstation/Mobs/Customization/Ported/Wolfgate/_WF/Genitals/Mobs/Customization/TailSplit/_Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
-    state: wolf_tail_BEHIND
-  - sprite: _Goobstation/Mobs/Customization/Ported/Wolfgate/_WF/Genitals/Mobs/Customization/TailSplit/_Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
-    state: wolf_tail_inner_BEHIND
+# CorvaxGoob-start: delete duble
+#- type: marking
+#  id: WolfTail
+#  wagging: WolfTailAnimated
+#  bodyPart: Tail
+#  markingCategory: Tail
+#  speciesRestriction: [Vulpkanin]
+#  layering:
+#    wolf_tail_BEHIND: TailBehind
+#    wolf_tail_inner_BEHIND: TailBehind
+#  colorLinks:
+#    wolf_tail_BEHIND: wolf_tail_FRONT
+#    wolf_tail_inner_BEHIND: wolf_tail_inner_FRONT
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Wolfgate/_WF/Genitals/Mobs/Customization/TailSplit/_Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
+#    state: wolf_tail_FRONT
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Wolfgate/_WF/Genitals/Mobs/Customization/TailSplit/_Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
+#    state: wolf_tail_inner_FRONT
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Wolfgate/_WF/Genitals/Mobs/Customization/TailSplit/_Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
+#    state: wolf_tail_BEHIND
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Wolfgate/_WF/Genitals/Mobs/Customization/TailSplit/_Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
+#    state: wolf_tail_inner_BEHIND
 
-- type: marking
-  id: WolfTailAnimated
-  bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Vulpkanin]
-  layering:
-    tail_wolf_waggin_BEHIND: TailBehind
-    tail_wolf_inner_waggin_BEHIND: TailBehind
-  colorLinks:
-    tail_wolf_waggin_BEHIND: tail_wolf_waggin_FRONT
-    tail_wolf_inner_waggin_BEHIND: tail_wolf_inner_waggin_FRONT
-  sprites:
-  - sprite: _Goobstation/Mobs/Customization/Ported/Wolfgate/_WF/Genitals/Mobs/Customization/TailSplit/_Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
-    state: tail_wolf_waggin_FRONT
-  - sprite: _Goobstation/Mobs/Customization/Ported/Wolfgate/_WF/Genitals/Mobs/Customization/TailSplit/_Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
-    state: tail_wolf_inner_waggin_FRONT
-  - sprite: _Goobstation/Mobs/Customization/Ported/Wolfgate/_WF/Genitals/Mobs/Customization/TailSplit/_Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
-    state: tail_wolf_waggin_BEHIND
-  - sprite: _Goobstation/Mobs/Customization/Ported/Wolfgate/_WF/Genitals/Mobs/Customization/TailSplit/_Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
-    state: tail_wolf_inner_waggin_BEHIND
+#- type: marking
+#  id: WolfTailAnimated
+#  bodyPart: Tail
+#  markingCategory: Tail
+#  speciesRestriction: [Vulpkanin]
+#  layering:
+#    tail_wolf_waggin_BEHIND: TailBehind
+#    tail_wolf_inner_waggin_BEHIND: TailBehind
+#  colorLinks:
+#    tail_wolf_waggin_BEHIND: tail_wolf_waggin_FRONT
+#    tail_wolf_inner_waggin_BEHIND: tail_wolf_inner_waggin_FRONT
+#  sprites:
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Wolfgate/_WF/Genitals/Mobs/Customization/TailSplit/_Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
+#    state: tail_wolf_waggin_FRONT
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Wolfgate/_WF/Genitals/Mobs/Customization/TailSplit/_Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
+#    state: tail_wolf_inner_waggin_FRONT
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Wolfgate/_WF/Genitals/Mobs/Customization/TailSplit/_Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
+#    state: tail_wolf_waggin_BEHIND
+#  - sprite: _Goobstation/Mobs/Customization/Ported/Wolfgate/_WF/Genitals/Mobs/Customization/TailSplit/_Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
+#    state: tail_wolf_inner_waggin_BEHIND
+# CorvaxGoob-end
