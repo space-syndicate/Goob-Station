@@ -13,7 +13,6 @@ public abstract partial class SharedInteractionSystem
     [Dependency] private INetManager _net = default!;
 
     [Dependency] private IConfigurationManager _cfg = default!;
-    [Dependency] private TagSystem _tag = default!; // CorvaxGoob
 
     private bool _interactionParticlesSuppressed;
     private bool _interactionParticlesEnabled = true;
