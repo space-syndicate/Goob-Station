@@ -10,7 +10,7 @@
     damage:
       types:
         Piercing: 17
-      armorPenetration: 0.15 # Goobstation
+      armorPenetration: 0.05 # Goobstation # CorvaxGoob sec rebalance
 
 - type: entity
   parent: BaseBulletPractice
@@ -44,5 +44,5 @@
   - type: Projectile
     damage:
       types:
-        Radiation: 9 # Goobstation
+        Radiation: 3 # Goobstation # CorvaxGoob sec rebalance
         Piercing: 10 # Goobstation

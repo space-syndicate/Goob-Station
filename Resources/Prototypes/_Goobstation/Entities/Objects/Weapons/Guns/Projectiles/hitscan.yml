@@ -93,7 +93,7 @@
     damage:
       types:
         Heat: 9
-      armorPenetration: 0.4
+      armorPenetration: 0.2 # CorvaxGoob sec rebalance start
   - type: HitscanBasicVisuals
     muzzleFlash:
       sprite: _Goobstation/Objects/Weapons/Guns/Projectiles/small_laser.rsi
@@ -215,7 +215,7 @@
     damage:
       types:
         Heat: 14
-      armorPenetration: 0.4
+      armorPenetration: 0.2 # CorvaxGoob sec rebalance
   - type: HitscanBasicVisuals
     muzzleFlash:
       sprite: _Goobstation/Objects/Weapons/Guns/Projectiles/small_laser.rsi
@@ -255,7 +255,7 @@
   - type: HitscanBasicDamage
     damage:
       types:
-        Heat: 10
+        Heat: 3 # CorvaxGoob sec rebalance
   - type: HitscanBasicVisuals
     muzzleFlash:
       sprite: _Goobstation/Objects/Weapons/Guns/Projectiles/small_laser.rsi
@@ -274,8 +274,10 @@
   - type: HitscanBasicDamage
     damage:
       types:
-        Heat: 9
-      armorPenetration: 0.4
+      # CorvaxGoob sec rebalance start
+        Heat: 3
+      armorPenetration: 0.2
+      # CorvaxGoob sec rebalance end
   - type: HitscanBasicVisuals
     muzzleFlash:
       sprite: _Goobstation/Objects/Weapons/Guns/Projectiles/small_laser.rsi
@@ -376,7 +378,7 @@
     damage:
       types:
         Heat: 11.5
-      armorPenetration: 0.4
+      armorPenetration: 0.2 # CorvaxGoob sec rebalance start
   - type: HitscanBasicVisuals
     muzzleFlash:
       sprite: _Goobstation/Objects/Weapons/Guns/Projectiles/small_laser.rsi
