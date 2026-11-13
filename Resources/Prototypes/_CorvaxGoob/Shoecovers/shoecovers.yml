@@ -1,0 +1,72 @@
+- type: entity
+  parent: BaseItem
+  id: ShoeCoversFolded
+  name: folded shoe covers
+  description: Unfold the covers before putting them over a pair of shoes.
+  components:
+  - type: Sprite
+    sprite:  _CorvaxGoob/Clothing/ShoeСovers/Shoe_Covers.rsi
+    state: shoecoversfolded
+  - type: SpawnItemsOnUse
+    items:
+    - id: ShoeCovers
+
+- type: entity
+  parent: BaseItem
+  id: ShoeCovers
+  name: shoe covers
+  description: Disposable blue covers that keep footprints off the floor.
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Clothing/ShoeСovers/Shoe_Covers.rsi
+    state: shoecovers
+  - type: ShoeCoversWrap
+    wrapDelay: 1
+    wrapSound:
+      path: /Audio/Items/Handcuffs/rope_start.ogg
+      params:
+        volume: -5
+        variation: 0.05
+    whitelist:
+      tags:
+      - WrappebelShoes
+    blacklist:
+      components:
+      - WrappedShoes
+    addedComponents:
+    - type: WrappedShoes
+      maxDistance: 300
+      unwrapSound:
+        path: /Audio/Effects/poster_broken.ogg
+        params:
+          volume: -4
+      unwrapTrash: ShoeCoversWrapTrash
+      overlaySprite:  _CorvaxGoob/Clothing/ShoeСovers/Shoe_Covers_Overlay.rsi
+
+- type: entity
+  parent: BaseItem
+  id: ShoeCoversWrapTrash
+  categories: [ HideSpawnMenu ]
+  name: torn shoe covers
+  description: These worn-out covers have holes in the soles.
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Clothing/ShoeСovers/Shoe_Covers_Trash.rsi
+    state: shoecoverstrash
+  - type: Tag
+    tags:
+    - Trash
+    - Recyclable
+  - type: SpaceGarbage
+
+- type: entity
+  parent: BoxCardboard
+  id: BoxShoeCovers
+  name: box of shoe covers
+  description: A supply of disposable medical shoe covers.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: ShoeCoversFolded
+        amount: 4
