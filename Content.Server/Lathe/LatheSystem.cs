@@ -151,6 +151,8 @@ namespace Content.Server.Lathe
                 }
             }
 
+            AddDepartmentFabricatorMaterials(uid, materialWhitelist); // CorvaxGoob - dept-techfab-tools-materials
+
             var combined = args.Whitelist.Union(materialWhitelist).ToList();
             args.Whitelist = combined;
         }
