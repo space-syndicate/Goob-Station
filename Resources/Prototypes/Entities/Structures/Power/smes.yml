@@ -3,7 +3,7 @@
 - type: entity
   abstract: true
   id: BaseSMES
-  parent: [ BaseMachine, ConstructibleMachine ]
+  parent: [ BaseMachine, ConstructibleMachine, BaseOverTemperatureDisabled ] # CorvaxGoob : Отключен урон от темпы
   name: SMES
   description: A high-capacity superconducting magnetic energy storage (SMES) unit.
   placement:

@@ -75,7 +75,7 @@
 - type: entity
   abstract: true
   id: BaseSubstation
-  parent: [ CoreSubstation, BaseMachine, ConstructibleMachine ]
+  parent: [ CoreSubstation, BaseMachine, ConstructibleMachine, BaseOverTemperatureDisabled ] # CorvaxGoob : Отключен урон от темпы
   name: substation
   description: Reduces the voltage of electricity put into it.
   placement:

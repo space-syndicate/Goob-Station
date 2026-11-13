@@ -93,7 +93,7 @@ public sealed partial class CriminalRecordsConsoleSystem
         if (!CheckSelected(ent, msg.Actor, out var mob, out var key))
             return;
 
-        if (!_records.TryGetRecord<CriminalRecord>(key.Value, out var record) || record.Status == msg.Status)
+        if (!_records.TryGetRecord<CriminalRecord>(key.Value, out var record)) // CorvaxGoob
             return;
 
         string? reason = null;
@@ -124,6 +124,11 @@ public sealed partial class CriminalRecordsConsoleSystem
             officer = tryGetIdentityShortInfoEvent.Title;
 
         _criminalRecords.TryChangeStatus(key.Value, msg.Status, msg.Reason, officer);
+
+        // CorvaxGoob-SecurityFeatures : Записывается любое изменение статуса
+        _criminalRecords.TryAddHistory(key.Value, Loc.GetString($"criminal-records-console-history",
+            ("status", Loc.GetString($"criminal-records-status-wanted")),
+            ("reason", reason ?? Loc.GetString($"criminal-records-console-unspecified"))), officer, status: msg.Status);
 
         (string, object)[] args;
         if (reason != null)

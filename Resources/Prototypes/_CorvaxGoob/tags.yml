@@ -70,6 +70,9 @@
   id: Hemostat
 
 - type: Tag
+  id: IgnoreInteractionParticle
+
+- type: Tag
   id: IgnorGrab
 
 - type: Tag
