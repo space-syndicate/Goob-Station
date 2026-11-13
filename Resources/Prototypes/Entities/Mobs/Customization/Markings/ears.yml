@@ -17,7 +17,7 @@
   markingCategory: HeadTop
   forcedColoring: true
   followSkinColor: true
-  speciesRestriction: [Human, SlimePerson] # CorvaxGoob slimeperson
+  speciesRestriction: [Human, Dwarf, SlimePerson] # CorvaxGoob slimeperson & Dwarf
   sprites:
   - sprite: Mobs/Customization/ears.rsi
     state: long_ears_wide
@@ -39,7 +39,7 @@
   markingCategory: HeadTop
   forcedColoring: true
   followSkinColor: true
-  speciesRestriction: [Human, SlimePerson] # CorvaxGoob slimeperson
+  speciesRestriction: [Human, Dwarf, SlimePerson] # CorvaxGoob slimeperson & Dwarf
   sprites:
   - sprite: Mobs/Customization/ears.rsi
     state: long_ears_upwards
@@ -50,7 +50,7 @@
   markingCategory: HeadTop
   forcedColoring: true
   followSkinColor: true
-  speciesRestriction: [Human, SlimePerson] # CorvaxGoob slimeperson
+  speciesRestriction: [Human, Dwarf, SlimePerson] # CorvaxGoob slimeperson & Dwarf
   sprites:
   - sprite: Mobs/Customization/ears.rsi
     state: long_ears_tall
