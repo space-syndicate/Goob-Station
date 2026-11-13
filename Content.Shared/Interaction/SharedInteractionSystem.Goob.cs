@@ -44,8 +44,8 @@ public abstract partial class SharedInteractionSystem
             || !TryComp(target, out MetaDataComponent? metaB) || metaB.EntityPaused
             || HasComp<VirtualItemComponent>(target))
             return;
-
-        if (_tag.HasTag(target, "IgnoreInteractionParticle")) // CorvaxGoob
+         
+        if (_tagSystem.HasTag(target, "IgnoreInteractionParticle")) // CorvaxGoob
             return;
 
         if (metaA.CreationTick == _gameTiming.CurTick || metaB.CreationTick == _gameTiming.CurTick)
