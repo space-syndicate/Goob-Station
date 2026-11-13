@@ -49,7 +49,6 @@ public sealed class CorvaxFootprintSystem : EntitySystem
         SubscribeLocalEvent<CorvaxFootprintOwnerComponent, MoveEvent>(OnMove);
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypesReloaded);
 
-        // Оба запроса инициализируем до обработки движения. default! только подавляет предупреждение компилятора.
         _noFootprintsQuery = GetEntityQuery<CannotLeaveTracesComponent>();
         _alternativnoFootprintsQuery = GetEntityQuery<ShoeCoversWearerComponent>();
         Subs.CVar(_configuration, GoobCVars.MinimumPuddleSizeForFootprints, value => _minimumPuddleSize = value, true);
@@ -73,10 +72,9 @@ public sealed class CorvaxFootprintSystem : EntitySystem
 
     private void OnMove(Entity<CorvaxFootprintOwnerComponent> entity, ref MoveEvent e)
     {
-        // У галош свой компонент запрета следов, у бахил — временный маркер носителя.
         if (_noFootprintsQuery.HasComp(entity))
             return;
-        // Ранний выход пропускает весь шаг обработки, включая накопление расстояния для следа и взаимодействие с лужей.
+        // Если надеты бахилы, следы не оставляются
         if (_alternativnoFootprintsQuery.HasComp(entity))
             return;
         if (!e.OldPosition.IsValid(EntityManager) || !e.NewPosition.IsValid(EntityManager))
@@ -84,7 +82,6 @@ public sealed class CorvaxFootprintSystem : EntitySystem
 
         entity.Comp.Distance += GetDelta(e).Length();
 
-        // Стоя оставляем отпечатки ног, лёжа — след тела. У них разные интервалы.
         var standing = TryComp<StandingStateComponent>(entity, out var standingState) && standingState.Standing;
         var requiredDistance = standing ? entity.Comp.FootDistance : entity.Comp.BodyDistance;
 
@@ -94,10 +91,8 @@ public sealed class CorvaxFootprintSystem : EntitySystem
         if (_gravity.IsWeightless(entity.Owner))
             return;
 
-        // Вычитаем только интервал одного следа, чтобы остаток пути сохранился для следующего движения.
         entity.Comp.Distance -= requiredDistance;
 
-        // Другие системы могут отменить создание следа и взаимодействие с лужей через это событие.
         var attemptEv = new FootprintLeaveAttemptEvent(entity.Owner);
         RaiseLocalEvent(ref attemptEv);
         if (attemptEv.Cancelled)
@@ -233,7 +228,7 @@ public sealed class CorvaxFootprintSystem : EntitySystem
         var spent = _solution.SplitSolution(solution.Value, volume);
 
         var maxPrint = standing ? entity.Comp.MaxFootprintVolume : entity.Comp.MaxBodyprintVolume;
-        var color = spent.GetColor(_prototype).WithAlpha((float) volume / (float) maxPrint / 2f);
+        var color = spent.GetColor(_prototype).WithAlpha((float)volume /(float) maxPrint / 2f);
 
         var decalId = standing ? entity.Comp.FootDecalId : entity.Comp.BodyDecalId;
         var angle = Quantize(rotation + Angle.FromDegrees(entity.Comp.SpriteAngleOffset), entity.Comp);
@@ -273,8 +268,7 @@ public sealed class CorvaxFootprintSystem : EntitySystem
     {
         var count = Math.Max(1, comp.DirectionCount);
         var step = Math.Tau / count;
-        var offsetDegrees = comp.DirectionOffsetDegrees;
-        var offset = offsetDegrees != null ? Angle.FromDegrees(offsetDegrees.Value).Theta : step / 2.0;
+        var offset = comp.DirectionOffsetDegrees is { } deg ? Angle.FromDegrees(deg).Theta : step / 2.0;
 
         var theta = (angle.Theta - offset) % Math.Tau;
         if (theta < 0)
