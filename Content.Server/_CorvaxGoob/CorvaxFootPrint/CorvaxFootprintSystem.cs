@@ -228,7 +228,7 @@ public sealed class CorvaxFootprintSystem : EntitySystem
         var spent = _solution.SplitSolution(solution.Value, volume);
 
         var maxPrint = standing ? entity.Comp.MaxFootprintVolume : entity.Comp.MaxBodyprintVolume;
-        var color = spent.GetColor(_prototype).WithAlpha((float)volume /(float) maxPrint / 2f);
+        var color = spent.GetColor(_prototype).WithAlpha((float)volume / (float)maxPrint / 2f);
 
         var decalId = standing ? entity.Comp.FootDecalId : entity.Comp.BodyDecalId;
         var angle = Quantize(rotation + Angle.FromDegrees(entity.Comp.SpriteAngleOffset), entity.Comp);
