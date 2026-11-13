@@ -5,7 +5,6 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Goobstation.Shared.ShoeCovers.Components;
 
-// Настройки предмета «бахилы», которые используются при применении к обуви.
 [RegisterComponent]
 public sealed partial class ShoeCoversWrapComponent : Component
 {
@@ -13,7 +12,7 @@ public sealed partial class ShoeCoversWrapComponent : Component
     [DataField] public SoundSpecifier? WrapSound;
     [DataField] public EntityWhitelist? Whitelist;
     [DataField] public EntityWhitelist? Blacklist;
-    // Этот список загружается из addedComponents в YAML и применяется к ботинкам после завершения действия.
+    // Этот список загружается из addedComponents в YAML и добавляется к ботинкам после завершения действия.
     [DataField(required: true)] public ComponentRegistry AddedComponents = new();
 }
 
