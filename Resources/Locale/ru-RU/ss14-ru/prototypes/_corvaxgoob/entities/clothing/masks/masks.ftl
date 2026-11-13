@@ -5,3 +5,7 @@ ent-ClothingMaskGasThunderdome = газовая маска грозового р
 ent-ClothingMaskGasSyndicateUnremoveable = { ent-ClothingMaskGasSyndicate }
     .suffix = Неснимаемый
     .desc = { ent-ClothingMaskGasSyndicate.desc }
+
+ent-ClothingMaskGasShitSec = противогаз "Уставник"
+    .suffix = Неснимаемый
+    .desc = Противогаз, выдаваемый офицерам в качестве "награды" за многократные нарушения уставной речи и мат в адрес сослуживцев.
