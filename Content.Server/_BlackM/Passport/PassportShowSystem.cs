@@ -1,4 +1,7 @@
+using Content.Server.Administration.Managers;
 using Content.Server.Popups;
+using Content.Shared.Administration;
+using Content.Shared.Ghost;
 using Content.Shared._BlackM.Passport;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Humanoid;
@@ -16,6 +19,7 @@ public sealed class PassportShowSystem : EntitySystem
     [Dependency] private readonly InventorySystem   _inventory = default!;
     [Dependency] private readonly PopupSystem       _popup     = default!;
     [Dependency] private readonly PassportSystem    _passport  = default!;
+    [Dependency] private readonly IAdminManager     _admin     = default!;
 
     private const string PassportSlot = "passport";
 
@@ -23,6 +27,7 @@ public sealed class PassportShowSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<HumanoidAppearanceComponent, GetVerbsEvent<InteractionVerb>>(OnGetVerbs);
+        SubscribeLocalEvent<GetVerbsEvent<Verb>>(OnGetAdminVerbs);
     }
 
     private void OnGetVerbs(EntityUid target, HumanoidAppearanceComponent humanoid, GetVerbsEvent<InteractionVerb> args)
@@ -44,6 +49,58 @@ public sealed class PassportShowSystem : EntitySystem
             Priority = 5,
             Act = () => ShowPassport(user, target),
         });
+    }
+
+    private void OnGetAdminVerbs(GetVerbsEvent<Verb> args)
+    {
+        var user = args.User;
+        var target = args.Target;
+
+        if (user == target || !HasComp<HumanoidAppearanceComponent>(target))
+            return;
+
+        if (!HasComp<GhostComponent>(user) || !TryComp<ActorComponent>(user, out var userActor))
+            return;
+
+        if (!_admin.HasAdminFlag(userActor.PlayerSession, AdminFlags.Admin))
+            return;
+
+        if (!TryFindPassportFor(target, out var passport))
+            return;
+
+        var session = userActor.PlayerSession;
+        args.Verbs.Add(new Verb
+        {
+            Text = Loc.GetString("passport-verb-admin-view"),
+            Category = VerbCategory.Admin,
+            Priority = -10,
+            Act = () =>
+            {
+                if (!TryComp<PassportComponent>(passport, out var comp) || Deleted(passport))
+                    return;
+                RaiseNetworkEvent(new PassportShownEvent(_passport.BuildState(comp)), session);
+            },
+        });
+    }
+
+    private bool TryFindPassportFor(EntityUid target, out EntityUid passport)
+    {
+        if (TryFindPassport(target, out passport))
+            return true;
+
+        var netTarget = GetNetEntity(target);
+        var query = EntityQueryEnumerator<PassportComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            if (comp.IsBound && comp.OwnerEntity == netTarget)
+            {
+                passport = uid;
+                return true;
+            }
+        }
+
+        passport = default;
+        return false;
     }
 
     private void ShowPassport(EntityUid user, EntityUid target)
