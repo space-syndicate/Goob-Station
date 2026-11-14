@@ -1,0 +1,35 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingEyesGlassesJanitor
+  name: janitorial scanner goggles
+  description: Highlights the shapes of loose trash, footprints and non-evaporating puddles through walls within eight metres using a thermal imaging palette. Wear them over your eyes and use the scanner action to toggle detection.
+  components:
+  - type: Sprite
+    sprite: Clothing/Eyes/Glasses/meson.rsi
+    color: "#D69EFF"
+  - type: Clothing
+    sprite: Clothing/Eyes/Glasses/meson.rsi
+    clothingVisuals:
+      eyes:
+      - state: equipped-EYES
+        color: "#D69EFF"
+  - type: JanitorVision
+
+- type: entity
+  parent: BaseAction
+  id: ActionToggleJanitorVision
+  name: Toggle janitorial scanner
+  description: Toggles thermal-style highlighting of nearby loose trash, footprints and non-evaporating puddles through walls.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    priority: -20
+    useDelay: 1
+    icon:
+      sprite: Clothing/Eyes/Glasses/meson.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:ToggleJanitorVisionEvent
