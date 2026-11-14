@@ -105,6 +105,15 @@ public sealed class BlackMCVars
     public static readonly CVarDef<float> GunCameraStrength =
         CVarDef.Create("blackm.gun_camera_strength", 0.6f, CVar.CLIENTONLY | CVar.ARCHIVE);
     
+    public static readonly CVarDef<bool> ShotEffectsEnabled =
+        CVarDef.Create("blackm.shot_effects_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<bool> ShotTrailsEnabled =
+        CVarDef.Create("blackm.shot_trails_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<bool> ShotImpactsEnabled =
+        CVarDef.Create("blackm.shot_impacts_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
     public static readonly CVarDef<bool> VoidFallEnabled =
         CVarDef.Create("blackm.void_fall_enabled", true, CVar.SERVERONLY);
 

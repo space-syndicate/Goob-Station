@@ -148,6 +148,24 @@ public sealed class ShotOverlay : Overlay
             r.Open = false;
     }
 
+    public void ClearTrails()
+    {
+        _open.Clear();
+        _ribbons.Clear();
+        _trailPoints = 0;
+    }
+
+    public void ClearParticles()
+    {
+        _particles.Clear();
+    }
+
+    public void Clear()
+    {
+        ClearTrails();
+        ClearParticles();
+    }
+
     private static Vector2 Displace(Ribbon r, TrailPoint p)
     {
         var grow = 0.15f + 1.3f * MathF.Sqrt(Math.Clamp(p.Age / r.Life, 0f, 1f));
@@ -158,7 +176,7 @@ public sealed class ShotOverlay : Overlay
         return p.Pos + p.Perp * (wave + drift) + new Vector2(0f, p.Age * r.Rise * 0.55f);
     }
 
-    public void Impact(MapId map, Vector2 pos, Vector2 dir, ShotComponent c)
+    public void Impact(MapId map, Vector2 pos, Vector2 dir, ShotComponent c, bool smoke = true)
     {
         var s = c.ImpactScale;
         var back = new Vector2(-dir.X, -dir.Y);
@@ -196,7 +214,7 @@ public sealed class ShotOverlay : Overlay
             });
         }
 
-        if (!c.Smoke)
+        if (!c.Smoke || !smoke)
             return;
 
         var sz = c.SmokeScale * s;

@@ -12,3 +12,6 @@ ui-options-gun-crosshair = Динамический прицел у курсор
 ui-options-gun-aim-line = Линия прицеливания и конус разброса
 ui-options-gun-camera-follow = Камера следует за курсором при прицеливании
 ui-options-gun-camera-strength = Смещение камеры при прицеливании
+ui-options-shot-effects = Эффекты выстрелов (трассеры, дым, попадания) (если офф +ФПС)
+ui-options-shot-trails = Дымовой след от пуль
+ui-options-shot-impacts = Эффекты попаданий (искры, дым, вспышка)

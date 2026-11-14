@@ -34,6 +34,9 @@ public sealed partial class BlackMTab : Control
         Control.AddOptionCheckBox(BlackMCVars.EchoStrongPreset, EchoStrongPresetCheckBox);
         Control.AddOptionCheckBox(BlackMCVars.BattleMusicEnabled, BattleMusicEnabledCheckBox);
         Control.AddOptionCheckBox(BlackMCVars.DefaultAtmosphereShaderEnabled, DefaultAtmosphereShaderCheckBox);
+        Control.AddOptionCheckBox(BlackMCVars.ShotEffectsEnabled, ShotEffectsCheckBox);
+        Control.AddOptionCheckBox(BlackMCVars.ShotTrailsEnabled, ShotTrailsCheckBox);
+        Control.AddOptionCheckBox(BlackMCVars.ShotImpactsEnabled, ShotImpactsCheckBox);
         Control.AddOptionCheckBox(BlackMCVars.GunCrosshairEnabled, GunCrosshairCheckBox);
         Control.AddOptionCheckBox(BlackMCVars.GunAimLineEnabled, GunAimLineCheckBox);
         Control.AddOptionCheckBox(BlackMCVars.GunCameraFollow, GunCameraFollowCheckBox);
