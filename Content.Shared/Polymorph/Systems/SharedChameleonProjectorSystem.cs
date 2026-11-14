@@ -351,6 +351,27 @@ public abstract class SharedChameleonProjectorSystem : EntitySystem
 
         return proto.TryGetComponent(out src, EntityManager.ComponentFactory);
     }
+
+    // CorvaxGoob-Fix
+    protected bool GetSrcEntity<T>(ChameleonDisguiseComponent comp, out Entity<T?> src) where T : Component, new()
+    {
+        if (TryComp<T>(comp.SourceEntity, out var liveComp))
+        {
+            src = (comp.SourceEntity, liveComp);
+            return true;
+        }
+
+        if (comp.SourceProto is { } protoId
+            && ProtoMan.TryIndex<EntityPrototype>(protoId, out var proto)
+            && proto.TryComp<T>(out var protoComp, EntityManager.ComponentFactory))
+        {
+            src = (EntityUid.Invalid, protoComp);
+            return true;
+        }
+
+        src = default;
+        return false;
+    }
 }
 
 /// <summary>

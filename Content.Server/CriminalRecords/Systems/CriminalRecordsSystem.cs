@@ -56,8 +56,7 @@ public sealed class CriminalRecordsSystem : SharedCriminalRecordsSystem
     public bool TryChangeStatus(StationRecordKey key, SecurityStatus status, string? reason, string? initiatorName = null)
     {
         // don't do anything if its the same status
-        if (!_records.TryGetRecord<CriminalRecord>(key, out var record)
-            || status == record.Status)
+        if (!_records.TryGetRecord<CriminalRecord>(key, out var record)) // CorvaxGoob
             return false;
 
         OverwriteStatus(key, record, status, reason, initiatorName);

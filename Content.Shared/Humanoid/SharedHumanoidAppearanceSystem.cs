@@ -27,6 +27,7 @@ using YamlDotNet.RepresentationModel;
 using Content.Shared._CorvaxGoob.TTS;
 using Content.Corvax.Interfaces.Shared;
 using Robust.Shared.Enums;
+using Content.Shared.Sprite;
 
 namespace Content.Shared.Humanoid;
 
@@ -49,6 +50,7 @@ public abstract partial class SharedHumanoidAppearanceSystem : EntitySystem //go
     [Dependency] private readonly MarkingManager _markingManager = default!;
     [Dependency] private readonly GrammarSystem _grammarSystem = default!;
     [Dependency] private readonly IdentitySystem _identity = default!;
+    [Dependency] private readonly SharedScaleVisualsSystem _scaleVisuals = default!; // CorvaxGoob
     private ISharedSponsorsManager? _sponsors;
 
     // CorvaxGoob-TTS-Start
@@ -567,9 +569,7 @@ public abstract partial class SharedHumanoidAppearanceSystem : EntitySystem //go
         // begin Goobstation: port EE height/width sliders
         var species = _proto.Index(humanoid.Species);
 
-        SetScale(uid, new Vector2(species.DefaultWidth, species.DefaultHeight), true, humanoid);
-
-        _heightAdjust.SetScale(uid, new Vector2(humanoid.Width, humanoid.Height));
+        _scaleVisuals.SetSpriteScale(uid, new Vector2(species.DefaultWidth, species.DefaultHeight)); // CorvaxGoob-Fixes
         // end Goobstation: port EE height/width sliders
 
         RaiseLocalEvent(uid, new ProfileLoadFinishedEvent()); // Shitmed Change

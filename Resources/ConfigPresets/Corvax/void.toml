@@ -40,3 +40,6 @@ split_uncompressed_size = 819200
 
 [ghost.go_lobby]
 enabled = false
+
+[vote]
+preset_enabled = true

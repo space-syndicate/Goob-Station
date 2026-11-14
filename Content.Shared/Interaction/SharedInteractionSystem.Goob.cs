@@ -1,6 +1,7 @@
 using Content.Goobstation.Common.CCVar;
 using Content.Shared._ST.Interaction;
 using Content.Shared.Inventory.VirtualItem;
+using Content.Shared.Tag;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
@@ -42,6 +43,9 @@ public abstract partial class SharedInteractionSystem
         if (!TryComp(uidA, out MetaDataComponent? metaA) || metaA.EntityPaused
             || !TryComp(target, out MetaDataComponent? metaB) || metaB.EntityPaused
             || HasComp<VirtualItemComponent>(target))
+            return;
+         
+        if (_tagSystem.HasTag(target, "IgnoreInteractionParticle")) // CorvaxGoob
             return;
 
         if (metaA.CreationTick == _gameTiming.CurTick || metaB.CreationTick == _gameTiming.CurTick)

@@ -41,6 +41,17 @@
         Aerial: -0.2
       chanceMultipliers:
         Aerial: 0.5
+  # CorvaxGoob-HailerRework-Start
+  - type: Hailer
+    availableModes:
+      calm: HailerMessagersCalm
+      agressive: HailerMessagersAgressive
+    emagedModes:
+      emag: HailerMessagersEmag
+  - type: HailerDeathSound
+    sound:
+      path: /Audio/_CorvaxGoob/Misc/hailer_user_death.ogg
+  # CorvaxGoob-HailerRework-End
 
 - type: entity
   parent: [ClothingMaskGas, BaseSecurityContraband]

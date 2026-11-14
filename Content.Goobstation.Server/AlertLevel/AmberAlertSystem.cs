@@ -50,7 +50,7 @@ public sealed partial class AmberAlertSystem : EntitySystem
         SubscribeLocalEvent<SlasherAscendedEvent>(OnSlasherAscend);
         SubscribeLocalEvent<XenomorphsAnnouncedEvent>(OnXenomorphsAnnounced);
         SubscribeLocalEvent<AlertLevelSelectAttemptEvent>(OnAlertSelectAttempt);
-        SubscribeLocalEvent<CommunicationsConsoleComponent, GetVerbsEvent<AlternativeVerb>>(OnGetVerbs);
+        SubscribeLocalEvent<CommunicationsConsoleComponent, GetVerbsEvent<Verb>>(OnGetVerbs); // CorvaxGoob : AltVert - Verb
     }
 
 
@@ -104,7 +104,7 @@ public sealed partial class AmberAlertSystem : EntitySystem
         }
     }
 
-    private void OnGetVerbs(Entity<CommunicationsConsoleComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
+    private void OnGetVerbs(Entity<CommunicationsConsoleComponent> ent, ref GetVerbsEvent<Verb> args) // CorvaxGoob : AltVert - Verb
     {
         if (!args.CanAccess || !args.CanInteract)
             return;
@@ -119,7 +119,7 @@ public sealed partial class AmberAlertSystem : EntitySystem
         var console = ent.Owner;
         var stationUid = station.Value;
 
-        args.Verbs.Add(new AlternativeVerb
+        args.Verbs.Add(new Verb // CorvaxGoob : AltVert - Verb
         {
             Text = Loc.GetString("alert-level-amber-verb-text"),
             Message = Loc.GetString("alert-level-amber-verb-message"),

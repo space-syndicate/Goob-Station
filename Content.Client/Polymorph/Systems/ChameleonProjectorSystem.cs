@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Client.Effects;
+using Content.Client.Interactable.Components;
 using Content.Client.Smoking;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Polymorph.Components;
@@ -33,7 +34,7 @@ public sealed class ChameleonProjectorSystem : SharedChameleonProjectorSystem
 
     private void OnHandleState(Entity<ChameleonDisguiseComponent> ent, ref AfterAutoHandleStateEvent args)
     {
-        CopyComp<SpriteComponent>(ent);
+        CopySprite(ent); // CorvaxGoob-Fix
         CopyComp<GenericVisualizerComponent>(ent);
         CopyComp<SolutionContainerVisualsComponent>(ent);
         CopyComp<BurnStateVisualsComponent>(ent);
@@ -50,6 +51,19 @@ public sealed class ChameleonProjectorSystem : SharedChameleonProjectorSystem
 
         ent.Comp.WasVisible = sprite.Visible;
         _sprite.SetVisible((ent.Owner, sprite), false);
+    }
+
+    // CorvaxGoob-Fix
+    /// <summary>
+    /// Copies the source entity/prototype's sprite onto the disguise.
+    /// </summary>
+    private void CopySprite(Entity<ChameleonDisguiseComponent> ent)
+    {
+        if (!GetSrcEntity<SpriteComponent>(ent.Comp, out var src))
+            return;
+
+        var dest = EnsureComp<SpriteComponent>(ent);
+        _sprite.CopySprite(src, (ent.Owner, dest));
     }
 
     private void OnShutdown(Entity<ChameleonDisguisedComponent> ent, ref ComponentShutdown args)
