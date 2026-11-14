@@ -133,6 +133,7 @@ public sealed class UndergroundMapSystem : EntitySystem
 
             AddOuterWalls(mapUid.Value, grid, generated, landingTile);
             AddInfectionDecals(mapUid.Value, grid, generated, landingTile, seed);
+            SpawnXenCrystals(mapUid.Value, grid, generated, landingTile, seed);
             _maps.SetPaused(mapUid.Value, false);
             _pending.Remove(owner);
             published = true;
@@ -191,6 +192,7 @@ public sealed class UndergroundMapSystem : EntitySystem
             if (candidates.Count == 0)
                 return false;
             var item = Spawn(UndergroundMissions.ItemPrototype(mission), _maps.GridTileToLocal(site.Map, grid, candidates[0]));
+            SpawnGuards(site.Map, grid, candidates[0], ObjectiveGuards, random);
             var marker = EnsureComp<UndergroundMissionSampleComponent>(item);
             marker.Console = owner;
             marker.Generation = generation;
@@ -216,6 +218,8 @@ public sealed class UndergroundMapSystem : EntitySystem
         for (var i = 0; i < count; i++)
         {
             var target = Spawn(UndergroundMissions.Target(mission), _maps.GridTileToLocal(site.Map, grid, candidates[i]));
+            if (i % 2 == 0)
+                SpawnGuards(site.Map, grid, candidates[i], 1, random);
             var marker = EnsureComp<UndergroundMissionTargetComponent>(target);
             marker.Console = owner;
             marker.Generation = generation;
@@ -559,6 +563,98 @@ public sealed class UndergroundMapSystem : EntitySystem
                 return false;
         }
         return true;
+    }
+
+    private const string XenCrystalPrototype = "MaterialXenCrystalConcentrate1";
+    private const int XenCrystalMin = 1;
+    private const int XenCrystalMax = 2;
+    private const int XenCrystalMinDistance = 14;
+    private const int CrystalGuards = 2;
+    private const int ObjectiveGuards = 2;
+    private static readonly string[] GuardPool =
+    {
+        "MobHeadcrabBlackM",
+        "MobHeadcrabBlackM",
+        "MobHoundeyeBlackM",
+        "MobHoundeyeBlackM",
+        "MobVortigauntBlackM",
+    };
+
+    private void SpawnXenCrystals(EntityUid map, MapGridComponent grid, IReadOnlyList<Dungeon> dungeons,
+        Vector2i landing, int seed)
+    {
+        var random = new Random(seed ^ 0x5EED);
+        var candidates = new List<Vector2i>();
+        var seen = new HashSet<Vector2i>();
+        foreach (var dungeon in dungeons)
+        foreach (var tile in dungeon.RoomTiles)
+        {
+            if (!seen.Add(tile) || !IsUsableFloor(grid, tile))
+                continue;
+            if (Math.Abs(tile.X - landing.X) + Math.Abs(tile.Y - landing.Y) < XenCrystalMinDistance)
+                continue;
+            candidates.Add(tile);
+        }
+
+        if (candidates.Count == 0)
+        {
+            foreach (var dungeon in dungeons)
+            foreach (var tile in dungeon.RoomTiles)
+            {
+                if (IsUsableFloor(grid, tile) && tile != landing)
+                    candidates.Add(tile);
+            }
+        }
+
+        if (candidates.Count == 0)
+        {
+            Log.Warning($"Underground: no free tile for Xen crystals (seed {seed}).");
+            return;
+        }
+
+        var count = random.Next(XenCrystalMin, XenCrystalMax + 1);
+        var placed = new List<Vector2i>();
+        for (var attempt = 0; attempt < 50 && placed.Count < count; attempt++)
+        {
+            var tile = candidates[random.Next(candidates.Count)];
+            var tooClose = false;
+            foreach (var other in placed)
+            {
+                if (Math.Abs(other.X - tile.X) + Math.Abs(other.Y - tile.Y) < 10)
+                {
+                    tooClose = true;
+                    break;
+                }
+            }
+            if (tooClose && attempt < 40)
+                continue;
+
+            placed.Add(tile);
+            Spawn(XenCrystalPrototype, _maps.GridTileToLocal(map, grid, tile));
+            SpawnGuards(map, grid, tile, CrystalGuards, random);
+        }
+    }
+
+    private void SpawnGuards(EntityUid map, MapGridComponent grid, Vector2i center, int count, Random random)
+    {
+        var spots = new List<Vector2i>();
+        for (var x = -3; x <= 3; x++)
+        for (var y = -3; y <= 3; y++)
+        {
+            if (Math.Abs(x) + Math.Abs(y) < 2)
+                continue;
+            var tile = center + new Vector2i(x, y);
+            if (IsUsableFloor(grid, tile))
+                spots.Add(tile);
+        }
+
+        for (var i = 0; i < count && spots.Count > 0; i++)
+        {
+            var index = random.Next(spots.Count);
+            var tile = spots[index];
+            spots.RemoveAt(index);
+            Spawn(GuardPool[random.Next(GuardPool.Length)], _maps.GridTileToLocal(map, grid, tile));
+        }
     }
 
     private bool IsUsableFloor(MapGridComponent grid, Vector2i tile)
