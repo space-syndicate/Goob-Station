@@ -22,3 +22,14 @@ fax-machine-ui-paper-inserted = Бумага в лотке
 fax-machine-ui-paper-not-inserted = Нет бумаги
 fax-machine-chat-notify = Получено новое сообщение с "{ $fax }" факса
 fax-machine-printed-paper-name = распечатанная бумага
+
+fax-machine-ui-output-count = Полученные документы: { $count } / { $capacity }
+fax-machine-ui-output-empty = { $slot }. Пусто
+fax-machine-ui-output-eject = { $slot }. Извлечь: { $name }
+fax-machine-ui-reminder-disable = Напоминание: включено — выключить
+fax-machine-ui-reminder-enable = Напоминание: выключено — включить
+fax-machine-output-slot-1 = Полученный документ 1
+fax-machine-output-slot-2 = Полученный документ 2
+fax-machine-output-slot-3 = Полученный документ 3
+fax-machine-output-slot-4 = Полученный документ 4
+fax-machine-output-slot-5 = Полученный документ 5

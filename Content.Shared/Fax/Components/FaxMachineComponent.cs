@@ -75,10 +75,29 @@ public sealed partial class FaxMachineComponent : Component
     // CorvaxGoob-StationGoal-End
 
     /// <summary>
-    /// Keep printouts in the paper slot, then try the containing storage or the holder's backpack.
+    /// Keep printouts in the output slots, then try the containing storage or the holder's backpack.
     /// </summary>
     [DataField]
     public bool StorePrintouts;
+
+    /// <summary>
+    /// Received documents are kept separately from the document being sent or copied.
+    /// </summary>
+    [DataField]
+    public List<ItemSlot> OutputSlots = new();
+
+    [DataField]
+    public bool ReminderEnabled = true;
+
+    [DataField]
+    public float ReminderInterval = 30f;
+
+    [DataField]
+    public float ReminderTimeRemaining = 30f;
+
+    [DataField]
+    public SoundSpecifier ReminderSound = new SoundPathSpecifier("/Audio/Machines/high_tech_confirm.ogg",
+        AudioParams.Default.WithVolume(-8f));
 
     /// <summary>
     /// Sound to play when fax printing new message

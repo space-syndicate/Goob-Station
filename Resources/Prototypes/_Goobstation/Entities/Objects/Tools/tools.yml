@@ -124,6 +124,38 @@
     needsPower: false
     powerLoad: 250
   - type: FaxMachine
+    storePrintouts: true
+    outputSlots:
+    - name: fax-machine-output-slot-1
+      insertOnInteract: false
+      insertSound: null
+      ejectSound: /Audio/Machines/tray_eject.ogg
+      whitelist:
+        components: [Paper]
+    - name: fax-machine-output-slot-2
+      insertOnInteract: false
+      insertSound: null
+      ejectSound: /Audio/Machines/tray_eject.ogg
+      whitelist:
+        components: [Paper]
+    - name: fax-machine-output-slot-3
+      insertOnInteract: false
+      insertSound: null
+      ejectSound: /Audio/Machines/tray_eject.ogg
+      whitelist:
+        components: [Paper]
+    - name: fax-machine-output-slot-4
+      insertOnInteract: false
+      insertSound: null
+      ejectSound: /Audio/Machines/tray_eject.ogg
+      whitelist:
+        components: [Paper]
+    - name: fax-machine-output-slot-5
+      insertOnInteract: false
+      insertSound: null
+      ejectSound: /Audio/Machines/tray_eject.ogg
+      whitelist:
+        components: [Paper]
     paperSlot:
       insertSound: /Audio/Machines/scanning.ogg
       ejectSound: /Audio/Machines/tray_eject.ogg
@@ -157,7 +189,6 @@
   components:
   - type: FaxMachine
     name: "Nanotrasen Representative"
-    storePrintouts: true
   - type: Sprite
     sprite: _Goobstation/Objects/Tools/handheld_fax.rsi
     drawdepth: SmallObjects
@@ -210,7 +241,6 @@
   components:
   - type: FaxMachine
     name: "CentComm Official"
-    storePrintouts: true
   - type: Item
     size: Normal
     sprite: _Goobstation/Objects/Tools/official_fax.rsi

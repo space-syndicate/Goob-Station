@@ -17,6 +17,7 @@ namespace Content.IntegrationTests.Tests.Fax;
 [TestFixture]
 public sealed class FaxPrintoutTest
 {
+    [TestCase("HandheldFax", false, false, false, false)]
     [TestCase("HandheldFaxNTR", false, false, false, false)]
     [TestCase("HandheldFaxNanorep", false, false, false, false)]
     [TestCase("HandheldFaxNTR", true, true, false, false)]
@@ -49,6 +50,11 @@ public sealed class FaxPrintoutTest
             {
                 original = entities.SpawnEntity("Paper", map.GridCoords);
                 Assert.That(slots.TryInsert(fax, component.PaperSlot, original, null), Is.True);
+                foreach (var slot in component.OutputSlots)
+                {
+                    var existing = entities.SpawnEntity("Paper", map.GridCoords);
+                    Assert.That(slots.TryInsert(fax, slot, existing, null), Is.True);
+                }
             }
 
             if (withBackpack)
@@ -101,14 +107,14 @@ public sealed class FaxPrintoutTest
             if (occupied)
                 Assert.That(component.PaperSlot.Item, Is.EqualTo(original), "Do not replace the outgoing document");
 
-            var retained = (prototype == "HandheldFaxNTR" || prototype == "HandheldFaxNanorep") && !occupied;
+            var retained = prototype != "FaxMachineBase" && !occupied;
             var inBackpack = occupied && withBackpack && !full;
             if (retained || inBackpack)
             {
                 Assert.That(containers.TryGetContainingContainer((printed!.Value, null, null), out var container), Is.True);
                 Assert.That(container!.Owner, Is.EqualTo(retained ? fax : backpack));
                 if (retained)
-                    Assert.That(slots.TryEject(fax, component.PaperSlot, null, out _), Is.True, "Received paper must be removable");
+                    Assert.That(slots.TryEject(fax, component.OutputSlots[0], null, out _), Is.True, "Received paper must be removable");
             }
             else
             {
