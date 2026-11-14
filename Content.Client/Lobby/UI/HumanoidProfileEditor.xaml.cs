@@ -12,6 +12,7 @@ using Content.Client.Sprite;
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Systems.Chat;
 using Content.Client.UserInterface.Systems.Guidebook;
+using Content.Corvax.Interfaces.Shared; // CorvaxGoob-Sponsors
 using Content.Shared._CorvaxGoob;
 using Content.Shared._CorvaxGoob.CCCVars;
 using Content.Shared.CCVar;
@@ -44,6 +45,7 @@ using System.IO;
 using System.Linq;
 using System.Numerics;
 using Direction = Robust.Shared.Maths.Direction;
+using Content.Goobstation.UIKit.UserInterface.Lobby; // Goob
 
 namespace Content.Client.Lobby.UI
 {
@@ -76,6 +78,8 @@ namespace Content.Client.Lobby.UI
         private HighlightProfileEditorMenu? _highlightEditor; // CorvaxGoob
 
         private TTSTab? _ttsTab;// CorvaxGoob-TTS
+
+        private ISharedSponsorsManager? _sponsorsManager; // CorvaxGoob-Sponsors
 
         private bool _exporting;
         private bool _imaging;
@@ -148,6 +152,7 @@ namespace Content.Client.Lobby.UI
             _requirements = requirements;
             _controller = UserInterfaceManager.GetUIController<LobbyUIController>();
             _sprite = _entManager.System<SpriteSystem>();
+            IoCManager.Instance!.TryResolveType(out _sponsorsManager); // CorvaxGoob-Sponsors
 
             _maxNameLength = _cfgManager.GetCVar(CCVars.MaxNameLength);
             _allowFlavorText = _cfgManager.GetCVar(CCVars.FlavorText);
@@ -196,7 +201,8 @@ namespace Content.Client.Lobby.UI
 
             #region Appearance
 
-            TabContainer.SetTabTitle(0, Loc.GetString("humanoid-profile-editor-appearance-tab"));
+            TabContainer.SetTabTitle(0, Loc.GetString("humanoid-profile-editor-identity-tab")); // Goob
+            TabContainer.SetTabTitle(1, Loc.GetString("humanoid-profile-editor-appearance-tab")); // Goob
 
             #region Sex
 
@@ -294,6 +300,7 @@ namespace Content.Client.Lobby.UI
             };
 
             RgbSkinColorContainer.AddChild(_rgbSkinColorSelector = new ColorSelectorSliders());
+            HullStyler.Apply(_rgbSkinColorSelector); // Goob
             _rgbSkinColorSelector.SelectorType = ColorSelectorSliders.ColorSelectorType.Hsv; // defaults color selector to HSV
             _rgbSkinColorSelector.OnColorChanged += _ =>
             {
@@ -320,7 +327,7 @@ namespace Content.Client.Lobby.UI
                 Profile = Profile.WithCharacterAppearance(
                     Profile.Appearance.WithHairColor(newColor.marking.MarkingColors[0]));
                 UpdateCMarkingsHair();
-                ReloadPreview();
+                ReloadProfilePreview(); // Goob
             };
 
             FacialHairPicker.OnMarkingSelect += newStyle =>
@@ -339,7 +346,7 @@ namespace Content.Client.Lobby.UI
                 Profile = Profile.WithCharacterAppearance(
                     Profile.Appearance.WithFacialHairColor(newColor.marking.MarkingColors[0]));
                 UpdateCMarkingsFacialHair();
-                ReloadPreview();
+                ReloadProfilePreview(); // Goob
             };
 
             HairStylePicker.OnSlotRemove += _ =>
@@ -408,6 +415,10 @@ namespace Content.Client.Lobby.UI
 
             #endregion Hair
 
+            InitializeHairGoob(); // Goob
+            InitializeAgeGoob(); // Goob
+            InitializeColorsGoob(); // Goob
+
             #region SpawnPriority
 
             foreach (var value in Enum.GetValues<SpawnPriorityPreference>())
@@ -441,13 +452,13 @@ namespace Content.Client.Lobby.UI
 
             #region Jobs
 
-            TabContainer.SetTabTitle(1, Loc.GetString("humanoid-profile-editor-jobs-tab"));
+            TabContainer.SetTabTitle(2, Loc.GetString("humanoid-profile-editor-jobs-tab")); // Goob
 
             PreferenceUnavailableButton.AddItem(
-                Loc.GetString("humanoid-profile-editor-preference-unavailable-stay-in-lobby-button"),
+                Loc.GetString("humanoid-profile-editor-unavailable-stay"), // Goob
                 (int) PreferenceUnavailableMode.StayInLobby);
             PreferenceUnavailableButton.AddItem(
-                Loc.GetString("humanoid-profile-editor-preference-unavailable-spawn-as-overflow-button",
+                Loc.GetString("humanoid-profile-editor-unavailable-overflow", // Goob
                               ("overflowJob", Loc.GetString(SharedGameTicker.FallbackOverflowJobName))),
                 (int) PreferenceUnavailableMode.SpawnAsOverflow);
 
@@ -465,15 +476,15 @@ namespace Content.Client.Lobby.UI
 
             #endregion Jobs
 
-            TabContainer.SetTabTitle(2, Loc.GetString("humanoid-profile-editor-antags-tab"));
+            TabContainer.SetTabTitle(3, Loc.GetString("humanoid-profile-editor-antags-tab")); // Goob
 
             RefreshTraits();
 
-            TabContainer.SetTabTitle(3, Loc.GetString("humanoid-profile-editor-traits-tab")); // CorvaxGoob-TTS-Edit
+            TabContainer.SetTabTitle(4, Loc.GetString("humanoid-profile-editor-traits-tab")); // CorvaxGoob-TTS-Edit
 
             #region Markings
 
-            TabContainer.SetTabTitle(4, Loc.GetString("humanoid-profile-editor-markings-tab"));
+            TabContainer.SetTabTitle(5, Loc.GetString("humanoid-profile-editor-markings-tab")); // Goob
 
             Markings.OnMarkingAdded += OnMarkingChange;
             Markings.OnMarkingRemoved += OnMarkingChange;
@@ -603,14 +614,14 @@ namespace Content.Client.Lobby.UI
             TraitsList.RemoveAllChildren();
 
             var traits = _prototypeManager.EnumeratePrototypes<TraitPrototype>().OrderBy(t => Loc.GetString(t.Name)).ToList();
-            //TabContainer.SetTabTitle(3, Loc.GetString("humanoid-profile-editor-traits-tab")); // CorvaxGoob-TTS-Edit
+            //TabContainer.SetTabTitle(4, Loc.GetString("humanoid-profile-editor-traits-tab")); // CorvaxGoob-TTS-Edit
 
             if (traits.Count < 1)
             {
                 TraitsList.AddChild(new Label
                 {
                     Text = Loc.GetString("humanoid-profile-editor-no-traits"),
-                    FontColorOverride = Color.Gray,
+                    StyleClasses = { "HullMuted" }, // Goob
                 });
                 return;
             }
@@ -657,7 +668,7 @@ namespace Content.Client.Lobby.UI
                     {
                         Text = Loc.GetString(category.Name),
                         Margin = new Thickness(0, 10, 0, 0),
-                        StyleClasses = { StyleClass.LabelHeading },
+                        StyleClasses = { "HullSection" }, // Goob
                     });
                 }
 
@@ -693,11 +704,7 @@ namespace Content.Client.Lobby.UI
                 // Selection counter
                 if (category is { MaxTraitPoints: >= 0 })
                 {
-                    TraitsList.AddChild(new Label
-                    {
-                        Text = Loc.GetString("humanoid-profile-editor-trait-count-hint", ("current", selectionCount), ("max", category.MaxTraitPoints)),
-                        FontColorOverride = Color.Gray
-                    });
+                    TraitsList.AddChild(CreateTraitBudget(selectionCount, category.MaxTraitPoints.Value)); // Goob
                 }
 
                 foreach (var selector in selectors)
@@ -726,6 +733,7 @@ namespace Content.Client.Lobby.UI
 
             _species.AddRange(_prototypeManager.EnumeratePrototypes<SpeciesPrototype>().Where(o => o.RoundStart));
             _species.Sort((a, b) => string.Compare(a.Name, b.Name, StringComparison.CurrentCultureIgnoreCase));
+            SpeciesButton.SetSpeciesList(_species); // Goob
             var speciesIds = _species.Select(o => o.ID).ToList();
 
             for (var i = 0; i < _species.Count; i++)
@@ -762,7 +770,7 @@ namespace Content.Client.Lobby.UI
                 ("humanoid-profile-editor-antag-preference-no-button", 1)
             };
 
-            AntagList.AddChild(new Label { Text = Loc.GetString("humanoid-profile-editor-antag-roll-before-jobs") }); // Goobstation
+            AntagList.AddChild(new Label { Text = Loc.GetString("humanoid-profile-editor-antag-roll-before-jobs"), StyleClasses = { "HullFieldLabel" } }); // Goobstation
 
             foreach (var antag in _prototypeManager.EnumeratePrototypes<AntagPrototype>().OrderBy(a => Loc.GetString(a.Name)))
             {
@@ -812,6 +820,7 @@ namespace Content.Client.Lobby.UI
                     Text = Loc.GetString("loadout-window"),
                     HorizontalAlignment = HAlignment.Right,
                     Margin = new Thickness(3f, 0f, 0f, 0f),
+                    StyleClasses = { "HullPlate" }, // Goob
                 };
 
                 // Goob start
@@ -847,6 +856,7 @@ namespace Content.Client.Lobby.UI
 
         private void SetDirty()
         {
+            UpdateMarkingTileColors(); // Goob
             // If it equals default then reset the button.
             if (Profile == null || _preferencesManager.Preferences?.SelectedCharacter.MemberwiseEquals(Profile) == true)
             {
@@ -1035,14 +1045,15 @@ namespace Content.Client.Lobby.UI
 
                     category.AddChild(new PanelContainer
                     {
-                        PanelOverride = new StyleBoxFlat { BackgroundColor = Color.FromHex("#464966") },
+                        StyleClasses = { "HullCard" }, // Goob
                         Children =
                         {
                             new Label
                             {
                                 Text = Loc.GetString("humanoid-profile-editor-department-jobs-label",
                                     ("departmentName", departmentName)),
-                                Margin = new Thickness(5f, 0, 0, 0)
+                                StyleClasses = { "HullSection" }, // Goob
+                                Margin = new Thickness(6f, 3f, 0, 3f) // Goob
                             }
                         }
                     });
@@ -1078,6 +1089,7 @@ namespace Content.Client.Lobby.UI
                     var jobIcon = _prototypeManager.Index(job.Icon);
                     icon.Texture = _sprite.Frame0(jobIcon.Icon);
                     selector.Setup(items, job.LocalizedName, 200, job.LocalizedDescription, icon, job.Guides);
+                    selector.SelectedColors = JobPriorityColors; // Goob
 
                     if (!_requirements.IsAllowed(job, (HumanoidCharacterProfile?) _preferencesManager.Preferences?.SelectedCharacter, out var reason))
                     {
@@ -1123,6 +1135,7 @@ namespace Content.Client.Lobby.UI
                         HorizontalAlignment = HAlignment.Right,
                         VerticalAlignment = VAlignment.Center,
                         Margin = new Thickness(3f, 3f, 0f, 0f),
+                        StyleClasses = { "HullPlate" }, // Goob
                     };
 
                     // CorvaxGoob-Start
@@ -1185,6 +1198,7 @@ namespace Content.Client.Lobby.UI
             }
 
             UpdateJobPriorities();
+            ApplyJobFilter(); // Goob
         }
 
         private void OpenLoadout(JobPrototype? jobProto, RoleLoadout roleLoadout, RoleLoadoutPrototype roleLoadoutProto, string? title = null)
@@ -1377,7 +1391,10 @@ namespace Content.Client.Lobby.UI
         private void SetSpecies(string newSpecies)
         {
             Profile = Profile?.WithSpecies(newSpecies);
+            EnsureAppearanceForSpecies(); // Goob
             OnSkinColorOnValueChanged(); // Species may have special color prefs, make sure to update it.
+            UpdateMarkings(); // Goob
+            UpdateHairPickers(); // Goob
             Markings.SetSpecies(newSpecies); // Repopulate the markings tab as well.
             // In case there's job restrictions for the species
             RefreshJobs();
@@ -1458,12 +1475,14 @@ namespace Content.Client.Lobby.UI
             if (_flavorTextEdit != null)
             {
                 _flavorTextEdit.TextRope = new Rope.Leaf(Profile?.FlavorText ?? "");
+                _flavorText?.UpdatePreview(); // Goob
             }
         }
 
         private void UpdateAgeEdit()
         {
             AgeEdit.Text = Profile?.Age.ToString() ?? "";
+            UpdateAgeSlider(); // Goob
         }
 
         /// <summary>
@@ -1516,6 +1535,8 @@ namespace Content.Client.Lobby.UI
         {
             if (Profile == null)
                 return;
+
+            UpdateSkinTrack(); // Goob
 
             var skin = _prototypeManager.Index<SpeciesPrototype>(Profile.Species).SkinColoration;
             var strategy = _prototypeManager.Index(skin).Strategy;
@@ -1723,6 +1744,7 @@ namespace Content.Client.Lobby.UI
                 facialHairMarking,
                 Profile.Species,
                 1);
+            UpdateHairTabs(); // Goob
         }
 
         private void UpdateCMarkingsHair()

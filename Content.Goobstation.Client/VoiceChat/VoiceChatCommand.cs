@@ -1,6 +1,6 @@
 // Fully deleted by CorvaxGoob
 /*
-using Content.Goobstation.Client.VoiceChat.UI;
+using Content.Goobstation.Client.News.UI;
 using Robust.Client.UserInterface;
 using Robust.Shared.Console;
 
@@ -14,7 +14,7 @@ public sealed partial class VoiceChatCommand : LocalizedCommands
 
     public override void Execute(IConsoleShell shell, string argStr, string[] args)
     {
-        if (!_ui.GetUIController<VoiceChatGuideUIController>().Open())
+        if (!_ui.GetUIController<NewsUIController>().Open(VoiceChatManager.NewsEntry))
             shell.WriteError(Loc.GetString("cmd-voicechat-unavailable"));
     }
 }

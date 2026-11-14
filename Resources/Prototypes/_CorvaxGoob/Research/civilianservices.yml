@@ -34,7 +34,7 @@
     state: icon
   discipline: CivilianServices
   tier: 2
-  position: 3, 7
+  position: 5, 6
   technologyPrerequisites:
   - BiochemicalStasis
   cost: 10000

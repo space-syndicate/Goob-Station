@@ -7,6 +7,11 @@
   - type: HolosignProjector
     signProto: HolosignRadiationBlocking
     chargeUse: 60
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 75
+      Glass: 25
+      Plastic: 12
   - type: Sprite
     sprite: _CorvaxGoob/Objects/Devices/Holoprojectors/radiation.rsi
     state: icon

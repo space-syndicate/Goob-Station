@@ -139,7 +139,7 @@
     weight: 8
     duration: 35
     chaos: # Goobstation
-      Anomaly: 100
+      Anomaly: 30
     eventType: Chaotic # Goobstation
   # Goobstation
   - type: GameRule
@@ -165,7 +165,7 @@
     weight: 8
     duration: 35
     chaos: # Goobstation
-      Anomaly: 40
+      Anomaly: 10
     eventType: Chaotic # Goobstation
   - type: BluespaceArtifactRule
 
@@ -179,7 +179,7 @@
     earliestStart: 1
     duration: 1
     chaos: # Goobstation
-      Anomaly: 40
+      Anomaly: 10
     eventType: Neutral # Goobstation
   # Goobstation
   - type: GameRule
@@ -197,7 +197,7 @@
     duration: 1
     minimumPlayers: 15
     chaos: # Goobstation
-      Power: 100
+      Power: 20
     announcersStartAudio: # CorvaxGoob-CustomAnnouncers
       Intern:
         path: /Audio/_CorvaxGoob/Announcements/Announcers/Intern/e-storm.ogg
@@ -275,6 +275,7 @@
       Combat: 40
       Death: 100
       Medical: 100
+    destruction: 2 # Goobstation
     eventType: HostilesSpawn # Goobstation
   # Goobstation
   - type: GameRule
@@ -387,6 +388,8 @@
     earliestStart: 20
     reoccurrenceDelay: 20
     minimumPlayers: 15
+    chaos: # Goobstation
+      Hostile: 20
     eventType: Chaotic # Goobstation
   # Goobstation
   - type: GameRule
@@ -514,8 +517,8 @@
       Intern:
         path: /Audio/_CorvaxGoob/Announcements/Announcers/Intern/gasleak_end.ogg
     weight: 8
-    chaos:
-      Atmos: 100
+    chaos: # Goobstation
+      Atmos: 20
       Medical: 50
     eventType: Maintenance # Goobstation
     endAudio: # CorvaxGoob-Announcements
@@ -536,10 +539,10 @@
     minimumPlayers: 15
     weight: 7
     duration: 240
-    chaos:
-      Hostile: 20
-      Friend: 20
-      Medical: 100
+    chaos: # Goobstation
+      Infestation: 60
+      Medical: 30
+    destruction: 1 # Goobstation
     eventType: Maintenance # Goobstation
   # Goobstation
   - type: GameRule
@@ -756,6 +759,7 @@
       Hostile: 100
       Medical: 200
       Death: 200
+    destruction: 2 # Goobstation
     eventType: HostilesSpawn # Goobstation
   # Goobstation
   - type: GameRule
@@ -802,6 +806,7 @@
       Hostile: 200
       Medical: 200
       Death: 200
+    destruction: 2 # Goobstation
     eventType: HostilesSpawn # Goobstation
   - type: GameRule # Goobstation
     chaosScore: 700
@@ -858,6 +863,8 @@
         path: /Audio/_CorvaxGoob/Announcements/Announcers/Intern/intercept.ogg
     duration: null # the rule has to last the whole round not 1 second
     occursDuringRoundEnd: false
+    chaos: # Goobstation
+      Hostile: 30
     eventType: HostilesSpawn # Goobstation
   # Goobstation
   - type: GameRule
@@ -935,8 +942,6 @@
     weight: 5
     chaos: # Goobstation
       Hostile: 20 # for when they're actually properly hostile
-      Hunger: 10
-      Thirst: 10
     eventType: Neutral # Goobstation
   # Goobstation
   - type: GameRule
@@ -1120,6 +1125,8 @@
     reoccurrenceDelay: 20
     minimumPlayers: 15
     duration: null
+    chaos: # Goobstation
+      Hostile: 25
   - type: SpaceSpawnRule
     spawnDistance: 0
   - type: AntagSpawner

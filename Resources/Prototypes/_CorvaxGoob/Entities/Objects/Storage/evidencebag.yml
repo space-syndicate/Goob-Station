@@ -7,7 +7,8 @@
   - type: Sprite
     sprite: _CorvaxGoob/Objects/Storages/evidencebag.rsi
     layers:
-    - map: ["slot"]
+    - state: icon
+      map: ["slot"]
     - state: icon
     - state: icon_paper
       visible: false

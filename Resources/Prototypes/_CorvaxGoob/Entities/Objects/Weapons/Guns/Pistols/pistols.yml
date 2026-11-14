@@ -35,3 +35,39 @@
     magState: mag
     steps: 1
     zeroVisible: true
+
+- type: entity
+  name: golden MK58
+  parent: WeaponPistolMk58Gold
+  id: WeaponPistolMk58GoldEmpty
+  suffix: Empty
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: null
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistol
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: null
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistol
+      flashlight:
+        name: weapon-upgrade-slot-name-flashlight
+        priority: 1
+        insertDelay: 0.4
+        ejectDelay: 0.2
+        ejectOnBreak: true
+        occludesLight: false
+        whitelist:
+          components:
+          - GunUpgradeFlashlight

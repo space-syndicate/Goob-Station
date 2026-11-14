@@ -126,6 +126,11 @@
     understands:
     - TauCetiBasic
     - RobotTalk
+  # CorvaxGoob-start
+  - type: ContainerContainer
+    containers:
+      vending_machine_returned_inventory: !type:Container
+  # CorvaxGoob-end
 
 - type: entity
   id: VendingMachineWallmount
@@ -133,6 +138,11 @@
   name: vending machine
   abstract: true
   components:
+  # CorvaxGoob-start
+  - type: ContainerContainer
+    containers:
+      vending_machine_returned_inventory: !type:Container
+  # CorvaxGoob-end
   - type: StationAiWhitelist
   - type: AmbientOnPowered
   - type: AmbientSound

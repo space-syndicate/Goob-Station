@@ -18,20 +18,19 @@
     - ClockworkSet
     - BibleVedaSet
     - VelesBookSet
-    # Corvax-Goob-Bibles-start
     - BibleDruidSet
+    - BibleCommunistSet
+    - BibleSatanicSet
     - BibleNarsieSet
     - BibleNanoTrasenSet
     - BibleHonkSet
-    # Corvax-Goob-Bibles-end
+    - BibleRatvarSet
     maxSelectedSets: 1
 
 - type: selectableSet
   id: BibleSet
-  # Corvax-Goob-Localization-start
-  name: Святая Библия
-  description: Разорви все узы, кроме тех, что связывают меня с твоей службой и сердцем.
-  # Corvax-Goob-Localization-end
+  name: selectable-set-bible-holy-name # CorvaxGoob-Localization
+  description: selectable-set-bible-holy-description # CorvaxGoob-Localization
   sprite:
     sprite: Objects/Specific/Chapel/bible.rsi
     state: icon
@@ -40,10 +39,8 @@
 
 - type: selectableSet
   id: QuaranSet
-  # Corvax-Goob-Localization-start
-  name: Коран
-  description: Так какое же из милостей вашего Господа вы, "люди и джинны", отвергнете?
-  # Corvax-Goob-Localization-end
+  name: selectable-set-bible-quran-name # CorvaxGoob-Localization
+  description: selectable-set-bible-quran-description # CorvaxGoob-Localization
   sprite:
     sprite: _Goobstation/Objects/Specific/Chapel/allah.rsi
     state: icon
@@ -52,10 +49,8 @@
 
 - type: selectableSet
   id: TanakhSet
-  # Corvax-Goob-Localization-start
-  name: Свитки Танаха
-  description: Обучая других, ты учишься сам.
-  # Corvax-Goob-Localization-end
+  name: selectable-set-bible-tanakh-name # CorvaxGoob-Localization
+  description: selectable-set-bible-tanakh-description # CorvaxGoob-Localization
   sprite:
     sprite: _Goobstation/Wizard/Objects/scroll.rsi
     state: scroll2
@@ -91,6 +86,76 @@
     state: icon
   content:
   - BibleVelesBook
+
+- type: selectableSet
+  id: BibleDruidSet
+  name: selectable-set-bible-druid-name # CorvaxGoob-Localization
+  description: selectable-set-bible-druid-description # CorvaxGoob-Localization
+  sprite:
+    sprite: Objects/Specific/Chapel/mysteryofthedruids.rsi
+    state: icon
+  content:
+  - BibleDruid
+
+- type: selectableSet
+  id: BibleCommunistSet
+  name: "Communist Manifesto"
+  description: "Remove the mask of humanity from Capital."
+  sprite:
+    sprite: Objects/Specific/Chapel/communistmanifesto.rsi
+    state: icon
+  content:
+  - BibleCommunistManifesto
+
+- type: selectableSet
+  id: BibleSatanicSet
+  name: "Satanic Bible"
+  description: "What could possibly go wrong?"
+  sprite:
+    sprite: Objects/Specific/Chapel/satanicbible.rsi
+    state: icon
+  content:
+  - BibleSatanic
+
+- type: selectableSet
+  id: BibleNarsieSet
+  name: selectable-set-bible-narsie-name # CorvaxGoob-Localization
+  description: selectable-set-bible-narsie-description # CorvaxGoob-Localization
+  sprite:
+    sprite: Objects/Specific/Chapel/tomeofnarsie.rsi
+    state: icon
+  content:
+  - BibleNarsie
+
+- type: selectableSet
+  id: BibleNanoTrasenSet
+  name: selectable-set-bible-nanotrasen-name # CorvaxGoob-Localization
+  description: selectable-set-bible-nanotrasen-description # CorvaxGoob-Localization
+  sprite:
+    sprite: Objects/Specific/Chapel/codexnanotrasimus.rsi
+    state: icon
+  content:
+  - BibleNanoTrasen
+
+- type: selectableSet
+  id: BibleHonkSet
+  name: selectable-set-bible-honk-name # CorvaxGoob-Localization
+  description: selectable-set-bible-honk-description # CorvaxGoob-Localization
+  sprite:
+    sprite: Objects/Specific/Chapel/honk.rsi
+    state: icon
+  content:
+  - BibleHonk
+
+- type: selectableSet
+  id: BibleRatvarSet
+  name: Tablet of Ratvar
+  description: "A holy relic of the Clockwork Cult, blessed by the Clockwork Justice, Ratvar."
+  sprite:
+    sprite: Objects/Specific/Chapel/ratvartablet.rsi
+    state: icon
+  content:
+  - BibleRatvar
 ##END SET SELECTION
 
 - type: entity
