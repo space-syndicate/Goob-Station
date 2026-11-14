@@ -1,0 +1,19 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Sprited by SimpleX",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "shoecovers",
+            "directions": 1
+        },
+        {
+            "name": "shoecoversfolded",
+            "directions": 1
+        }
+    ]
+}
