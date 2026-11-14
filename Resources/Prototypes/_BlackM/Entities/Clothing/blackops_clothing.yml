@@ -151,8 +151,8 @@
   - type: StaminaResistance
     damageCoefficient: 0.65
   - type: StaminaRicochetArmor
-    maxRicochetChance: 0.85
-    minRicochetChance: 0.05
+    maxRicochetChance: 0.95 #  was 0.85
+    minRicochetChance: 0.2 # was 0.05
     staminaExponent: 2 
     critAlwaysPenetrates: true
     staminaDamagePerRicochet: 12
