@@ -5,7 +5,7 @@
   description: Unfold the covers before putting them over a pair of shoes.
   components:
   - type: Sprite
-    sprite:  _CorvaxGoob/Clothing/ShoeСovers/Shoe_Covers.rsi
+    sprite:  _CorvaxGoob/Clothing/ShoeCovers/Shoe_Covers.rsi
     state: shoecoversfolded
   - type: SpawnItemsOnUse
     items:
@@ -18,7 +18,7 @@
   description: Disposable blue covers that keep footprints off the floor.
   components:
   - type: Sprite
-    sprite: _CorvaxGoob/Clothing/ShoeСovers/Shoe_Covers.rsi
+    sprite: _CorvaxGoob/Clothing/ShoeCovers/Shoe_Covers.rsi
     state: shoecovers
   - type: ShoeCoversWrap
     wrapDelay: 1
@@ -41,7 +41,7 @@
         params:
           volume: -4
       unwrapTrash: ShoeCoversWrapTrash
-      overlaySprite:  _CorvaxGoob/Clothing/ShoeСovers/Shoe_Covers_Overlay.rsi
+      overlaySprite:  _CorvaxGoob/Clothing/ShoeCovers/Shoe_Covers_Overlay.rsi
 
 - type: entity
   parent: BaseItem
@@ -51,7 +51,7 @@
   description: These worn-out covers have holes in the soles.
   components:
   - type: Sprite
-    sprite: _CorvaxGoob/Clothing/ShoeСovers/Shoe_Covers_Trash.rsi
+    sprite: _CorvaxGoob/Clothing/ShoeCovers/Shoe_Covers_Trash.rsi
     state: shoecoverstrash
   - type: Tag
     tags:

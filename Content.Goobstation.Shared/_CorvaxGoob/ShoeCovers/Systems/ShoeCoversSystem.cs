@@ -14,21 +14,20 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.Markdown.Mapping;
 
 namespace Content.Goobstation.Shared.ShoeCovers.Systems;
 
-public sealed class ShoeCoversSystem : EntitySystem
+public sealed partial class ShoeCoversSystem : EntitySystem
 {
     private const string ShoesSlot = "shoes";
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedGravitySystem _gravity = default!;
-    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedGravitySystem _gravity = default!;
+    [Dependency] private SharedInteractionSystem _interaction = default!;
+    [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private EntityWhitelistSystem _whitelist = default!;
 
     public override void Initialize()
     {
@@ -93,7 +92,7 @@ public sealed class ShoeCoversSystem : EntitySystem
         var key = Factory.GetComponentName<ShoeCoversWearerComponent>();
         // TryAdd сообщает, принадлежит ли новая запись этим бахилам. От этого зависит, можно ли удалить её позже.
         coating.AddedWearerGrant = grant.Components.TryAdd(key,
-            new EntityPrototype.ComponentRegistryEntry(Factory.GetComponent<ShoeCoversWearerComponent>(), new MappingDataNode()));
+            new EntityPrototype.ComponentRegistryEntry(Factory.GetComponent<ShoeCoversWearerComponent>()));
 
         // Если обувь уже надета, событие экипировки не повторится. Выдаём маркер текущему носителю сразу.
         var parent = Transform(shoes).ParentUid;
