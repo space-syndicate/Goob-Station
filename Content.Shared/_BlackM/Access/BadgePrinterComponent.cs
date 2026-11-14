@@ -60,6 +60,12 @@ public sealed partial class BadgePrinterEntry
     [DataField(required: true)]
     public string IconState = default!;
 
+    [DataField(required: true)]
+    public string Department = default!;
+
+    [DataField]
+    public string? Warning;
+
     [DataField]
     public int? Max;
 }

@@ -1,4 +1,13 @@
 badge-printer-window-title = Принтер проверяющего
+badge-printer-department-security = Отдел безопасности
+badge-printer-department-engineering = Инженерный отдел
+badge-printer-department-supply = Отдел снабжения
+badge-printer-department-science = Научный отдел
+badge-printer-department-service = Сервисный отдел
+badge-printer-department-medical = Медицинский отдел
+badge-printer-department-command = Командование
+badge-printer-department-maintenance = Техническое обслуживание
+badge-printer-warning-maintenance = НЕ ВЫДАВАТЬ ОБЫЧНОМУ ПЕРСОНАЛУ БЕЗ НЕОБХОДИМОСТИ
 badge-printer-no-card = Карта не вставлена
 badge-printer-card-inserted = Карта в приёмнике
 badge-printer-eject = Извлечь

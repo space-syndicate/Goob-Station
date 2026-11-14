@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
 using Content.Shared._BlackM.Access;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
@@ -196,7 +197,7 @@ public sealed class BadgePrinterWindow : DefaultWindow
         {
             Orientation = BoxContainer.LayoutOrientation.Vertical,
             HorizontalExpand = true,
-            SeparationOverride = 4,
+            SeparationOverride = 8,
         };
 
         scroll.AddChild(_badgeList);
@@ -264,17 +265,55 @@ public sealed class BadgePrinterWindow : DefaultWindow
         _badgeList.RemoveAllChildren();
         _checkboxes.Clear();
 
+        string? currentDepartment = null;
+        GridContainer? departmentGrid = null;
+
         foreach (var option in state.Options)
         {
-            var row = BuildBadgeRow(option, previouslyChecked.Contains(option.ProtoId));
-            _badgeList.AddChild(row);
+            if (option.Department != currentDepartment)
+            {
+                currentDepartment = option.Department;
+
+                var departmentHeader = new PanelContainer
+                {
+                    HorizontalExpand = true,
+                    PanelOverride = new StyleBoxFlat
+                    {
+                        BackgroundColor = PanelBgLight,
+                        BorderColor = AccentColor,
+                        BorderThickness = new Thickness(0, 0, 0, 1),
+                        ContentMarginLeftOverride = 8,
+                        ContentMarginRightOverride = 8,
+                        ContentMarginTopOverride = 4,
+                        ContentMarginBottomOverride = 4,
+                    }
+                };
+                departmentHeader.AddChild(new Label
+                {
+                    Text = currentDepartment,
+                    FontColorOverride = AccentColor,
+                });
+                _badgeList.AddChild(departmentHeader);
+
+                departmentGrid = new GridContainer
+                {
+                    Columns = 2,
+                    HorizontalExpand = true,
+                    HSeparationOverride = 6,
+                    VSeparationOverride = 6,
+                };
+                _badgeList.AddChild(departmentGrid);
+            }
+
+            departmentGrid!.AddChild(BuildBadgeCard(option, previouslyChecked.Contains(option.ProtoId)));
         }
     }
 
-    private Control BuildBadgeRow(BadgePrinterOptionData option, bool isChecked)
+    private Control BuildBadgeCard(BadgePrinterOptionData option, bool isChecked)
     {
         var panel = new PanelContainer
         {
+            HorizontalExpand = true,
             PanelOverride = new StyleBoxFlat
             {
                 BackgroundColor = PanelBgLight,
@@ -285,11 +324,19 @@ public sealed class BadgePrinterWindow : DefaultWindow
             }
         };
 
-        var row = new BoxContainer
+        var card = new BoxContainer
+        {
+            Orientation = BoxContainer.LayoutOrientation.Vertical,
+            HorizontalExpand = true,
+            SeparationOverride = 3,
+        };
+
+        var header = new BoxContainer
         {
             Orientation = BoxContainer.LayoutOrientation.Horizontal,
             HorizontalExpand = true,
-            SeparationOverride = 8,
+            VerticalAlignment = VAlignment.Center,
+            SeparationOverride = 6,
         };
 
         var icon = new TextureRect
@@ -299,22 +346,43 @@ public sealed class BadgePrinterWindow : DefaultWindow
             VerticalAlignment = VAlignment.Center,
         };
 
-        var textBox = new BoxContainer
+        var checkBox = new CheckBox
         {
-            Orientation = BoxContainer.LayoutOrientation.Vertical,
+            Pressed = isChecked && option.Remaining is not 0,
+            VerticalAlignment = VAlignment.Center,
+            HorizontalExpand = false,
+            MinWidth = 24,
+            Disabled = option.Remaining is 0,
+        };
+        _checkboxes[option.ProtoId] = checkBox;
+
+        header.AddChild(icon);
+        header.AddChild(checkBox);
+        card.AddChild(header);
+        card.AddChild(new Label
+        {
+            Text = WrapText(option.Name, 28),
             HorizontalExpand = true,
             VerticalAlignment = VAlignment.Center,
-            MinWidth = 0,
-        };
+        });
 
-        textBox.AddChild(new Label { Text = option.Name, ClipText = true });
         if (!string.IsNullOrWhiteSpace(option.Description))
         {
-            textBox.AddChild(new Label
+            card.AddChild(new Label
             {
-                Text = option.Description,
+                Text = WrapText(option.Description, 32),
                 FontColorOverride = Color.DarkGray,
-                ClipText = true,
+                HorizontalExpand = true,
+            });
+        }
+
+        if (!string.IsNullOrWhiteSpace(option.Warning))
+        {
+            card.AddChild(new Label
+            {
+                Text = WrapText(option.Warning, 32),
+                FontColorOverride = Color.IndianRed,
+                HorizontalExpand = true,
             });
         }
 
@@ -322,30 +390,42 @@ public sealed class BadgePrinterWindow : DefaultWindow
 
         if (option.Remaining is { } remaining)
         {
-            textBox.AddChild(new Label
+            card.AddChild(new Label
             {
                 Text = Loc.GetString("badge-printer-remaining", ("count", remaining)),
                 FontColorOverride = outOfStock ? Color.IndianRed : AccentColor,
-                ClipText = true,
+                HorizontalExpand = true,
             });
         }
 
-        var checkBox = new CheckBox
-        {
-            Pressed = isChecked && !outOfStock,
-            VerticalAlignment = VAlignment.Center,
-            HorizontalExpand = false,
-            MinWidth = 24,
-            Disabled = outOfStock,
-        };
-        _checkboxes[option.ProtoId] = checkBox;
-
-        row.AddChild(icon);
-        row.AddChild(textBox);
-        row.AddChild(checkBox);
-        panel.AddChild(row);
+        panel.AddChild(card);
 
         return panel;
+    }
+
+    private static string WrapText(string text, int maxLineLength)
+    {
+        var result = new StringBuilder(text.Length + 16);
+        var lineLength = 0;
+
+        foreach (var word in text.Split(' ', StringSplitOptions.RemoveEmptyEntries))
+        {
+            if (lineLength > 0 && lineLength + word.Length + 1 > maxLineLength)
+            {
+                result.Append('\n');
+                lineLength = 0;
+            }
+            else if (lineLength > 0)
+            {
+                result.Append(' ');
+                lineLength++;
+            }
+
+            result.Append(word);
+            lineLength += word.Length;
+        }
+
+        return result.ToString();
     }
 
     private Texture? LoadIcon(string rsiPath, string state)

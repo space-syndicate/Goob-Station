@@ -174,7 +174,9 @@ public sealed class BadgePrinterSystem : EntitySystem
                 badgeProto.Description,
                 entry.IconRsi,
                 entry.IconState,
-                remaining));
+                Loc.GetString(entry.Department),
+                remaining,
+                entry.Warning is { } warning ? Loc.GetString(warning) : null));
         }
 
         var permitSlot = GetPermitSlot(uid, component);
