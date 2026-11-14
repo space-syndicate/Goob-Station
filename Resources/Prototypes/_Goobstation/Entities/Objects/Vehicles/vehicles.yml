@@ -204,6 +204,20 @@
     radius: 3.5
     softness: 2
     netsync: false
+  # CorvaxGoob-JanicartCleaner-Start
+  - type: JanicartCleaner
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        maxVol: 300
+  - type: RefillableSolution
+    solution: tank
+  - type: ExaminableSolution
+    solution: tank
+    exactVolume: true
+  - type: Spillable
+    solution: tank
+  # CorvaxGoob-JanicartCleaner-End
 
 - type: entity
   id: VehicleWheelchair
