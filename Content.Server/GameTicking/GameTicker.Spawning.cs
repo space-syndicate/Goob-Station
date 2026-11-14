@@ -465,6 +465,9 @@ namespace Content.Server.GameTicking
             if (!_userDb.IsLoadComplete(player))
                 return;
 
+            if (!BlackMCheckDiscordJoin(player)) // BlackM - discord verification
+                return;
+
             SpawnPlayer(player, station, jobId, silent: silent);
         }
 
@@ -475,6 +478,9 @@ namespace Content.Server.GameTicking
         {
             // Can't spawn players with a dummy ticker!
             if (DummyTicker)
+                return;
+
+            if (!BlackMCheckDiscordJoin(player)) // BlackM - discord verification
                 return;
 
             PlayerJoinGame(player);

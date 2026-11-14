@@ -468,6 +468,7 @@ namespace Content.Server.GameTicking
             {
                 if (LobbyEnabled && status != PlayerGameStatus.ReadyToPlay) continue;
                 if (!_playerManager.TryGetSessionById(userId, out var session)) continue;
+                if (LobbyEnabled && !BlackMCheckDiscordJoin(session)) continue; // BlackM - discord verification
 
                 if (autoDeAdmin && _adminManager.IsAdmin(session))
                 {

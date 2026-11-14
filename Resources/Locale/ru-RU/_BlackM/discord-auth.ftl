@@ -6,3 +6,7 @@ discord-auth-link = Или отройте эту ссылку:
 discord-auth-browser-btn = Открыть в браузере
 discord-auth-bypass = Skip verification
 discord-auth-server-btn = Наш дискорд
+discord-auth-join-info = Чтобы зайти в раунд или наблюдать, привяжите свой Discord - Если у вас проблема пинганите меня @sweekyl.
+discord-auth-join-warn = В лобби можно находиться без привязки. Окно закроется само после верификации.
+discord-auth-join-code = Зайдите на наш Discord-сервер, введите команду в канале #Консоль - /verify и этот код:
+discord-auth-join-wait = Получаем код...

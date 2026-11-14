@@ -1,4 +1,4 @@
-﻿using Lidgren.Network;
+using Lidgren.Network;
 using Robust.Shared.Network;
 using Robust.Shared.Serialization;
 
@@ -13,13 +13,17 @@ public sealed class MsgDiscordAuthRequired : NetMessage
 
     public string LinkCode = string.Empty;
 
+    public bool ShowWindow;
+
     public override void ReadFromBuffer(NetIncomingMessage buffer, IRobustSerializer serializer)
     {
         LinkCode = buffer.ReadString();
+        ShowWindow = buffer.ReadBoolean();
     }
 
     public override void WriteToBuffer(NetOutgoingMessage buffer, IRobustSerializer serializer)
     {
         buffer.Write(LinkCode);
+        buffer.Write(ShowWindow);
     }
 }

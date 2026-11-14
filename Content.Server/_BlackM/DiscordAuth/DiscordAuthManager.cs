@@ -66,6 +66,8 @@ public sealed class DiscordAuthManager : IServerDiscordAuthManager
 
     private bool _enabled;
     private bool _isOptional;
+
+    private readonly HashSet<NetUserId> _bypassedUsers = new();
     private string _secret = string.Empty;
     private HashSet<IPAddress> _allowedIps = new();
 
@@ -111,6 +113,7 @@ public sealed class DiscordAuthManager : IServerDiscordAuthManager
     {
         if (e.NewStatus == SessionStatus.Disconnected)
         {
+            _bypassedUsers.Remove(e.Session.UserId);
             _lastCheck.Remove(e.Session.UserId);
             DropPending(e.Session.UserId);
             return;
@@ -143,8 +146,45 @@ public sealed class DiscordAuthManager : IServerDiscordAuthManager
         if (!_playerManager.TryGetSessionByChannel(message.MsgChannel, out var session))
             return;
 
+        _bypassedUsers.Add(session.UserId);
         _netManager.ServerSendMessage(new MsgDiscordAuthVerified(), message.MsgChannel);
         PlayerVerified?.Invoke(this, session);
+    }
+
+    public bool CanJoinRound(NetUserId userId)
+    {
+        if (!_enabled)
+            return true;
+
+        if (_isOptional && _bypassedUsers.Contains(userId))
+            return true;
+
+        try
+        {
+            return IsVerifiedInternal(userId);
+        }
+        catch (Exception ex)
+        {
+            _sawmill.Error($"Failed to check discord verification for {userId}: {ex}");
+            return false;
+        }
+    }
+
+    public void NotifyJoinBlocked(ICommonSession session)
+    {
+        try
+        {
+            var pending = GetOrCreatePending(session);
+            _netManager.ServerSendMessage(new MsgDiscordAuthRequired
+            {
+                LinkCode = FormatLinkCode(pending.Code),
+                ShowWindow = true,
+            }, session.Channel);
+        }
+        catch (Exception ex)
+        {
+            _sawmill.Error($"Failed to send discord join block to {session.UserId}: {ex}");
+        }
     }
 
     private void SendAuthRequiredIfNeeded(ICommonSession session)
