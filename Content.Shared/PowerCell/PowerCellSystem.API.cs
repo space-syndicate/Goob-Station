@@ -147,7 +147,7 @@ public sealed partial class PowerCellSystem
             return false;
         }
 
-        if (_battery.GetCharge(battery.Value.AsNullable()) < charge)
+        if (_battery.GetCharge(battery.Value.AsNullable()) <= charge) // CorvaxGoob : < -> <= ; Как будто бы так и должно быть
         {
             if (user == null)
                 return false;
