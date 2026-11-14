@@ -17,8 +17,9 @@ offering-window-claimed = Принято
 offering-window-claim = Принять
 salvage-expedition-window-next = Следующее предложение
 salvage-expedition-difficulty-players = Рекомендовано утилизаторов:
+salvage-expedition-difficulty-Easy = Простая
 salvage-expedition-difficulty-Moderate = Умеренная
-salvage-expedition-difficulty-Hazardous = Высокая
+salvage-expedition-difficulty-Hard = Сложная
 salvage-expedition-difficulty-Extreme = Экстремальная
 # Runner
 salvage-expedition-not-all-present = Не все утилизаторы вернулись на борт шаттла!

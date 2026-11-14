@@ -144,13 +144,15 @@ public sealed partial class SalvageSystem
     {
         component.Missions.Clear();
 
-        for (var i = 0; i < MissionLimit; i++)
+        string[] difficulties = { "Easy", "Moderate", "Hard", "Extreme" };
+
+        foreach (var difficulty in difficulties)
         {
             var mission = new SalvageMissionParams
             {
                 Index = component.NextIndex,
                 Seed = _random.Next(),
-                Difficulty = "Moderate",
+                Difficulty = difficulty,
             };
 
             component.Missions[component.NextIndex++] = mission;

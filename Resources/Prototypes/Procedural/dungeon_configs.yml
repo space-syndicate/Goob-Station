@@ -75,10 +75,13 @@
       NorthWest: BrickTileWhiteInnerNw
       NorthEast: BrickTileWhiteInnerNe
 
-- type: dungeonConfig
+- type: dungeonConfig #CorvaxGoob fixed empty location
   id: Haunted
   layers:
   - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - Haunted
     presets:
     - Bucket
     - Wow
