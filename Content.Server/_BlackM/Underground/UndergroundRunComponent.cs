@@ -24,6 +24,9 @@ public sealed partial class UndergroundRunComponent : Component
     public bool MissionClaimed;
     public bool MissionReturned;
     public bool MissionSampleAnnounced;
+    public TimeSpan? FaultedAt;
+    public int CompletedExpeditions;
+    public int NextAmsRewardAt;
 
 }
 
