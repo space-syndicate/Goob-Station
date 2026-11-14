@@ -48,40 +48,42 @@ public sealed class SpawnPointSystem : EntitySystem
         // TODO: Cache all this if it ends up important.
         var points = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
         var possiblePositions = new List<EntityCoordinates>();
+        var lateJoinPositions = new List<EntityCoordinates>();
+        var jobPositions = new List<EntityCoordinates>();
 
         while ( points.MoveNext(out var uid, out var spawnPoint, out var xform))
         {
             if (args.Station != null && _stationSystem.GetOwningStation(uid, xform) != args.Station)
                 continue;
 
-            if (_gameTicker.RunLevel == GameRunLevel.InRound && spawnPoint.SpawnType == SpawnPointType.LateJoin)
+            if (spawnPoint.Job != null && spawnPoint.Job != args.Job)
+                continue;
+
+            if (spawnPoint.SpawnType == SpawnPointType.LateJoin)
             {
-                possiblePositions.Add(xform.Coordinates);
+                lateJoinPositions.Add(xform.Coordinates);
+                if (_gameTicker.RunLevel == GameRunLevel.InRound)
+                    possiblePositions.Add(xform.Coordinates);
             }
 
-            if (_gameTicker.RunLevel != GameRunLevel.InRound &&
-                spawnPoint.SpawnType == SpawnPointType.Job &&
-                (args.Job == null || spawnPoint.Job == args.Job))
+            if (args.Job != null && spawnPoint.SpawnType == SpawnPointType.Job && spawnPoint.Job == args.Job)
             {
-                possiblePositions.Add(xform.Coordinates);
+                jobPositions.Add(xform.Coordinates);
+                if (_gameTicker.RunLevel != GameRunLevel.InRound)
+                    possiblePositions.Add(xform.Coordinates);
             }
         }
 
         if (possiblePositions.Count == 0)
         {
-            // Ok we've still not returned, but we need to put them /somewhere/.
-            // TODO: Refactor gameticker spawning code so we don't have to do this!
-            var points2 = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
+            // Never fall back to another job's spawn point or another station.
+            possiblePositions.AddRange(lateJoinPositions.Count > 0 ? lateJoinPositions : jobPositions);
+        }
 
-            if (points2.MoveNext(out var spawnPoint, out var xform))
-            {
-                possiblePositions.Add(xform.Coordinates);
-            }
-            else
-            {
-                Log.Error("No spawn points were available!");
-                return;
-            }
+        if (possiblePositions.Count == 0)
+        {
+            Log.Error($"No matching spawn points were available for job {args.Job} on station {args.Station}.");
+            return;
         }
 
         var spawnLoc = _random.Pick(possiblePositions);

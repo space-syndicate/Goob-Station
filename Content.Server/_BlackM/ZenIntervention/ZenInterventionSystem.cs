@@ -97,6 +97,21 @@ public sealed class ZenInterventionSystem : EntitySystem
 
     private void CheckBreach(ZenInterventionComponent comp)
     {
+        foreach (var threshold in comp.IntermediateBreachThresholds)
+        {
+            if (threshold <= 0f || threshold >= comp.BreachThreshold)
+                continue;
+
+            if (comp.Level < threshold)
+            {
+                comp.TriggeredIntermediateBreaches.Remove(threshold);
+                continue;
+            }
+
+            if (comp.TriggeredIntermediateBreaches.Add(threshold))
+                TriggerBreach(comp, comp.IntermediateBreachSpawnAmount, intermediate: true);
+        }
+
         if (comp.Level < comp.BreachThreshold)
         {
             if (comp.BreachTriggered)
@@ -149,12 +164,12 @@ public sealed class ZenInterventionSystem : EntitySystem
         SpawnWave(comp);
     }
 
-    public void TriggerBreach(ZenInterventionComponent comp)
+    public void TriggerBreach(ZenInterventionComponent comp, int? spawnAmount = null, bool intermediate = false)
     {
         if (!TryGetTargetStation(comp, out var stationUid))
             return;
 
-        for (var i = 0; i < comp.BreachSpawnAmount; i++)
+        for (var i = 0; i < (spawnAmount ?? comp.BreachSpawnAmount); i++)
         {
             if (comp.BreachMobPrototypes.Count == 0)
                 break;
@@ -168,9 +183,9 @@ public sealed class ZenInterventionSystem : EntitySystem
 
         _chatSystem.DispatchStationAnnouncement(
             stationUid,
-            Loc.GetString("zen-intervention-announce-breach"),
+            Loc.GetString(intermediate ? "zen-intervention-announce-minor-breach" : "zen-intervention-announce-breach"),
             Loc.GetString("zen-intervention-announcer-sender"),
-            playDefaultSound: true,
+            playDefaultSound: !intermediate,
             announcementSound: comp.BreachSound,
             colorOverride: comp.AnnouncementColor);
     }
@@ -331,6 +346,7 @@ public sealed class ZenInterventionSystem : EntitySystem
             return;
 
         comp.Level = 0f;
+        comp.TriggeredIntermediateBreaches.Clear();
         comp.BreachTriggered = false;
         comp.WaveActive = false;
         comp.NextWaveTime = TimeSpan.Zero;

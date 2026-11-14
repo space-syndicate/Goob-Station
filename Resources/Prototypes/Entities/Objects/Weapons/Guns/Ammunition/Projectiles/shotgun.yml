@@ -165,7 +165,7 @@
   - type: ProjectileSpread
     proto: PelletShotgun
     count: 6
-    spread: 15
+    spread: 22.5
 
 - type: entity
   id: PelletShotgunIncendiary
@@ -192,7 +192,7 @@
   - type: ProjectileSpread
     proto: PelletShotgunIncendiary
     count: 4
-    spread: 15
+    spread: 22.5
 
 - type: entity
   id: PelletShotgunPractice
@@ -216,7 +216,7 @@
   - type: ProjectileSpread
     proto: PelletShotgunPractice
     count: 6
-    spread: 15
+    spread: 22.5
 
 - type: entity
   id: PelletShotgunImprovised

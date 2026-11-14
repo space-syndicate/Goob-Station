@@ -1,7 +1,7 @@
 ent-ClothingMaskGas = gas mask
     .desc = A face-covering mask that can be connected to an air supply.
-ent-ClothingMaskGasSecurity = security gas mask
-    .desc = A standard issue Security gas mask.
+ent-ClothingMaskGasSecurity = KOVAK gas mask
+    .desc = A standard issue KOVAK gas mask.
 ent-ClothingMaskGasSyndicate = syndicate gas mask
     .desc = A close-fitting tactical mask that can be connected to an air supply.
 ent-ClothingMaskGasAtmos = atmospheric gas mask

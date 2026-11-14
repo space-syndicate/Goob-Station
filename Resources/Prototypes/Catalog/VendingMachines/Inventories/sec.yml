@@ -45,40 +45,10 @@
     SecurityWhistle: 5
     Handcuffs: 8
     GrenadeFlashBang: 4
-    TearGasGrenade: 4
-    ClusterBangFull: 2
-    GrenadeStinger: 4
     Flash: 5
     Tourniquet: 5
     FlashlightSeclite: 5
-    ClothingEyesGlassesSunglasses: 4 # Goobstation
-    ClothingEyesHudSecurity: 2
-    ClothingEyesEyepatchHudSecurity: 2
-    ClothingBeltSecurityWebbing: 5
     Zipties: 12
-    RiotShield: 2
-    RiotLaserShield: 2
-    RiotBulletShield: 2
     RadioHandheldSecurity: 5
-    #Bola: 6 # Goob edit - already have energy bolas
-    CombatKnife: 1 # Goob edit
-    # Goobstation
-    PolymerBaton: 1
-    SpearTelescopic: 1
-    BolaEnergy: 5
+    CombatKnife: 1
     PanicButton: 5
-    PepperSpray: 3
-    SecHypo: 2
-    CartridgeEpinephrine: 2
-    CartridgeSaline: 2
-    CartridgeBicaridine: 2
-    CartridgeDermaline: 2 # Goobstation - end
-  # security officers need to follow a diet regimen!
-  contrabandInventory:
-    WeaponMeleeNeedle: 2
-    FoodDonutHomer: 12
-    FoodBoxDonut: 2
-    #box evidence
-  emaggedInventory: # Goobstation
-    SarinGasGrenade: 1
-    WeaponFlareGunSecurity: 2

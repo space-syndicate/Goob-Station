@@ -7,7 +7,7 @@
     sprite: _BlackM/Objects/ams_parts.rsi
     state: core
   product: AmsPartCore
-  cost: 10500
+  cost: 15750
   category: cargoproduct-category-name-ams
   group: AmsParts
 
@@ -17,7 +17,7 @@
     sprite: _BlackM/Objects/ams_parts.rsi
     state: coil
   product: AmsPartCoil
-  cost: 7500
+  cost: 11250
   category: cargoproduct-category-name-ams
   group: AmsParts
 
@@ -27,7 +27,7 @@
     sprite: _BlackM/Objects/ams_parts.rsi
     state: lens
   product: AmsPartLens
-  cost: 7500
+  cost: 11250
   category: cargoproduct-category-name-ams
   group: AmsParts
 
@@ -37,7 +37,7 @@
     sprite: _BlackM/Objects/ams_parts.rsi
     state: cell
   product: AmsPartCell
-  cost: 7500
+  cost: 11250
   category: cargoproduct-category-name-ams
   group: AmsParts
 
@@ -47,7 +47,7 @@
     sprite: _BlackM/Objects/ams_parts.rsi
     state: stabilizer
   product: AmsPartStabilizer
-  cost: 10500
+  cost: 15750
   category: cargoproduct-category-name-ams
   group: AmsParts
 
@@ -57,6 +57,6 @@
     sprite: _BlackM/Objects/ams_parts.rsi
     state: casing
   product: AmsPartCasing
-  cost: 10500
+  cost: 15750
   category: cargoproduct-category-name-ams
   group: AmsParts

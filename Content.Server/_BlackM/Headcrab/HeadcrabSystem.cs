@@ -1,4 +1,5 @@
 using Content.Shared._BlackM.Headcrab;
+using Content.Goobstation.Shared.Overlays;
 using Content.Server.DoAfter;
 using Content.Server.Popups;
 using Content.Shared.Actions;
@@ -19,6 +20,8 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Physics.Events;
 using Content.Server.Chat.Systems;
 using Content.Shared.NPC.Systems;
+using Content.Shared.NPC.Prototypes;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
 namespace Content.Server._BlackM.Headcrab;
@@ -47,6 +50,7 @@ public sealed class HeadcrabSystem : EntitySystem
         new SoundPathSpecifier("/Audio/_BlackM/headcrab/scream.ogg");
 
     private static readonly int HeadcrabSoundCount = 6;
+    private static readonly ProtoId<NpcFactionPrototype> XenFaction = "BlackMXen";
 
     private readonly HashSet<EntityUid> _recentlyHit = new();
 
@@ -63,6 +67,7 @@ public sealed class HeadcrabSystem : EntitySystem
         SubscribeLocalEvent<HeadcrabComponent, MobStateChangedEvent>(OnMobStateChanged);
 
         SubscribeLocalEvent<HeadcrabCapturedComponent, EntitySpokeEvent>(OnCapturedSpeak);
+        SubscribeLocalEvent<HeadcrabCapturedComponent, ComponentStartup>(OnCapturedStartup);
 
         SubscribeLocalEvent<TransformSpeechEvent>(OnTransformSpeech);
     }
@@ -240,14 +245,24 @@ public sealed class HeadcrabSystem : EntitySystem
 
         EnsureComp<HeadcrabCapturedComponent>(target);
 
-        _factionSystem.AddFaction(target, "HeadcrabCaptured");
-
         var rejuvenate = new RejuvenateEvent();
         RaiseLocalEvent(target, rejuvenate);
 
         _mind.TransferTo(mindId, target, mind: mind);
 
         QueueDel(uid);
+    }
+
+    private void OnCapturedStartup(EntityUid uid, HeadcrabCapturedComponent comp, ComponentStartup args)
+    {
+        var vision = EnsureComp<NightVisionComponent>(uid);
+        vision.Color = Color.FromHex("#808080");
+        vision.ActivateSound = null;
+        vision.DeactivateSound = null;
+        Dirty(uid, vision);
+
+        _factionSystem.ClearFactions(uid, dirty: false);
+        _factionSystem.AddFaction(uid, XenFaction);
     }
 
     private void OnCapturedSpeak(EntityUid uid, HeadcrabCapturedComponent comp, EntitySpokeEvent args)

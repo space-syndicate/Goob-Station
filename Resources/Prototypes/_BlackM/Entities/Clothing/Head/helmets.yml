@@ -27,3 +27,10 @@
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
   - type: EyeTrail
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.76
+        Slash: 0.76
+        Piercing: 0.76
+        Heat: 0.84

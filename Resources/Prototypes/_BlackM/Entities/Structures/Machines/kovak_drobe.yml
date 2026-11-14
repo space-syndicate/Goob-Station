@@ -1,0 +1,12 @@
+﻿- type: entity
+  parent: VendingMachineSecDrobe
+  id: VendingMachineKovakDrobe
+  name: KovakDrobe
+  description: A clothing and equipment dispenser for KOVAK personnel.
+  components:
+  - type: VendingMachine
+    pack: KovakDrobeInventory
+  - type: DatasetVocalizer
+    dataset: KovakDrobeAds
+  - type: PointLight
+    color: "#466fa6"

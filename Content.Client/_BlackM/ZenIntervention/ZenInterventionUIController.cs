@@ -132,7 +132,9 @@ public sealed class ZenInterventionUIController : UIController, IOnStateEntered<
                 comp.NextWaveTime,
                 comp.WaveInterval,
                 comp.BreachSpawnAmount,
-                comp.WaveSpawnAmount));
+                comp.WaveSpawnAmount,
+                comp.IntermediateBreachThresholds,
+                comp.IntermediateBreachSpawnAmount));
         }
         if (hasCatalyst && catalystStatus != null)
             _catalyst.SetState(catalystStatus.Catalysts);

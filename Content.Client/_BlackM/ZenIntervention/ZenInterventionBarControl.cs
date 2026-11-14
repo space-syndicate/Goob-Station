@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Numerics;
 using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
@@ -29,7 +30,9 @@ public readonly record struct ZenBarState(
     TimeSpan NextWaveTime,
     TimeSpan WaveInterval,
     int BreachSpawnAmount,
-    int WaveSpawnAmount)
+    int WaveSpawnAmount,
+    IReadOnlyList<float> IntermediateBreachThresholds,
+    int IntermediateBreachSpawnAmount)
 {
     public float Fraction => MaxLevel > 0f ? Math.Clamp(Level / MaxLevel, 0f, 1f) : 0f;
     public float BreachFraction => MaxLevel > 0f ? Math.Clamp(BreachThreshold / MaxLevel, 0f, 1f) : 0.6f;

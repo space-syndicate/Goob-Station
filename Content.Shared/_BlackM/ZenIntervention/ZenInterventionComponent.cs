@@ -16,10 +16,19 @@ public sealed partial class ZenInterventionComponent : Component
     public float MaxLevel = 100f;
 
     [DataField, AutoNetworkedField]
-    public float GainPerMinute = 1f;
+    public float GainPerMinute = 1.5f;
 
     [DataField, AutoNetworkedField]
     public float BreachThreshold = 60f;
+
+    [DataField, AutoNetworkedField]
+    public List<float> IntermediateBreachThresholds = new() { 20f, 40f };
+
+    [DataField, AutoNetworkedField]
+    public int IntermediateBreachSpawnAmount = 2;
+
+    [ViewVariables]
+    public readonly HashSet<float> TriggeredIntermediateBreaches = new();
 
     [DataField, AutoNetworkedField]
     public bool BreachTriggered;

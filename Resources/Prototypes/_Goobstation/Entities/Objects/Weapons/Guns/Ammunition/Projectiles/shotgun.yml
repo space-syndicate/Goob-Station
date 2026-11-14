@@ -36,7 +36,7 @@
   - type: ProjectileSpread
     proto: HighCaliberPelletShotgun
     count: 6
-    spread: 15
+    spread: 22.5
 
 # Incendiary
 
@@ -65,7 +65,7 @@
     - type: ProjectileSpread
       proto: HighCaliberPelletShotgunIncendiary
       count: 6
-      spread: 15
+      spread: 22.5
 
 # Practice
 
@@ -91,7 +91,7 @@
     - type: ProjectileSpread
       proto: HighCaliberPelletShotgunPractice
       count: 8
-      spread: 15
+      spread: 22.5
 
 # Depleted Uranium
 
@@ -358,4 +358,3 @@
     proto: HighCaliberPelletGrenade
     count: 20
     spread: 15
-
