@@ -189,6 +189,12 @@
     knockdownTimeDelta: -2
   - type: StaminaResistance # Goobstation
     damageCoefficient: 0.7
+  - type: StaminaRicochetArmor # BlackM
+    maxRicochetChance: 0.30
+    minRicochetChance: 0.05
+    staminaExponent: 2 
+    critAlwaysPenetrates: true
+    staminaDamagePerRicochet: 12
 
 #Standard armor vest, allowed for security and bartenders
 - type: entity
