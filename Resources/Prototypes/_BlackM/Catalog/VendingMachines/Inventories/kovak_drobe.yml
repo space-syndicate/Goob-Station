@@ -1,0 +1,19 @@
+﻿- type: vendingMachineInventory
+  id: KovakDrobeInventory
+  startingInventory:
+    ClothingUniformJumpsuitKovakSoldier: 6
+    ClothingUniformJumpsuitKovakMed: 2
+    ClothingOuterArmorKovakSoldier: 6
+    ClothingOuterCapeKovakMed: 2
+    ClothingShoesKovakSoldier: 10
+    ClothingHeadHelmetKovakSoldier: 6
+    ClothingHeadHelmetKovakMed: 2
+    ClothingHandsGlovesColorBlack: 6
+    ClothingMaskGasSecurity: 4
+    ClothingHeadsetAltSecurityRegular: 4
+
+- type: localizedDataset
+  id: KovakDrobeAds
+  values:
+    prefix: advertisement-kovakdrobe-
+    count: 2

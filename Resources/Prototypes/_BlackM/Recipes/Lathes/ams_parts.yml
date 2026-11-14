@@ -13,48 +13,48 @@
   result: AmsPartCore
   completetime: 3
   materials:
-    Steel: 484
-    Plasma: 323
-    Gold: 161
+    Steel: 726
+    Plasma: 485
+    Gold: 242
 
 - type: latheRecipe
   id: AmsPartCoil #BlackM
   result: AmsPartCoil
   completetime: 3
   materials:
-    Steel: 323
-    Silver: 484
+    Steel: 485
+    Silver: 726
 
 - type: latheRecipe
   id: AmsPartLens #BlackM
   result: AmsPartLens
   completetime: 3
   materials:
-    Glass: 645
-    Silver: 161
+    Glass: 968
+    Silver: 242
 
 - type: latheRecipe
   id: AmsPartCell #BlackM
   result: AmsPartCell
   completetime: 3
   materials:
-    Steel: 323
-    Plastic: 161
-    Uranium: 161
+    Steel: 485
+    Plastic: 242
+    Uranium: 242
 
 - type: latheRecipe
   id: AmsPartStabilizer #BlackM
   result: AmsPartStabilizer
   completetime: 3
   materials:
-    Steel: 484
-    Glass: 161
-    Silver: 161
+    Steel: 726
+    Glass: 242
+    Silver: 242
 
 - type: latheRecipe
   id: AmsPartCasing #BlackM
   result: AmsPartCasing
   completetime: 3
   materials:
-    Steel: 400
-    Plastic: 80
+    Steel: 600
+    Plastic: 120

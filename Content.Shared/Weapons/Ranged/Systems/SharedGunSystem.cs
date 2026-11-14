@@ -89,6 +89,7 @@ using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Whitelist;
+using Content.Shared.Wieldable.Components;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
@@ -698,6 +699,16 @@ public abstract partial class SharedGunSystem : EntitySystem
         // End DeltaV additions
 
         RaiseLocalEvent(gun, ref ev);
+
+        // BlackM: precise two-handed weapons still need a nonzero firing cone.
+        if (TryComp<WieldableComponent>(gun, out var wieldable) && wieldable.Wielded)
+        {
+            var minimumSpread = Angle.FromDegrees(8);
+            ev.MinAngle = new Angle(Math.Max(ev.MinAngle.Theta * 1.4, minimumSpread.Theta));
+            ev.MaxAngle = new Angle(Math.Max(ev.MaxAngle.Theta * 1.4, ev.MinAngle.Theta));
+            ev.AngleIncrease *= 1.4;
+            ev.AngleDecay *= 1.4;
+        }
 
         if (comp.SoundGunshotModified != ev.SoundGunshot)
         {

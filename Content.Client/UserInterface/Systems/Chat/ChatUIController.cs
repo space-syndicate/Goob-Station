@@ -924,6 +924,37 @@ public sealed partial class ChatUIController : UIController
         }
     }
 
+    public string GetDisplayMessage(ChatMessage msg)
+    {
+        if (!_admin.IsAdmin() || _ghost?.Player is not { CanGhostInteract: true } ||
+            msg.Channel is not (ChatChannel.Local or ChatChannel.Whisper or ChatChannel.Emotes or ChatChannel.LOOC) ||
+            !_ent.TryGetEntity(msg.SenderEntity, out var speaker) ||
+            !_ent.TryGetComponent<MetaDataComponent>(speaker, out var metadata) || metadata is null)
+            return msg.WrappedMessage;
+
+        var name = $"({FormattedMessage.EscapeText(metadata.EntityName)})";
+        if (msg.Channel is ChatChannel.LOOC or ChatChannel.Emotes)
+        {
+            var wrap = msg.Channel == ChatChannel.LOOC
+                ? "chat-manager-entity-looc-wrap-message"
+                : "chat-manager-entity-me-wrap-message";
+            return Loc.GetString(wrap,
+                ("entityName", name),
+                ("message", FormattedMessage.EscapeText(msg.Message)));
+        }
+
+        var taggedName = SharedChatSystem.GetStringInsideTag(msg, "Name");
+        if (!string.IsNullOrEmpty(taggedName))
+            return msg.WrappedMessage.Replace($"[Name]{taggedName}[/Name]", $"[Name]{name}[/Name]", StringComparison.Ordinal);
+
+        var header = SharedChatSystem.GetStringInsideTag(msg, "BubbleHeader");
+        if (!string.IsNullOrEmpty(header))
+            return msg.WrappedMessage.Replace($"[BubbleHeader]{header}[/BubbleHeader]",
+                $"[BubbleHeader][bold]{name}[/bold][/BubbleHeader]", StringComparison.Ordinal);
+
+        return msg.WrappedMessage;
+    }
+
     public void ProcessChatMessage(ChatMessage msg, bool speechBubble = true)
     {
         // color the name unless it's something like "the old man"

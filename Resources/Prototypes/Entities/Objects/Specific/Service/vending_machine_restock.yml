@@ -234,6 +234,7 @@
     - RoboDrobeInventory
     - SciDrobeInventory
     - SecDrobeInventory
+    - KovakDrobeInventory
     - ViroDrobeInventory
     - WinterDrobeInventory
     - CuraDrobeInventory

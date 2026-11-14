@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Text;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
@@ -133,7 +134,9 @@ public sealed class ZenInterventionTooltip : PanelContainer
 
         Append(sb, s.Stage == ZenStage.Calm, ZenStage.Calm,
             Loc.GetString("zen-intervention-ui-stage-calm-title", ("threshold", threshold)),
-            Loc.GetString("zen-intervention-ui-stage-calm-desc"));
+            Loc.GetString("zen-intervention-ui-stage-calm-desc",
+                ("thresholds", string.Join("%, ", s.IntermediateBreachThresholds.Select(t => t.ToString("0.##")))),
+                ("count", s.IntermediateBreachSpawnAmount)));
 
         Append(sb, s.Stage == ZenStage.Breach, ZenStage.Breach,
             Loc.GetString("zen-intervention-ui-stage-breach-title", ("threshold", threshold)),
@@ -190,6 +193,14 @@ public sealed class ZenInterventionTooltip : PanelContainer
         else
         {
             var target = s.Stage == ZenStage.Calm ? s.BreachThreshold : s.MaxLevel;
+            if (s.Stage == ZenStage.Calm)
+            {
+                foreach (var threshold in s.IntermediateBreachThresholds)
+                {
+                    if (threshold > s.Level && threshold < target)
+                        target = threshold;
+                }
+            }
             var minutes = (int) MathF.Max(1f, MathF.Ceiling((target - s.Level) / s.GainPerMinute));
             var key = s.Stage == ZenStage.Calm
                 ? "zen-intervention-ui-next-breach"

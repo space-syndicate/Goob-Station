@@ -94,6 +94,7 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Rejuvenate;
+using Content.Shared.SSDIndicator;
 using Content.Shared.StatusIcon;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -265,6 +266,9 @@ public sealed class HungerSystem : EntitySystem
     private void DoContinuousHungerEffects(EntityUid uid, HungerComponent? component = null)
     {
         if (!Resolve(uid, ref component))
+            return;
+
+        if (TryComp<SSDIndicatorComponent>(uid, out var ssd) && ssd.IsSSD)
             return;
 
         if (component.CurrentThreshold <= HungerThreshold.Starving &&

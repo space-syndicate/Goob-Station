@@ -107,6 +107,7 @@ using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Rejuvenate;
+using Content.Shared.SSDIndicator;
 using Content.Shared.StatusIcon;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
@@ -343,7 +344,8 @@ public sealed class ThirstSystem : EntitySystem
             }
 
             if (_net.IsServer && thirst.CurrentThirstThreshold <= ThirstThreshold.Parched &&
-                thirst.DehydrationDamage is { } damage && !_mobState.IsDead(uid))
+                thirst.DehydrationDamage is { } damage && !_mobState.IsDead(uid) &&
+                !(TryComp<SSDIndicatorComponent>(uid, out var ssd) && ssd.IsSSD))
             {
                 _damageable.TryChangeDamage(uid, damage, true, false);
             }

@@ -111,9 +111,10 @@ public partial class ChatBox : UIWidget
         msg.Read = true;
 
         var color = msg.MessageColorOverride ?? msg.Channel.TextColor();
+        var displayMessage = _controller.GetDisplayMessage(msg);
 
         // WD EDIT START
-        (string, Color) tup = (msg.WrappedMessage, color);
+        (string, Color) tup = (displayMessage, color);
 
         // Removing and then adding insantly nudges the chat window up before slowly dragging it back down, which makes the whole chat log shake
         // and make it borderline unreadable with frequent enough spam.
@@ -123,14 +124,14 @@ public partial class ChatBox : UIWidget
         if (_coalescence && msg.CanCoalesce && _lastLine == tup && Contents.EntryCount >= 2)// CorvaxGoob-fix
         {
             _lastLineRepeatCount++;
-            AddLine(msg.WrappedMessage, color, _lastLineRepeatCount);
+            AddLine(displayMessage, color, _lastLineRepeatCount);
             Contents.RemoveEntry(^2);
         }
         else
         {
             _lastLineRepeatCount = 0;
-            _lastLine = (msg.WrappedMessage, color);
-            AddLine(msg.WrappedMessage, color, _lastLineRepeatCount);
+            _lastLine = (displayMessage, color);
+            AddLine(displayMessage, color, _lastLineRepeatCount);
         } // WD EDIT END
     }
 

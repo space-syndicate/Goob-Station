@@ -5,6 +5,10 @@ blackm-elevator-ann-depth2 = Глубина: 340 метров. Давление 
 blackm-elevator-ann-soon = Торможение. Прибытие через несколько секунд.
 blackm-elevator-fade-text = Прибытие в комплекс...
 blackm-elevator-arrived = Вы прибыли в комплекс.
+blackm-evac-observer-title = Поздравляем с эвакуацией!
+blackm-evac-observer-message = Можете понаблюдать за концом смены из безопасного места.
+blackm-evac-observer-watch = Наблюдать
+blackm-evac-observer-return = Вернуться
 blackm-elevator-ann-arrive = Лифт прибыл на уровень комплекса. Двери открываются.
 
 blackm-elevator-evac-sender = Лифт эвакуации

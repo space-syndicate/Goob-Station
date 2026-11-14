@@ -112,7 +112,7 @@ public sealed partial class AmsComponent : Component
     public int SpecialDoorRequiredParts = 4;
 
     [DataField]
-    public float ZenReductionPerPart = 20f;
+    public float ZenReductionPerPart = 15f;
 
     [DataField]
     public List<string> InfectionDecals = new() { "AmsInfectedDecal1", "AmsInfectedDecal2" };
