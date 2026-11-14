@@ -1,7 +1,7 @@
 station-report-text =
-    {"["}color=#1b67a5]░░██░░ [head=2]Offical Document[/head]
-    ▀████▀ [head=3]Subject: Station Report[/head]
-    ▄█▀▀█▄ [head=3]Reviewer: Black Mesa Representative[/head]
+    {"["}color=#1b67a5]       [head=2]Offical Document[/head]
+           {"["}head=3]Subject: Station Report[/head]
+           {"["}head=3]Reviewer: Black Mesa Representative[/head]
     {"["}/color]──────────────────────────────────────────
     • [color=#9fed58][bold]General Report[/bold][/color]
     >[mono][/mono]

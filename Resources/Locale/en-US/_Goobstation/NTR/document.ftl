@@ -1,42 +1,42 @@
 # templates
 # service
-ntr-document-service-starting-text1 = [color=#009100]█▄ █ ▀█▀    [head=3]Black Mesa Document[/head]
-    █ ▀█     █        To: Service department
+ntr-document-service-starting-text1 = [color=#009100]            [head=3]Black Mesa Document[/head]
+                      To: Service department
                            From: CentComm
                            Issued: {$date}
     ──────────────────────────────────────────[/color]
 
 # security
-ntr-document-security-starting-text1 = [head=3]Black Mesa Document[/head]                               [color=#990909]█▄ █ ▀█▀
-    To: Security department                                       █ ▀█     █
+ntr-document-security-starting-text1 = [head=3]Black Mesa Document[/head]                               [color=#990909]        
+    To: Security department                                               
     From: CentComm
     Issued: {$date}
     ──────────────────────────────────────────[/color]
 
 # cargo
-ntr-document-cargo-starting-text1 = [head=3]  Black Mesa[/head]        [color=#d48311]█▄ █ ▀█▀ [/color][bold]      To: Cargo department[/bold][head=3]
-       Document[/head]           [color=#d48311]█ ▀█     █       [/color] [bold]   From: CentComm[/bold]
+ntr-document-cargo-starting-text1 = [head=3]  Black Mesa[/head]        [bold]      To: Cargo department[/bold][head=3]
+       Document[/head]           [color=#d48311]                 [/color] [bold]   From: CentComm[/bold]
     ──────────────────────────────────────────
                                         Issued: {$date}
 
 # medical
-ntr-document-medical-starting-text1 = [color=#118fd4]░             █▄ █ ▀█▀    [head=3]Black Mesa Document[/head]                 ░
-    █             █ ▀█     █        To: Medical department                         █
-    ░                                    From: CentComm                                     ░
+ntr-document-medical-starting-text1 = [color=#118fd4]                          [head=3]Black Mesa Document[/head]                
+                                    To: Medical department                        
+                                         From: CentComm                                    
                                          Issued: {$date}
     ──────────────────────────────────────────[/color]
 
 # engineering
-ntr-document-engineering-starting-text1 = [color=#a15000]█▄ █ ▀█▀    [head=3]Black Mesa Document[/head]
-    █ ▀█     █        To: Engineering department
+ntr-document-engineering-starting-text1 = [color=#a15000]            [head=3]Black Mesa Document[/head]
+                      To: Engineering department
                            From: CentComm
                            Issued: {$date}
     ──────────────────────────────────────────[/color]
 
 # science
-ntr-document-science-starting-text1 = [color=#94196f]░             █▄ █ ▀█▀    [head=3]Black Mesa Document[/head]                 ░
-    █             █ ▀█     █        To: Science department                         █
-    ░                                    From: CentComm                                     ░
+ntr-document-science-starting-text1 = [color=#94196f]                          [head=3]Black Mesa Document[/head]                
+                                    To: Science department                        
+                                         From: CentComm                                    
                                          Issued: {$date}
     ──────────────────────────────────────────[/color]
 ntr-document-service-document-text =
