@@ -15,4 +15,6 @@ public sealed class ShotState
     public float TrailAcc;
     public bool Visible = true;
     public float Phase;
+
+    public bool Smoke = true;
 }

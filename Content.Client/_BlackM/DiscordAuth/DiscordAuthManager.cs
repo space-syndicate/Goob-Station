@@ -1,6 +1,5 @@
-﻿using System;
+using System;
 using System.Threading;
-using Content.Client.Gameplay;
 using Content.Client.Lobby;
 using Content.Shared._BlackM.CCVar;
 using Content.Shared._BlackM.DiscordAuth;
@@ -24,13 +23,10 @@ public sealed partial class DiscordAuthManager : Content.Corvax.Interfaces.Clien
 
     public event Action? DataUpdated;
 
-    private readonly CancellationTokenSource _watchdogCancel = new();
-
-    private bool _authRequired;
-
     private bool _bypassed;
 
-    private Type? _returnState;
+    private DiscordAuthWindow? _window;
+    private CancellationTokenSource? _checkCancel;
 
     public void Initialize()
     {
@@ -43,35 +39,14 @@ public sealed partial class DiscordAuthManager : Content.Corvax.Interfaces.Clien
         _cfg.OnValueChanged(BlackMCVars.DiscordAuthEnabled, v => IsEnabled = v, true);
 
         _netManager.Disconnect += OnDisconnected;
-
-        Timer.SpawnRepeating(TimeSpan.FromMilliseconds(100), EnforceAuthState, _watchdogCancel.Token);
     }
 
     private void OnDisconnected(object? sender, NetDisconnectedArgs args)
     {
-        _authRequired = false;
         _bypassed = false;
-        _returnState = null;
         IsVerified = false;
         LinkCode = string.Empty;
-    }
-
-    private void EnforceAuthState()
-    {
-        if (!_authRequired || IsVerified || IsOpt || !_netManager.IsConnected)
-            return;
-
-        EnterAuthState();
-    }
-
-    private void EnterAuthState()
-    {
-        var current = _stateManager.CurrentState;
-        if (current is DiscordAuthState)
-            return;
-
-        _returnState = current.GetType();
-        _stateManager.RequestStateChange<DiscordAuthState>();
+        CloseWindow();
     }
 
     private void OnDiscordAuthRequired(MsgDiscordAuthRequired message)
@@ -80,36 +55,76 @@ public sealed partial class DiscordAuthManager : Content.Corvax.Interfaces.Clien
             return;
 
         IsVerified = false;
-        _authRequired = true;
         LinkCode = message.LinkCode;
-
-        EnterAuthState();
-
         DataUpdated?.Invoke();
+
+        if (message.ShowWindow)
+            OpenWindow();
     }
 
     private void OnDiscordAuthVerified(MsgDiscordAuthVerified message)
     {
         IsVerified = true;
-        _authRequired = false;
+        DataUpdated?.Invoke();
+        CloseWindow();
 
         if (_stateManager.CurrentState is DiscordAuthState)
-        {
-            var target = _returnState == typeof(GameplayState)
-                ? typeof(GameplayState)
-                : typeof(LobbyState);
+            _stateManager.RequestStateChange<LobbyState>();
+    }
 
-            _stateManager.RequestStateChange(target);
+    public void OpenWindow()
+    {
+        if (IsVerified)
+            return;
+
+        if (_window == null)
+        {
+            _window = new DiscordAuthWindow();
+            _window.OnClose += OnWindowClosed;
         }
 
-        _returnState = null;
+        _window.OpenCentered();
+        _window.MoveToFront();
+
+        if (_checkCancel == null)
+        {
+            _checkCancel = new CancellationTokenSource();
+            SendCheck();
+            Timer.SpawnRepeating(TimeSpan.FromSeconds(5), SendCheck, _checkCancel.Token);
+        }
+    }
+
+    private void OnWindowClosed()
+    {
+        _checkCancel?.Cancel();
+        _checkCancel = null;
+    }
+
+    private void CloseWindow()
+    {
+        _checkCancel?.Cancel();
+        _checkCancel = null;
+
+        if (_window == null)
+            return;
+
+        _window.OnClose -= OnWindowClosed;
+        _window.Close();
+        _window.Dispose();
+        _window = null;
+    }
+
+    private void SendCheck()
+    {
+        if (_netManager.IsConnected)
+            _netManager.ClientSendMessage(new MsgDiscordAuthCheck());
     }
 
     public void ByPass()
     {
         IsVerified = true;
         _bypassed = true;
-        _authRequired = false;
         _netManager.ClientSendMessage(new MsgDiscordAuthByPass());
+        CloseWindow();
     }
 }

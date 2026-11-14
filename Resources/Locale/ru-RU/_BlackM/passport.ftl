@@ -63,3 +63,4 @@ passport-checker-fine = Комплекс оштрафован на { $amount } �
 
 passport-verb-show = Показать паспорт
 passport-show-popup = { $user } показывает паспорт { $target }.
+passport-verb-admin-view = Посмотреть паспорт

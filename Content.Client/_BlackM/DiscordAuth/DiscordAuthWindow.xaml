@@ -1,0 +1,12 @@
+<DefaultWindow xmlns="https://spacestation14.io"
+               Title="{Loc 'discord-auth-title'}"
+               MinSize="460 300">
+    <BoxContainer Orientation="Vertical" Margin="10">
+        <Label Text="{Loc 'discord-auth-join-info'}" Align="Center" />
+        <Label Text="{Loc 'discord-auth-join-warn'}" Margin="0 5 0 0" Align="Center" StyleClasses="LabelSubText" />
+        <Label Name="LinkInfoLabel" Margin="0 10 0 0" Align="Center" StyleClasses="LabelSubText" />
+        <TextEdit Name="CodeEdit" Editable="False" HorizontalExpand="True" MinSize="220 40" Margin="10" />
+        <Button Name="OpenServerButton" Text="{Loc 'discord-auth-server-btn'}" HorizontalExpand="True" />
+        <Button Name="ByPassBtn" Text="{Loc 'discord-auth-bypass'}" HorizontalExpand="True" StyleClasses="Caution" Margin="0 10 0 0" />
+    </BoxContainer>
+</DefaultWindow>

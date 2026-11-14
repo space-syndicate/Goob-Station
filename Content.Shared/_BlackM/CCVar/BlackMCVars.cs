@@ -25,13 +25,13 @@ public sealed class BlackMCVars
         CVarDef.Create("blackm.echo_strong_preset", false, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     public static readonly CVarDef<bool> DefaultAtmosphereShaderEnabled =
-        CVarDef.Create("blackm.default_atmosphere_shader_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+        CVarDef.Create("blackm.default_atmosphere_shader_enabled", false, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     public static readonly CVarDef<bool> BattleMusicEnabled =
         CVarDef.Create("audio.battle_music_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     public static readonly CVarDef<float> BattleMusicVolume =
-        CVarDef.Create("audio.battle_music_volume", 1.0f, CVar.CLIENTONLY | CVar.ARCHIVE);
+        CVarDef.Create("audio.battle_music_volume", 0.5f, CVar.CLIENTONLY | CVar.ARCHIVE);
     
     public static readonly CVarDef<bool> BarksEnabled =
         CVarDef.Create("blackm.barks_enabled", true, CVar.SERVER | CVar.REPLICATED);
@@ -40,7 +40,7 @@ public sealed class BlackMCVars
         CVarDef.Create("blackm.replace_tts_with_barks", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     public static readonly CVarDef<float> BarksVolume =
-        CVarDef.Create("blackm.barks_volume", 1f, CVar.CLIENTONLY | CVar.ARCHIVE);
+        CVarDef.Create("blackm.barks_volume", 1.5f, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     public static readonly CVarDef<float> BarksMinPitch =
         CVarDef.Create("blackm.barks_min_pitch", 0.5f, CVar.SERVER | CVar.REPLICATED);
@@ -105,6 +105,15 @@ public sealed class BlackMCVars
     public static readonly CVarDef<float> GunCameraStrength =
         CVarDef.Create("blackm.gun_camera_strength", 0.6f, CVar.CLIENTONLY | CVar.ARCHIVE);
     
+    public static readonly CVarDef<bool> ShotEffectsEnabled =
+        CVarDef.Create("blackm.shot_effects_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<bool> ShotTrailsEnabled =
+        CVarDef.Create("blackm.shot_trails_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<bool> ShotImpactsEnabled =
+        CVarDef.Create("blackm.shot_impacts_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
     public static readonly CVarDef<bool> VoidFallEnabled =
         CVarDef.Create("blackm.void_fall_enabled", true, CVar.SERVERONLY);
 

@@ -2,6 +2,7 @@ using System.Numerics;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Input;
 using Robust.Shared.Maths;
 using Robust.Shared.Timing;
@@ -89,7 +90,7 @@ public sealed class WelcomeMessageControl : Control
     private float _laidOutY = -1f;
 
     public WelcomeMessageControl(string sender, string title, string text, Texture? portrait, Color accent,
-        float duration, WelcomeFonts fonts)
+        float duration, WelcomeFonts fonts, EntityUid? portraitEntity = null)
     {
         MouseFilter = MouseFilterMode.Stop;
         RectClipContent = true;
@@ -104,9 +105,9 @@ public sealed class WelcomeMessageControl : Control
         };
         AddChild(_content);
 
-        if (portrait != null)
+        if (portrait != null || portraitEntity != null)
         {
-            _content.AddChild(new PortraitView(portrait, accent)
+            _content.AddChild(new PortraitView(portrait, accent, portraitEntity)
             {
                 MinSize = new Vector2(PortraitWidth, PortraitMinHeight),
             });
@@ -493,18 +494,54 @@ public sealed class WelcomeMessageControl : Control
 
     private sealed class PortraitView : Control
     {
-        private readonly Texture _texture;
+        private const float EntityZoom = 1.45f;
+        private const float EntityTopOffset = 0.06f;
+
+        private readonly Texture? _texture;
+        private readonly SpriteView? _spriteView;
         private readonly Color _top;
         private readonly Color _bottom;
         private readonly Color _floor;
 
-        public PortraitView(Texture texture, Color accent)
+        public PortraitView(Texture? texture, Color accent, EntityUid? entity = null)
         {
             _texture = texture;
             _top = Color.InterpolateBetween(InsetColor, accent, 0.05f);
             _bottom = Color.InterpolateBetween(InsetColor, accent, 0.42f);
             _floor = accent.WithAlpha(0.8f);
             MouseFilter = MouseFilterMode.Ignore;
+            RectClipContent = true;
+
+            if (entity != null)
+            {
+                _spriteView = new SpriteView
+                {
+                    OverrideDirection = Direction.South,
+                    Stretch = SpriteView.StretchMode.Fill,
+                    MouseFilter = MouseFilterMode.Ignore,
+                };
+                _spriteView.SetEntity(entity.Value);
+                AddChild(_spriteView);
+            }
+        }
+
+        protected override Vector2 MeasureOverride(Vector2 availableSize)
+        {
+            _spriteView?.Measure(new Vector2(float.PositiveInfinity, float.PositiveInfinity));
+            return Vector2.Zero;
+        }
+
+        protected override Vector2 ArrangeOverride(Vector2 finalSize)
+        {
+            if (_spriteView != null)
+            {
+                var side = MathF.Max(finalSize.X, finalSize.Y) * EntityZoom;
+                var x = (finalSize.X - side) / 2f;
+                var y = -side * EntityTopOffset;
+                _spriteView.Arrange(UIBox2.FromDimensions(new Vector2(x, y), new Vector2(side, side)));
+            }
+
+            return finalSize;
         }
 
         protected override void Draw(DrawingHandleScreen handle)
@@ -527,6 +564,9 @@ public sealed class WelcomeMessageControl : Control
 
             var line = MathF.Max(1f, MathF.Round(UIScale));
             handle.DrawRect(new UIBox2(0f, h - line, w, h), _floor);
+
+            if (_texture == null)
+                return;
 
             var size = _texture.Size;
             var room = h - line;

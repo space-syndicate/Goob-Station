@@ -16,8 +16,8 @@
       path: /Audio/_BlackM/Announcements/Fog/fog_end.ogg
       params:
         volume: -2
-    duration: 240
-    maxDuration: 420
+    duration: 120
+    maxDuration: 125
     eventType: Interference
   - type: GameRule
     chaosScore: 40

@@ -3,32 +3,32 @@
 
 -delivery-headerNanoTrasen = [color=blue]
     ╔══════════════════╗
-    ║███░███░░░░██░░░░░║
-    ║░██░████░░░██░░░░░║
-    ║░░█░██░██░░██░█░░░║
-    ║░░░░██░░██░██░██░░║
-    ║░░░░██░░░████░███░║
+    ║                  ║
+    ║                  ║
+    ║                  ║
+    ║                  ║
+    ║                  ║
     ╚══════════════════╝[/color]
 -delivery-headerNanoTrasen-alternate-timeline = [color=red]
     ╔══════════════════╗
-    ║███░███░░░░██░░░░░║
-    ║░██░████░░░██░░░░░║
-    ║░░█░██░██░░██░█░░░║
-    ║░░░░██░░██░██░██░░║
-    ║░░░░██░░░████░███░║
+    ║                  ║
+    ║                  ║
+    ║                  ║
+    ║                  ║
+    ║                  ║
     ╚══════════════════╝[/color]
 -delivery-header-syndicate = [color=#ff0000]
     ╔══════════════════╗
-    ║░░░░░████████░░░░░║
-    ║░░░░░██░░░░░░░░░░░║
-    ║░░░░░████████░░░░░║
-    ║░░░░░░░░░░░██░░░░░║
-    ║░░░░░████████░░░░░║
+    ║                  ║
+    ║                  ║
+    ║                  ║
+    ║                  ║
+    ║                  ║
     ╚══════════════════╝[/color]
 delivery-spam-robust-toolboxes = [color=blue][head=1]
-    ░░▄▀░░
-    ░▄█▄▄▀ [head=3]РОБАСТ - ТУЛБОКСЫ И ИНСТРУМЕНТЫ[/head]
-    ██▀░░░ [/head][/color]
+          
+           {"["}head=3]РОБАСТ - ТУЛБОКСЫ И ИНСТРУМЕНТЫ[/head]
+           {"["}/head][/color]
     
     { "[bold]КУПИ ТУЛБОКС И ПОЛУЧИ НАБОР ИНСТРУМЕНТОВ В ПОДАРОК![/bold]" }
     
@@ -132,7 +132,7 @@ delivery-spam-narsie-cult = [color=#134975][head=2]Дети Нар'Си[/head][/
     Если вы ответили «Да» на любой из этих вопросов, то свяжитесь с нашим представителем уже сегодня! Наши последователи есть на комплексх по всей галактике и с радостью примут вас в нашу отару. Станьте одним из кинжалов, что помогут приветствовать Геометра Крови в наш мир, дабы все познали его блаженство!!
     
     Вам остаётся лишь произнести [color=#FF0000][italic]"Sas'so c'arta forbici!"[/italic][/color]
-delivery-spam-rage-cage = [color=#aaaaaa]▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀[/color]
+delivery-spam-rage-cage = 
                                  { "[bold][head=1]КЛЕТКА ЯРОСТИ[/head][/bold]" }
     { "[color=#aaaaaa]▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬[/color]" }
     { "[bold][color=#FF0000][head=3]ТЫ ХОЧЕШЬ СРАЖАТЬСЯ?[/head][/color][/bold]" }
@@ -171,23 +171,23 @@ delivery-spam-evil-lizard = [color=#FF0000][bold][head=2]ОСТАНОВИСЬ[/h
     
     { "[head=1]ААААААААА ОНА ТУТ!!!!!!!![/head]" }
     
-    ░░░░░░░░░█░░[color=#67CC40]████████[/color]█[color=#67CC40]███[/color]░░░░░░░░░░
-    ░░░░░░[color=#FF0000]████[/color]█[color=#6EC543]█[/color][color=#67CC40]███████[/color]█[color=#FF0000]██████[/color]░░░░░░░░
-    ░░░░[color=#FF0000]████[/color][color=#6EC543]██[/color][color=#67CC40]████████[/color][color=#FF0000]██████[/color][color=#FFFFFF]██[/color][color=#FF0000]█[/color][color=#B53737]█[/color]░░░░░░
-    ░░░░[color=#FF0000]██[/color][color=#6EC543]██[/color][color=#67CC40]██████████[color=#FF0000]████████[/color][color=#B53737]██[/color]░░░░░░
-    ░░[color=#6EC543]██████[/color][color=#67CC40]██████████[/color][color=#FF0000]███████[/color][color=#B53737]███[/color]░░░░░░
-    { "[color=#6EC543]██████[/color][color=#67CC40]██████████████[/color][color=#FF0000]███[/color][color=#B53737]███[/color]░░░░░░░░" }
-    { "[color=#6EC543]██████[/color][color=#67CC40]██████████████[/color][color=#FF0000]█[/color][color=#6EC543]█████[/color]░░░░░░░░" }
-    { "[color=#6EC543]██████████[/color][color=#67CC40]██████████[/color][color=#FF0000]█[/color][color=#67CC40]███[/color]░░░░░░░░░░" }
-    ░░[color=#6EC543]██[/color][color=#FF2020]██[/color][color=#FF3D3D]██[/color][color=#6EC543]████████[/color][color=#67CC40]████[/color][color=#86E158]██[/color]░░░░░░░░░░░░
-    ░░░░[color=#FF2020]██[/color][color=#FF3D3D]██[/color]░░░░[color=#86E158]████████[/color][color=#6EC543]██[/color][color=#61D034]██[/color]░░░░░░░░[color=#56B037]██[/color]
-    ░░░░[color=#FF2020]██[/color]░░░░[color=#A8EB7A]██[/color][color=#B5EE85]██████[/color][color=#A8EB7A]██[/color][color=#6EC543]████[/color][color=#61D034]██[/color]░░░░[color=#56B037]██[/color][color=#48A926]██[/color]
-    ░░░░░░░░[color=#A8EB7A]██[/color][color=#B5EE85]██████████[/color][color=#A8EB7A]██[/color][color=#6EC543]████[/color][color=#56B037]██[/color][color=#48A926]██████[/color]
-    ░░░░[color=#6EC543]██[/color][color=#61D034]██[/color][color=#A8EB7A]██[/color][color=#B5EE85]██████████[/color][color=#A8EB7A]██[/color][color=#48A926]████████████[/color]
-    ░░░░[color=#6EC543]████[/color][color=#86E158]██[/color][color=#A8EB7A]██[/color][color=#B5EE85]████[/color][color=#A8EB7A]██[/color][color=#86E158]██[/color][color=#61D034]████[/color][color=#6EC543]██[/color][color=#48A926]████[/color][color=#52A037]██[/color]░░
-    ░░░░[color=#6EC543]████[/color][color=#61D034]██[/color][color=#86E158]████████[/color][color=#61D034]██[/color][color=#6EC543]██████[/color][color=#52A037]████[/color]░░░░
-    ░░░░░░[color=#6EC543]████[/color]░░░░░░░░[color=#6EC543]████████[/color]░░░░░░░░
-    ░░░░░░░░░░░░░░░░░░░░[color=#6EC543]████[/color]░░░░░░░░░░
+                █          
+          █[color=#6EC543]█[/color]█        
+        {"["}color=#6EC543]██[/color][color=#FFFFFF]██[/color][color=#FF0000]█[/color][color=#B53737]█[/color]      
+        {"["}color=#FF0000]██[/color][color=#6EC543]██[/color][color=#67CC40]          [color=#B53737]██[/color]      
+    ░░      
+    { "        " }
+    { "[color=#FF0000]█[/color]        " }
+    { "[color=#FF0000]█[/color]          " }
+    ░░[color=#6EC543]██[/color][color=#FF2020]██[/color][color=#FF3D3D]██[/color][color=#86E158]██[/color]            
+        {"["}color=#FF2020]██[/color][color=#FF3D3D]██[/color]    [color=#6EC543]██[/color][color=#61D034]██[/color]        [color=#56B037]██[/color]
+        {"["}color=#FF2020]██[/color]    [color=#A8EB7A]██[/color][color=#A8EB7A]██[/color][color=#61D034]██[/color]    [color=#56B037]██[/color][color=#48A926]██[/color]
+            {"["}color=#A8EB7A]██[/color][color=#A8EB7A]██[/color][color=#56B037]██[/color]
+        {"["}color=#6EC543]██[/color][color=#61D034]██[/color][color=#A8EB7A]██[/color][color=#A8EB7A]██[/color]
+        {"["}color=#86E158]██[/color][color=#A8EB7A]██[/color][color=#A8EB7A]██[/color][color=#86E158]██[/color][color=#6EC543]██[/color][color=#52A037]██[/color]░░
+        {"["}color=#61D034]██[/color][color=#61D034]██[/color]    
+                          
+                                  
 delivery-spam-parents-need-money = [bold]Привет Малыш,[/bold]
     
     Это пишут твои родители: нам срочно нужны деньги! Правителство проверили наши налоги и теперь у нас долг в 100,000 кредитов! Просим помочь нам! Они принимают только подарочные карты, поэтому тебе нужно отправить нам 100 карт Биса по 1000 кредитов.
@@ -204,9 +204,9 @@ delivery-spam-parents-need-money = [bold]Привет Малыш,[/bold]
     { "[italic]твои родители[/italics]" }
 delivery-spam-voyage-advertisement = [head=2]Присоединяйтесь к нам на первом рейсе...[/head]
     
-    ░█▄▀░█▄▀░░░█▀▄░█▀▀░▄▀▄░█▀█░█▄▀░█▀▀░█▀█░█▀▄
-    ░█▀▄░█▀▄░░░█▀▀░█▀▀░█░█░█▀█░█▀▄░█░░░█░█░█▀▀
-    ░▀░▀░▀░▀░░░▀░░░▀▀▀░▀░▀░▀░▀░▀░▀░▀▀▀░▀▀▀░▀░░
+                                              
+                                              
+                                              
     
     
      { "[bold]══════════════════════════════════════════[/bold]" }

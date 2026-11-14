@@ -1,10 +1,15 @@
 ﻿using System.Numerics;
+using Content.Shared._BlackM.CCVar;
 using Content.Shared._BlackM.Shot;
+using Content.Shared.Damage.Components;
 using Content.Shared.Physics;
 using Content.Shared.Projectiles;
+using Content.Shared.Weapons.Ranged.Components;
+using Content.Shared.Weapons.Reflect;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Client.ResourceManagement;
+using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Maths;
 using Robust.Shared.Physics;
@@ -25,6 +30,7 @@ public sealed class ShotSystem : EntitySystem, IShotWorld
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
 
     private const string ImpactLight = "BlackMImpactLight";
     private const float TrailSpacing = 0.22f;
@@ -37,29 +43,78 @@ public sealed class ShotSystem : EntitySystem, IShotWorld
     private ShotOverlay _overlay = default!;
     private EntityQuery<OccluderComponent> _occluders;
     private EntityQuery<ProjectileComponent> _projectiles;
+    private EntityQuery<ReflectiveComponent> _reflective;
+    private EntityQuery<StaminaDamageOnCollideComponent> _staminaOnCollide;
+
+    private static readonly string[] PhysicalDamage = { "Blunt", "Piercing", "Slash" };
+    private static readonly string[] EnergyDamage = { "Heat", "Shock", "Radiation", "Cold" };
 
     private readonly Dictionary<(MapId, Vector2i), bool> _visCache = new();
     private float _visTimer;
+
+    private bool _enabled = true;
+    private bool _trails = true;
+    private bool _impacts = true;
 
     public override void Initialize()
     {
         base.Initialize();
         _occluders = GetEntityQuery<OccluderComponent>();
         _projectiles = GetEntityQuery<ProjectileComponent>();
+        _reflective = GetEntityQuery<ReflectiveComponent>();
+        _staminaOnCollide = GetEntityQuery<StaminaDamageOnCollideComponent>();
         _overlay = new ShotOverlay(_cache, _states, this);
-        _overlays.AddOverlay(_overlay);
         SubscribeLocalEvent<ShotComponent, ComponentShutdown>(OnShutdown);
+
+        Subs.CVar(_cfg, BlackMCVars.ShotEffectsEnabled, OnEnabledChanged, invokeImmediately: true);
+        Subs.CVar(_cfg, BlackMCVars.ShotTrailsEnabled, OnTrailsChanged, invokeImmediately: true);
+        Subs.CVar(_cfg, BlackMCVars.ShotImpactsEnabled, OnImpactsChanged, invokeImmediately: true);
+    }
+
+    private void OnEnabledChanged(bool value)
+    {
+        _enabled = value;
+
+        if (value)
+        {
+            if (!_overlays.HasOverlay<ShotOverlay>())
+                _overlays.AddOverlay(_overlay);
+            return;
+        }
+
+        _states.Clear();
+        _visCache.Clear();
+        _overlay.Clear();
+        _overlays.RemoveOverlay(_overlay);
+    }
+
+    private void OnTrailsChanged(bool value)
+    {
+        _trails = value;
+        if (!value)
+            _overlay.ClearTrails();
+    }
+
+    private void OnImpactsChanged(bool value)
+    {
+        _impacts = value;
+        if (!value)
+            _overlay.ClearParticles();
     }
 
     public override void Shutdown()
     {
         base.Shutdown();
         _overlays.RemoveOverlay(_overlay);
+        _overlay.Clear();
         _states.Clear();
     }
 
     public override void FrameUpdate(float frameTime)
     {
+        if (!_enabled)
+            return;
+
         _visTimer += frameTime;
         if (_visTimer >= 0.2f)
         {
@@ -76,9 +131,11 @@ public sealed class ShotSystem : EntitySystem, IShotWorld
 
             var pos = _xform.GetWorldPosition(xform);
             var dir = _xform.GetWorldRotation(xform).ToWorldVec();
-            var trail = shot.Smoke && shot.SmokeTrail;
+            var isNew = !_states.TryGetValue(uid, out var st);
+            var smoke = isNew ? shot.Smoke && !IsEnergy(uid) : st!.Smoke;
+            var trail = _trails && smoke && shot.SmokeTrail;
 
-            if (!_states.TryGetValue(uid, out var st))
+            if (isNew)
             {
                 var back = BackDistance(uid, xform.MapID, pos, dir);
 
@@ -91,6 +148,7 @@ public sealed class ShotSystem : EntitySystem, IShotWorld
                     Visible = shot.Tracer && _random.Prob(shot.TracerChance),
                     Phase = _random.NextFloat(6.28f),
                     Dist = back,
+                    Smoke = smoke,
                 };
                 _states[uid] = st;
 
@@ -108,6 +166,7 @@ public sealed class ShotSystem : EntitySystem, IShotWorld
                 }
             }
 
+            st = _states[uid];
             var step = (pos - st.Pos).Length();
             st.Dist += step;
             st.TrailAcc += step;
@@ -125,6 +184,34 @@ public sealed class ShotSystem : EntitySystem, IShotWorld
                 }
             }
         }
+    }
+
+    private bool IsEnergy(EntityUid uid)
+    {
+        if (_reflective.TryComp(uid, out var reflective) &&
+            (reflective.Reflective & ReflectType.Energy) != 0)
+            return true;
+
+        if (_staminaOnCollide.HasComp(uid))
+            return true;
+
+        if (!_projectiles.TryComp(uid, out var proj))
+            return false;
+
+        var dict = proj.Damage.DamageDict;
+        foreach (var type in PhysicalDamage)
+        {
+            if (dict.TryGetValue(type, out var value) && value > 0)
+                return false;
+        }
+
+        foreach (var type in EnergyDamage)
+        {
+            if (dict.ContainsKey(type))
+                return true;
+        }
+
+        return false;
     }
 
     private float BackDistance(EntityUid uid, MapId map, Vector2 pos, Vector2 dir)
@@ -152,13 +239,16 @@ public sealed class ShotSystem : EntitySystem, IShotWorld
         if (!_states.Remove(ent.Owner, out var st))
             return;
 
+        if (!_enabled || !_impacts)
+            return;
+
         if (!ent.Comp.Impact || st.Dist < 0.6f || st.Age > 4f)
             return;
 
         if (!Visible(st.Map, st.Pos - st.Dir * 0.35f))
             return;
 
-        _overlay.Impact(st.Map, st.Pos, st.Dir, ent.Comp);
+        _overlay.Impact(st.Map, st.Pos, st.Dir, ent.Comp, st.Smoke);
 
         if (ent.Comp.Light)
             Spawn(ImpactLight, new MapCoordinates(st.Pos, st.Map));

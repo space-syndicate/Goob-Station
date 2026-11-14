@@ -1,0 +1,28 @@
+- type: entity
+  parent: BoxCardboard
+  id: BoxBlankIDCardBM
+  name: коробка пустых карт доступа
+  description: Коробка с пустыми картами-держателями доступа без ключей.
+  components:
+  - type: StorageFill
+    contents:
+      - id: AccessCardHolder
+        amount: 6
+  - type: Sprite
+    layers:
+      - state: box
+      - state: pda
+
+- type: entity
+  parent: BoxCardboard
+  id: BoxBlankPassportBM
+  name: коробка пустых удостоверений
+  description: Коробка с незаполненными бланками удостоверений личности.
+  components:
+  - type: StorageFill
+    contents:
+      - id: PassportBM
+        amount: 6
+  - type: Sprite
+    layers:
+      - state: box

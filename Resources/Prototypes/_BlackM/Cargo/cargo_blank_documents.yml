@@ -1,0 +1,19 @@
+- type: cargoProduct
+  id: ServiceBlankIDCardsBM
+  icon:
+    sprite: _BlackM/Objects/Misc/access_card_holder.rsi
+    state: icon
+  product: BoxBlankIDCardBM
+  cost: 600
+  category: cargoproduct-category-name-service
+  group: market
+
+- type: cargoProduct
+  id: ServiceBlankPassportsBM
+  icon:
+    sprite: _BlackM/Objects/Misc/passport.rsi
+    state: icon
+  product: BoxBlankPassportBM
+  cost: 600
+  category: cargoproduct-category-name-service
+  group: market

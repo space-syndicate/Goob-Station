@@ -42,16 +42,20 @@ public sealed class BadgePrinterOptionData
     public string Description;
     public string IconRsi;
     public string IconState;
+    public string Department;
+    public string? Warning;
 
     public int? Remaining;
 
-    public BadgePrinterOptionData(string protoId, string name, string description, string iconRsi, string iconState, int? remaining = null)
+    public BadgePrinterOptionData(string protoId, string name, string description, string iconRsi, string iconState, string department, int? remaining = null, string? warning = null)
     {
         ProtoId = protoId;
         Name = name;
         Description = description;
         IconRsi = iconRsi;
         IconState = iconState;
+        Department = department;
+        Warning = warning;
         Remaining = remaining;
     }
 }

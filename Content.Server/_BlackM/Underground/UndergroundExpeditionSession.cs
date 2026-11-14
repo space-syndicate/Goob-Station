@@ -156,6 +156,18 @@ public sealed class UndergroundExpeditionSession
         Phase = UndergroundExpeditionPhase.Faulted;
     }
 
+    public bool RecoverFromFault()
+    {
+        if (Phase != UndergroundExpeditionPhase.Faulted)
+            return false;
+
+        Phase = UndergroundExpeditionPhase.Idle;
+        DepartureDeadline = null;
+        EarlyReturnRequested = false;
+        _sentWarnings.Clear();
+        return true;
+    }
+
     public bool CleanupFinished()
     {
         if (Phase != UndergroundExpeditionPhase.AwaitingCleanup)

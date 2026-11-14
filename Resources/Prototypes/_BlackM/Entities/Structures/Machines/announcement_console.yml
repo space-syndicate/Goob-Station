@@ -1,0 +1,53 @@
+- type: entity
+  parent: BaseComputer
+  id: BlackMComputerAnnouncement
+  name: консоль объявлений отделов
+  description: Терминал оповещения. Позволяет выйти в эфир на всю станцию или только на нужный отдел.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: comm
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: AnnouncementConsole
+    cooldown: 30
+    maxLength: 256
+    channels:
+    - AnnounceCommon
+    - AnnounceCommand
+    - AnnounceSecurity
+    - AnnounceMedical
+    - AnnounceCargo
+    - AnnounceEngineering
+    - AnnounceScience
+    - AnnounceService
+  - type: ActivatableUI
+    key: enum.AnnouncementConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.AnnouncementConsoleUiKey.Key:
+        type: AnnouncementConsoleBoundUserInterface
+  - type: Computer
+    board: BlackMAnnouncementComputerCircuitboard
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#3c5eb5"
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: BlackMAnnouncementComputerCircuitboard
+  name: плата консоли объявлений
+  description: Печатная плата для консоли объявлений.
+  components:
+  - type: Sprite
+    state: cpu_command
+  - type: ComputerBoard
+    prototype: BlackMComputerAnnouncement

@@ -21,11 +21,11 @@
 
   - !type:EntranceFlankDunGen
     tile: FloorSteel
-    contents: ExperimentWindow # BlackM
+    contents: ExperimentWindow
 
   - !type:ExternalWindowDunGen
     tile: FloorSteel
-    contents: ExperimentWindow # BlackM
+    contents: ExperimentWindow
 
   - !type:WallMountDunGen
     contents: ScienceLabsWalls
@@ -74,25 +74,38 @@
     table: !type:NestedSelector
       tableId: SalvageScrapSpawnerCommon
   - !type:EntityTableDunGen
-    minCount: 2
-    maxCount: 4
+    minCount: 1
+    maxCount: 3
     table: !type:NestedSelector
       tableId: SalvageTreasureSpawnerCommon
   - !type:MobsDunGen
-    minCount: 6
-    maxCount: 10
+    minCount: 10
+    maxCount: 16
     contents: BlackMUndergroundXenMobs
+  - !type:MobsDunGen
+    minCount: 3
+    maxCount: 5
+    contents: BlackMUndergroundXenElites
 
 - type: entityTable
   id: BlackMUndergroundXenMobs
   table: !type:GroupSelector
     children:
     - id: MobHeadcrabBlackM
-      weight: 6
+      weight: 5
     - id: MobHoundeyeBlackM
-      weight: 3
+      weight: 4
     - id: MobVortigauntBlackM
-      weight: 1
+      weight: 2
+
+- type: entityTable
+  id: BlackMUndergroundXenElites
+  table: !type:GroupSelector
+    children:
+    - id: MobHoundeyeBlackM
+      weight: 2
+    - id: MobVortigauntBlackM
+      weight: 2
 
 - type: entityTable
   id: BlackMUndergroundNoDoors

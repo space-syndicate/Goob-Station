@@ -245,6 +245,14 @@ namespace Content.Server.GameTicking
                 return;
             }
 
+            // BlackM - discord verification required to ready up
+            if (ready && !BlackMCheckDiscordJoin(player))
+            {
+                _playerGameStatuses[player.UserId] = PlayerGameStatus.NotReadyToPlay;
+                RaiseNetworkEvent(GetStatusMsg(player), player.Channel);
+                return;
+            }
+
             var status = ready ? PlayerGameStatus.ReadyToPlay : PlayerGameStatus.NotReadyToPlay;
             _playerGameStatuses[player.UserId] = ready ? PlayerGameStatus.ReadyToPlay : PlayerGameStatus.NotReadyToPlay;
             RaiseNetworkEvent(GetStatusMsg(player), player.Channel);

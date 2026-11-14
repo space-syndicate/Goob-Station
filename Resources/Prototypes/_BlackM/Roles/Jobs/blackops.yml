@@ -39,6 +39,9 @@
       - FootstepSound
       - DoorBumpOpener
       - AnomalyHost
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 2 # default 2.55
+      baseSprintSpeed: 2 # default 2.55
 
 - type: job
   id: BlackOpsOperative
@@ -69,6 +72,9 @@
       - FootstepSound
       - DoorBumpOpener
       - AnomalyHost
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 2 # default 2.55
+      baseSprintSpeed: 2 # default 2.55
 
 - type: job
   id: BlackOpsRecon
@@ -99,6 +105,9 @@
       - FootstepSound
       - DoorBumpOpener
       - AnomalyHost
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 2 # default 2.55
+      baseSprintSpeed: 2 # default 2.55
 
 - type: playTimeTracker
   id: JobBlackOpsLeader

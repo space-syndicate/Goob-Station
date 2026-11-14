@@ -13,6 +13,9 @@
 
                 <Label Text="{Loc 'ui-options-blackm-graphics-label'}" StyleClasses="LabelKeyText"/>
                 <CheckBox Name="DefaultAtmosphereShaderCheckBox" Text="{Loc 'ui-options-default-atmosphere-shader'}" />
+                <CheckBox Name="ShotEffectsCheckBox" Text="{Loc 'ui-options-shot-effects'}" />
+                <CheckBox Name="ShotTrailsCheckBox" Text="{Loc 'ui-options-shot-trails'}" />
+                <CheckBox Name="ShotImpactsCheckBox" Text="{Loc 'ui-options-shot-impacts'}" />
 
                 <Label Text="{Loc 'ui-options-blackm-combat-label'}" StyleClasses="LabelKeyText"/>
                 <CheckBox Name="GunCrosshairCheckBox" Text="{Loc 'ui-options-gun-crosshair'}" />

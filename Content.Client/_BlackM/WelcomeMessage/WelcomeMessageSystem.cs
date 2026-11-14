@@ -54,13 +54,15 @@ public sealed class WelcomeMessageSystem : EntitySystem
     private WelcomeMessageControl? _current;
     private WelcomeFonts? _fonts;
 
+    public bool IsShowing => _current != null;
+
     public override void Initialize()
     {
         base.Initialize();
         SubscribeNetworkEvent<WelcomeMessageEvent>(OnMessage);
     }
 
-    private WelcomeFonts GetFonts()
+    public WelcomeFonts GetFonts()
     {
         return _fonts ??= new WelcomeFonts(
             _res.GetFont(FontStack, 11),
@@ -100,7 +102,7 @@ public sealed class WelcomeMessageSystem : EntitySystem
         _current = control;
     }
 
-    private Control GetParent()
+    public Control GetParent()
     {
         var screen = _ui.ActiveScreen;
         if (screen != null &&
@@ -132,7 +134,7 @@ public sealed class WelcomeMessageSystem : EntitySystem
         return new AtlasTexture(texture, UIBox2.FromDimensions(new Vector2(x, y), new Vector2(w, h)));
     }
 
-    private void PlayWelcomeSound(WelcomeSound kind)
+    public void PlayWelcomeSound(WelcomeSound kind)
     {
         string path;
         float volume;

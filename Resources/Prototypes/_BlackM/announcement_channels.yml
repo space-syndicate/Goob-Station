@@ -1,0 +1,91 @@
+- type: announcementChannel
+  id: AnnounceCommon
+  name: blackm-announce-channel-common
+  title: blackm-announce-title-common
+  accent: "#9fb4cc"
+  everyone: true
+  requiredAccess:
+  - Command
+
+- type: announcementChannel
+  id: AnnounceCommand
+  name: blackm-announce-channel-command
+  accent: "#e8c547"
+  departments:
+  - Command
+  radioChannels:
+  - Command
+  requiredAccess:
+  - Command
+
+- type: announcementChannel
+  id: AnnounceSecurity
+  name: blackm-announce-channel-security
+  accent: "#BF40BF"
+  departments:
+  - Security
+  radioChannels:
+  - Security
+  requiredAccess:
+  - Security
+  - Command
+
+- type: announcementChannel
+  id: AnnounceMedical
+  name: blackm-announce-channel-medical
+  accent: "#57b8f0"
+  departments:
+  - Medical
+  radioChannels:
+  - Medical
+  requiredAccess:
+  - Medical
+  - Command
+
+- type: announcementChannel
+  id: AnnounceCargo
+  name: blackm-announce-channel-cargo
+  accent: "#c49a5c"
+  departments:
+  - Cargo
+  radioChannels:
+  - Supply
+  requiredAccess:
+  - Cargo
+  - Command
+
+- type: announcementChannel
+  id: AnnounceEngineering
+  name: blackm-announce-channel-engineering
+  accent: "#f0a347"
+  departments:
+  - Engineering
+  radioChannels:
+  - Engineering
+  requiredAccess:
+  - Engineering
+  - Command
+
+- type: announcementChannel
+  id: AnnounceScience
+  name: blackm-announce-channel-science
+  accent: "#FF9D00"
+  departments:
+  - Science
+  radioChannels:
+  - Science
+  requiredAccess:
+  - Research
+  - Command
+
+- type: announcementChannel
+  id: AnnounceService
+  name: blackm-announce-channel-service
+  accent: "#7dbf4a"
+  departments:
+  - Civilian
+  radioChannels:
+  - Service
+  requiredAccess:
+  - Service
+  - Command

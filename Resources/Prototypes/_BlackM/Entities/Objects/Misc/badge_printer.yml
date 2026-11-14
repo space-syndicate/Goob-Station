@@ -15,41 +15,57 @@
       availableBadges:
         - proto: BadgeSecurity
           iconState: security 
+          department: badge-printer-department-security
         - proto: BadgeWarden
           iconState: security
-        - proto: BadgeMaintenance
-          iconState: maintenance
-        - proto: BadgeEngineer
-          iconState: maintenance
-        - proto: BadgeSupply
-          iconState: supply
-        - proto: BadgeScience
-          iconState: science
-        - proto: BadgeService
-          iconState: service
-        - proto: BadgeMedical
-          iconState: medical
-        - proto: BadgeCommand
-          iconState: command
-          max: 8
-        - proto: BadgeCaptain
-          iconState: captain
-          max: 1
-        - proto: BadgeQuartermaster
-          iconState: supplychief
-          max: 1
-        - proto: BadgeChiefEngineer
-          iconState: engineerchief
-          max: 1
-        - proto: BadgeResearchDirector
-          iconState: sciencechief
-          max: 1
-        - proto: BadgeChiefMedicalOfficer
-          iconState: medicalchief
-          max: 1
+          department: badge-printer-department-security
         - proto: BadgeHeadOfSecurity
           iconState: securityhos
           max: 1
+          department: badge-printer-department-security
+        - proto: BadgeEngineer
+          iconState: maintenance
+          department: badge-printer-department-engineering
+        - proto: BadgeChiefEngineer
+          iconState: engineerchief
+          max: 1
+          department: badge-printer-department-engineering
+        - proto: BadgeSupply
+          iconState: supply
+          department: badge-printer-department-supply
+        - proto: BadgeQuartermaster
+          iconState: supplychief
+          max: 1
+          department: badge-printer-department-supply
+        - proto: BadgeScience
+          iconState: science
+          department: badge-printer-department-science
+        - proto: BadgeResearchDirector
+          iconState: sciencechief
+          max: 1
+          department: badge-printer-department-science
+        - proto: BadgeService
+          iconState: service
+          department: badge-printer-department-service
+        - proto: BadgeMedical
+          iconState: medical
+          department: badge-printer-department-medical
+        - proto: BadgeChiefMedicalOfficer
+          iconState: medicalchief
+          max: 1
+          department: badge-printer-department-medical
+        - proto: BadgeCommand
+          iconState: command
+          max: 8
+          department: badge-printer-department-command
+        - proto: BadgeCaptain
+          iconState: captain
+          max: 1
+          department: badge-printer-department-command
+        - proto: BadgeMaintenance
+          iconState: maintenance
+          department: badge-printer-department-maintenance
+          warning: badge-printer-warning-maintenance
     - type: ItemSlots
       slots:
         badge_printer_card_slot:

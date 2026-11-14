@@ -1,7 +1,10 @@
 using System.Numerics;
 using System.Threading.Tasks;
 using Content.Server._BlackM.Elevator;
+using Content.Server.Cargo.Systems;
 using Content.Server.Chat.Systems;
+using Content.Server.Station.Systems;
+using Content.Shared.Cargo.Components;
 using Content.Shared._BlackM.Underground;
 using Content.Shared._BlackM.Elevator;
 using Content.Shared.Chat;
@@ -25,7 +28,12 @@ namespace Content.Server._BlackM.Underground;
 public sealed class UndergroundExpeditionSystem : EntitySystem
 {
     private const int MaxGenerationAttempts = 5;
-    private static readonly TimeSpan BoardingDuration = TimeSpan.FromSeconds(12);
+    private static readonly TimeSpan BoardingDuration = TimeSpan.FromSeconds(35);
+    private static readonly TimeSpan FaultRecoveryDelay = TimeSpan.FromSeconds(30);
+    private static readonly string[] AmsRewardParts =
+    [
+        "AmsPartCore", "AmsPartCoil", "AmsPartLens", "AmsPartCell", "AmsPartStabilizer", "AmsPartCasing",
+    ];
     private static readonly TimeSpan AnnouncementDelay = TimeSpan.FromSeconds(1);
     private static readonly TimeSpan EarlyReturnDelay = TimeSpan.FromSeconds(60);
     private static readonly SoundPathSpecifier OpenSound = new("/Audio/_BlackM/Interface/Terminal/term_open.ogg");
@@ -48,7 +56,8 @@ public sealed class UndergroundExpeditionSystem : EntitySystem
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedTransformSystem _transforms = default!;
-
+    [Dependency] private readonly CargoSystem _cargoBank = default!;
+    [Dependency] private readonly StationSystem _station = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -169,6 +178,8 @@ public sealed class UndergroundExpeditionSystem : EntitySystem
         run.OutboundAnnouncementAt = announcementAt;
         run.OutboundAt = announcementAt + BoardingDuration;
         UpdateRun(ent.Owner, run);
+        StationAnnounce(ent.Owner, Loc.GetString("underground-station-elevator-boarding",
+            ("seconds", (int) BoardingDuration.TotalSeconds)));
     }
 
     private void OnMissionSelected(Entity<UndergroundConsoleComponent> ent, ref UndergroundMissionSelectMessage args)
@@ -308,6 +319,7 @@ public sealed class UndergroundExpeditionSystem : EntitySystem
             site = null;
             cabin = null;
             UpdateRun(owner, run);
+            StationAnnounce(owner, Loc.GetString("underground-station-elevator-ready")); // BlackM
         }
         catch (Exception e)
         {
@@ -477,6 +489,8 @@ public sealed class UndergroundExpeditionSystem : EntitySystem
             return;
         }
 
+        var returnedGeneration = run.Session.GenerationId;
+        var boardingMap = Transform(run.Boarding).MapUid;
         run.Session.ReturnFinished(true);
         RemoveTablets(owner);
         UpdateRun(owner, run);
@@ -491,7 +505,142 @@ public sealed class UndergroundExpeditionSystem : EntitySystem
         run.DepartureAnnounced = false;
         run.Session.CleanupFinished();
         run.MissionReturned = true;
+        AutoTurnIn(owner, run, returnedGeneration, boardingMap);
         UpdateRun(owner, run);
+    }
+
+    private void AutoTurnIn(EntityUid owner, UndergroundRunComponent run, long generation, EntityUid? boardingMap)
+    {
+        try
+        {
+            if (run.MissionClaimed)
+                return;
+
+            if (UndergroundMissions.IsDelivery(run.Mission) && !run.MissionRewardAvailable)
+            {
+                var delivered = new List<EntityUid>();
+                var samples = EntityQueryEnumerator<UndergroundMissionSampleComponent, TransformComponent>();
+                while (samples.MoveNext(out var uid, out var sample, out var xform))
+                {
+                    if (TerminatingOrDeleted(uid) || sample.Console != owner || sample.Generation != generation ||
+                        sample.Mission != run.Mission || boardingMap == null || xform.MapUid != boardingMap)
+                        continue;
+                    delivered.Add(uid);
+                }
+
+                if (delivered.Count == 0)
+                    return;
+
+                foreach (var uid in delivered)
+                    QueueDel(uid);
+                run.MissionProgress = 1;
+                run.MissionRewardAvailable = true;
+            }
+
+            if (!run.MissionRewardAvailable)
+                return;
+
+            var amount = UndergroundMissions.RewardAmount(run.Mission);
+            if (_station.GetOwningStation(owner) is not { } station ||
+                !TryComp<StationBankAccountComponent>(station, out var bank))
+            {
+                // No station account: keep the manual cash claim at the console as a fallback.
+                return;
+            }
+
+            _cargoBank.UpdateBankAccount((station, bank), amount, bank.PrimaryAccount);
+            run.MissionRewardAvailable = false;
+            run.MissionClaimed = true;
+            run.MissionProgress = 0;
+            _audio.PlayPvs(RewardSound, owner);
+            StationAnnounce(owner, Loc.GetString("underground-station-mission-paid", ("amount", amount)));
+
+            GiveAmsReward(owner, run);
+        }
+        catch (Exception e)
+        {
+            Log.Error($"Underground auto turn-in failed: {e}");
+        }
+    }
+
+    private void GiveAmsReward(EntityUid owner, UndergroundRunComponent run)
+    {
+        if (run.NextAmsRewardAt <= 0)
+            run.NextAmsRewardAt = _random.Next(2, 4);
+
+        run.CompletedExpeditions++;
+        if (run.CompletedExpeditions < run.NextAmsRewardAt)
+            return;
+
+        run.CompletedExpeditions = 0;
+        run.NextAmsRewardAt = _random.Next(2, 4);
+        var coords = !TerminatingOrDeleted(run.Boarding) ? Transform(run.Boarding).Coordinates : Transform(owner).Coordinates;
+        Spawn(_random.Pick(AmsRewardParts), coords);
+        StationAnnounce(owner, Loc.GetString("underground-station-ams-reward"));
+    }
+
+    private void StationAnnounce(EntityUid source, string message)
+    {
+        if (TerminatingOrDeleted(source))
+            return;
+        _chat.DispatchStationAnnouncement(source, message, Loc.GetString("underground-dispatcher-sender"),
+            colorOverride: Color.Gold);
+    }
+
+    private void TryRecoverFromFault(EntityUid owner, UndergroundRunComponent run)
+    {
+        try
+        {
+            if (run.Cabin is { } cabin && !TerminatingOrDeleted(cabin.Controller) &&
+                TryComp<BlackMElevatorComponent>(cabin.Controller, out var elevator) &&
+                elevator.State != BlackMElevatorState.Idle)
+                return; // wait for the cabin to stop moving
+
+            var mapsToDelete = new List<EntityUid>();
+            if (run.Site is { } site && !TerminatingOrDeleted(site.Map))
+                mapsToDelete.Add(site.Map);
+            if (run.Cabin is { } c && !TerminatingOrDeleted(c.Map))
+                mapsToDelete.Add(c.Map);
+
+            if (mapsToDelete.Count > 0)
+            {
+                if (TerminatingOrDeleted(run.Boarding))
+                    return;
+
+                var safe = Transform(run.Boarding).Coordinates;
+                var evacuate = new List<EntityUid>();
+                var mobs = EntityQueryEnumerator<MobStateComponent, TransformComponent>();
+                while (mobs.MoveNext(out var uid, out _, out var xform))
+                {
+                    if (xform.MapUid is { } map && mapsToDelete.Contains(map) && HasComp<ActorComponent>(uid))
+                        evacuate.Add(uid);
+                }
+                foreach (var uid in evacuate)
+                    _transforms.SetCoordinates(uid, safe);
+                foreach (var map in mapsToDelete)
+                    QueueDel(map);
+            }
+
+            RemoveTablets(owner);
+            run.Site = null;
+            run.Cabin = null;
+            run.CabinFixtures.Clear();
+            run.OutboundAt = null;
+            run.OutboundAnnouncementAt = null;
+            run.LandingDispatcher = null;
+            run.DepartureAnnounced = false;
+            run.FaultedAt = null;
+            if (!run.Session.RecoverFromFault())
+                return;
+            Log.Warning($"Underground expedition {ToPrettyString(owner)} recovered from a fault.");
+            StationAnnounce(owner, Loc.GetString("underground-station-recovered"));
+            UpdateRun(owner, run);
+        }
+        catch (Exception e)
+        {
+            Log.Error($"Underground fault recovery failed: {e}");
+            run.FaultedAt = _timing.CurTime;
+        }
     }
 
     private bool HasUnexpectedCabinContents(UndergroundRunComponent run, UndergroundCabin cabin)
@@ -673,6 +822,7 @@ public sealed class UndergroundExpeditionSystem : EntitySystem
     private void Fail(EntityUid owner, UndergroundRunComponent run)
     {
         run.Session.Fail();
+        run.FaultedAt = _timing.CurTime;
         Log.Error($"Underground expedition {ToPrettyString(owner)} faulted; maps retained for recovery.");
         UpdateRun(owner, run);
     }
@@ -694,6 +844,10 @@ public sealed class UndergroundExpeditionSystem : EntitySystem
                 }
                 if (now >= outbound)
                 {
+                    if (run.Cabin is { } readyCabin &&
+                        TryComp<BlackMElevatorComponent>(readyCabin.Controller, out var readyElevator) &&
+                        readyElevator.State != BlackMElevatorState.Idle)
+                        continue;
                     run.OutboundAt = null;
                     StartRide(owner, run, false);
                     UpdateRun(owner, run);
@@ -703,6 +857,13 @@ public sealed class UndergroundExpeditionSystem : EntitySystem
                     run.NextUiUpdate = now + TimeSpan.FromSeconds(1);
                     UpdateRun(owner, run);
                 }
+                continue;
+            }
+            if (run.Session.Phase == UndergroundExpeditionPhase.Faulted)
+            {
+                run.FaultedAt ??= now;
+                if (now >= run.FaultedAt.Value + FaultRecoveryDelay)
+                    TryRecoverFromFault(owner, run);
                 continue;
             }
             if (run.Session.Phase != UndergroundExpeditionPhase.Exploring)

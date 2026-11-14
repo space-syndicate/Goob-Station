@@ -1,0 +1,31 @@
+- type: entity
+  parent: BaseItem
+  id: BlackMPortableBroadcaster
+  name: портативный вещатель
+  description: Компактный передатчик оповещений. Влезает в сумку, вещает на те же каналы, что и консоль, но дольше перезаряжается.
+  components:
+  - type: Sprite
+    sprite: _BlackM/Objects/Devices/portable_broadcaster.rsi
+    state: icon
+  - type: Item
+    size: Small
+    sprite: _BlackM/Objects/Devices/portable_broadcaster.rsi
+  - type: AnnouncementConsole
+    cooldown: 60
+    maxLength: 160
+    channels:
+    - AnnounceCommon
+    - AnnounceCommand
+    - AnnounceSecurity
+    - AnnounceMedical
+    - AnnounceCargo
+    - AnnounceEngineering
+    - AnnounceScience
+    - AnnounceService
+  - type: ActivatableUI
+    key: enum.AnnouncementConsoleUiKey.Key
+    inHandsOnly: true
+  - type: UserInterface
+    interfaces:
+      enum.AnnouncementConsoleUiKey.Key:
+        type: AnnouncementConsoleBoundUserInterface
