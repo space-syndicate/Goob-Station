@@ -157,6 +157,7 @@
   components:
   - type: FaxMachine
     name: "Nanotrasen Representative"
+    storePrintouts: true
   - type: Sprite
     sprite: _Goobstation/Objects/Tools/handheld_fax.rsi
     drawdepth: SmallObjects
@@ -209,6 +210,7 @@
   components:
   - type: FaxMachine
     name: "CentComm Official"
+    storePrintouts: true
   - type: Item
     size: Normal
     sprite: _Goobstation/Objects/Tools/official_fax.rsi

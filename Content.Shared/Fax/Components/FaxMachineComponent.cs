@@ -75,6 +75,12 @@ public sealed partial class FaxMachineComponent : Component
     // CorvaxGoob-StationGoal-End
 
     /// <summary>
+    /// Keep printouts in the paper slot, then try the containing storage or the holder's backpack.
+    /// </summary>
+    [DataField]
+    public bool StorePrintouts;
+
+    /// <summary>
     /// Sound to play when fax printing new message
     /// </summary>
     [DataField]

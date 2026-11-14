@@ -22,12 +22,15 @@ using Content.Shared.Fax;
 using Content.Shared.Fax.Components;
 using Content.Shared.Fax.Systems;
 using Content.Shared.Interaction;
+using Content.Shared.Inventory;
 using Content.Shared.Labels.Components;
 using Content.Shared.Labels.EntitySystems;
 using Content.Shared.Mobs.Components;
 using Content.Shared.NameModifier.Components;
 using Content.Shared.Paper;
 using Content.Shared.Power;
+using Content.Shared.Storage;
+using Content.Shared.Storage.EntitySystems;
 using Content.Shared.Tools;
 using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
@@ -60,6 +63,9 @@ public sealed class FaxSystem : EntitySystem
     [Dependency] private readonly SharedContainerSystem _container = default!; // Goobstation
     [Dependency] private readonly TransformSystem _transform = default!; // Goobstation
     [Dependency] private readonly ExplosionSystem _explosion = default!; // Goobstation
+
+    [Dependency] private readonly SharedStorageSystem _storage = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
 
     private static readonly ProtoId<ToolQualityPrototype> ScrewingQuality = "Screwing";
 
@@ -697,7 +703,32 @@ public sealed class FaxSystem : EntitySystem
             _labelSystem.Label(printed, label);
         }
 
+        if (component.StorePrintouts)
+            TryStorePrintout(uid, component, printed);
+
         _adminLogger.Add(LogType.Action, LogImpact.Low, $"\"{component.FaxName}\" {ToPrettyString(uid):tool} printed {ToPrettyString(printed):subject}: {printout.Content}");
+    }
+
+    private void TryStorePrintout(EntityUid uid, FaxMachineComponent component, EntityUid printed)
+    {
+        if (_itemSlotsSystem.TryInsert(uid, component.PaperSlot, printed, null))
+            return;
+
+        if (!_container.TryGetContainingContainer((uid, null, null), out var container))
+            return;
+
+        if (TryComp<StorageComponent>(container.Owner, out var storage) &&
+            container == storage.Container)
+        {
+            _storage.Insert(container.Owner, printed, out _, storageComp: storage, playSound: false);
+            return;
+        }
+
+        if (_inventory.TryGetSlotEntity(container.Owner, "back", out var backpack) &&
+            TryComp<StorageComponent>(backpack, out var backpackStorage))
+        {
+            _storage.Insert(backpack.Value, printed, out _, storageComp: backpackStorage, playSound: false);
+        }
     }
 
     private void NotifyAdmins(string faxName)
