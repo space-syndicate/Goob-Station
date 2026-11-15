@@ -156,10 +156,10 @@
     - id: FlashlightSeclite
       prob: 0.8
     #- id: WeaponDisabler # Goobstation (Disablers in belts)
-    - id: ClothingUniformJumpsuitSecGrey
+    - id: ClothingUniformJumpsuitKovakSoldier # BlackM
       prob: 0.3
-    - id: ClothingHeadHelmetBasic
-    - id: ClothingOuterArmorBasic
+    - id: ClothingOuterArmorKovakSoldier # BlackM
+    - id: ClothingHeadHelmetKovakSoldier # BlackM
     #- id: ClothingBeltSecurityFilled Goob, see GroupSelector below
     - id: Flash
       prob: 0.5
@@ -181,8 +181,8 @@
       children:
       - id: ClothingBeltSecurityFilled
         weight: 0.5
-      - id: ClothingBeltCorporateJudoFilled
-        weight: 0.5
+#      - id: ClothingBeltCorporateJudoFilled BlackM
+#        weight: 0.5 BlackM
     # Goobstation - Martial Arts - end
 
 - type: entity

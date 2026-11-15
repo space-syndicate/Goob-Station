@@ -15,3 +15,7 @@
     - Hair
     - HeadTop
     - HeadSide
+  - type: NightVision
+    color: "#808080"
+    activateSound: null
+    deactivateSound: null

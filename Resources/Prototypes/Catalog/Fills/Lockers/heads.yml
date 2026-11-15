@@ -194,7 +194,7 @@
     #- id: CaptainIDCard
     - id: CigarGoldCase
       prob: 0.25
-    - id: ClothingBeltSheathFilled
+#    - id: ClothingBeltSheathFilled BlackM
     - id: ClothingHeadsetAltCommand
     #- id: ClothingOuterArmorCaptainCarapace Corvax-Goob-CaptainDrobe
     - id: CommsComputerCircuitboard
@@ -220,7 +220,7 @@
     children:
     - !type:NestedSelector
       tableId: LockerFillCaptainNoLaser
-    - id: WeaponAntiqueLaser
+    - id: WeaponPistolAnaconda #BlackM
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
@@ -292,7 +292,7 @@
     - id: HoPIDCard
     - id: IDComputerCircuitboard
     #- id: ComputerFundingAllocationFlatpack # Goobstation #CorvaxGoob-QuarterMaster-finance
-    - id: ComputerCargoRequestServiceFlatpack # Goobstation 
+    - id: ComputerCargoRequestServiceFlatpack # Goobstation
     - id: PrinterDocFlatpack #CorvaxGoob-Docprinter
     - id: RubberStampApproved
     - id: RubberStampDenied
@@ -470,7 +470,7 @@
     - id: ClothingBeltUtilityFilled
 #    - id: ClothingHeadsetAltScience # BlackM
 #    - id: DoorRemoteResearch # BlackM
-    - id: HandTeleporter
+#    - id: HandTeleporter BlackM
     #- id: ProtolatheMachineCircuitboard # Goobstation - Science Techfab
     - id: ResearchComputerCircuitboard
     - id: ComputerCargoRequestScienceFlatpack # Goobstation
@@ -544,7 +544,10 @@
     - id: ComputerCargoRequestSecurityFlatpack # Goobstation
     - id: WantedListCartridge
     - id: DrinkHosFlask
-    - id: ClothingBeltSheathHeadOfSecurityFilled # Goobstation - security revamp
+#    - id: ClothingBeltSheathHeadOfSecurityFilled # BlackM
+    - id: WeaponSubMachineGunWt550
+    - id: MagazinePistolSubMachineGunTopMounted
+    - id: MagazinePistolSubMachineGunTopMounted
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
