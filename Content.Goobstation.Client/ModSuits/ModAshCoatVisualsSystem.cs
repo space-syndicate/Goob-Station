@@ -46,6 +46,7 @@ public sealed partial class ModAshCoatVisualsSystem : EntitySystem
             if (_lastAlpha.TryGetValue(uid, out var lastAlpha) && lastAlpha == alpha)
                 continue;
 
+            _coated.Add(uid);
             _lastAlpha[uid] = alpha;
             _sprite.LayerSetVisible(ent, index, alpha > 0f);
             _sprite.LayerSetColor(ent, index, Color.White.WithAlpha(alpha));

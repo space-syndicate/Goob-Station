@@ -97,28 +97,29 @@ public sealed partial class ModLoaderMiningModuleSystem : EntitySystem
                 || !_gridQuery.TryComp(gridUid, out var grid))
                 continue;
 
-            var positionChanged = coat.LastGrid != gridUid || coat.LastPosition != xform.LocalPosition;
+            var tileIndices = _map.LocalToTile(gridUid, grid, xform.Coordinates);
+            var tileChanged = coat.LastGrid != gridUid || coat.LastTile != tileIndices;
             var weatherDue = now >= coat.NextWeatherLayer;
-            if (!positionChanged && !weatherDue)
+            if (!tileChanged && !weatherDue)
                 continue;
 
-            var tile = _map.GetTileRef((gridUid, grid), xform.Coordinates);
+            var tile = _map.GetTileRef((gridUid, grid), tileIndices);
             var change = 0;
 
-            if (positionChanged)
+            if (tileChanged)
             {
                 var first = coat.LastTile == null;
                 coat.LastGrid = gridUid;
-                coat.LastPosition = xform.LocalPosition;
-                coat.LastTile = tile.GridIndices;
+                coat.LastTile = tileIndices;
                 if (!first && !tile.Tile.IsEmpty)
                     change = ClassifyTile(coat, _tileDefs[tile.Tile.TypeId].ID);
             }
 
-            if (change <= 0 && weatherDue && InAccretionWeather(coat, xform, (gridUid, grid), tile))
+            if (change <= 0 && weatherDue)
             {
                 coat.NextWeatherLayer = now + coat.WeatherInterval;
-                change = 1;
+                if (InAccretionWeather(coat, xform, (gridUid, grid), tile))
+                    change = 1;
             }
 
             if (change != 0)

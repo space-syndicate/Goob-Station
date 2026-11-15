@@ -77,6 +77,7 @@ public sealed partial class ModUtilityModuleSystem : EntitySystem
     private void OnJointTorsionActivated(Entity<ModJointTorsionModuleComponent> ent, ref ModModuleActivatedEvent args)
     {
         ent.Comp.LastPosition = null;
+        ent.Comp.PendingCharge = 0f;
         ent.Comp.NextCharge = TimeSpan.Zero;
     }
 
@@ -111,7 +112,10 @@ public sealed partial class ModUtilityModuleSystem : EntitySystem
             }
 
             if (_modSuit.GetBattery(suit) is not { } battery)
+            {
+                torsion.PendingCharge = 0f;
                 continue;
+            }
 
             torsion.PendingCharge += moved * torsion.ChargePerTile;
 
@@ -127,10 +131,12 @@ public sealed partial class ModUtilityModuleSystem : EntitySystem
 
     private void FlushCharge(ModJointTorsionModuleComponent torsion, Entity<ModSuitComponent> suit)
     {
-        if (torsion.PendingCharge <= 0f || _modSuit.GetBattery(suit) is not { } battery)
+        if (torsion.PendingCharge <= 0f)
             return;
 
-        _battery.ChangeCharge(battery.AsNullable(), torsion.PendingCharge);
+        if (_modSuit.GetBattery(suit) is { } battery)
+            _battery.ChangeCharge(battery.AsNullable(), torsion.PendingCharge);
+
         torsion.PendingCharge = 0f;
     }
 

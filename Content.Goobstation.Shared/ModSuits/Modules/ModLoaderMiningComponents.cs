@@ -1,4 +1,3 @@
-using System.Numerics;
 using Content.Shared.Weather;
 using Content.Shared.Whitelist;
 using Robust.Shared.Audio;
@@ -46,9 +45,6 @@ public sealed partial class ModAshCoatComponent : Component
 
     [ViewVariables]
     public EntityUid? LastGrid;
-
-    [ViewVariables]
-    public Vector2 LastPosition;
 
     [ViewVariables]
     public TimeSpan NextWeatherLayer;

@@ -91,7 +91,7 @@ public sealed partial class ModGunModulesSystem : VirtualController
         while (fields.MoveNext(out var wearer, out var field, out var xform))
         {
             _projectiles.Clear();
-            _lookup.GetEntitiesInRange(xform.Coordinates, field.Radius, _projectiles, LookupFlags.Dynamic | LookupFlags.Sundries);
+            _lookup.GetEntitiesInRange(xform.Coordinates, field.Radius, _projectiles, LookupFlags.Dynamic | LookupFlags.Sundries | LookupFlags.Sensors);
             foreach (var projectile in _projectiles)
             {
                 if (HasComp<ModDampenedProjectileComponent>(projectile)

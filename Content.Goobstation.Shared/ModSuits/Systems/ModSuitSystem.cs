@@ -76,9 +76,10 @@ public sealed partial class ModSuitSystem : EntitySystem
         {
             var ent = (uid, comp);
             UpdateDeployQueue(ent, now);
+            var state = comp.State;
             UpdateActivationStep(ent, now);
 
-            if (powerDue && comp.Wearer != null && comp.State != ModSuitState.Inactive && ShouldStep(comp))
+            if (powerDue && state == comp.State && comp.Wearer != null && comp.State != ModSuitState.Inactive && ShouldStep(comp))
                 UpdatePowerAlert(ent);
         }
     }

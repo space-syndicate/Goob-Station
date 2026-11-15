@@ -28,7 +28,7 @@ public sealed partial class ModThermalRegulatorModuleSystem : EntitySystem
             return;
 
         var elapsed = _hasUpdated
-            ? MathF.Min((float) (now - _lastUpdate).TotalSeconds, 0.1f)
+            ? MathF.Min((float) (now - _lastUpdate).TotalSeconds, 0.5f)
             : frameTime;
 
         _hasUpdated = true;
