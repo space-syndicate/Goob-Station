@@ -91,52 +91,47 @@ public sealed partial class ModSuitSystem
         UpdatePowerAlert(ent);
     }
 
-    private void UpdateActivation()
+    private void UpdateActivationStep(Entity<ModSuitComponent> ent, TimeSpan now)
     {
-        var now = _timing.CurTime;
-        var query = EntityQueryEnumerator<ModSuitComponent>();
-        while (query.MoveNext(out var uid, out var comp))
+        var comp = ent.Comp;
+        if (comp.State is not (ModSuitState.Activating or ModSuitState.Deactivating)
+            || now < comp.NextActivationStep
+            || !ShouldStep(comp))
+            return;
+
+        if (comp.Wearer == null)
         {
-            if (comp.State is not (ModSuitState.Activating or ModSuitState.Deactivating)
-                || now < comp.NextActivationStep
-                || !ShouldStep(comp))
-                continue;
+            ForceDeactivate(ent, true);
+            return;
+        }
 
-            var ent = (uid, comp);
-            if (comp.Wearer == null)
+        var sealing = comp.State == ModSuitState.Activating;
+        if (comp.ActivationQueue.Count > 0)
+        {
+            var slot = comp.ActivationQueue[0];
+            comp.ActivationQueue.RemoveAt(0);
+
+            if (comp.PartEntities.TryGetValue(slot, out var part) && TryComp<ModPartComponent>(part, out var partComp))
             {
-                ForceDeactivate(ent, true);
-                continue;
-            }
-
-            var sealing = comp.State == ModSuitState.Activating;
-            if (comp.ActivationQueue.Count > 0)
-            {
-                var slot = comp.ActivationQueue[0];
-                comp.ActivationQueue.RemoveAt(0);
-
-                if (comp.PartEntities.TryGetValue(slot, out var part) && TryComp<ModPartComponent>(part, out var partComp))
+                if (sealing && !IsPartDeployed(ent, slot))
                 {
-                    if (sealing && !IsPartDeployed(ent, slot))
-                    {
-                        ForceDeactivate(ent, false);
-                        continue;
-                    }
-
-                    SetPartSealed((part, partComp), ent, sealing, false);
+                    ForceDeactivate(ent, false);
+                    return;
                 }
 
-                comp.NextActivationStep = now + _proto.Index(comp.Theme).ActivationStepTime;
-                Dirty(uid, comp);
-                RaiseUpdated(uid);
-                continue;
+                SetPartSealed((part, partComp), ent, sealing, false);
             }
 
-            if (sealing)
-                FinishActivation(ent, false);
-            else
-                FinishDeactivation(ent, false);
+            comp.NextActivationStep = now + _proto.Index(comp.Theme).ActivationStepTime;
+            Dirty(ent);
+            RaiseUpdated(ent);
+            return;
         }
+
+        if (sealing)
+            FinishActivation(ent, false);
+        else
+            FinishDeactivation(ent, false);
     }
 
     private void FinishActivation(Entity<ModSuitComponent> ent, bool silent)

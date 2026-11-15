@@ -25,6 +25,28 @@ public sealed partial class ModMagneticHarnessSystem : VirtualController
     private static readonly TimeSpan RetryDelay = TimeSpan.FromSeconds(5);
 
     private readonly List<EntityUid> _forget = new();
+    private readonly HashSet<Entity<ModMagnetizedGunComponent>> _magnetized = new();
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        var query = EntityQueryEnumerator<ModMagnetizedGunComponent>();
+        while (query.MoveNext(out var uid, out var magnetized))
+            _magnetized.Add((uid, magnetized));
+    }
+
+    [SubscribeLocalEvent]
+    private void OnMagnetizedStartup(Entity<ModMagnetizedGunComponent> ent, ref ComponentStartup args)
+    {
+        _magnetized.Add(ent);
+    }
+
+    [SubscribeLocalEvent]
+    private void OnMagnetizedShutdown(Entity<ModMagnetizedGunComponent> ent, ref ComponentShutdown args)
+    {
+        _magnetized.Remove(ent);
+    }
 
     [SubscribeLocalEvent]
     private void OnDidEquip(Entity<ModMagneticHarnessComponent> ent, ref DidEquipEvent args)
@@ -50,10 +72,13 @@ public sealed partial class ModMagneticHarnessSystem : VirtualController
         var now = _timing.CurTime;
         _forget.Clear();
 
-        var query = EntityQueryEnumerator<ModMagnetizedGunComponent, PhysicsComponent>();
-        while (query.MoveNext(out var gun, out var magnetized, out var body))
+        foreach (var magnetizedEnt in _magnetized)
         {
-            if (prediction && !body.Predict)
+            var gun = magnetizedEnt.Owner;
+            var magnetized = magnetizedEnt.Comp;
+
+            if (!TryComp<PhysicsComponent>(gun, out var body)
+                || prediction && !body.Predict)
                 continue;
 
             var owner = magnetized.Wearer;
