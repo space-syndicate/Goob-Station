@@ -145,6 +145,9 @@ public sealed class ExpeditionPortalSystem : EntitySystem
         if (expeditionMap is not { } map)
             return;
 
+            if (HasComp<MobStateComponent>(other)) // personal objectives
+                EntityManager.System<Content.Server._BlackM.PersonalObjectives.PersonalObjectivesSystem>().AddUniqueProgress(other, Content.Shared._BlackM.PersonalObjectives.BlackMPersonalCounters.XenTrips, map);
+
         if (firstEntry)
         {
             var ev = new ExpeditionPortalEnteredEvent(map);

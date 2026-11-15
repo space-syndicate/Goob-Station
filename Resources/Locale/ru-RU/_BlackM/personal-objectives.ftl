@@ -1,0 +1,56 @@
+objective-issuer-blackm = [color=#e0a040]Администрация Чёрной Мезы[/color]
+blackm-personal-objectives-roundend-header = [bold]Персональные цели персонала комплекса:[/bold]
+blackm-personal-objectives-roundend-player = [bold]{ $name }[/bold] ({ $job }) - выполнено { $done } из { $total }
+blackm-personal-objectives-roundend-done =   [color=green]✔[/color] { $objective }
+blackm-personal-objectives-roundend-failed =   [color=red]✘[/color] { $objective }
+
+ent-BlackMPersonalXenExperiments = Провести 3 эксперимента с образцами Зена
+    .desc = Завершите три эксперимента на консоли экспериментов. Наука не ждёт, доктор.
+ent-BlackMPersonalCleanExperiment = Провести 2 эксперимента без инцидентов
+    .desc = Завершите два эксперимента без инцидента. Администрация ценит аккуратность.
+ent-BlackMPersonalXenSamples = Добыть 3 образца Зена
+    .desc = С помощью экстрактора соберите три образца фауны или флоры Зена.
+ent-BlackMPersonalXenTrip = Сходить в экспедицию и вернуться живым
+    .desc = Пройдите через портал экспедиций и доживите до конца смены.
+ent-BlackMPersonalAmsParts = Установить 2 компонента АМС
+    .desc = Лично установите два компонента в антимасс-спектрометр.
+ent-BlackMPersonalAmsReinforce = Укрепить АМС 3 раза
+    .desc = Укрепите антимасс-спектрометр материалами три раза до запуска.
+ent-BlackMPersonalAmsLaunch = Запустить антимасс-спектрометр
+    .desc = Эксперимент с АМС должен состояться в эту смену. Образец уже доставлен.
+ent-BlackMPersonalXenKills = Уничтожить 5 тварей с Зена
+    .desc = Убейте пять существ с Зена: хедкрабов, зомби и прочих гостей.
+ent-BlackMPersonalXenKillsSmall = Отбиться от 2 тварей
+    .desc = Убейте двух существ с Зена. Монтирка подойдёт.
+ent-BlackMPersonalPassportChecks = Проверить 4 паспорта
+    .desc = Проверьте четыре разных паспорта на паспортном терминале.
+ent-BlackMPersonalPassportChecksSmall = Проверить 2 паспорта
+    .desc = Проверьте два разных паспорта на паспортном терминале.
+ent-BlackMPersonalPassportCatch = Выявить поддельный паспорт
+    .desc = Правильно найдите ошибку в паспорте при проверке.
+ent-BlackMPersonalSecuritySurvival = Сохранить 60% охраны
+    .desc = Не менее 60% службы безопасности должны дожить до конца смены.
+ent-BlackMPersonalCommandSurvival = Сохранить жизнь руководству
+    .desc = Все руководители комплекса должны дожить до конца смены.
+ent-BlackMPersonalCrewSurvival = Сохранить половину персонала
+    .desc = Не менее половины персонала комплекса должны дожить до конца смены.
+ent-BlackMPersonalPatientsSaved = Спасти 3 пациентов
+    .desc = Вытащите трёх разных пациентов из критического состояния или с того света.
+ent-BlackMPersonalPatientsSavedSmall = Спасти пациента
+    .desc = Вытащите хотя бы одного пациента из крита или с того света.
+ent-BlackMPersonalMedicalSurvival = Сохранить медперсонал
+    .desc = Не менее 75% медицинского отдела должны дожить до конца смены.
+ent-BlackMPersonalScienceSurvival = Сохранить половину учёных
+    .desc = Не менее половины научного отдела должны дожить до конца смены.
+ent-BlackMPersonalCargoSurvival = Сохранить сотрудников снабжения
+    .desc = Не менее половины отдела снабжения должны дожить до конца смены.
+ent-BlackMPersonalStayHuman = Остаться человеком
+    .desc = Доживите до конца смены и не дайте хедкрабу или инфекции превратить вас в зомби.
+ent-BlackMPersonalEvacuate = Эвакуироваться из комплекса
+    .desc = После запуска АМС выберитесь из комплекса на лифте живым.
+ent-BlackMPersonalResearchTech = Открыть 10 технологий
+    .desc = На сервере исследований должно быть открыто не менее 10 технологий.
+ent-BlackMPersonalBankBalance = Накопить 15000 на счету комплекса
+    .desc = К концу смены на основном счёте должно быть не менее 15000.
+ent-BlackMPersonalHiresApproved = Одобрить 2 заявки на найм
+    .desc = Рассмотрите и одобрите две заявки в терминале найма.

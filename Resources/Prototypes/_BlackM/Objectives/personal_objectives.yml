@@ -1,0 +1,353 @@
+- type: entity
+  abstract: true
+  parent: BaseObjective
+  id: BlackMBasePersonalObjective
+  components:
+  - type: Objective
+    issuer: objective-issuer-blackm
+    difficulty: 0.1
+    serverCurrency: 0
+
+- type: entity
+  parent: BlackMBasePersonalObjective
+  id: BlackMPersonalXenExperiments
+  name: Run 3 Xen experiments
+  description: Complete three experiments on Xen samples at the experiment console.
+  components:
+  - type: Objective
+    icon:
+      sprite: Objects/Specific/Research/researchdisk.rsi
+      state: icon
+  - type: BlackMCounterCondition
+    counter: xen_experiments
+    target: 3
+
+- type: entity
+  parent: BlackMBasePersonalObjective
+  id: BlackMPersonalCleanExperiment
+  name: Run 2 experiments without incidents
+  description: Finish two Xen experiments without an incident.
+  components:
+  - type: Objective
+    icon:
+      sprite: Objects/Misc/stamps.rsi
+      state: stamp-ok
+  - type: BlackMCounterCondition
+    counter: xen_experiments_clean
+    target: 2
+
+- type: entity
+  parent: BlackMBasePersonalObjective
+  id: BlackMPersonalXenSamples
+  name: Extract 3 Xen samples
+  description: Use a sample extractor to collect three samples from Xen fauna or flora.
+  components:
+  - type: Objective
+    icon:
+      sprite: Objects/Specific/Research/anomalylocator.rsi
+      state: icon
+  - type: BlackMCounterCondition
+    counter: xen_samples
+    target: 3
+
+- type: entity
+  parent: BlackMBasePersonalObjective
+  id: BlackMPersonalXenTrip
+  name: Go on an expedition and return alive
+  description: Go through the expedition portal and survive until the end of the shift.
+  components:
+  - type: Objective
+    icon:
+      sprite: _BlackM/Effects/Ams/ams_fx.rsi
+      state: portal
+  - type: BlackMCounterCondition
+    counter: xen_trips
+    target: 1
+    requireAlive: true
+
+- type: entity
+  parent: BlackMBasePersonalObjective
+  id: BlackMPersonalAmsParts
+  name: Install 2 AMS components
+  description: Personally install two components into the Anti-Mass Spectrometer.
+  components:
+  - type: Objective
+    icon:
+      sprite: Objects/Tools/wrench.rsi
+      state: icon
+  - type: BlackMCounterCondition
+    counter: ams_parts
+    target: 2
+
+- type: entity
+  parent: BlackMBasePersonalObjective
+  id: BlackMPersonalAmsReinforce
+  name: Reinforce the AMS 3 times
+  description: Reinforce the Anti-Mass Spectrometer with materials three times before launch.
+  components:
+  - type: Objective
+    icon:
+      sprite: Objects/Materials/Sheets/metal.rsi
+      state: steel
+  - type: BlackMCounterCondition
+    counter: ams_reinforce
+    target: 3
+
+- type: entity
+  parent: BlackMBasePersonalObjective
+  id: BlackMPersonalAmsLaunch
+  name: Launch the AMS experiment
+  description: The Anti-Mass Spectrometer must be launched this shift.
+  components:
+  - type: Objective
+    icon:
+      sprite: _BlackM/Effects/Ams/ams_fx.rsi
+      state: glow
+  - type: BlackMGlobalCounterCondition
+    counter: ams_launched
+    target: 1
+
+- type: entity
+  parent: BlackMBasePersonalObjective
+  id: BlackMPersonalXenKills
+  name: Kill 5 Xen creatures
+  description: Eliminate five Xen creatures, headcrabs or zombies.
+  components:
+  - type: Objective
+    icon:
+      sprite: _BlackM/Mobs/headcrab.rsi
+      state: dead
+  - type: BlackMCounterCondition
+    counter: xen_kills
+    target: 5
+
+- type: entity
+  parent: BlackMBasePersonalObjective
+  id: BlackMPersonalXenKillsSmall
+  name: Fight off 2 Xen creatures
+  description: Kill two Xen creatures, headcrabs or zombies.
+  components:
+  - type: Objective
+    icon:
+      sprite: Objects/Tools/crowbar.rsi
+      state: icon
+  - type: BlackMCounterCondition
+    counter: xen_kills
+    target: 2
+
+- type: entity
+  parent: BlackMBasePersonalObjective
+  id: BlackMPersonalPassportChecks
+  name: Check 4 passports
+  description: Check four employee passports at the passport checker.
+  components:
+  - type: Objective
+    icon:
+      sprite: Objects/Misc/bureaucracy.rsi
+      state: paper
+  - type: BlackMCounterCondition
+    counter: passport_checks
+    target: 4
+
+- type: entity
+  parent: BlackMBasePersonalObjective
+  id: BlackMPersonalPassportChecksSmall
+  name: Check 2 passports
+  description: Check two employee passports at the passport checker.
+  components:
+  - type: Objective
+    icon:
+      sprite: Objects/Misc/bureaucracy.rsi
+      state: paper
+  - type: BlackMCounterCondition
+    counter: passport_checks
+    target: 2
+
+- type: entity
+  parent: BlackMBasePersonalObjective
+  id: BlackMPersonalPassportCatch
+  name: Catch a forged passport
+  description: Correctly spot an error in a passport during a check.
+  components:
+  - type: Objective
+    icon:
+      sprite: Objects/Misc/id_cards.rsi
+      state: admin
+  - type: BlackMCounterCondition
+    counter: passport_catches
+    target: 1
+
+- type: entity
+  parent: BlackMBasePersonalObjective
+  id: BlackMPersonalSecuritySurvival
+  name: Keep 60% of Security alive
+  description: At least 60% of the security force must survive the shift.
+  components:
+  - type: Objective
+    icon:
+      sprite: Objects/Weapons/Guns/Pistols/N1984.rsi
+      state: base
+  - type: BlackMDepartmentSurvivalCondition
+    department: Security
+    ratio: 0.6
+
+- type: entity
+  parent: BlackMBasePersonalObjective
+  id: BlackMPersonalCommandSurvival
+  name: Keep the command staff alive
+  description: All heads of departments must survive the shift.
+  components:
+  - type: Objective
+    icon:
+      sprite: Objects/Misc/id_cards.rsi
+      state: admin
+  - type: BlackMDepartmentSurvivalCondition
+    department: Command
+    ratio: 1
+
+- type: entity
+  parent: BlackMBasePersonalObjective
+  id: BlackMPersonalCrewSurvival
+  name: Keep half of the staff alive
+  description: At least half of the facility staff must survive the shift.
+  components:
+  - type: Objective
+    icon:
+      sprite: Objects/Specific/Medical/healthanalyzer.rsi
+      state: icon
+  - type: BlackMDepartmentSurvivalCondition
+    ratio: 0.5
+
+- type: entity
+  parent: BlackMBasePersonalObjective
+  id: BlackMPersonalPatientsSaved
+  name: Save 3 patients
+  description: Bring three different patients back from critical condition or death.
+  components:
+  - type: Objective
+    icon:
+      sprite: Objects/Specific/Medical/defib.rsi
+      state: icon
+  - type: BlackMCounterCondition
+    counter: patients_saved
+    target: 3
+
+- type: entity
+  parent: BlackMBasePersonalObjective
+  id: BlackMPersonalPatientsSavedSmall
+  name: Save a patient
+  description: Bring a patient back from critical condition or death.
+  components:
+  - type: Objective
+    icon:
+      sprite: Objects/Specific/Medical/defib.rsi
+      state: icon
+  - type: BlackMCounterCondition
+    counter: patients_saved
+    target: 1
+
+- type: entity
+  parent: BlackMBasePersonalObjective
+  id: BlackMPersonalMedicalSurvival
+  name: Keep the medical staff alive
+  description: At least 75% of the medical staff must survive the shift.
+  components:
+  - type: Objective
+    icon:
+      sprite: Objects/Specific/Medical/healthanalyzer.rsi
+      state: icon
+  - type: BlackMDepartmentSurvivalCondition
+    department: Medical
+    ratio: 0.75
+
+- type: entity
+  parent: BlackMBasePersonalObjective
+  id: BlackMPersonalScienceSurvival
+  name: Keep half of the scientists alive
+  description: At least half of the science team must survive the shift.
+  components:
+  - type: Objective
+    icon:
+      sprite: Objects/Specific/Research/researchdisk.rsi
+      state: icon
+  - type: BlackMDepartmentSurvivalCondition
+    department: Science
+    ratio: 0.5
+
+- type: entity
+  parent: BlackMBasePersonalObjective
+  id: BlackMPersonalCargoSurvival
+  name: Keep the logistics staff alive
+  description: At least half of the logistics staff must survive the shift.
+  components:
+  - type: Objective
+    icon:
+      sprite: Objects/Economy/cash.rsi
+      state: cash_1000
+  - type: BlackMDepartmentSurvivalCondition
+    department: Cargo
+    ratio: 0.5
+
+- type: entity
+  parent: BlackMBasePersonalObjective
+  id: BlackMPersonalStayHuman
+  name: Stay human
+  description: Survive the shift without being turned by a headcrab or the zombie infection.
+  components:
+  - type: Objective
+    icon:
+      sprite: Objects/Tools/crowbar.rsi
+      state: icon
+  - type: BlackMStayHumanCondition
+
+- type: entity
+  parent: BlackMBasePersonalObjective
+  id: BlackMPersonalEvacuate
+  name: Evacuate from the facility
+  description: After the AMS launch, get out of the facility on the elevator alive.
+  components:
+  - type: Objective
+    icon:
+      sprite: Structures/Furniture/chairs.rsi
+      state: shuttle
+  - type: BlackMEvacuateCondition
+
+- type: entity
+  parent: BlackMBasePersonalObjective
+  id: BlackMPersonalResearchTech
+  name: Unlock 10 technologies
+  description: The research server must have at least 10 unlocked technologies.
+  components:
+  - type: Objective
+    icon:
+      sprite: Objects/Specific/Research/researchdisk.rsi
+      state: icon
+  - type: BlackMResearchCondition
+    technologies: 10
+
+- type: entity
+  parent: BlackMBasePersonalObjective
+  id: BlackMPersonalBankBalance
+  name: Keep 15000 on the facility account
+  description: The main facility account must hold at least 15000 by the end of the shift.
+  components:
+  - type: Objective
+    icon:
+      sprite: Objects/Economy/cash.rsi
+      state: cash_1000
+  - type: BlackMBankBalanceCondition
+    balance: 15000
+
+- type: entity
+  parent: BlackMBasePersonalObjective
+  id: BlackMPersonalHiresApproved
+  name: Approve 2 job applications
+  description: Review and approve two applications at the hiring terminal.
+  components:
+  - type: Objective
+    icon:
+      sprite: Objects/Misc/bureaucracy.rsi
+      state: paper
+  - type: BlackMCounterCondition
+    counter: hires_approved
+    target: 2

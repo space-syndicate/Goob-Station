@@ -249,6 +249,7 @@ public sealed class HireTerminalSystem : EntitySystem
 
         app.Status     = AppStatus.Approved;
         app.ReviewedBy = MetaData(args.Actor).EntityName;
+        EntityManager.System<Content.Server._BlackM.PersonalObjectives.PersonalObjectivesSystem>().AddProgress(args.Actor, Content.Shared._BlackM.PersonalObjectives.BlackMPersonalCounters.HiresApproved); // personal objectives
 
         _audio.PlayPvs(SuccessSound, uid);
         _popup.PopupEntity(Loc.GetString("hire-terminal-popup-approved", ("name", app.ApplicantName)), uid, args.Actor);

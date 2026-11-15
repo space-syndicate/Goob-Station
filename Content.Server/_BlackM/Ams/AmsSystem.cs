@@ -680,9 +680,9 @@ public sealed class AmsSystem : EntitySystem
     private void SpawnHecuSoldiers()
     {
         var query = EntityQueryEnumerator<HecuSpawnPointComponent>();
-        while (query.MoveNext(out var spawnUid, out _))
+        while (query.MoveNext(out var spawnUid, out var spawnPoint))
         {
-            Spawn("RandomHumanoidHECUSoldierSpawner", Transform(spawnUid).Coordinates);
+            Spawn(spawnPoint.Prototype, Transform(spawnUid).Coordinates);
         }
     }
 

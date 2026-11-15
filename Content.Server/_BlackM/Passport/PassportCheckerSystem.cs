@@ -163,6 +163,12 @@ public sealed class PassportCheckerSystem : EntitySystem
 
     private void FinishCheck(EntityUid uid, PassportCheckerComponent comp, EntityUid passportUid, PassportComponent passport, EntityUid actor, bool issuePermit)
     {
+        // personal objectives
+        var blackmObjectives = EntityManager.System<Content.Server._BlackM.PersonalObjectives.PersonalObjectivesSystem>();
+        blackmObjectives.AddUniqueProgress(actor, Content.Shared._BlackM.PersonalObjectives.BlackMPersonalCounters.PassportChecks, passportUid);
+        if (comp.Result == PassportCheckerResult.CorrectCatch)
+            blackmObjectives.AddUniqueProgress(actor, Content.Shared._BlackM.PersonalObjectives.BlackMPersonalCounters.PassportCatches, passportUid);
+
         if (_itemSlots.TryGetSlot(uid, comp.SlotId, out var slot))
         {
             _itemSlots.SetLock(uid, slot, false);

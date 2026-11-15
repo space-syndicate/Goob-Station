@@ -1,0 +1,204 @@
+- type: blackmPersonalObjectiveSet
+  id: BlackMPersonalAdministrator
+  jobs:
+  - Captain
+  always:
+  - BlackMPersonalCrewSurvival
+  pool:
+  - BlackMPersonalAmsLaunch
+  - BlackMPersonalHiresApproved
+  - BlackMPersonalCommandSurvival
+  - BlackMPersonalBankBalance
+  - BlackMPersonalEvacuate
+  count: 2
+
+- type: blackmPersonalObjectiveSet
+  id: BlackMPersonalHeadOfSecurity
+  jobs:
+  - HeadOfSecurity
+  always:
+  - BlackMPersonalSecuritySurvival
+  pool:
+  - BlackMPersonalXenKills
+  - BlackMPersonalPassportCatch
+  - BlackMPersonalCommandSurvival
+  - BlackMPersonalCrewSurvival
+  count: 2
+
+- type: blackmPersonalObjectiveSet
+  id: BlackMPersonalWarden
+  jobs:
+  - Warden
+  pool:
+  - BlackMPersonalPassportChecks
+  - BlackMPersonalPassportCatch
+  - BlackMPersonalSecuritySurvival
+  - BlackMPersonalStayHuman
+  count: 2
+
+- type: blackmPersonalObjectiveSet
+  id: BlackMPersonalSecurityOfficer
+  jobs:
+  - SecurityOfficer
+  pool:
+  - BlackMPersonalXenKills
+  - BlackMPersonalPassportChecks
+  - BlackMPersonalPassportCatch
+  - BlackMPersonalSecuritySurvival
+  - BlackMPersonalStayHuman
+  count: 2
+
+- type: blackmPersonalObjectiveSet
+  id: BlackMPersonalSecurityCadet
+  jobs:
+  - SecurityCadet
+  pool:
+  - BlackMPersonalXenKillsSmall
+  - BlackMPersonalPassportChecksSmall
+  - BlackMPersonalStayHuman
+  count: 2
+
+- type: blackmPersonalObjectiveSet
+  id: BlackMPersonalBrigmedic
+  jobs:
+  - Brigmedic
+  pool:
+  - BlackMPersonalPatientsSaved
+  - BlackMPersonalSecuritySurvival
+  - BlackMPersonalStayHuman
+  count: 2
+
+- type: blackmPersonalObjectiveSet
+  id: BlackMPersonalResearchDirector
+  jobs:
+  - ResearchDirector
+  always:
+  - BlackMPersonalAmsLaunch
+  pool:
+  - BlackMPersonalResearchTech
+  - BlackMPersonalScienceSurvival
+  - BlackMPersonalXenExperiments
+  - BlackMPersonalEvacuate
+  count: 2
+
+- type: blackmPersonalObjectiveSet
+  id: BlackMPersonalScientist
+  jobs:
+  - Scientist
+  pool:
+  - BlackMPersonalXenExperiments
+  - BlackMPersonalCleanExperiment
+  - BlackMPersonalXenSamples
+  - BlackMPersonalXenTrip
+  - BlackMPersonalAmsParts
+  count: 2
+
+- type: blackmPersonalObjectiveSet
+  id: BlackMPersonalResearchAssistant
+  jobs:
+  - ResearchAssistant
+  pool:
+  - BlackMPersonalXenSamples
+  - BlackMPersonalXenTrip
+  - BlackMPersonalAmsParts
+  - BlackMPersonalStayHuman
+  count: 2
+
+- type: blackmPersonalObjectiveSet
+  id: BlackMPersonalChiefMedicalOfficer
+  jobs:
+  - ChiefMedicalOfficer
+  always:
+  - BlackMPersonalMedicalSurvival
+  pool:
+  - BlackMPersonalCrewSurvival
+  - BlackMPersonalPatientsSaved
+  - BlackMPersonalStayHuman
+  count: 1
+
+- type: blackmPersonalObjectiveSet
+  id: BlackMPersonalMedicalDoctor
+  jobs:
+  - MedicalDoctor
+  pool:
+  - BlackMPersonalPatientsSaved
+  - BlackMPersonalMedicalSurvival
+  - BlackMPersonalStayHuman
+  - BlackMPersonalEvacuate
+  count: 2
+
+- type: blackmPersonalObjectiveSet
+  id: BlackMPersonalMedicalIntern
+  jobs:
+  - MedicalIntern
+  pool:
+  - BlackMPersonalPatientsSavedSmall
+  - BlackMPersonalStayHuman
+  - BlackMPersonalEvacuate
+  count: 2
+
+- type: blackmPersonalObjectiveSet
+  id: BlackMPersonalSurgeon
+  jobs:
+  - Surgeon
+  pool:
+  - BlackMPersonalPatientsSaved
+  - BlackMPersonalMedicalSurvival
+  - BlackMPersonalStayHuman
+  count: 2
+
+- type: blackmPersonalObjectiveSet
+  id: BlackMPersonalQuartermaster
+  jobs:
+  - Quartermaster
+  always:
+  - BlackMPersonalBankBalance
+  pool:
+  - BlackMPersonalCargoSurvival
+  - BlackMPersonalXenTrip
+  - BlackMPersonalEvacuate
+  count: 1
+
+- type: blackmPersonalObjectiveSet
+  id: BlackMPersonalCargoTechnician
+  jobs:
+  - CargoTechnician
+  pool:
+  - BlackMPersonalXenTrip
+  - BlackMPersonalStayHuman
+  - BlackMPersonalEvacuate
+  - BlackMPersonalBankBalance
+  count: 2
+
+- type: blackmPersonalObjectiveSet
+  id: BlackMPersonalChiefEngineer
+  jobs:
+  - ChiefEngineer
+  always:
+  - BlackMPersonalAmsLaunch
+  pool:
+  - BlackMPersonalAmsReinforce
+  - BlackMPersonalAmsParts
+  - BlackMPersonalEvacuate
+  count: 1
+
+- type: blackmPersonalObjectiveSet
+  id: BlackMPersonalStationEngineer
+  jobs:
+  - StationEngineer
+  pool:
+  - BlackMPersonalAmsReinforce
+  - BlackMPersonalAmsParts
+  - BlackMPersonalStayHuman
+  count: 2
+
+- type: blackmPersonalObjectiveSet
+  id: BlackMPersonalServiceWorker
+  jobs:
+  - ServiceWorker
+  always:
+  - BlackMPersonalStayHuman
+  pool:
+  - BlackMPersonalEvacuate
+  - BlackMPersonalXenKillsSmall
+  count: 1

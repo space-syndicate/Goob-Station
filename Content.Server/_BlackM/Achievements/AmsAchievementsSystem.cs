@@ -18,5 +18,6 @@ public sealed class AmsAchievementsSystem : EntitySystem
             return;
 
         _achievements.AddStat(user, AchievementStats.AmsParts);
+        EntityManager.System<Content.Server._BlackM.PersonalObjectives.PersonalObjectivesSystem>().AddProgress(user, Content.Shared._BlackM.PersonalObjectives.BlackMPersonalCounters.AmsParts); // personal objectives
     }
 }

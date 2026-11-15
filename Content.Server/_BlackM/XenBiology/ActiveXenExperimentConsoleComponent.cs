@@ -6,4 +6,6 @@ public sealed partial class ActiveXenExperimentConsoleComponent : Component
     public float UiUpdateAccumulator;
 
     public float IncidentChance;
+
+    public EntityUid? User;
 }
