@@ -186,6 +186,8 @@ public enum AmsSampleVisuals : byte
 [RegisterComponent]
 public sealed partial class HecuSpawnPointComponent : Component
 {
+    [DataField]
+    public EntProtoId Prototype = "RandomHumanoidHECUSoldierSpawner";
 }
 
 [RegisterComponent]

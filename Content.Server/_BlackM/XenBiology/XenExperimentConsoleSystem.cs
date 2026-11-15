@@ -228,6 +228,7 @@ public sealed class XenExperimentConsoleSystem : EntitySystem
         console.Comp.RunningExperiment = experiment.ID;
         console.Comp.ExperimentEndTime = _timing.CurTime + experiment.Duration;
         var active = EnsureComp<ActiveXenExperimentConsoleComponent>(console);
+        active.User = user; // BlackM personal objectives
         active.IncidentChance = Math.Clamp(
             experiment.IncidentChance * GetIncidentChanceMultiplier(console),
             0f,
@@ -312,6 +313,14 @@ public sealed class XenExperimentConsoleSystem : EntitySystem
             ? XenExperimentResultQuality.Unstable
             : XenExperimentResultQuality.Analyzed;
         RecordResult(console, experiment, quality);
+        // personal objectives
+        if (TryComp<ActiveXenExperimentConsoleComponent>(console, out var blackmActive) && blackmActive.User is { } blackmUser)
+        {
+            var blackmObjectives = EntityManager.System<Content.Server._BlackM.PersonalObjectives.PersonalObjectivesSystem>();
+            blackmObjectives.AddProgress(blackmUser, Content.Shared._BlackM.PersonalObjectives.BlackMPersonalCounters.XenExperiments);
+            if (!incidentOccurred)
+                blackmObjectives.AddProgress(blackmUser, Content.Shared._BlackM.PersonalObjectives.BlackMPersonalCounters.XenExperimentsClean);
+        }
 
         var recordedData = GetRecordedData(experiment.Reward, quality);
         _popup.PopupEntity(

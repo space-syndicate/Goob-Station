@@ -46,6 +46,7 @@ public sealed class XenSampleExtractorSystem : EntitySystem
             return;
 
         args.Handled = true;
+        EntityManager.System<Content.Server._BlackM.PersonalObjectives.PersonalObjectivesSystem>().AddProgress(args.User, Content.Shared._BlackM.PersonalObjectives.BlackMPersonalCounters.XenSamples); // personal objectives
     }
 
     public bool TryStartExtraction(Entity<XenSampleExtractorComponent> extractor, EntityUid user, EntityUid target)
