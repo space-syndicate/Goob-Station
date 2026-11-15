@@ -82,42 +82,39 @@ public sealed partial class ModSuitSystem
         RaiseUpdated(ent);
     }
 
-    private void UpdateDeployQueues()
+    // CorvaxGoob-Optimization-Start
+    private void UpdateDeployQueue(Entity<ModSuitComponent> ent, TimeSpan now)
     {
-        var now = _timing.CurTime;
-        var query = EntityQueryEnumerator<ModSuitComponent>();
-        while (query.MoveNext(out var uid, out var comp))
+        var comp = ent.Comp;
+        if (comp.DeployQueue.Count == 0 || now < comp.NextDeployStep || !ShouldStep(comp))
+            return;
+
+        if (comp.Wearer is not { } wearer || comp.State != ModSuitState.Inactive)
         {
-            if (comp.DeployQueue.Count == 0 || now < comp.NextDeployStep || !ShouldStep(comp))
-                continue;
-
-            var ent = (uid, comp);
-            if (comp.Wearer is not { } wearer || comp.State != ModSuitState.Inactive)
-            {
-                comp.DeployQueue.Clear();
-                Dirty(uid, comp);
-                continue;
-            }
-
-            var slot = comp.DeployQueue[0];
-            comp.DeployQueue.RemoveAt(0);
-
-            var success = comp.DeployQueueRetracting
-                ? TryRetractPart(ent, slot, wearer)
-                : TryDeployPart(ent, slot, wearer);
-
-            if (!success)
-            {
-                comp.DeployQueue.Clear();
-                if (!comp.DeployQueueRetracting)
-                    _popup.PopupClient(Loc.GetString("modsuit-deploy-failed"), wearer, wearer);
-            }
-
-            comp.NextDeployStep = now + comp.DeployStepTime;
-            Dirty(uid, comp);
-            RaiseUpdated(uid);
+            comp.DeployQueue.Clear();
+            Dirty(ent);
+            return;
         }
+
+        var slot = comp.DeployQueue[0];
+        comp.DeployQueue.RemoveAt(0);
+
+        var success = comp.DeployQueueRetracting
+            ? TryRetractPart(ent, slot, wearer)
+            : TryDeployPart(ent, slot, wearer);
+
+        if (!success)
+        {
+            comp.DeployQueue.Clear();
+            if (!comp.DeployQueueRetracting)
+                _popup.PopupClient(Loc.GetString("modsuit-deploy-failed"), wearer, wearer);
+        }
+
+        comp.NextDeployStep = now + comp.DeployStepTime;
+        Dirty(ent);
+        RaiseUpdated(ent);
     }
+    // CorvaxGoob-Optimization-End
 
     public void TogglePart(Entity<ModSuitComponent> ent, string slot, EntityUid user)
     {

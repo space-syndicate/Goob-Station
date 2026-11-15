@@ -65,7 +65,9 @@ public sealed partial class ModSphereRollController : VirtualController
         var query = EntityQueryEnumerator<ModSphereFormComponent, PhysicsComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var form, out var body, out var xform))
         {
-            if (prediction && !body.Predict || !_moduleQuery.TryComp(form.Module, out var module))
+            // CorvaxGoob-Optimization-Start
+            if ((_net.IsClient && !body.Predict) || !_moduleQuery.TryComp(form.Module, out var module))
+            // CorvaxGoob-Optimization-End
                 continue;
 
             var velocity = body.LinearVelocity;
@@ -101,7 +103,9 @@ public sealed partial class ModSphereRollController : VirtualController
         var query = EntityQueryEnumerator<ModSphereFormComponent, PhysicsComponent>();
         while (query.MoveNext(out var uid, out var form, out var body))
         {
-            if (prediction && !body.Predict || !_moduleQuery.TryComp(form.Module, out var module))
+            // CorvaxGoob-Optimization-Start
+            if ((_net.IsClient && !body.Predict) || !_moduleQuery.TryComp(form.Module, out var module))
+            // CorvaxGoob-Optimization-End
                 continue;
 
             var after = body.LinearVelocity;

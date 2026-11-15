@@ -2,6 +2,7 @@ using System.Numerics;
 using Content.Shared.Friction;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
+using Robust.Shared.Network;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Controllers;
 using Robust.Shared.Timing;
@@ -11,6 +12,7 @@ namespace Content.Goobstation.Shared.Nullspace;
 public sealed partial class NullspaceMoverController : VirtualController
 {
     [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private INetManager _net = default!;
     [Dependency] private SharedNullspaceSystem _nullspace = default!;
 
     public override void Initialize()
@@ -26,7 +28,9 @@ public sealed partial class NullspaceMoverController : VirtualController
         var query = EntityQueryEnumerator<NullspacePlayerComponent, InputMoverComponent, PhysicsComponent>();
         while (query.MoveNext(out var uid, out var player, out var mover, out var body))
         {
-            if (prediction && !body.Predict)
+            // CorvaxGoob-Optimization-Start
+            if (_net.IsClient && !body.Predict)
+            // CorvaxGoob-Optimization-End
                 continue;
 
             Move((uid, player), mover, body, frameTime);

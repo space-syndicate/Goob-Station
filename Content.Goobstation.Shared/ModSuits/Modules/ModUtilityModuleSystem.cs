@@ -77,6 +77,10 @@ public sealed partial class ModUtilityModuleSystem : EntitySystem
     private void OnJointTorsionActivated(Entity<ModJointTorsionModuleComponent> ent, ref ModModuleActivatedEvent args)
     {
         ent.Comp.LastPosition = null;
+        // CorvaxGoob-Optimization-Start
+        ent.Comp.PendingCharge = 0f;
+        ent.Comp.NextCharge = TimeSpan.Zero;
+        // CorvaxGoob-Optimization-End
     }
 
     private void UpdateJointTorsion()
@@ -91,6 +95,10 @@ public sealed partial class ModUtilityModuleSystem : EntitySystem
                 || _gravity.IsWeightless(wearer))
             {
                 torsion.LastPosition = null;
+                // CorvaxGoob-Optimization-Start
+                if (_modSuit.TryGetModuleSuit(uid, out var flushSuit))
+                    FlushCharge(torsion, flushSuit);
+                // CorvaxGoob-Optimization-End
                 continue;
             }
 
@@ -101,12 +109,42 @@ public sealed partial class ModUtilityModuleSystem : EntitySystem
                 continue;
 
             var moved = MathF.Min((position.Position - previous.Position).Length(), torsion.MaxTilesPerUpdate);
-            if (moved <= 0.01f || _modSuit.GetBattery(suit) is not { } battery)
+            // CorvaxGoob-Optimization-Start
+            if (moved <= 0.01f)
+            {
+                FlushCharge(torsion, suit);
+                continue;
+            }
+
+            if (_modSuit.GetBattery(suit) is not { } battery)
+            {
+                torsion.PendingCharge = 0f;
+                continue;
+            }
+
+            torsion.PendingCharge += moved * torsion.ChargePerTile;
+
+            var now = _timing.CurTime;
+            if (now < torsion.NextCharge)
                 continue;
 
-            _battery.ChangeCharge(battery.AsNullable(), moved * torsion.ChargePerTile);
+            _battery.ChangeCharge(battery.AsNullable(), torsion.PendingCharge);
+            torsion.PendingCharge = 0f;
+            torsion.NextCharge = now + TimeSpan.FromSeconds(0.5);
         }
     }
+
+    private void FlushCharge(ModJointTorsionModuleComponent torsion, Entity<ModSuitComponent> suit)
+    {
+        if (torsion.PendingCharge <= 0f)
+            return;
+
+        if (_modSuit.GetBattery(suit) is { } battery)
+            _battery.ChangeCharge(battery.AsNullable(), torsion.PendingCharge);
+
+        torsion.PendingCharge = 0f;
+    }
+    // CorvaxGoob-Optimization-End
 
     [SubscribeLocalEvent]
     private void OnHatStabilizerInstalled(Entity<ModHatStabilizerModuleComponent> ent, ref ModModuleInstalledEvent args)

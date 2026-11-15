@@ -11,6 +11,7 @@ using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
 using Content.Shared.Wieldable;
 using Robust.Shared.Containers;
+using Robust.Shared.Network;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Controllers;
 using Robust.Shared.Timing;
@@ -20,6 +21,7 @@ namespace Content.Goobstation.Shared.ModSuits.Modules;
 public sealed partial class ModGunModulesSystem : VirtualController
 {
     [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private INetManager _net = default!;
     [Dependency] private ActionContainerSystem _actionContainer = default!;
     [Dependency] private EntityLookupSystem _lookup = default!;
     [Dependency] private ModSuitSystem _modSuit = default!;
@@ -89,13 +91,17 @@ public sealed partial class ModGunModulesSystem : VirtualController
         while (fields.MoveNext(out var wearer, out var field, out var xform))
         {
             _projectiles.Clear();
-            _lookup.GetEntitiesInRange(xform.Coordinates, field.Radius, _projectiles);
+            // CorvaxGoob-Optimization-Start
+            _lookup.GetEntitiesInRange(xform.Coordinates, field.Radius, _projectiles, LookupFlags.Dynamic | LookupFlags.Sundries | LookupFlags.Sensors);
+            // CorvaxGoob-Optimization-End
             foreach (var projectile in _projectiles)
             {
                 if (HasComp<ModDampenedProjectileComponent>(projectile)
                     || _container.IsEntityInContainer(projectile)
                     || !TryComp<PhysicsComponent>(projectile, out var body)
-                    || prediction && !body.Predict)
+                    // CorvaxGoob-Optimization-Start
+                    || _net.IsClient && !body.Predict)
+                    // CorvaxGoob-Optimization-End
                     continue;
 
                 var speed = body.LinearVelocity.Length();
@@ -116,7 +122,9 @@ public sealed partial class ModGunModulesSystem : VirtualController
         var tracked = EntityQueryEnumerator<ModDampenedProjectileComponent, PhysicsComponent, TransformComponent>();
         while (tracked.MoveNext(out var uid, out var dampened, out var body, out var xform))
         {
-            if (prediction && !body.Predict)
+            // CorvaxGoob-Optimization-Start
+            if (_net.IsClient && !body.Predict)
+            // CorvaxGoob-Optimization-End
                 continue;
 
             var velocity = body.LinearVelocity;

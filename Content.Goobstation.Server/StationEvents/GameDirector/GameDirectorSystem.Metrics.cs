@@ -69,6 +69,10 @@ public sealed partial class GameDirectorSystem
         "game_director_destruction_budget",
         "Destruction budget available to the Game Director.");
 
+    // CorvaxGoob-Optimization-Start
+    private readonly Dictionary<string, int> _antagCounts = new();
+    // CorvaxGoob-Optimization-End
+
     private static void ResetGaugeLabels<TChild>(Collector<TChild> gauge) where TChild : ChildBase
     {
         foreach (var labelSet in gauge.GetAllLabelValues().ToList())
@@ -99,7 +103,10 @@ public sealed partial class GameDirectorSystem
 
     private void UpdateAntagMetrics()
     {
-        var counts = new Dictionary<string, int>();
+        // CorvaxGoob-Optimization-Start
+        var counts = _antagCounts;
+        counts.Clear();
+        // CorvaxGoob-Optimization-End
         var query = EntityQueryEnumerator<AntagSelectionComponent, ActiveGameRuleComponent, MetaDataComponent>();
         while (query.MoveNext(out _, out var antag, out _, out var meta))
         {

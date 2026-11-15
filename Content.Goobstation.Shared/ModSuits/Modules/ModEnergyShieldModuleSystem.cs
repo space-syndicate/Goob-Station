@@ -22,6 +22,11 @@ public sealed partial class ModEnergyShieldModuleSystem : EntitySystem
     {
         base.Update(frameTime);
 
+        // CorvaxGoob-Optimization-Start
+        if (_net.IsClient)
+            return;
+        // CorvaxGoob-Optimization-End
+
         var now = _timing.CurTime;
         var query = EntityQueryEnumerator<ModEnergyShieldModuleComponent>();
         while (query.MoveNext(out var uid, out var shield))

@@ -45,6 +45,18 @@ public sealed partial class CombatMetricSystem : ChaosMetricSystem<CombatMetricC
     [Dependency] private NpcFactionSystem _faction = default!;
     public readonly string NanotrasenFactionId = "NanoTrasen";
 
+    // CorvaxGoob-Optimization-Start
+    private EntityQuery<TagComponent> _tagsQuery;
+    private readonly HashSet<ProtoId<TagPrototype>> _allTags = new();
+    private readonly HashSet<EntityUid> _seenDead = new();
+
+    public override void Initialize()
+    {
+        base.Initialize();
+        _tagsQuery = GetEntityQuery<TagComponent>();
+    }
+    // CorvaxGoob-Optimization-End
+
     private static readonly Gauge HostileEntitiesTotal = Metrics.CreateGauge(
         "game_director_metric_combat_hostile_entities_total",
         "Total number of hostile entities counted.");
@@ -101,14 +113,15 @@ public sealed partial class CombatMetricSystem : ChaosMetricSystem<CombatMetricC
     {
         // Iterate through items to determine how powerful the entity is
         // Having a good range of offensive items in your inventory makes you more dangerous
-        var tagsQ = GetEntityQuery<TagComponent>();
-        var allTags = new HashSet<ProtoId<TagPrototype>>();
+        // CorvaxGoob-Optimization-Start
+        _allTags.Clear();
 
         foreach (var item in _inventory.GetHandOrInventoryEntities(uid))
-            if (tagsQ.TryGetComponent(item, out var tags)) // thanks code rabbit
-                allTags.UnionWith(tags.Tags);
+            if (_tagsQuery.TryGetComponent(item, out var tags)) // thanks code rabbit
+                _allTags.UnionWith(tags.Tags);
 
-        var threat = allTags.Sum(key => component.ItemThreat.GetValueOrDefault(key));
+        var threat = _allTags.Sum(key => component.ItemThreat.GetValueOrDefault(key));
+        // CorvaxGoob-Optimization-End
 
         return threat > component.MaxItemThreat ? component.MaxItemThreat : threat;
     }
@@ -136,7 +149,10 @@ public sealed partial class CombatMetricSystem : ChaosMetricSystem<CombatMetricC
         double securityStrength = 0;
 
         var now = _timing.CurTime;
-        var seenDead = new HashSet<EntityUid>();
+        // CorvaxGoob-Optimization-Start
+        var seenDead = _seenDead;
+        seenDead.Clear();
+        // CorvaxGoob-Optimization-End
         var stationGrids = GetEventStationGrids();
         while (query.MoveNext(out var uid, out var mobState, out var damage, out var transform))
         {

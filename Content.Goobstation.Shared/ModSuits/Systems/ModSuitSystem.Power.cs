@@ -160,20 +160,7 @@ public sealed partial class ModSuitSystem
         UpdatePowerAlert(ent);
     }
 
-    private void UpdatePowerAlerts()
-    {
-        if (_timing.CurTime < _nextPowerAlertUpdate)
-            return;
-
-        _nextPowerAlertUpdate = _timing.CurTime + PowerAlertInterval;
-
-        var query = EntityQueryEnumerator<ModSuitComponent>();
-        while (query.MoveNext(out var uid, out var comp))
-        {
-            if (comp.Wearer != null && comp.State != ModSuitState.Inactive && ShouldStep(comp))
-                UpdatePowerAlert((uid, comp));
-        }
-    }
+    // CorvaxGoob-Optimization: UpdatePowerAlerts removed, logic inlined into ModSuitSystem.Update
 
     private void UpdatePowerAlert(Entity<ModSuitComponent> ent)
     {

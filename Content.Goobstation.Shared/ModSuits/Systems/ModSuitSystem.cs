@@ -66,9 +66,24 @@ public sealed partial class ModSuitSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        UpdateDeployQueues();
-        UpdateActivation();
-        UpdatePowerAlerts();
+        // CorvaxGoob-Optimization-Start
+        var now = _timing.CurTime;
+        var powerDue = now >= _nextPowerAlertUpdate;
+        if (powerDue)
+            _nextPowerAlertUpdate = now + PowerAlertInterval;
+
+        var query = EntityQueryEnumerator<ModSuitComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            var ent = (uid, comp);
+            UpdateDeployQueue(ent, now);
+            var state = comp.State;
+            UpdateActivationStep(ent, now);
+
+            if (powerDue && state == comp.State && comp.Wearer != null && comp.State != ModSuitState.Inactive && ShouldStep(comp))
+                UpdatePowerAlert(ent);
+        }
+        // CorvaxGoob-Optimization-End
     }
 
     [SubscribeLocalEvent]
