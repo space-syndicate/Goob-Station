@@ -1035,3 +1035,12 @@ Entries:
       message: Сабля ГСБ заменена на wt550
   id: 149
   time: '2026-11-15T15:10:57.0000000+00:00'
+# PR #165
+- author: sweekyl
+  changes:
+    - type: Add
+      message: Персональные цели
+    - type: Add
+      message: Вернул веселье!
+  id: 150
+  time: '2026-11-15T17:22:06.0000000+00:00'
