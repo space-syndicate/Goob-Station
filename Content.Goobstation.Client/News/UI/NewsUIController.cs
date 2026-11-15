@@ -31,12 +31,12 @@ public sealed partial class NewsUIController : UIController, IOnStateEntered<Lob
 
     public void OnStateEntered(LobbyState state)
     {
-        SchedulePopups();
+        // SchedulePopups(); // CorvaxGoob
     }
 
     public void OnStateEntered(GameplayState state)
     {
-        SchedulePopups();
+        // SchedulePopups(); // CorvaxGoob
     }
 
     public override void FrameUpdate(FrameEventArgs args)

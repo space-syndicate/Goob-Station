@@ -194,4 +194,7 @@ public sealed class CCCVars
     /// </summary>
     public static readonly CVarDef<float> DecalSendInterval =
         CVarDef.Create("decals.send_interval", 0.2f, CVar.SERVERONLY);
+
+    public static readonly CVarDef<bool> OldLobby =
+        CVarDef.Create("lobby.old", false, CVar.CLIENTONLY | CVar.ARCHIVE);
 }

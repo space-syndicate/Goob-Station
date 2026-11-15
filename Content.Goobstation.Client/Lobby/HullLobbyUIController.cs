@@ -18,6 +18,8 @@ public sealed partial class HullLobbyUIController : UIController, IOnStateEntere
 
     public void OnStateEntered(LobbyState state)
     {
+        state.LobbySwitched += OnLobbySwitched; // CorvaxGoob-SwitchLobby
+
         if (state.Lobby is not { } lobby)
             return;
 
@@ -27,7 +29,7 @@ public sealed partial class HullLobbyUIController : UIController, IOnStateEntere
 
         _news.Changed += UpdateUnread;
         UpdateUnread();
-        lobby.SelectTab(_news.UnreadCount == 0);
+        lobby.SelectTab(true); // CorvaxGoob-edit
         lobby.ResetEasterEgg();
 
         if (_roundInfo != null)
@@ -40,6 +42,7 @@ public sealed partial class HullLobbyUIController : UIController, IOnStateEntere
 
     public void OnStateExited(LobbyState state)
     {
+        state.LobbySwitched -= OnLobbySwitched; // CorvaxGoob-SwitchLobby
         _news.Changed -= UpdateUnread;
 
         if (_roundInfo != null)
@@ -47,6 +50,14 @@ public sealed partial class HullLobbyUIController : UIController, IOnStateEntere
 
         _lobby = null;
     }
+
+    // CorvaxGoob-SwitchLobby-start
+    private void OnLobbySwitched(LobbyState state)
+    {
+        OnStateExited(state);
+        OnStateEntered(state);
+    }
+    // CorvaxGoob-SwitchLobby-end
 
     private void UpdateUnread()
     {

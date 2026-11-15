@@ -66,6 +66,7 @@ public sealed partial class MiscTab : Control
         Control.AddOptionCheckBox(CCVars.StaticStorageUI, StaticStorageUI);
 
         Control.AddOptionCheckBox(CCCVars.OfferModeIndicatorsPointShow, ShowOfferModeIndicatorsCheckBox); // CorvaxGoob-Offer
+        Control.AddOptionCheckBox(CCCVars.OldLobby, OldLobbyCheckBox); // CorvaxGoob-SwitchLobby
         Control.Initialize();
     }
 }

@@ -26,7 +26,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Client.Lobby
 {
-    public sealed class LobbyState : Robust.Client.State.State
+    public sealed partial class LobbyState : Robust.Client.State.State // CorvaxGoob-SwitchLobby made partial
     {
         [Dependency] private readonly IBaseClient _baseClient = default!;
         [Dependency] private readonly IConfigurationManager _cfg = default!;
@@ -47,11 +47,14 @@ namespace Content.Client.Lobby
         private ClientGameTicker _gameTicker = default!;
         private ContentAudioSystem _contentAudioSystem = default!;
 
-        protected override Type? LinkedScreenType { get; } = typeof(LobbyGui);
+        protected override Type? LinkedScreenType => LobbyScreenType; // CorvaxGoob-SwitchLobby-edit
         public LobbyGui? Lobby;
 
         protected override void Startup()
         {
+            if (TryStartupOld()) // CorvaxGoob-SwitchLobby
+                return;
+
             if (_userInterfaceManager.ActiveScreen == null)
             {
                 return;
@@ -97,6 +100,9 @@ namespace Content.Client.Lobby
 
         protected override void Shutdown()
         {
+            if (TryShutdownOld()) // CorvaxGoob-SwitchLobby
+                return;
+
             var chatController = _userInterfaceManager.GetUIController<ChatUIController>();
             chatController.SetMainChat(false);
             _gameTicker.InfoBlobUpdated -= UpdateLobbyUi;
@@ -151,6 +157,9 @@ namespace Content.Client.Lobby
 
         public override void FrameUpdate(FrameEventArgs e)
         {
+            if (TryFrameUpdateOld(e)) // CorvaxGoob-SwitchLobby
+                return;
+
             // Goob start
             if (_gameTicker.IsGameStarted)
             {

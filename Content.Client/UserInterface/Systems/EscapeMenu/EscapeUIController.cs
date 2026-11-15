@@ -29,6 +29,7 @@ using Content.Shared.Preferences;
 using Content.Client.Guidebook;
 using Content.Client.Lobby.UI;
 using Content.Client.Players.PlayTimeTracking;
+using Content.Client._CorvaxGoob.Lobby.Old; // CorvaxGoob-SwitchLobby
 // using Content.Goobstation.Common.CCVar; // Goobstation - Voice chat // CorvaxGoob: voice chat removed
 
 namespace Content.Client.UserInterface.Systems.EscapeMenu;
@@ -237,6 +238,9 @@ public sealed class EscapeUIController : UIController, IOnStateEntered<GameplayS
 
     private void OpenCharacterSetup()
     {
+        if (UIManager.GetUIController<OldCharacterWindowUIController>().TryOpenCharacterSetup()) // CorvaxGoob-SwitchLobby
+            return;
+
         if (_characterWindow is { IsOpen: true })
         {
             _characterWindow.MoveToFront();

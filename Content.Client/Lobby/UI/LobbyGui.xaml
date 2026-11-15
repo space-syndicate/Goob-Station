@@ -122,7 +122,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                         </BoxContainer>
                     </PanelContainer>
 
-                    <BoxContainer Orientation="Horizontal" SeparationOverride="3">
+                    <BoxContainer Orientation="Horizontal" SeparationOverride="3" Visible="False"> <!-- CorvaxGoob -->
                         <Button Name="ChatTabButton" ToggleMode="True" StyleClasses="HullTab" HorizontalExpand="True"
                                 Text="{Loc 'ui-lobby-chat-tab'}" />
                         <ContainerButton Name="NewsTabButton" ToggleMode="True" StyleClasses="HullTab" HorizontalExpand="True">
