@@ -11,6 +11,7 @@ using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
 using Content.Shared.Wieldable;
 using Robust.Shared.Containers;
+using Robust.Shared.Network;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Controllers;
 using Robust.Shared.Timing;
@@ -20,6 +21,7 @@ namespace Content.Goobstation.Shared.ModSuits.Modules;
 public sealed partial class ModGunModulesSystem : VirtualController
 {
     [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private INetManager _net = default!;
     [Dependency] private ActionContainerSystem _actionContainer = default!;
     [Dependency] private EntityLookupSystem _lookup = default!;
     [Dependency] private ModSuitSystem _modSuit = default!;
@@ -95,7 +97,7 @@ public sealed partial class ModGunModulesSystem : VirtualController
                 if (HasComp<ModDampenedProjectileComponent>(projectile)
                     || _container.IsEntityInContainer(projectile)
                     || !TryComp<PhysicsComponent>(projectile, out var body)
-                    || prediction && !body.Predict)
+                    || _net.IsClient && !body.Predict)
                     continue;
 
                 var speed = body.LinearVelocity.Length();
@@ -116,7 +118,7 @@ public sealed partial class ModGunModulesSystem : VirtualController
         var tracked = EntityQueryEnumerator<ModDampenedProjectileComponent, PhysicsComponent, TransformComponent>();
         while (tracked.MoveNext(out var uid, out var dampened, out var body, out var xform))
         {
-            if (prediction && !body.Predict)
+            if (_net.IsClient && !body.Predict)
                 continue;
 
             var velocity = body.LinearVelocity;

@@ -78,7 +78,7 @@ public sealed partial class ModMagneticHarnessSystem : VirtualController
             var magnetized = magnetizedEnt.Comp;
 
             if (!TryComp<PhysicsComponent>(gun, out var body)
-                || prediction && !body.Predict)
+                || _net.IsClient && !body.Predict)
                 continue;
 
             var owner = magnetized.Wearer;

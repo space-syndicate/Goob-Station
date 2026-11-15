@@ -1,6 +1,7 @@
 using Content.Goobstation.Shared.ModSuits.Modules;
 using Robust.Client.Physics;
 using Robust.Client.Player;
+using Robust.Shared.Physics.Components;
 
 namespace Content.Goobstation.Client.ModSuits;
 
@@ -19,6 +20,10 @@ public sealed partial class ModMagneticHarnessPredictionSystem : EntitySystem
     [SubscribeLocalEvent]
     private void OnAfterState(Entity<ModMagnetizedGunComponent> ent, ref AfterAutoHandleStateEvent args)
     {
+        var shouldPredict = ent.Comp.LooseSince != null && ent.Comp.Wearer == _player.LocalEntity;
+        if (TryComp<PhysicsComponent>(ent.Owner, out var body) && body.Predict == shouldPredict)
+            return;
+
         _physics.UpdateIsPredicted(ent);
     }
 }
