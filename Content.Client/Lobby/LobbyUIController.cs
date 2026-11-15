@@ -163,6 +163,9 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
     /// </summary>
     public void ReloadCharacterSetup()
     {
+        if (_stateManager.CurrentState is LobbyState lobby && lobby.IsOldLobby) // CorvaxGoob-SwitchLobby
+            return;
+
         RefreshLobbyPreview();
         var (characterGui, profileEditor) = EnsureGui();
         characterGui.ReloadCharacterPickers();
