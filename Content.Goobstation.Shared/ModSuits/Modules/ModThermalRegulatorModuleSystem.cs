@@ -9,17 +9,20 @@ namespace Content.Goobstation.Shared.ModSuits.Modules;
 public sealed partial class ModThermalRegulatorModuleSystem : EntitySystem
 {
     [Dependency] private SharedTemperatureSystem _temperature = default!;
+    // CorvaxGoob-Optimization-Start
     [Dependency] private INetManager _net = default!;
     [Dependency] private IGameTiming _timing = default!;
 
     private TimeSpan _lastUpdate;
     private TimeSpan _nextUpdate;
     private bool _hasUpdated;
+    // CorvaxGoob-Optimization-End
 
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
 
+        // CorvaxGoob-Optimization-Start
         if (_net.IsClient)
             return;
 
@@ -34,6 +37,7 @@ public sealed partial class ModThermalRegulatorModuleSystem : EntitySystem
         _hasUpdated = true;
         _lastUpdate = now;
         _nextUpdate = now + TimeSpan.FromSeconds(0.1);
+        // CorvaxGoob-Optimization-End
 
         var query = EntityQueryEnumerator<ModThermalRegulatorModuleComponent, ModModuleComponent>();
         while (query.MoveNext(out _, out var regulator, out var module))
@@ -48,7 +52,9 @@ public sealed partial class ModThermalRegulatorModuleSystem : EntitySystem
             if (MathF.Abs(difference) < 0.01f)
                 continue;
 
+            // CorvaxGoob-Optimization-Start
             var step = MathF.Sign(difference) * MathF.Min(MathF.Abs(difference), regulator.Rate * elapsed);
+            // CorvaxGoob-Optimization-End
             var heat = step * _temperature.GetHeatCapacity(wearer, temperature);
             _temperature.ChangeHeat(wearer, heat, true, temperature);
         }

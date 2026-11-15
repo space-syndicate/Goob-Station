@@ -77,8 +77,10 @@ public sealed partial class ModUtilityModuleSystem : EntitySystem
     private void OnJointTorsionActivated(Entity<ModJointTorsionModuleComponent> ent, ref ModModuleActivatedEvent args)
     {
         ent.Comp.LastPosition = null;
+        // CorvaxGoob-Optimization-Start
         ent.Comp.PendingCharge = 0f;
         ent.Comp.NextCharge = TimeSpan.Zero;
+        // CorvaxGoob-Optimization-End
     }
 
     private void UpdateJointTorsion()
@@ -93,8 +95,10 @@ public sealed partial class ModUtilityModuleSystem : EntitySystem
                 || _gravity.IsWeightless(wearer))
             {
                 torsion.LastPosition = null;
+                // CorvaxGoob-Optimization-Start
                 if (_modSuit.TryGetModuleSuit(uid, out var flushSuit))
                     FlushCharge(torsion, flushSuit);
+                // CorvaxGoob-Optimization-End
                 continue;
             }
 
@@ -105,6 +109,7 @@ public sealed partial class ModUtilityModuleSystem : EntitySystem
                 continue;
 
             var moved = MathF.Min((position.Position - previous.Position).Length(), torsion.MaxTilesPerUpdate);
+            // CorvaxGoob-Optimization-Start
             if (moved <= 0.01f)
             {
                 FlushCharge(torsion, suit);
@@ -139,6 +144,7 @@ public sealed partial class ModUtilityModuleSystem : EntitySystem
 
         torsion.PendingCharge = 0f;
     }
+    // CorvaxGoob-Optimization-End
 
     [SubscribeLocalEvent]
     private void OnHatStabilizerInstalled(Entity<ModHatStabilizerModuleComponent> ent, ref ModModuleInstalledEvent args)

@@ -91,6 +91,7 @@ public sealed partial class ModSuitSystem
         UpdatePowerAlert(ent);
     }
 
+    // CorvaxGoob-Optimization-Start
     private void UpdateActivationStep(Entity<ModSuitComponent> ent, TimeSpan now)
     {
         var comp = ent.Comp;
@@ -133,6 +134,7 @@ public sealed partial class ModSuitSystem
         else
             FinishDeactivation(ent, false);
     }
+    // CorvaxGoob-Optimization-End
 
     private void FinishActivation(Entity<ModSuitComponent> ent, bool silent)
     {

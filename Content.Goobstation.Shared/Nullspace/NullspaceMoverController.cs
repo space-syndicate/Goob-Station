@@ -28,7 +28,9 @@ public sealed partial class NullspaceMoverController : VirtualController
         var query = EntityQueryEnumerator<NullspacePlayerComponent, InputMoverComponent, PhysicsComponent>();
         while (query.MoveNext(out var uid, out var player, out var mover, out var body))
         {
+            // CorvaxGoob-Optimization-Start
             if (_net.IsClient && !body.Predict)
+            // CorvaxGoob-Optimization-End
                 continue;
 
             Move((uid, player), mover, body, frameTime);

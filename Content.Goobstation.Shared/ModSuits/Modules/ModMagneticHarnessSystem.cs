@@ -25,6 +25,7 @@ public sealed partial class ModMagneticHarnessSystem : VirtualController
     private static readonly TimeSpan RetryDelay = TimeSpan.FromSeconds(5);
 
     private readonly List<EntityUid> _forget = new();
+    // CorvaxGoob-Optimization-Start
     private readonly HashSet<Entity<ModMagnetizedGunComponent>> _magnetized = new();
 
     public override void Initialize()
@@ -47,6 +48,7 @@ public sealed partial class ModMagneticHarnessSystem : VirtualController
     {
         _magnetized.Remove(ent);
     }
+    // CorvaxGoob-Optimization-End
 
     [SubscribeLocalEvent]
     private void OnDidEquip(Entity<ModMagneticHarnessComponent> ent, ref DidEquipEvent args)
@@ -72,6 +74,7 @@ public sealed partial class ModMagneticHarnessSystem : VirtualController
         var now = _timing.CurTime;
         _forget.Clear();
 
+        // CorvaxGoob-Optimization-Start
         foreach (var magnetizedEnt in _magnetized)
         {
             var gun = magnetizedEnt.Owner;
@@ -79,6 +82,7 @@ public sealed partial class ModMagneticHarnessSystem : VirtualController
 
             if (!TryComp<PhysicsComponent>(gun, out var body)
                 || _net.IsClient && !body.Predict)
+        // CorvaxGoob-Optimization-End
                 continue;
 
             var owner = magnetized.Wearer;

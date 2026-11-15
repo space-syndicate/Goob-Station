@@ -160,6 +160,8 @@ public sealed partial class ModSuitSystem
         UpdatePowerAlert(ent);
     }
 
+    // CorvaxGoob-Optimization: UpdatePowerAlerts removed, logic inlined into ModSuitSystem.Update
+
     private void UpdatePowerAlert(Entity<ModSuitComponent> ent)
     {
         if (_timing.ApplyingState || ent.Comp.Wearer is not { } wearer)

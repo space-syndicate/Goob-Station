@@ -20,9 +20,11 @@ public sealed partial class ModMagneticHarnessPredictionSystem : EntitySystem
     [SubscribeLocalEvent]
     private void OnAfterState(Entity<ModMagnetizedGunComponent> ent, ref AfterAutoHandleStateEvent args)
     {
+        // CorvaxGoob-Optimization-Start
         var shouldPredict = ent.Comp.LooseSince != null && ent.Comp.Wearer == _player.LocalEntity;
         if (TryComp<PhysicsComponent>(ent.Owner, out var body) && body.Predict == shouldPredict)
             return;
+        // CorvaxGoob-Optimization-End
 
         _physics.UpdateIsPredicted(ent);
     }

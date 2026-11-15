@@ -82,6 +82,7 @@ public sealed partial class ModSuitSystem
         RaiseUpdated(ent);
     }
 
+    // CorvaxGoob-Optimization-Start
     private void UpdateDeployQueue(Entity<ModSuitComponent> ent, TimeSpan now)
     {
         var comp = ent.Comp;
@@ -113,6 +114,7 @@ public sealed partial class ModSuitSystem
         Dirty(ent);
         RaiseUpdated(ent);
     }
+    // CorvaxGoob-Optimization-End
 
     public void TogglePart(Entity<ModSuitComponent> ent, string slot, EntityUid user)
     {

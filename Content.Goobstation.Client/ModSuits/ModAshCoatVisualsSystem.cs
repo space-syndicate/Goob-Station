@@ -16,7 +16,9 @@ public sealed partial class ModAshCoatVisualsSystem : EntitySystem
         new(new ResPath("_Goobstation/Clothing/OuterClothing/Modsuits/mining.rsi"), "ash-coat");
 
     private readonly HashSet<EntityUid> _coated = new();
+    // CorvaxGoob-Optimization-Start
     private readonly Dictionary<EntityUid, float> _lastAlpha = new();
+    // CorvaxGoob-Optimization-End
     private readonly List<EntityUid> _stale = new();
 
     public override void FrameUpdate(float frameTime)
@@ -37,17 +39,21 @@ public sealed partial class ModAshCoatVisualsSystem : EntitySystem
                 index = _sprite.AddLayer(ent, Coat);
                 _sprite.LayerMapSet(ent, LayerKey, index);
                 _coated.Add(uid);
+                // CorvaxGoob-Optimization-Start
                 _lastAlpha[uid] = alpha;
                 _sprite.LayerSetVisible(ent, index, true);
                 _sprite.LayerSetColor(ent, index, Color.White.WithAlpha(alpha));
                 continue;
+                // CorvaxGoob-Optimization-End
             }
 
+            // CorvaxGoob-Optimization-Start
             if (_lastAlpha.TryGetValue(uid, out var lastAlpha) && lastAlpha == alpha)
                 continue;
 
             _coated.Add(uid);
             _lastAlpha[uid] = alpha;
+            // CorvaxGoob-Optimization-End
             _sprite.LayerSetVisible(ent, index, alpha > 0f);
             _sprite.LayerSetColor(ent, index, Color.White.WithAlpha(alpha));
         }
@@ -62,7 +68,9 @@ public sealed partial class ModAshCoatVisualsSystem : EntitySystem
         foreach (var uid in _stale)
         {
             _coated.Remove(uid);
+            // CorvaxGoob-Optimization-Start
             _lastAlpha.Remove(uid);
+            // CorvaxGoob-Optimization-End
             if (_spriteQuery.TryComp(uid, out var sprite))
                 _sprite.RemoveLayer((uid, sprite), LayerKey, false);
         }

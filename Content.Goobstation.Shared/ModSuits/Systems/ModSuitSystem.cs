@@ -66,6 +66,7 @@ public sealed partial class ModSuitSystem : EntitySystem
     {
         base.Update(frameTime);
 
+        // CorvaxGoob-Optimization-Start
         var now = _timing.CurTime;
         var powerDue = now >= _nextPowerAlertUpdate;
         if (powerDue)
@@ -82,6 +83,7 @@ public sealed partial class ModSuitSystem : EntitySystem
             if (powerDue && state == comp.State && comp.Wearer != null && comp.State != ModSuitState.Inactive && ShouldStep(comp))
                 UpdatePowerAlert(ent);
         }
+        // CorvaxGoob-Optimization-End
     }
 
     [SubscribeLocalEvent]

@@ -17,8 +17,10 @@ public sealed partial class ModJetpackModuleSystem : EntitySystem
     {
         base.Update(frameTime);
 
+        // CorvaxGoob-Optimization-Start
         if (_net.IsClient)
             return;
+        // CorvaxGoob-Optimization-End
 
         var query = EntityQueryEnumerator<ModJetpackModuleComponent, ModModuleComponent>();
         while (query.MoveNext(out var uid, out _, out var module))

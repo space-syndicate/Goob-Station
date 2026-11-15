@@ -97,6 +97,7 @@ public sealed partial class ModLoaderMiningModuleSystem : EntitySystem
                 || !_gridQuery.TryComp(gridUid, out var grid))
                 continue;
 
+            // CorvaxGoob-Optimization-Start
             var tileIndices = _map.LocalToTile(gridUid, grid, xform.Coordinates);
             var tileChanged = coat.LastGrid != gridUid || coat.LastTile != tileIndices;
             var weatherDue = now >= coat.NextWeatherLayer;
@@ -121,6 +122,7 @@ public sealed partial class ModLoaderMiningModuleSystem : EntitySystem
                 if (InAccretionWeather(coat, xform, (gridUid, grid), tile))
                     change = 1;
             }
+            // CorvaxGoob-Optimization-End
 
             if (change != 0)
                 SetLayers((uid, coat), coat.Layers + change);

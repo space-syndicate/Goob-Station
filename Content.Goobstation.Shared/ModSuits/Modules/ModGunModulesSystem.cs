@@ -91,13 +91,17 @@ public sealed partial class ModGunModulesSystem : VirtualController
         while (fields.MoveNext(out var wearer, out var field, out var xform))
         {
             _projectiles.Clear();
+            // CorvaxGoob-Optimization-Start
             _lookup.GetEntitiesInRange(xform.Coordinates, field.Radius, _projectiles, LookupFlags.Dynamic | LookupFlags.Sundries | LookupFlags.Sensors);
+            // CorvaxGoob-Optimization-End
             foreach (var projectile in _projectiles)
             {
                 if (HasComp<ModDampenedProjectileComponent>(projectile)
                     || _container.IsEntityInContainer(projectile)
                     || !TryComp<PhysicsComponent>(projectile, out var body)
+                    // CorvaxGoob-Optimization-Start
                     || _net.IsClient && !body.Predict)
+                    // CorvaxGoob-Optimization-End
                     continue;
 
                 var speed = body.LinearVelocity.Length();
@@ -118,7 +122,9 @@ public sealed partial class ModGunModulesSystem : VirtualController
         var tracked = EntityQueryEnumerator<ModDampenedProjectileComponent, PhysicsComponent, TransformComponent>();
         while (tracked.MoveNext(out var uid, out var dampened, out var body, out var xform))
         {
+            // CorvaxGoob-Optimization-Start
             if (_net.IsClient && !body.Predict)
+            // CorvaxGoob-Optimization-End
                 continue;
 
             var velocity = body.LinearVelocity;
