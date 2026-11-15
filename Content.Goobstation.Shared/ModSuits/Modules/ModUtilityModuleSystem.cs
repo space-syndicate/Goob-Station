@@ -77,6 +77,7 @@ public sealed partial class ModUtilityModuleSystem : EntitySystem
     private void OnJointTorsionActivated(Entity<ModJointTorsionModuleComponent> ent, ref ModModuleActivatedEvent args)
     {
         ent.Comp.LastPosition = null;
+        ent.Comp.NextCharge = TimeSpan.Zero;
     }
 
     private void UpdateJointTorsion()
@@ -91,6 +92,8 @@ public sealed partial class ModUtilityModuleSystem : EntitySystem
                 || _gravity.IsWeightless(wearer))
             {
                 torsion.LastPosition = null;
+                if (_modSuit.TryGetModuleSuit(uid, out var flushSuit))
+                    FlushCharge(torsion, flushSuit);
                 continue;
             }
 
@@ -101,11 +104,34 @@ public sealed partial class ModUtilityModuleSystem : EntitySystem
                 continue;
 
             var moved = MathF.Min((position.Position - previous.Position).Length(), torsion.MaxTilesPerUpdate);
-            if (moved <= 0.01f || _modSuit.GetBattery(suit) is not { } battery)
+            if (moved <= 0.01f)
+            {
+                FlushCharge(torsion, suit);
+                continue;
+            }
+
+            if (_modSuit.GetBattery(suit) is not { } battery)
                 continue;
 
-            _battery.ChangeCharge(battery.AsNullable(), moved * torsion.ChargePerTile);
+            torsion.PendingCharge += moved * torsion.ChargePerTile;
+
+            var now = _timing.CurTime;
+            if (now < torsion.NextCharge)
+                continue;
+
+            _battery.ChangeCharge(battery.AsNullable(), torsion.PendingCharge);
+            torsion.PendingCharge = 0f;
+            torsion.NextCharge = now + TimeSpan.FromSeconds(0.5);
         }
+    }
+
+    private void FlushCharge(ModJointTorsionModuleComponent torsion, Entity<ModSuitComponent> suit)
+    {
+        if (torsion.PendingCharge <= 0f || _modSuit.GetBattery(suit) is not { } battery)
+            return;
+
+        _battery.ChangeCharge(battery.AsNullable(), torsion.PendingCharge);
+        torsion.PendingCharge = 0f;
     }
 
     [SubscribeLocalEvent]

@@ -3,6 +3,7 @@ using Content.Goobstation.Shared.ModSuits.Systems;
 using Content.Shared.Gravity;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
+using Robust.Shared.Network;
 
 namespace Content.Goobstation.Shared.ModSuits.Modules;
 
@@ -10,10 +11,14 @@ public sealed partial class ModJetpackModuleSystem : EntitySystem
 {
     [Dependency] private ModSuitSystem _modSuit = default!;
     [Dependency] private SharedJetpackSystem _jetpack = default!;
+    [Dependency] private INetManager _net = default!;
 
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
+
+        if (_net.IsClient)
+            return;
 
         var query = EntityQueryEnumerator<ModJetpackModuleComponent, ModModuleComponent>();
         while (query.MoveNext(out var uid, out _, out var module))

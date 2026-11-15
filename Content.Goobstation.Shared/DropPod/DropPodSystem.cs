@@ -17,6 +17,8 @@ public sealed partial class DropPodSystem : EntitySystem
     [Dependency] private SharedTransformSystem _xform = default!;
     [Dependency] private EntityTableSystem _entityTable = default!;
 
+    private readonly List<(EntityUid Uid, DropPodComponent Pod, EntityCoordinates Coords)> _landed = new();
+
     public static readonly EntProtoId DefaultPod = "DropPod";
 
     [SubscribeLocalEvent]
@@ -81,15 +83,15 @@ public sealed partial class DropPodSystem : EntitySystem
             return;
 
         var now = _timing.CurTime;
-        var landed = new List<(EntityUid Uid, DropPodComponent Pod, EntityCoordinates Coords)>();
+        _landed.Clear();
         var query = EntityQueryEnumerator<DropPodComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var pod, out var xform))
         {
             if (now >= pod.LandTime)
-                landed.Add((uid, pod, xform.Coordinates));
+                _landed.Add((uid, pod, xform.Coordinates));
         }
 
-        foreach (var (uid, pod, coords) in landed)
+        foreach (var (uid, pod, coords) in _landed)
             Land(uid, pod, coords);
     }
 

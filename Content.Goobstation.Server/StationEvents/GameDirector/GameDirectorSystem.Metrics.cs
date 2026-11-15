@@ -69,6 +69,8 @@ public sealed partial class GameDirectorSystem
         "game_director_destruction_budget",
         "Destruction budget available to the Game Director.");
 
+    private readonly Dictionary<string, int> _antagCounts = new();
+
     private static void ResetGaugeLabels<TChild>(Collector<TChild> gauge) where TChild : ChildBase
     {
         foreach (var labelSet in gauge.GetAllLabelValues().ToList())
@@ -99,7 +101,8 @@ public sealed partial class GameDirectorSystem
 
     private void UpdateAntagMetrics()
     {
-        var counts = new Dictionary<string, int>();
+        var counts = _antagCounts;
+        counts.Clear();
         var query = EntityQueryEnumerator<AntagSelectionComponent, ActiveGameRuleComponent, MetaDataComponent>();
         while (query.MoveNext(out _, out var antag, out _, out var meta))
         {

@@ -16,6 +16,7 @@ public sealed partial class ModAshCoatVisualsSystem : EntitySystem
         new(new ResPath("_Goobstation/Clothing/OuterClothing/Modsuits/mining.rsi"), "ash-coat");
 
     private readonly HashSet<EntityUid> _coated = new();
+    private readonly Dictionary<EntityUid, float> _lastAlpha = new();
     private readonly List<EntityUid> _stale = new();
 
     public override void FrameUpdate(float frameTime)
@@ -36,8 +37,16 @@ public sealed partial class ModAshCoatVisualsSystem : EntitySystem
                 index = _sprite.AddLayer(ent, Coat);
                 _sprite.LayerMapSet(ent, LayerKey, index);
                 _coated.Add(uid);
+                _lastAlpha[uid] = alpha;
+                _sprite.LayerSetVisible(ent, index, true);
+                _sprite.LayerSetColor(ent, index, Color.White.WithAlpha(alpha));
+                continue;
             }
 
+            if (_lastAlpha.TryGetValue(uid, out var lastAlpha) && lastAlpha == alpha)
+                continue;
+
+            _lastAlpha[uid] = alpha;
             _sprite.LayerSetVisible(ent, index, alpha > 0f);
             _sprite.LayerSetColor(ent, index, Color.White.WithAlpha(alpha));
         }
@@ -52,6 +61,7 @@ public sealed partial class ModAshCoatVisualsSystem : EntitySystem
         foreach (var uid in _stale)
         {
             _coated.Remove(uid);
+            _lastAlpha.Remove(uid);
             if (_spriteQuery.TryComp(uid, out var sprite))
                 _sprite.RemoveLayer((uid, sprite), LayerKey, false);
         }

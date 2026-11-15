@@ -45,6 +45,12 @@ public sealed partial class ModJointTorsionModuleComponent : Component
 
     [ViewVariables]
     public MapCoordinates? LastPosition;
+
+    [ViewVariables]
+    public float PendingCharge;
+
+    [ViewVariables]
+    public TimeSpan NextCharge;
 }
 
 [RegisterComponent, NetworkedComponent]

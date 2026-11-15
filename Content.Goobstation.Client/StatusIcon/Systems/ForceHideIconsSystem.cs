@@ -10,9 +10,9 @@ public sealed partial class ForceHideIconsSystem : EntitySystem
     [Dependency] private IPlayerManager _player = default!;
 
     [SubscribeLocalEvent(after: [typeof(GhoulSystem)])]
-    private void OnGetStatusIcons(ref GetStatusIconsEvent args)
+    private void OnGetStatusIcons(Entity<ForceHideIconsComponent> ent, ref GetStatusIconsEvent args)
     {
-        if (args.Uid != _player.LocalEntity && HasComp<ForceHideIconsComponent>(args.Uid))
+        if (args.Uid != _player.LocalEntity)
             args.StatusIcons.Clear();
     }
 }

@@ -22,6 +22,9 @@ public sealed partial class ModEnergyShieldModuleSystem : EntitySystem
     {
         base.Update(frameTime);
 
+        if (_net.IsClient)
+            return;
+
         var now = _timing.CurTime;
         var query = EntityQueryEnumerator<ModEnergyShieldModuleComponent>();
         while (query.MoveNext(out var uid, out var shield))
