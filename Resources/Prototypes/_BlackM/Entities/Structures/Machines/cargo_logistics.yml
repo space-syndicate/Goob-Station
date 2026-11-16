@@ -1,0 +1,91 @@
+- type: entity
+  id: BlackMHeavyCargoImport
+  parent: BaseStructure
+  name: receiving cargo lift
+  description: Don't stand on the lid.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _BlackM/Structures/Machines/heavy_cargo_lift_import.rsi
+    drawdepth: FloorTiles
+    offset: 0.5,0.5
+    layers:
+    - state: import_idle
+    - state: blocked
+      visible: false
+      shader: unshaded
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeAabb
+          bounds: "-1.45,-1.45,2.45,2.45"
+        hard: false
+        mask: []
+        layer: []
+  - type: ApcPowerReceiver
+    powerLoad: 3000
+  - type: ExtensionCableReceiver
+  - type: CargoDock
+    mode: Import
+    queueCapacity: 48
+    cooldown: 1
+    maxItems: 16
+  - type: CargoMachineVisual
+    padTiles: 4
+    padOffset: 0.5,0.5
+  - type: CargoSellBlacklist
+  - type: Appearance
+
+- type: entity
+  id: BlackMHeavyCargoExport
+  parent: BlackMHeavyCargoImport
+  name: dispatch cargo lift
+  description: Don't stand on the lid.
+  components:
+  - type: Sprite
+    sprite: _BlackM/Structures/Machines/heavy_cargo_lift_export.rsi
+    offset: 0.5,0.5
+    layers:
+    - state: export_idle
+    - state: blocked
+      visible: false
+      shader: unshaded
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeAabb
+          bounds: "-2.45,-2.45,3.45,3.45"
+        hard: false
+        mask: []
+        layer: []
+  - type: ApcPowerReceiver
+    powerLoad: 5000
+  - type: CargoDock
+    mode: Export
+    cooldown: 1
+    maxItems: 36
+  - type: CargoMachineVisual
+    padTiles: 6
+    padOffset: 0.5,0.5
+
+- type: entity
+  id: BlackMHeavyCargoShell
+  name: freight gate enclosure
+  categories: [HideSpawnMenu]
+  components:
+  - type: Transform
+    anchored: true
+
+- type: entity
+  id: BlackMCargoImportDock
+  parent: BlackMHeavyCargoImport
+  categories: [HideSpawnMenu]
+
+- type: entity
+  id: BlackMCargoExportDock
+  parent: BlackMHeavyCargoExport
+  categories: [HideSpawnMenu]
