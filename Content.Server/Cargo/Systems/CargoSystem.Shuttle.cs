@@ -73,6 +73,15 @@ public sealed partial class CargoSystem
                 new CargoPalletConsoleInterfaceState(0, 0, false));
             return;
         }
+        // BlackM edit: start
+        if (EntityManager.System<Content.Server._BlackM.Cargo.CargoLogisticsSystem>()
+            .GetExportQuote(gridUid, out var dockValue, out var dockCount, out var dockReady))
+        {
+            _uiSystem.SetUiState(uid, CargoPalletConsoleUiKey.Sale,
+                new CargoPalletConsoleInterfaceState(dockValue, dockCount, dockReady));
+            return;
+        }
+        // BlackM edit: end
         GetPalletGoods(gridUid, out var toSell, out var goods);
         var totalAmount = goods.Sum(t => t.Item3);
         _uiSystem.SetUiState(uid,
@@ -223,6 +232,11 @@ public sealed partial class CargoSystem
 
     private bool CanSell(EntityUid uid, TransformComponent xform)
     {
+        // BlackM edit: start
+        // Cargo reserved by a lift must not be sold twice.
+        if (HasComp<Content.Shared._BlackM.Cargo.CargoTransitComponent>(uid))
+            return false;
+        // BlackM edit: end
         if (_mobQuery.HasComponent(uid))
         {
             return false;
@@ -262,6 +276,15 @@ public sealed partial class CargoSystem
             return;
         }
 
+        // BlackM edit: start
+        if (EntityManager.System<Content.Server._BlackM.Cargo.CargoLogisticsSystem>()
+            .TryStartExports(gridUid, station, out var dockMessage))
+        {
+            ConsolePopup(args.Actor, dockMessage);
+            UpdatePalletConsoleInterface(uid);
+            return;
+        }
+        // BlackM edit: end
         if (!SellPallets(gridUid, station, out var goods))
             return;
 

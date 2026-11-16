@@ -42,7 +42,6 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-using System.Linq;
 using System.Numerics;
 using Content.Client._BlackM.Lobby.Terminal; // BlackM
 using Content.Shared.Humanoid.Prototypes;
@@ -71,15 +70,6 @@ public sealed partial class LobbyCharacterPreviewPanel : Control
     [Dependency] private readonly IResourceCache _cache = default!;
 
     private float _refreshTimer;
-    private string _chipSignature = string.Empty;
-
-    private const float AnimDuration = 0.6f;
-    private const float PortraitHeight = 176f;
-    private float _anim = 1f;
-    private int _animDir = 1;
-    private int _lastSelected = int.MinValue;
-    private string _nameFull = string.Empty;
-
     private static readonly Direction[] Facings = { Direction.South, Direction.West, Direction.North, Direction.East };
     private Direction _portraitDir = Direction.South;
     private SpriteView? _spriteView;
@@ -95,9 +85,6 @@ public sealed partial class LobbyCharacterPreviewPanel : Control
         IoCManager.InjectDependencies(this);
         // BlackM start
         NameLabel.FontOverride = TerminalFonts.Bold(_cache, 18);
-        PrevButton.OnPressed += _ => Step(-1);
-        NextButton.OnPressed += _ => Step(1);
-
         foreach (var child in PortraitArea.Children)
             IgnoreMouse(child);
         PortraitArea.OnKeyBindDown += OnPortraitClick;
@@ -114,7 +101,6 @@ public sealed partial class LobbyCharacterPreviewPanel : Control
     public void SetCompact(bool compact)
     {
         DossierRow.Visible = !compact;
-        ChipRow.Visible = !compact;
     }
 
     public void SetSummaryText(string value)
@@ -127,12 +113,6 @@ public sealed partial class LobbyCharacterPreviewPanel : Control
     protected override void FrameUpdate(FrameEventArgs args)
     {
         base.FrameUpdate(args);
-
-        if (_anim < 1f)
-        {
-            _anim = Math.Min(1f, _anim + args.DeltaSeconds / AnimDuration);
-            ApplyAnim();
-        }
 
         _refreshTimer += Math.Min(args.DeltaSeconds, 0.05f);
         if (_refreshTimer < 1f)
@@ -148,13 +128,11 @@ public sealed partial class LobbyCharacterPreviewPanel : Control
 
         if (_prefs.Preferences?.SelectedCharacter is not HumanoidCharacterProfile profile)
         {
-            _nameFull = none;
             NameLabel.Text = none;
             KeySpecies.Text = KeyAge.Text = KeySex.Text = KeyJob.Text = string.Empty;
             ValSpecies.Text = ValAge.Text = ValSex.Text = ValJob.Text = string.Empty;
             JobIcon.Visible = false;
             FileId.Text = string.Empty;
-            SlotLabel.Text = string.Empty;
             return;
         }
 
@@ -172,9 +150,7 @@ public sealed partial class LobbyCharacterPreviewPanel : Control
             }
         }
 
-        _nameFull = profile.Name;
-        if (_anim >= 1f)
-            NameLabel.Text = _nameFull;
+        NameLabel.Text = profile.Name;
 
         KeySpecies.Text = Loc.GetString("blackm-field-species");
         KeyAge.Text = Loc.GetString("blackm-field-age");
@@ -201,20 +177,6 @@ public sealed partial class LobbyCharacterPreviewPanel : Control
             hash = hash * 31u + c;
         FileId.Text = $"ID  BM-{hash % 0xFFFFFFu:X6}";
 
-        RefreshSlots();
-    }
-
-    private void StartAnim(int direction)
-    {
-        _anim = 0f;
-        _animDir = direction;
-        TerminalSounds.Play(TerminalSounds.Select);
-
-        _portraitDir = Direction.South;
-        if (_spriteView != null)
-            _spriteView.OverrideDirection = _portraitDir;
-
-        ApplyAnim();
     }
 
     private static void IgnoreMouse(Control control)
@@ -243,113 +205,6 @@ public sealed partial class LobbyCharacterPreviewPanel : Control
             _spriteView.OverrideDirection = _portraitDir;
 
         TerminalSounds.Play(TerminalSounds.Select);
-    }
-
-    private void ApplyAnim()
-    {
-        var t = _anim;
-
-        if (t >= 1f)
-        {
-            InfoColumn.Modulate = Color.White;
-            InfoColumn.Margin = new Thickness(0);
-            ViewBox.Modulate = Color.White;
-            ScanBar.Visible = false;
-            NameLabel.Text = _nameFull;
-            return;
-        }
-
-        var e = 1f - MathF.Pow(1f - t, 3f);
-
-        InfoColumn.Modulate = new Color(1f, 1f, 1f, e);
-        InfoColumn.Margin = new Thickness(_animDir * (1f - e) * 28f, 0, 0, 0);
-
-        var flicker = t < 0.6f
-            ? Math.Min(1f, t * 3f) * (0.35f + 0.65f * (0.5f + 0.5f * MathF.Sin(t * 80f)))
-            : 1f;
-        ViewBox.Modulate = new Color(1f, 1f, 1f, flicker);
-
-        var scan = Math.Min(1f, t / 0.85f);
-        ScanBar.Visible = scan < 1f;
-        ScanBar.Margin = new Thickness(0f, PortraitHeight * scan, 0f, 0f);
-
-        var count = (int) MathF.Ceiling(_nameFull.Length * Math.Min(1f, t / 0.6f));
-        NameLabel.Text = _nameFull.Substring(0, Math.Min(count, _nameFull.Length));
-    }
-
-    private List<int> OrderedSlots()
-    {
-        return _prefs.Preferences?.Characters.Keys.OrderBy(k => k).ToList() ?? new List<int>();
-    }
-
-    private void RefreshSlots()
-    {
-        var prefs = _prefs.Preferences;
-        if (prefs == null)
-            return;
-
-        var slots = OrderedSlots();
-        var selected = prefs.SelectedCharacterIndex;
-        var position = Math.Max(0, slots.IndexOf(selected));
-
-        if (_lastSelected != int.MinValue && _lastSelected != selected)
-            StartAnim(selected > _lastSelected ? 1 : -1);
-        _lastSelected = selected;
-
-        SlotLabel.Text = $"{Loc.GetString("blackm-file-case")} {position + 1:00} / {slots.Count:00}";
-        PrevButton.Disabled = slots.Count <= 1;
-        NextButton.Disabled = slots.Count <= 1;
-
-        var signature = selected + "|" + string.Join(";", slots.Select(s =>
-            s + ":" + (prefs.Characters[s] is HumanoidCharacterProfile h ? h.Name : "?")));
-        if (signature == _chipSignature)
-            return;
-
-        _chipSignature = signature;
-        ChipRow.RemoveAllChildren();
-
-        if (slots.Count <= 1 || slots.Count > 12)
-            return;
-
-        for (var i = 0; i < slots.Count; i++)
-        {
-            var slot = slots[i];
-            var name = prefs.Characters[slot] is HumanoidCharacterProfile humanoid ? humanoid.Name : "?";
-
-            var chip = new Button
-            {
-                Text = $"{i + 1:00}",
-                MinSize = new Vector2(38, 28),
-                ToolTip = name,
-                Pressed = slot == selected,
-                StyleClasses = { Content.Client.Stylesheets.StyleNano.StyleClassFlatButtonTerminalBlackM },
-            };
-            chip.OnPressed += _ => SelectSlot(slot);
-            ChipRow.AddChild(chip);
-        }
-    }
-
-    private void Step(int delta)
-    {
-        var prefs = _prefs.Preferences;
-        if (prefs == null)
-            return;
-
-        var slots = OrderedSlots();
-        if (slots.Count <= 1)
-            return;
-
-        var index = Math.Max(0, slots.IndexOf(prefs.SelectedCharacterIndex));
-        SelectSlot(slots[(index + delta + slots.Count) % slots.Count]);
-    }
-
-    private void SelectSlot(int slot)
-    {
-        if (_prefs.Preferences == null || slot == _prefs.Preferences.SelectedCharacterIndex)
-            return;
-
-        _prefs.SelectCharacter(slot);
-        UserInterfaceManager.GetUIController<LobbyUIController>().ReloadCharacterSetup();
     }
 
     public void SetSprite(EntityUid uid)

@@ -1,4 +1,0 @@
-- type: shader
-  id: LobbyRoundBlur
-  kind: source
-  path: "/Textures/_BlackM/Shaders/lobby_round_blur.swsl"

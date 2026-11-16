@@ -91,6 +91,8 @@ namespace Content.Client.Lobby.UI
             CharEditor.AddChild(profileEditor);
             // BlackM start
             _editor = profileEditor;
+            _editor.HorizontalExpand = true;
+            _editor.VerticalExpand = true;
             // BlackM end
             RulesButton.OnPressed += _ => new RulesAndInfoWindow().Open();
 
@@ -159,10 +161,11 @@ namespace Content.Client.Lobby.UI
                 var index = i;
                 var button = new Button
                 {
-                    Text = $"[{i + 1:00}] {TabTitle(tabs, i).ToUpperInvariant()}",
+                    Text = TabTitle(tabs, i).ToUpperInvariant(),
                     ToggleMode = true,
                     Group = _sectionGroup,
                     HorizontalExpand = true,
+                    MinHeight = 34,
                     StyleClasses = { StyleNano.StyleClassButtonTerminalBlackM },
                 };
 
@@ -187,22 +190,6 @@ namespace Content.Client.Lobby.UI
 
             for (var i = 0; i < _sectionButtons.Count; i++)
                 _sectionButtons[i].Pressed = i == _lastTab;
-        }
-
-        public void OpenSection(string tabTitleLocId)
-        {
-            var wanted = Loc.GetString(tabTitleLocId);
-            var tabs = _editor.TabContainer;
-
-            for (var i = 0; i < tabs.ChildCount; i++)
-            {
-                if (TabTitle(tabs, i) != wanted)
-                    continue;
-
-                tabs.CurrentTab = i;
-                SyncSectionSelection();
-                return;
-            }
         }
 
         public void PlayIntro()

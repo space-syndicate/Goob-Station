@@ -205,7 +205,13 @@ SPDX-License-Identifier: AGPL-3.0-or-later
     xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
     xmlns:terminal="clr-namespace:Content.Client._BlackM.Lobby.Terminal"
     xmlns:widgets="clr-namespace:Content.Client.UserInterface.Systems.Chat.Widgets">
-    <terminal:LobbyRoundBackground Name="RoundBackground" VerticalExpand="True" HorizontalExpand="True" />
+    <!-- BlackM -->
+    <PanelContainer Name="LobbyBase" VerticalExpand="True" HorizontalExpand="True" MouseFilter="Ignore">
+        <PanelContainer.PanelOverride>
+            <gfx:StyleBoxFlat BackgroundColor="#0B0804" />
+        </PanelContainer.PanelOverride>
+        <terminal:LobbySignalBackground VerticalExpand="True" HorizontalExpand="True" />
+    </PanelContainer>
     <TextureRect Name="LobbyBranding" TexturePath="/Textures/_BlackM/LobbyScreens/aperture-blackmesa.png"
                  Stretch="KeepAspectCentered" ModulateSelfOverride="#FFFFFF35" Visible="False"
                  VerticalExpand="True" HorizontalExpand="True" MouseFilter="Ignore" />
@@ -215,8 +221,8 @@ SPDX-License-Identifier: AGPL-3.0-or-later
         </PanelContainer.PanelOverride>
         <Control VerticalExpand="True" HorizontalExpand="True" />
     </PanelContainer>
-    <terminal:TerminalScanlines Name="LobbyVhsOverlay" LineStep="3" LineAlpha="0.024"
-                                VignetteStrength="0.004" RollingBar="True" Flicker="False"
+    <terminal:TerminalScanlines Name="LobbyVhsOverlay" LineStep="3" LineAlpha="0"
+                                VignetteStrength="0.004" RollingBar="False" Flicker="False"
                                 VerticalExpand="True" HorizontalExpand="True" MouseFilter="Ignore" />
 
     <BoxContainer Name="MainContainer" VerticalExpand="True" HorizontalExpand="True" Orientation="Horizontal"
@@ -224,8 +230,8 @@ SPDX-License-Identifier: AGPL-3.0-or-later
         <SplitContainer State="Auto" ResizeMode="NotResizable" HorizontalExpand="True">
             <!-- LHS Controls -->
             <BoxContainer Name="LeftSide" Orientation="Vertical" SeparationOverride="4" HorizontalExpand="True">
-                <Control Name="DefaultState" VerticalExpand="True">
-                    <!-- blackm edit-->
+                <!-- BlackM: left column -->
+                <BoxContainer Name="DefaultState" Orientation="Vertical" VerticalExpand="True" SeparationOverride="6">
                     <BoxContainer Name="TopLeft" Orientation="Vertical">
                         <PanelContainer StyleClasses="PanelTerminalBlackM" Name="LeftSideTop"
                                         HorizontalExpand="True" VerticalAlignment="Top">
@@ -239,23 +245,18 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                                     <info:LinkBanner Name="LinkBanner" VerticalExpand="false"
                                                      HorizontalAlignment="Right" />
                                 </BoxContainer>
-                                <controls:HLine Color="{x:Static style:StyleNano.TerminalGreenDim}" Thickness="1" />
+                                <controls:HLine Color="#80501938" Thickness="1" />
                                 <terminal:TerminalMenu Name="Menu" Access="Public" Orientation="Horizontal"
                                                        SeparationOverride="6" HorizontalExpand="True">
-                                    <Button Name="AntagsButton" Access="Public"
-                                            Text="{Loc 'humanoid-profile-editor-antags-tab'}" />
                                     <Button Name="OptionsButton" Access="Public"
                                             Text="{Loc 'ui-lobby-options-button'}" />
-                                    <!-- BlackM: achiv -->
-                                    <Button Name="AchievementsButton" Access="Public"
-                                            Text="{Loc 'blackm-achievements-button'}" />
                                     <Button Name="AHelpButton" Access="Public"
                                             Text="{Loc 'ui-lobby-ahelp-button'}" />
                                     <vote:VoteCallMenuButton Name="CallVoteButton" />
                                     <Button Name="LeaveButton" Access="Public"
                                             Text="{Loc 'ui-lobby-leave-button'}" />
                                 </terminal:TerminalMenu>
-                                <controls:HLine Color="{x:Static style:StyleNano.TerminalGreenDim}" Thickness="1" />
+                                <controls:HLine Color="#80501938" Thickness="1" />
                                 <BoxContainer Orientation="Horizontal" SeparationOverride="8">
                                     <cc:UICommandButton Command="observe" Name="ObserveButton" Access="Public"
                                                         Text="{Loc 'ui-lobby-observe-button'}"
@@ -277,35 +278,54 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                         </PanelContainer>
                         <!-- Voting Popups -->
                         <BoxContainer Orientation="Vertical" SeparationOverride="4" Name="VoteContainer"
-                                      Access="Public" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0 8" />
+                                      Access="Public" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0 4" />
                     </BoxContainer>
-                    <BoxContainer Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom"
-                                  SeparationOverride="4">
-                        <info:DevInfoBanner Name="DevInfoBanner" VerticalExpand="false" Margin="3 3 3 3" />
-                        <PanelContainer StyleClasses="PanelTerminalBlackM">
-                            <RichTextLabel Name="LobbySong" Access="Public" HorizontalAlignment="Center" />
-                        </PanelContainer>
-                    </BoxContainer>
-                    <PanelContainer StyleClasses="PanelTerminalBlackM" HorizontalAlignment="Right"
-                                    VerticalAlignment="Bottom" Margin="0 0 3 3">
-                        <BoxContainer Orientation="Horizontal" SeparationOverride="6">
-                            <Button Name="DiscordButton" Access="Public" StyleClasses="FlatButtonTerminalBlackM"
-                                    MinSize="40 40" ToolTip="Discord">
-                                <TextureRect TexturePath="/Textures/_BlackM/Interface/Icons/discord.png"
-                                             MinSize="22 22" Stretch="KeepAspectCentered"
-                                             HorizontalAlignment="Center" VerticalAlignment="Center"
-                                             MouseFilter="Ignore" />
-                            </Button>
-                            <Button Name="BoustyButton" Access="Public" StyleClasses="FlatButtonTerminalBlackM"
-                                    MinSize="40 40" ToolTip="Boosty">
-                                <TextureRect TexturePath="/Textures/_BlackM/Interface/Icons/boosty.png"
-                                             MinSize="22 22" Stretch="KeepAspectCentered"
-                                             HorizontalAlignment="Center" VerticalAlignment="Center"
-                                             MouseFilter="Ignore" />
-                            </Button>
+                    <!-- BlackM: fullheight chat on the left -->
+                    <PanelContainer Name="ChatPanel" StyleClasses="PanelTerminalBlackM"
+                                    VerticalExpand="True" HorizontalExpand="True">
+                        <BoxContainer Orientation="Vertical" SeparationOverride="4" Margin="6">
+                            <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+                                <Label Text="{Loc 'blackm-lobby-chat-title'}" StyleClasses="LabelTerminalBlackM"
+                                       HorizontalExpand="True" VerticalAlignment="Center" />
+                                <Label Text="{Loc 'blackm-lobby-chat-status'}" StyleClasses="LabelTerminalBlackM"
+                                       Modulate="#FFFFFFA0" VerticalAlignment="Center" />
+                            </BoxContainer>
+                            <controls:HLine Color="#80501938" Thickness="1" />
+                            <widgets:ChatBox Name="Chat" Access="Public" VerticalExpand="True" HorizontalExpand="True"
+                                             MinHeight="120" Margin="0 2 0 0" />
                         </BoxContainer>
                     </PanelContainer>
-                </Control>
+                    <!-- BlackM: bottom bar (credits / song / socials) -->
+                    <BoxContainer Name="LeftBottomBar" Orientation="Horizontal" SeparationOverride="4">
+                        <info:DevInfoBanner Name="DevInfoBanner" VerticalExpand="false" Margin="3 3 3 3"
+                                            VerticalAlignment="Center" />
+                        <PanelContainer VerticalAlignment="Center">
+                            <RichTextLabel Name="LobbySong" Access="Public" HorizontalAlignment="Center" Margin="6 2" />
+                        </PanelContainer>
+                        <Control HorizontalExpand="True" />
+                        <PanelContainer VerticalAlignment="Center">
+                            <BoxContainer Orientation="Horizontal" SeparationOverride="6">
+                                <Button Name="AchievementsButton" Access="Public"
+                                        Text="{Loc 'blackm-achievements-button'}"
+                                        StyleClasses="FlatButtonTerminalBlackM" MinSize="130 40" />
+                                <Button Name="DiscordButton" Access="Public" StyleClasses="FlatButtonTerminalBlackM"
+                                        MinSize="40 40" ToolTip="Discord">
+                                    <TextureRect TexturePath="/Textures/_BlackM/Interface/Icons/discord.png"
+                                                 MinSize="22 22" Stretch="KeepAspectCentered"
+                                                 HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                 MouseFilter="Ignore" />
+                                </Button>
+                                <Button Name="BoustyButton" Access="Public" StyleClasses="FlatButtonTerminalBlackM"
+                                        MinSize="40 40" ToolTip="Boosty">
+                                    <TextureRect TexturePath="/Textures/_BlackM/Interface/Icons/boosty.png"
+                                                 MinSize="22 22" Stretch="KeepAspectCentered"
+                                                 HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                 MouseFilter="Ignore" />
+                                </Button>
+                            </BoxContainer>
+                        </PanelContainer>
+                    </BoxContainer>
+                </BoxContainer>
                 <!-- Character setup state -->
                 <!-- This is injected on startup. Funky! -->
                 <Control Access="Public" Visible="False" Name="CharacterSetupState" VerticalExpand="True" />
@@ -319,13 +339,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                         <Label Name="ServerName" Access="Public" StyleClasses="LabelTerminalBlackM" VAlign="Center"
                                HorizontalExpand="True" HorizontalAlignment="Center" />
                     </BoxContainer>
-                    <controls:HLine Color="{x:Static style:StyleNano.TerminalGreenDim}" Thickness="2" />
+                    <controls:HLine Color="#80501950" Thickness="1" />
                     <controls:HSpacer Spacing="10" />
                     <PanelContainer Name="ServerInfoPanel" Margin="3">
                         <PanelContainer.PanelOverride>
-                            <gfx:StyleBoxFlat BackgroundColor="#100C07A0"
-                                              BorderColor="{x:Static style:StyleNano.TerminalGreenDim}"
-                                              BorderThickness="1" />
+                            <gfx:StyleBoxFlat BackgroundColor="#100C07A0" />
                         </PanelContainer.PanelOverride>
                         <BoxContainer Orientation="Vertical" SeparationOverride="4" Margin="8">
                             <BoxContainer Orientation="Horizontal">
@@ -334,7 +352,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                                 <Label Text="{Loc 'blackm-serverinfo-online'}" StyleClasses="LabelTerminalBlackM"
                                        Modulate="#FFFFFFA0" />
                             </BoxContainer>
-                            <controls:HLine Color="{x:Static style:StyleNano.TerminalGreenDim}" Thickness="1" />
+                            <controls:HLine Color="#80501938" Thickness="1" />
                             <info:ServerInfo Name="ServerInfo" Access="Public" MinSize="0 30" VerticalExpand="false"
                                              Margin="2 2 2 2" MaxWidth="560" HorizontalAlignment="Left" />
                             <Label Name="StationTime" Access="Public" StyleClasses="LabelTerminalBlackM"
@@ -344,13 +362,13 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                     <controls:HSpacer Spacing="6" />
                     <lobbyUi:LobbyCharacterPreviewPanel Name="CharacterPreview" Access="Public" Margin="3" />
                     <controls:HSpacer Spacing="5" />
-                    <BoxContainer MinHeight="10" />
                     <!-- Server Currency -->
                     <Label Name="Balance" Access="Public" StyleClasses="LabelTerminalBlackM" VAlign="Center"
                            HorizontalExpand="True" HorizontalAlignment="Center" />
-                    <controls:HLine Color="{x:Static style:StyleNano.TerminalGreenDim}" Thickness="2" Access="Public" />
-                    <controls:HSpacer Spacing="10" />
-                    <widgets:ChatBox Name="Chat" Access="Public" VerticalExpand="True" Margin="3 3 3 3" MinHeight="50" />
+                    <controls:HSpacer Spacing="4" />
+                    <!-- BlackM: changelog window -->
+                    <terminal:LobbyChangelogPanel Name="ChangelogPanel" Access="Public" VerticalExpand="True"
+                                                  HorizontalExpand="True" Margin="3" MinHeight="140" />
                 </BoxContainer>
                 <TextureButton Name="CollapseButton"
                                TexturePath="filled_right_arrow.svg.192dpi"

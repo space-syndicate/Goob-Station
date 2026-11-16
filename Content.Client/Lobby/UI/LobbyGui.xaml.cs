@@ -77,12 +77,13 @@ namespace Content.Client.Lobby.UI
         private float _pulseTime;
         private AchievementsWindow? _achievementsWindow;
 
-        private const float ChatComfortHeight = 170f;
-        private const float ChatRestoreMargin = 24f;
+        // BlackM: chat moved to the left column
+        private const float ChangelogComfortHeight = 220f;
+        private const float ChangelogRestoreMargin = 24f;
         private const int MaxCompactLevel = 3;
         private int _compactLevel;
         private readonly float[] _compactGain = new float[MaxCompactLevel];
-        private float _chatHeightBeforeCompact;
+        private float _changelogHeightBeforeCompact;
         private bool _compactMeasurePending;
         // BlackM end
         public LobbyGui()
@@ -96,16 +97,14 @@ namespace Content.Client.Lobby.UI
             // BlackM end
             // BlackM start
             Menu.ConfigureOtherEntries(
-                (AntagsButton, AntagsButton.Text ?? Loc.GetString("humanoid-profile-editor-antags-tab"), null),
                 (OptionsButton, OptionsButton.Text ?? Loc.GetString("ui-lobby-options-button"), null),
-                (AchievementsButton, AchievementsButton.Text ?? Loc.GetString("blackm-achievements-button"), null),
                 (AHelpButton, AHelpButton.Text ?? Loc.GetString("ui-lobby-ahelp-button"), null),
                 (CallVoteButton, CallVoteButton.Text ?? Loc.GetString("ui-vote-menu-button"), null),
                 (LeaveButton, LeaveButton.Text ?? Loc.GetString("ui-lobby-leave-button"), null));
             DiscordButton.Label.Visible = false;
             BoustyButton.Label.Visible = false;
             // SetAnchorPreset(MainContainer, LayoutPreset.Wide);
-            SetAnchorPreset(RoundBackground, LayoutPreset.Wide);
+            SetAnchorPreset(LobbyBase, LayoutPreset.Wide);
             SetAnchorPreset(LobbyBranding, LayoutPreset.Wide);
             SetAnchorPreset(RoundBackgroundTint, LayoutPreset.Wide);
             SetAnchorPreset(LobbyVhsOverlay, LayoutPreset.Wide);
@@ -126,9 +125,6 @@ namespace Content.Client.Lobby.UI
             // BlackM start
             TerminalSounds.AttachAll(this);
 
-            CharacterPreview.Hub.Activated += OnHubActivated;
-            AntagsButton.OnPressed += _ => OnHubActivated("humanoid-profile-editor-antags-tab");
-
             StartIntro();
         }
 
@@ -138,7 +134,7 @@ namespace Content.Client.Lobby.UI
 
             _pulseTime += args.DeltaSeconds;
             if (!ReadyButton.Pressed && !ReadyButton.Disabled)
-                ReadyButton.Modulate = new Color(1f, 1f, 1f, 0.72f + 0.28f * (0.5f + 0.5f * MathF.Sin(_pulseTime * 3.2f)));
+                ReadyButton.Modulate = new Color(1f, 1f, 1f, 0.88f + 0.12f * (0.5f + 0.5f * MathF.Sin(_pulseTime * 1.4f)) /* BlackM: calmer pulse */);
             else
                 ReadyButton.Modulate = Color.White;
 
@@ -180,26 +176,7 @@ namespace Content.Client.Lobby.UI
         private void StartIntro()
         {
             Menu.PlayIntro();
-            CharacterPreview.Hub.PlayIntro();
             TerminalHeader.Reveal(">> " + Loc.GetString("blackm-term-header"));
-        }
-
-        private void OnHubActivated(string? tabTitleId)
-        {
-            ReadyButton.Pressed = false;
-            _consoleHost.ExecuteCommand("toggleready False");
-
-            SwitchState(LobbyGuiState.CharacterSetup);
-
-            if (tabTitleId == null)
-                return;
-
-            foreach (var child in CharacterSetupState.Children)
-            {
-                if (child is CharacterSetupGui setupGui)
-                    setupGui.OpenSection(tabTitleId);
-            }
-            // BlackM end
         }
 
         public void SwitchState(LobbyGuiState state)
@@ -221,7 +198,6 @@ namespace Content.Client.Lobby.UI
                     {
                         TerminalSounds.Play(TerminalSounds.Close);
                         Menu.PlayIntro();
-                        CharacterPreview.Hub.PlayIntro();
                     }
                     // BlackM end
                     break;
@@ -255,23 +231,23 @@ namespace Content.Client.Lobby.UI
         }
         private void UpdateAdaptiveLayout()
         {
-            if (!RightSide.Visible || !Chat.Visible)
+            if (!RightSide.Visible || !ChangelogPanel.Visible)
                 return;
 
-            var chatHeight = Chat.Height;
-            if (chatHeight <= 0f)
+            var changelogHeight = ChangelogPanel.Height;
+            if (changelogHeight <= 0f)
                 return;
 
             if (_compactMeasurePending)
             {
                 _compactMeasurePending = false;
-                _compactGain[_compactLevel - 1] = MathF.Max(0f, chatHeight - _chatHeightBeforeCompact);
+                _compactGain[_compactLevel - 1] = MathF.Max(0f, changelogHeight - _changelogHeightBeforeCompact);
                 return;
             }
 
-            if (chatHeight < ChatComfortHeight && _compactLevel < MaxCompactLevel)
+            if (changelogHeight < ChangelogComfortHeight && _compactLevel < MaxCompactLevel)
             {
-                _chatHeightBeforeCompact = chatHeight;
+                _changelogHeightBeforeCompact = changelogHeight;
                 _compactLevel++;
                 _compactMeasurePending = true;
                 ApplyCompactLevel();
@@ -279,7 +255,7 @@ namespace Content.Client.Lobby.UI
             }
 
             if (_compactLevel > 0 &&
-                chatHeight - _compactGain[_compactLevel - 1] >= ChatComfortHeight + ChatRestoreMargin)
+                changelogHeight - _compactGain[_compactLevel - 1] >= ChangelogComfortHeight + ChangelogRestoreMargin)
             {
                 _compactLevel--;
                 ApplyCompactLevel();

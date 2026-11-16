@@ -276,7 +276,7 @@ namespace Content.Client.Stylesheets
         public static readonly Color ButtonColorPressed = Color.FromHex("#2A2F38");
         public static readonly Color ButtonColorDisabled = Color.FromHex("#26282E");
 
-        // blackm edit: Black Mesa terminal theme
+        // blackm edit
         public const string StyleClassPanelTerminalBlackM = "PanelTerminalBlackM";
         public const string StyleClassButtonTerminalBlackM = "ButtonTerminalBlackM";
         public const string StyleClassLabelTerminalBlackM = "LabelTerminalBlackM";
@@ -291,6 +291,7 @@ namespace Content.Client.Stylesheets
         public const string StyleClassLineEditTerminalBlackM = "LineEditTerminalBlackM";
         public const string StyleClassFlatButtonTerminalBlackM = "FlatButtonTerminalBlackM";
         public const string StyleClassActionButtonTerminalBlackM = "ActionButtonTerminalBlackM";
+        public const string StyleClassAccentButtonTerminalBlackM = "AccentButtonTerminalBlackM"; // BlackM
         // BlackM end
 
         public static readonly Color ButtonColorCautionDefault = Color.FromHex("#ab3232");
@@ -1559,8 +1560,8 @@ namespace Content.Client.Stylesheets
                     {
                         new StyleProperty(PanelContainer.StylePropertyPanel, new StyleBoxFlat
                         {
-                            BackgroundColor = TerminalBlack.WithAlpha(0.68f),
-                            BorderColor = TerminalGreenDim,
+                            BackgroundColor = TerminalBlack.WithAlpha(0.82f) /* BlackM: was 0.68 */,
+                            BorderColor = TerminalGreenDim.WithAlpha(0.3f) /* BlackM: calm borders */,
                             BorderThickness = new Thickness(1),
                             ContentMarginLeftOverride = 8,
                             ContentMarginRightOverride = 8,
@@ -1575,7 +1576,7 @@ namespace Content.Client.Stylesheets
                 new StyleProperty(Button.StylePropertyStyleBox, new StyleBoxFlat
                 {
                         BackgroundColor = TerminalBlack.WithAlpha(0.76f),
-                        BorderColor = TerminalGreenDim,
+                        BorderColor = TerminalGreenDim.WithAlpha(0.3f) /* BlackM: calm borders */,
                         BorderThickness = new Thickness(1),
                         ContentMarginLeftOverride = 12,
                         ContentMarginRightOverride = 12,
@@ -1642,6 +1643,81 @@ namespace Content.Client.Stylesheets
                 new StyleProperty(Label.StylePropertyFontColor, TerminalGreen),
                 }),
 
+                // BlackM start
+                new StyleRule(new SelectorElement(typeof(Button), new[] {StyleClassAccentButtonTerminalBlackM}, null, new[] {ContainerButton.StylePseudoClassNormal}),
+                    new[]
+                    {
+                        new StyleProperty(Button.StylePropertyStyleBox, new StyleBoxFlat
+                        {
+                            BackgroundColor = Color.FromHex("#FFB52E30"),
+                            BorderColor = Color.FromHex("#FFB52EC0"),
+                            BorderThickness = new Thickness(1),
+                            ContentMarginLeftOverride = 12,
+                            ContentMarginRightOverride = 12,
+                            ContentMarginTopOverride = 6,
+                            ContentMarginBottomOverride = 6,
+                        }),
+                    }),
+                new StyleRule(new SelectorElement(typeof(Button), new[] {StyleClassAccentButtonTerminalBlackM}, null, new[] {ContainerButton.StylePseudoClassHover}),
+                    new[]
+                    {
+                        new StyleProperty(Button.StylePropertyStyleBox, new StyleBoxFlat
+                        {
+                            BackgroundColor = Color.FromHex("#FFB52E55"),
+                            BorderColor = Color.FromHex("#FFE29A"),
+                            BorderThickness = new Thickness(1),
+                            ContentMarginLeftOverride = 12,
+                            ContentMarginRightOverride = 12,
+                            ContentMarginTopOverride = 6,
+                            ContentMarginBottomOverride = 6,
+                        }),
+                    }),
+                new StyleRule(new SelectorElement(typeof(Button), new[] {StyleClassAccentButtonTerminalBlackM}, null, new[] {ContainerButton.StylePseudoClassPressed}),
+                    new[]
+                    {
+                        new StyleProperty(Button.StylePropertyStyleBox, new StyleBoxFlat
+                        {
+                            BackgroundColor = Color.FromHex("#FFB52E7A"),
+                            BorderColor = Color.FromHex("#FFE29A"),
+                            BorderThickness = new Thickness(2),
+                            ContentMarginLeftOverride = 12,
+                            ContentMarginRightOverride = 12,
+                            ContentMarginTopOverride = 6,
+                            ContentMarginBottomOverride = 6,
+                        }),
+                    }),
+                new StyleRule(new SelectorElement(typeof(Button), new[] {StyleClassAccentButtonTerminalBlackM}, null, new[] {ContainerButton.StylePseudoClassDisabled}),
+                    new[]
+                    {
+                        new StyleProperty(Button.StylePropertyStyleBox, new StyleBoxFlat
+                        {
+                            BackgroundColor = Color.FromHex("#FFFFFF0A"),
+                            BorderColor = Color.FromHex("#FFFFFF28"),
+                            BorderThickness = new Thickness(1),
+                            ContentMarginLeftOverride = 12,
+                            ContentMarginRightOverride = 12,
+                            ContentMarginTopOverride = 6,
+                            ContentMarginBottomOverride = 6,
+                        }),
+                    }),
+                new StyleRule(new SelectorChild(
+                    new SelectorElement(typeof(Button), new[] {StyleClassAccentButtonTerminalBlackM}, null, null),
+                    new SelectorElement(typeof(Label), null, null, null)),
+                    new[]
+                    {
+                        new StyleProperty("font", terminalBold12),
+                        new StyleProperty(Label.StylePropertyAlignMode, Label.AlignMode.Center),
+                        new StyleProperty(Label.StylePropertyFontColor, Color.FromHex("#FFE7B0")),
+                    }),
+                new StyleRule(new SelectorChild(
+                    new SelectorElement(typeof(Button), new[] {StyleClassAccentButtonTerminalBlackM}, null, new[] {ContainerButton.StylePseudoClassHover}),
+                    new SelectorElement(typeof(Label), null, null, null)),
+                    new[]
+                    {
+                        new StyleProperty(Label.StylePropertyFontColor, Color.FromHex("#FFFFFF")),
+                    }),
+                // BlackM end
+
                 new StyleRule(new SelectorElement(typeof(Label), new[] {StyleClassLabelTerminalBlackM}, null, null),
                     new[]
                     {
@@ -1658,7 +1734,7 @@ namespace Content.Client.Stylesheets
                         new StyleProperty(ContainerButton.StylePropertyStyleBox, new StyleBoxFlat
                         {
                             BackgroundColor = TerminalBlack.WithAlpha(0.72f),
-                            BorderColor = TerminalGreenDim,
+                            BorderColor = TerminalGreenDim.WithAlpha(0.3f) /* BlackM: calm borders */,
                             BorderThickness = new Thickness(1),
                             ContentMarginLeftOverride = 10,
                             ContentMarginRightOverride = 10,
@@ -1717,7 +1793,7 @@ namespace Content.Client.Stylesheets
                     {
                         new StyleProperty(ContainerButton.StylePropertyStyleBox, new StyleBoxFlat
                         {
-                            BackgroundColor = Color.FromHex("#FFB52E10"),
+                            BackgroundColor = Color.FromHex("#FFB52E06") /* BlackM: was #FFB52E10 */,
                             ContentMarginLeftOverride = 12,
                             ContentMarginRightOverride = 12,
                             ContentMarginTopOverride = 5,
@@ -1783,9 +1859,9 @@ namespace Content.Client.Stylesheets
                     {
                         new StyleProperty(ContainerButton.StylePropertyStyleBox, new StyleBoxFlat
                         {
-                            BackgroundColor = Color.FromHex("#FFB52E40"),
-                            BorderColor = Color.FromHex("#FFB52E"),
-                            BorderThickness = new Thickness(2),
+                            BackgroundColor = Color.FromHex("#FFB52E1E") /* BlackM: was #FFB52E40 */,
+                            BorderColor = Color.FromHex("#FFB52E80") /* BlackM: was #FFB52E 2px */,
+                            BorderThickness = new Thickness(1),
                             ContentMarginLeftOverride = 16,
                             ContentMarginRightOverride = 16,
                             ContentMarginTopOverride = 8,
@@ -1854,7 +1930,7 @@ namespace Content.Client.Stylesheets
                         new StyleProperty(TabContainer.StylePropertyPanelStyleBox, new StyleBoxFlat
                         {
                             BackgroundColor = TerminalBlack.WithAlpha(0.62f),
-                            BorderColor = TerminalGreenDim,
+                            BorderColor = TerminalGreenDim.WithAlpha(0.3f) /* BlackM: calm borders */,
                             BorderThickness = new Thickness(1),
                         }),
                     }),
@@ -1862,7 +1938,7 @@ namespace Content.Client.Stylesheets
                 new StyleRule(new SelectorElement(typeof(ItemList), new[] {StyleClassItemListTerminalBlackM}, null, null), new[]
                 {
                     new StyleProperty(ItemList.StylePropertyBackground,
-                        new StyleBoxFlat {BackgroundColor = TerminalBlack.WithAlpha(0.72f), BorderColor = TerminalGreenDim, BorderThickness = new Thickness(1)}),
+                        new StyleBoxFlat {BackgroundColor = TerminalBlack.WithAlpha(0.72f), BorderColor = TerminalGreenDim.WithAlpha(0.3f) /* BlackM: calm borders */, BorderThickness = new Thickness(1)}),
                     new StyleProperty(ItemList.StylePropertyItemBackground,
                         new StyleBoxFlat {BackgroundColor = Color.Transparent, ContentMarginLeftOverride = 4, ContentMarginTopOverride = 2, ContentMarginBottomOverride = 2}),
                     new StyleProperty(ItemList.StylePropertyDisabledItemBackground,
@@ -1874,11 +1950,11 @@ namespace Content.Client.Stylesheets
                 new StyleRule(new SelectorElement(typeof(Slider), new[] {StyleClassSliderTerminalBlackM}, null, null), new[]
                 {
                     new StyleProperty(Slider.StylePropertyBackground,
-                        new StyleBoxFlat {BackgroundColor = TerminalBlack.WithAlpha(0.72f), BorderColor = TerminalGreenDim, BorderThickness = new Thickness(1), ContentMarginTopOverride = 7, ContentMarginBottomOverride = 7}),
+                        new StyleBoxFlat {BackgroundColor = TerminalBlack.WithAlpha(0.72f), BorderColor = TerminalGreenDim.WithAlpha(0.3f) /* BlackM: calm borders */, BorderThickness = new Thickness(1), ContentMarginTopOverride = 7, ContentMarginBottomOverride = 7}),
                     new StyleProperty(Slider.StylePropertyForeground,
                         new StyleBoxFlat {BackgroundColor = Color.Transparent}),
                     new StyleProperty(Slider.StylePropertyFill,
-                        new StyleBoxFlat {BackgroundColor = TerminalGreenDim.WithAlpha(0.8f)}),
+                        new StyleBoxFlat {BackgroundColor = TerminalGreenDim.WithAlpha(0.45f) /* BlackM: was 0.8 */}),
                     new StyleProperty(Slider.StylePropertyGrabber,
                         new StyleBoxFlat {BackgroundColor = TerminalGreen, ContentMarginLeftOverride = 5, ContentMarginRightOverride = 5, ContentMarginTopOverride = 9, ContentMarginBottomOverride = 9}),
                 }),
@@ -1886,7 +1962,7 @@ namespace Content.Client.Stylesheets
                 new StyleRule(new SelectorElement(typeof(LineEdit), new[] {StyleClassLineEditTerminalBlackM}, null, null), new[]
                 {
                     new StyleProperty(LineEdit.StylePropertyStyleBox,
-                        new StyleBoxFlat {BackgroundColor = TerminalBlack.WithAlpha(0.72f), BorderColor = TerminalGreenDim, BorderThickness = new Thickness(1), ContentMarginLeftOverride = 6, ContentMarginRightOverride = 6, ContentMarginTopOverride = 3, ContentMarginBottomOverride = 3}),
+                        new StyleBoxFlat {BackgroundColor = TerminalBlack.WithAlpha(0.72f), BorderColor = TerminalGreenDim.WithAlpha(0.3f) /* BlackM: calm borders */, BorderThickness = new Thickness(1), ContentMarginLeftOverride = 6, ContentMarginRightOverride = 6, ContentMarginTopOverride = 3, ContentMarginBottomOverride = 3}),
                 }),
                 // BlackM end
 

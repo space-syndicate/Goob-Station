@@ -348,7 +348,24 @@ namespace Content.Server.Cargo.Systems
             }
 
             var ev = new FulfillCargoOrderEvent((station.Value, stationData), order, (uid, component));
-            RaiseLocalEvent(ref ev);
+            // BlackM edit: start
+            // RaiseLocalEvent(ref ev);
+            var route = EntityManager.System<Content.Server._BlackM.Cargo.CargoLogisticsSystem>()
+                .TryQueueDelivery(station.Value, uid, order, out var dock, out var routeError);
+            if (route == Content.Server._BlackM.Cargo.CargoRoute.Rejected)
+            {
+                ConsolePopup(args.Actor, routeError);
+                PlayDenySound(uid, component);
+                return;
+            }
+            if (route == Content.Server._BlackM.Cargo.CargoRoute.Accepted)
+            {
+                ev.Handled = true;
+                ev.FulfillmentEntity = dock;
+            }
+            else
+                RaiseLocalEvent(ref ev);
+            // BlackM edit: end
             ev.FulfillmentEntity ??= station.Value;
 
             if (!ev.Handled)
@@ -760,15 +777,27 @@ namespace Content.Server.Cargo.Systems
         /// Fulfills the specified cargo order and spawns paper attached to it.
         /// </summary>
         private bool FulfillOrder(CargoOrderData order, ProtoId<CargoAccountPrototype> account, EntityCoordinates spawn, string? paperProto)
+        // BlackM edit: start
+            => FulfillOrder(order, account, spawn, paperProto, out _, out _);
+
+        private bool FulfillOrder(CargoOrderData order, ProtoId<CargoAccountPrototype> account,
+            EntityCoordinates spawn, string? paperProto, out EntityUid item, out EntityUid printed)
+        // BlackM edit: end
         {
             // Create the item itself
-            var item = Spawn(order.ProductId, spawn);
+            // BlackM edit: start
+            // var item = Spawn(order.ProductId, spawn);
+            item = Spawn(order.ProductId, spawn);
+            // BlackM edit: end
 
             // Ensure the item doesn't start anchored
             _transformSystem.Unanchor(item, Transform(item));
 
             // Create a sheet of paper to write the order details on
-            var printed = Spawn(paperProto, spawn);
+            // BlackM edit: start
+            // var printed = Spawn(paperProto, spawn);
+            printed = Spawn(paperProto, spawn);
+            // BlackM edit: end
             if (TryComp<PaperComponent>(printed, out var paper))
             {
                 // fill in the order data
