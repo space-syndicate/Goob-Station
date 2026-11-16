@@ -5,3 +5,4 @@ construction-graph-tag-light-tube-crystal-green = зелёная кристал�
 construction-graph-tag-light-tube-crystal-blue = синяя кристальная лампа-трубка
 construction-graph-tag-paper = бумага
 construction-graph-tag-pen = ручка
+construction-graph-tag-trash = мусор
