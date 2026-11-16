@@ -59,6 +59,7 @@ namespace Content.Client.Lobby
         {
             var chatController = _userInterfaceManager.GetUIController<ChatUIController>();
             chatController.SetMainChat(false);
+            OldLobby!.Chat.Main = false;
             _gameTicker.InfoBlobUpdated -= UpdateOldLobbyUi;
             _gameTicker.LobbyStatusUpdated -= OldLobbyStatusUpdated;
             _gameTicker.LobbyLateJoinStatusUpdated -= OldLobbyLateJoinStatusUpdated;
