@@ -12,17 +12,3 @@
   - type: Eye # for the camera itself
     drawFov: false
     pvsScale: 0.8 # we don't need the full range
-
-# BlackM lobby camera
-- type: entity
-  id: BlackMLobbyRoundCamera
-  categories: [ HideSpawnMenu ]
-  name: lobby round camera
-  description: A camera used to show the station from the lobby.
-  components:
-  - type: Visibility
-    layer: 128
-  - type: Eye
-    drawFov: false
-    pvsScale: 1.2
-    zoom: 0.45, 0.45

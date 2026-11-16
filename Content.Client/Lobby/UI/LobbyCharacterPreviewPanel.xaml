@@ -54,9 +54,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
         <BoxContainer Name="Loaded" Orientation="Vertical" Visible="False">
             <PanelContainer>
                 <PanelContainer.PanelOverride>
-                    <gfx:StyleBoxFlat BackgroundColor="#100C07CC"
-                                      BorderColor="{x:Static style:StyleNano.TerminalGreenDim}"
-                                      BorderThickness="1" />
+                    <gfx:StyleBoxFlat BackgroundColor="#100C0780" />
                 </PanelContainer.PanelOverride>
                 <BoxContainer Orientation="Vertical" SeparationOverride="8" Margin="10">
                     <BoxContainer Orientation="Horizontal">
@@ -65,48 +63,27 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                         <Label Text="{Loc 'blackm-file-status'}" StyleClasses="LabelTerminalBlackM"
                                Modulate="#FFFFFFB0" />
                     </BoxContainer>
-                    <PanelContainer MinSize="0 2">
+                    <PanelContainer MinSize="0 1">
                         <PanelContainer.PanelOverride>
-                            <gfx:StyleBoxFlat BackgroundColor="{x:Static style:StyleNano.TerminalGreenDim}" />
+                            <gfx:StyleBoxFlat BackgroundColor="#80501930" />
                         </PanelContainer.PanelOverride>
                     </PanelContainer>
-                    <BoxContainer Orientation="Horizontal" SeparationOverride="6">
-                        <Button Name="PrevButton" Text="&lt;" StyleClasses="FlatButtonTerminalBlackM"
-                                MinSize="40 30" ToolTip="Предыдущий персонаж" />
-                        <PanelContainer HorizontalExpand="True">
-                            <PanelContainer.PanelOverride>
-                                <gfx:StyleBoxFlat BackgroundColor="#FFB52E10" />
-                            </PanelContainer.PanelOverride>
-                            <Label Name="SlotLabel" StyleClasses="LabelTerminalBlackM" Align="Center"
-                                   HorizontalExpand="True" VerticalAlignment="Center" Margin="0 4" />
-                        </PanelContainer>
-                        <Button Name="NextButton" Text="&gt;" StyleClasses="FlatButtonTerminalBlackM"
-                                MinSize="40 30" ToolTip="Следующий персонаж" />
-                    </BoxContainer>
-                    <BoxContainer Name="ChipRow" Orientation="Horizontal" SeparationOverride="4"
-                                  HorizontalAlignment="Center" />
                     <BoxContainer Name="DossierRow" Orientation="Horizontal" SeparationOverride="14">
                         <PanelContainer VerticalAlignment="Top">
                             <PanelContainer.PanelOverride>
                                 <gfx:StyleBoxFlat BackgroundColor="#241706"
-                                                  BorderColor="{x:Static style:StyleNano.TerminalGreen}"
-                                                  BorderThickness="2" />
+                                                  BorderColor="#80501990"
+                                                  BorderThickness="1" />
                             </PanelContainer.PanelOverride>
                             <Control Name="PortraitArea" SetSize="150 176" RectClipContent="True"
                                      MouseFilter="Stop" ToolTip="rotate">
                                 <Control Name="ViewBox" />
-                                <PanelContainer Name="ScanBar" Visible="False" MouseFilter="Ignore"
-                                                VerticalAlignment="Top" MinSize="0 3">
-                                    <PanelContainer.PanelOverride>
-                                        <gfx:StyleBoxFlat BackgroundColor="#FFD27AD0" />
-                                    </PanelContainer.PanelOverride>
-                                </PanelContainer>
                                 <PanelContainer MouseFilter="Ignore">
                                     <PanelContainer.PanelOverride>
                                         <gfx:StyleBoxFlat BackgroundColor="#FFB52E18" />
                                     </PanelContainer.PanelOverride>
                                 </PanelContainer>
-                                <terminal:TerminalScanlines LineStep="4" LineAlpha="0.035" RollingBar="False"
+                                <terminal:TerminalScanlines LineStep="4" LineAlpha="0.012" RollingBar="False"
                                                             Flicker="False" VignetteStrength="0.015" />
                             </Control>
                         </PanelContainer>
@@ -116,7 +93,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                                    ClipText="True" />
                             <PanelContainer MinSize="0 1" Margin="0 2 0 2">
                                 <PanelContainer.PanelOverride>
-                                    <gfx:StyleBoxFlat BackgroundColor="{x:Static style:StyleNano.TerminalGreenDim}" />
+                                    <gfx:StyleBoxFlat BackgroundColor="#80501930" />
                                 </PanelContainer.PanelOverride>
                             </PanelContainer>
                             <BoxContainer Orientation="Horizontal" SeparationOverride="14">
@@ -140,7 +117,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                             </BoxContainer>
                             <PanelContainer MinSize="0 1" Margin="0 2 0 2">
                                 <PanelContainer.PanelOverride>
-                                    <gfx:StyleBoxFlat BackgroundColor="{x:Static style:StyleNano.TerminalGreenDim}" />
+                                    <gfx:StyleBoxFlat BackgroundColor="#80501930" />
                                 </PanelContainer.PanelOverride>
                             </PanelContainer>
                             <Label Name="Summary" StyleClasses="LabelTerminalBlackM" HorizontalExpand="True"
@@ -151,14 +128,14 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
                     <PanelContainer MinSize="0 1">
                         <PanelContainer.PanelOverride>
-                            <gfx:StyleBoxFlat BackgroundColor="{x:Static style:StyleNano.TerminalGreenDim}" />
+                            <gfx:StyleBoxFlat BackgroundColor="#80501930" />
                         </PanelContainer.PanelOverride>
                     </PanelContainer>
-                    <terminal:TerminalHub Name="Hub" Access="Public" />
-                    <Button Name="CharacterSetup" Visible="False"
+                    <Button Name="CharacterSetup"
                             Text="{Loc 'lobby-character-preview-panel-character-setup-button'}"
-                            HorizontalAlignment="Center"
-                            StyleClasses="ButtonTerminalBlackM" />
+                            HorizontalExpand="True"
+                            MinHeight="34"
+                            StyleClasses="AccentButtonTerminalBlackM" />
                 </BoxContainer>
             </PanelContainer>
         </BoxContainer>

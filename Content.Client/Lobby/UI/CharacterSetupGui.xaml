@@ -100,7 +100,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                     <!--
                     <gfx:StyleBoxFlat BackgroundColor="{x:Static style:StyleNano.NanoGold}" ContentMarginTopOverride="2" />
                     -->
-                    <gfx:StyleBoxFlat BackgroundColor="{x:Static style:StyleNano.TerminalGreenDim}" ContentMarginTopOverride="2" />
+                    <gfx:StyleBoxFlat BackgroundColor="#80501948" ContentMarginTopOverride="1" />
                     <!-- BlackM end -->
                 </PanelContainer.PanelOverride>
             </PanelContainer>
@@ -108,26 +108,19 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                 <ScrollContainer MinSize="325 0" Margin="5 5 0 0">
                     <BoxContainer Name="Characters" Orientation="Vertical" />
                 </ScrollContainer>
-                <PanelContainer MinSize="2 0">
+                <PanelContainer MinSize="1 0">
                     <PanelContainer.PanelOverride>
                         <!-- BlackM start -->
                         <!--
                         <gfx:StyleBoxFlat BackgroundColor="{x:Static style:StyleNano.NanoGold}" ContentMarginTopOverride="2" />
                         -->
-                        <gfx:StyleBoxFlat BackgroundColor="{x:Static style:StyleNano.TerminalGreenDim}" ContentMarginTopOverride="2" />
+                        <gfx:StyleBoxFlat BackgroundColor="#80501948" ContentMarginTopOverride="1" />
                     </PanelContainer.PanelOverride>
                 </PanelContainer>
-                <BoxContainer Orientation="Vertical" MinSize="240 0" Margin="8 8 8 0" SeparationOverride="6">
-                    <Label Text="{Loc 'blackm-setup-sections'}" StyleClasses="LabelTerminalBlackM" Margin="2 0 0 4" />
-                    <BoxContainer Name="SectionMenu" Orientation="Vertical" SeparationOverride="6" />
+                <BoxContainer Name="CharEditor" Orientation="Vertical" HorizontalExpand="True"
+                              VerticalExpand="True" Margin="8 8 8 0" SeparationOverride="6">
+                    <BoxContainer Name="SectionMenu" Orientation="Horizontal" SeparationOverride="4" />
                 </BoxContainer>
-                <PanelContainer MinSize="2 0">
-                    <PanelContainer.PanelOverride>
-                        <gfx:StyleBoxFlat BackgroundColor="{x:Static style:StyleNano.TerminalGreenDim}" ContentMarginTopOverride="2" />
-                        <!-- BlackM end -->
-                    </PanelContainer.PanelOverride>
-                </PanelContainer>
-                <BoxContainer Name="CharEditor" HorizontalExpand="True" />
             </BoxContainer>
         </BoxContainer>
     </Control>

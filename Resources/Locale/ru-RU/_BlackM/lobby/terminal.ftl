@@ -1,9 +1,8 @@
 blackm-term-header = ЛОББИ
 
 blackm-hub-title = КАРТОТЕКА ПЕРСОНАЛА
-blackm-hub-catalog = [ КАТАЛОГ ]
-blackm-hub-preview = [ ПРОСМОТР ]
-blackm-hub-open = [ ОТКРЫТЬ РАЗДЕЛ ]
+blackm-hub-preview = ПРОСМОТР
+blackm-hub-open = ОТКРЫТЬ РАЗДЕЛ
 blackm-hub-setup-title = ВСЕ НАСТРОЙКИ
 blackm-hub-none = не задано
 blackm-hub-appearance-desc = Раса, пол, возраст, цвет кожи и глаз, причёска, гражданская одежда.
@@ -27,15 +26,14 @@ blackm-sex-male = Мужской
 blackm-sex-female = Женский
 blackm-sex-unsexed = Бесполый
 
-blackm-setup-sections = [ РАЗДЕЛЫ ]
+blackm-setup-sections = РАЗДЕЛЫ
 blackm-file-title = ЛИЧНОЕ ДЕЛО СОТРУДНИКА
 blackm-file-status = СТАТУС: ДЕЙСТВУЮЩИЙ
-blackm-file-case = ДЕЛО
-blackm-serverinfo-title = [ СВОДКА СЕРВЕРА ]
+blackm-serverinfo-title = СВОДКА СЕРВЕРА
 blackm-serverinfo-online = НА СВЯЗИ
 
 blackm-latejoin-title = ПОЗДНЕЕ ПРИСОЕДИНЕНИЕ
-blackm-latejoin-departments = [ ОТДЕЛЫ ]
+blackm-latejoin-departments = ОТДЕЛЫ
 blackm-latejoin-all = ВСЕ ДОЛЖНОСТИ
 blackm-latejoin-slots = СЛОТЫ
 blackm-latejoin-count = ДОСТУПНО ДОЛЖНОСТЕЙ: { $count }

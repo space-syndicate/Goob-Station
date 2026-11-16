@@ -18,7 +18,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                                ContentMarginRightOverride="10"/>
         -->
         <graphics:StyleBoxFlat BackgroundColor="#0B0804A8"
-                               BorderColor="#805019"
+                               BorderColor="#80501948"
                                BorderThickness="1"
                                ContentMarginTopOverride="10"
                                ContentMarginBottomOverride="10"
