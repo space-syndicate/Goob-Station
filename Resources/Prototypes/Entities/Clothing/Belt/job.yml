@@ -270,6 +270,7 @@
       - Seed
       - Smokable
       - HandLabeler
+      - PlantAnalyzer # CorvaxGoob
   - type: ItemMapper
     sprite: *BeltOverlay
     mapLayers:
@@ -293,6 +294,12 @@
         whitelist:
           tags:
           - Bottle
+      # CorvaxGoob start
+      hydro:
+        whitelist:
+          tags:
+          - PlantAnalyzer
+      # CorvaxGoob end
   - type: Appearance
 
 - type: entity

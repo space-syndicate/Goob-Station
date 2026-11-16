@@ -21,6 +21,9 @@
   - type: ItemToggle
     onUse: false
   - type: PlantAnalyzer
+  - type: Tag
+    tags:
+    - PlantAnalyzer
   - type: GuideHelp
     guides:
     - Botany

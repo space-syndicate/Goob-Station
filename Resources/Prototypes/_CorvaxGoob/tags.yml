@@ -109,6 +109,9 @@
   id: Photo
 
 - type: Tag
+  id: PlantAnalyzer
+
+- type: Tag
   id: PokerChip
 
 - type: Tag
