@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Numerics;
 using Content.Shared._BlackM.Shot;
 using Robust.Client.Graphics;
@@ -17,48 +17,23 @@ public sealed class ShotOverlay : Overlay
     [Dependency] private readonly IRobustRandom _random = default!;
 
     private const string Path = "/Textures/_BlackM/Effects/Shot/";
-    private const int MaxParticles = 500;
     private const int MaxTrailPoints = 2500;
     private const int TracerSteps = 7;
+    private const float TrailWidthScale = 0.5f;
+    private const float TrailAlphaScale = 0.7f;
+    private const float TrailLifeScale = 0.8f;
     private static readonly float Px = 1f / EyeManager.PixelsPerMeter;
 
     public override OverlaySpace Space => OverlaySpace.WorldSpace;
 
-    private readonly Texture[][] _puffs;
     private readonly Texture[] _wisps;
-    private readonly Texture[][] _impacts;
 
     private readonly Dictionary<EntityUid, ShotState> _states;
     private readonly IShotWorld _world;
-    private readonly List<Particle> _particles = new();
 
     private readonly Dictionary<EntityUid, Ribbon> _open = new();
     private readonly List<Ribbon> _ribbons = new();
     private int _trailPoints;
-
-    private enum Kind { Puff, Impact, Spark }
-
-    private sealed class Particle
-    {
-        public Kind Kind;
-        public MapId Map;
-        public Vector2 Pos, Vel;
-        public float Z, VZ;
-        public bool Falls;
-        public int Bounces;
-        public float Rise;
-        public float Age, Life;
-        public float Size;
-        public float Rot, Spin;
-        public float Drag;
-        public float Alpha = 1f;
-        public Texture[]? Frames;
-        public Color Color;
-        public Color? Lit;
-        public float LitFrac = 0.2f;
-        public float Vis = -1f;
-        public int TileX = int.MinValue, TileY = int.MinValue;
-    }
 
     private sealed class TrailPoint
     {
@@ -88,14 +63,8 @@ public sealed class ShotOverlay : Overlay
         _states = states;
         _world = world;
 
-        var smoke = cache.GetResource<RSIResource>(Path + "smoke.rsi").RSI;
-        _puffs = Enumerable.Range(1, 4).Select(i => Frames(smoke, $"puff{i}")).ToArray();
-
         var trail = cache.GetResource<RSIResource>(Path + "trail.rsi").RSI;
         _wisps = Enumerable.Range(1, 6).Select(i => Frames(trail, $"wisp{i}")[0]).ToArray();
-
-        var impact = cache.GetResource<RSIResource>(Path + "impact.rsi").RSI;
-        _impacts = Enumerable.Range(1, 2).Select(i => Frames(impact, $"impact_fire{i}")).ToArray();
     }
 
     private static Texture[] Frames(RSI rsi, string state)
@@ -112,11 +81,11 @@ public sealed class ShotOverlay : Overlay
             Phase = _random.NextFloat(6.28f),
             Wavelength = _random.NextFloat(1.0f, 1.7f),
             Omega = _random.NextFloat(2.5f, 4.5f) * (_random.Prob(0.5f) ? 1f : -1f),
-            Amp = 0.14f * c.TrailWave,
-            Life = c.TrailLife * _random.NextFloat(0.85f, 1.15f),
-            Width = c.TrailWidth,
-            Alpha = c.SmokeAlpha,
-            Rise = 0.22f,
+            Amp = 0.06f * c.TrailWave,
+            Life = MathF.Max(0.05f, c.TrailLife * TrailLifeScale * _random.NextFloat(0.85f, 1.15f)),
+            Width = MathF.Max(0f, c.TrailWidth * TrailWidthScale),
+            Alpha = Math.Clamp(c.SmokeAlpha * TrailAlphaScale, 0f, 1f),
+            Rise = 0.14f,
             Color = c.SmokeColor,
             Warm = Color.InterpolateBetween(c.TracerColor, Color.White, 0.5f),
         };
@@ -139,6 +108,7 @@ public sealed class ShotOverlay : Overlay
             Variant = _random.Next(_wisps.Length),
         });
 
+        _trailPoints++;
         r.HeadDist = dist;
     }
 
@@ -155,15 +125,9 @@ public sealed class ShotOverlay : Overlay
         _trailPoints = 0;
     }
 
-    public void ClearParticles()
-    {
-        _particles.Clear();
-    }
-
     public void Clear()
     {
         ClearTrails();
-        ClearParticles();
     }
 
     private static Vector2 Displace(Ribbon r, TrailPoint p)
@@ -172,150 +136,13 @@ public sealed class ShotOverlay : Overlay
         var wave = MathF.Sin(p.Dist * MathF.Tau / r.Wavelength + r.Phase + p.Age * r.Omega) * r.Amp * grow;
         wave += MathF.Sin(p.Dist * MathF.Tau / (r.Wavelength * 0.62f) + r.Phase * 1.7f - p.Age * r.Omega * 1.3f)
                 * r.Amp * grow * 0.18f;
-        var drift = p.Seed * 0.05f * p.Age;
+        var drift = p.Seed * 0.025f * p.Age;
         return p.Pos + p.Perp * (wave + drift) + new Vector2(0f, p.Age * r.Rise * 0.55f);
-    }
-
-    public void Impact(MapId map, Vector2 pos, Vector2 dir, ShotComponent c, bool smoke = true)
-    {
-        var s = c.ImpactScale;
-        var back = new Vector2(-dir.X, -dir.Y);
-        var backAngle = MathF.Atan2(back.Y, back.X);
-
-        Add(new Particle
-        {
-            Kind = Kind.Impact,
-            Map = map,
-            Pos = pos,
-            Rot = _random.NextFloat(6.28f),
-            Life = 0.085f,
-            Size = 1.0f * s,
-            Frames = _random.Pick(_impacts),
-            Color = Color.White,
-        });
-
-        for (var i = 0; i < (int) MathF.Round(8 * s); i++)
-        {
-            var a = backAngle + _random.NextFloat(-1.2f, 1.2f);
-            Add(new Particle
-            {
-                Kind = Kind.Spark,
-                Map = map,
-                Pos = pos,
-                Vel = new Vector2(MathF.Cos(a), MathF.Sin(a)) * _random.NextFloat(2.2f, 6.5f),
-                Z = _random.NextFloat(0.05f, 0.2f),
-                VZ = _random.NextFloat(1f, 3.2f),
-                Falls = true,
-                Bounces = _random.Prob(0.4f) ? 1 : 0,
-                Drag = 2.4f,
-                Life = _random.NextFloat(0.3f, 0.65f),
-                Size = _random.NextFloat(0.2f, 0.45f),
-                Color = Color.InterpolateBetween(c.TracerColor, c.CoreColor, _random.NextFloat(0f, 0.7f)),
-            });
-        }
-
-        if (!c.Smoke || !smoke)
-            return;
-
-        var sz = c.SmokeScale * s;
-        for (int i = 0, n = Count(2, c.SmokeAmount); i < n; i++)
-        {
-            Add(new Particle
-            {
-                Kind = Kind.Puff,
-                Map = map,
-                Pos = pos + _random.NextAngle().ToVec() * 0.1f,
-                Vel = back * _random.NextFloat(0.4f, 1.6f) + _random.NextAngle().ToVec() * 0.5f,
-                Drag = 2.4f,
-                Life = _random.NextFloat(0.8f, 1.3f),
-                Size = _random.NextFloat(0.45f, 0.8f) * sz,
-                Rot = _random.NextFloat(6.28f),
-                Spin = _random.NextFloat(-0.9f, 0.9f),
-                Frames = _random.Pick(_puffs),
-                Alpha = 0.65f * c.SmokeAlpha,
-                Color = c.SmokeColor,
-                Lit = c.TracerColor,
-                LitFrac = 0.22f,
-                Rise = _random.NextFloat(0.3f, 0.5f),
-            });
-        }
-    }
-
-    private int Count(float baseCount, float amount)
-        => Math.Max(0, (int) MathF.Round(baseCount * amount + _random.NextFloat(-0.4f, 0.4f)));
-
-    private void Add(Particle p)
-    {
-        if (_particles.Count < MaxParticles)
-            _particles.Add(p);
     }
 
     protected override void FrameUpdate(FrameEventArgs args)
     {
-        var dt = args.DeltaSeconds;
-        UpdateRibbons(dt);
-
-        for (var i = _particles.Count - 1; i >= 0; i--)
-        {
-            var p = _particles[i];
-            p.Age += dt;
-
-            if (p.Age >= p.Life)
-            {
-                _particles.RemoveAt(i);
-                continue;
-            }
-
-            var target = _world.Visible(p.Map, p.Pos) ? 1f : 0f;
-            p.Vis = p.Vis < 0f ? target : p.Vis + Math.Clamp(target - p.Vis, -dt * 7f, dt * 7f);
-
-            p.Rot += p.Spin * dt;
-            var oldPos = p.Pos;
-            p.Pos += p.Vel * dt;
-            p.Vel *= MathF.Max(0f, 1f - p.Drag * dt);
-
-            if (p.Kind == Kind.Puff && p.Vel.LengthSquared() > 0.01f)
-            {
-                var tx = (int) MathF.Floor(p.Pos.X);
-                var ty = (int) MathF.Floor(p.Pos.Y);
-                if (tx != p.TileX || ty != p.TileY)
-                {
-                    p.TileX = tx;
-                    p.TileY = ty;
-
-                    if (_world.Blocked(p.Map, p.Pos))
-                    {
-                        p.Pos = oldPos;
-                        p.Vel = Vector2.Zero;
-                        p.Life = MathF.Min(p.Life, p.Age + 0.4f);
-                    }
-                }
-            }
-
-            if (p.Rise != 0f)
-                p.Z += p.Rise * dt;
-
-            if (!p.Falls)
-                continue;
-
-            p.VZ -= 9f * dt;
-            p.Z += p.VZ * dt;
-
-            if (p.Z > 0f)
-                continue;
-
-            if (p.Bounces > 0)
-            {
-                p.Bounces--;
-                p.Z = 0f;
-                p.VZ = -p.VZ * 0.5f;
-                p.Vel *= 0.6f;
-            }
-            else
-            {
-                _particles.RemoveAt(i);
-            }
-        }
+        UpdateRibbons(args.DeltaSeconds);
     }
 
     private void UpdateRibbons(float dt)
@@ -369,18 +196,6 @@ public sealed class ShotOverlay : Overlay
             DrawTracer(handle, st);
         }
 
-        foreach (var p in _particles)
-        {
-            if (p.Kind == Kind.Puff)
-                DrawParticle(handle, p, view, args.MapId);
-        }
-
-        foreach (var p in _particles)
-        {
-            if (p.Kind != Kind.Puff)
-                DrawParticle(handle, p, view, args.MapId);
-        }
-
         handle.SetTransform(Matrix3x2.Identity);
     }
 
@@ -418,7 +233,7 @@ public sealed class ShotOverlay : Overlay
                 alpha *= 0.9f + 0.1f * b.Seed;
 
                 var taper = 0.30f + 0.70f * Smooth(0f, 2.2f, fromHead);
-                var width = r.Width * (0.5f + 1.9f * MathF.Pow(t, 0.6f)) * taper;
+                var width = r.Width * (0.5f + 1.0f * MathF.Pow(t, 0.6f)) * taper;
 
                 var heat = MathF.Exp(-(a.Age + b.Age) * 0.5f / 0.18f);
                 var color = Color.InterpolateBetween(r.Color, r.Warm, heat * 0.55f);
@@ -427,7 +242,6 @@ public sealed class ShotOverlay : Overlay
                 var center = (pa + pb) * 0.5f;
                 var angle = MathF.Atan2(d.Y, d.X);
 
-                DrawTex(handle, tex, center, angle, new Vector2(len * 2.0f, width * 2.1f), Tint(color, alpha * 0.34f));
                 DrawTex(handle, tex, center, angle, new Vector2(len * 2.0f, width), Tint(color, alpha));
             }
         }
@@ -437,58 +251,6 @@ public sealed class ShotOverlay : Overlay
     {
         var t = Math.Clamp((x - a) / (b - a), 0f, 1f);
         return t * t * (3f - 2f * t);
-    }
-
-    private void DrawParticle(DrawingHandleWorld handle, Particle p, Box2 view, MapId map)
-    {
-        if (p.Map != map || p.Vis <= 0.01f || !view.Contains(p.Pos))
-            return;
-
-        var t = Math.Clamp(p.Age / p.Life, 0f, 1f);
-        var drawPos = p.Pos + new Vector2(0f, p.Z * 0.55f);
-
-        switch (p.Kind)
-        {
-            case Kind.Puff:
-                DrawAnim(handle, p.Frames!, t, drawPos, p.Rot, new Vector2(p.Size), SmokeColor(p, t), p.Alpha * p.Vis, true);
-                break;
-
-            case Kind.Impact:
-                DrawAnim(handle, p.Frames!, t, drawPos, p.Rot, new Vector2(p.Size), Color.White, p.Vis, false);
-                break;
-
-            case Kind.Spark:
-            {
-                var rot = MathF.Atan2(p.Vel.Y + p.VZ * 0.55f, p.Vel.X);
-                var speed = MathF.Sqrt(p.Vel.LengthSquared() + p.VZ * p.VZ * 0.3f);
-                var len = MathF.Max(p.Size * 0.4f, p.Size * Math.Clamp(speed / 12f, 0.3f, 1f));
-                handle.SetTransform(Matrix3Helpers.CreateTransform(drawPos, rot));
-                handle.DrawRect(new Box2(-len, -Px * 0.75f, 0f, Px * 0.75f), Tint(p.Color, (1f - t) * p.Vis));
-                break;
-            }
-        }
-    }
-
-    private static Color SmokeColor(Particle p, float t)
-        => p.Lit is { } lit
-            ? Color.InterpolateBetween(lit, p.Color, Math.Clamp(t / p.LitFrac, 0f, 1f))
-            : p.Color;
-
-    private static void DrawAnim(DrawingHandleWorld handle, Texture[] frames, float t, Vector2 center, float rot,
-        Vector2 size, Color color, float alpha, bool blend)
-    {
-        var pos = Math.Clamp(t, 0f, 1f) * (frames.Length - 1);
-        var i = (int) pos;
-        var f = pos - i;
-
-        if (!blend || i >= frames.Length - 1)
-        {
-            DrawTex(handle, frames[Math.Min(i, frames.Length - 1)], center, rot, size, Tint(color, alpha));
-            return;
-        }
-
-        DrawTex(handle, frames[i], center, rot, size, Tint(color, alpha * (1f - f)));
-        DrawTex(handle, frames[i + 1], center, rot, size, Tint(color, alpha * f));
     }
 
     private static void DrawTex(DrawingHandleWorld handle, Texture tex, Vector2 center, float rot, Vector2 size, Color color)

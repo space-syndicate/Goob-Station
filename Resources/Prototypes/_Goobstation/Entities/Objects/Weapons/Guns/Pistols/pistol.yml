@@ -29,9 +29,15 @@
     sprite: _Goobstation/Objects/Weapons/Guns/Pistols/Dualetta.rsi
   - type: Gun
     minAngle: 1
-    maxAngle: 5
-    angleIncrease: 1
-    angleDecay: 4
+    # BlackM weapon
+    # Original code (kept for reference):
+    #     maxAngle: 5
+    #     angleIncrease: 1
+    #     angleDecay: 4
+    maxAngle: 14
+    angleIncrease: 2
+    angleDecay: 2
+    # BlackM weapon
     fireRate: 6
     availableModes:
     - SemiAuto
@@ -138,9 +144,15 @@
     sprite: _Goobstation/Objects/Weapons/Guns/Pistols/agentpistol.rsi
   - type: Gun
     minAngle: 1
-    maxAngle: 5
-    angleIncrease: 1
-    angleDecay: 4
+    # BlackM weapon
+    # Original code (kept for reference):
+    #     maxAngle: 5
+    #     angleIncrease: 1
+    #     angleDecay: 4
+    maxAngle: 14
+    angleIncrease: 2
+    angleDecay: 2
+    # BlackM weapon
     fireRate: 4
     availableModes:
     - SemiAuto

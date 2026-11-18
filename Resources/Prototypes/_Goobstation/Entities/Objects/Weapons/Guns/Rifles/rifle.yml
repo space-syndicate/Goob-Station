@@ -30,6 +30,12 @@
   - type: Clothing
     sprite: _Goobstation/Objects/Weapons/Guns/Rifles/burner.rsi
   - type: Gun
+    # BlackM weapon
+    minAngle: 2
+    maxAngle: 16
+    angleIncrease: 3
+    angleDecay: 16
+    # BlackM weapon
     fireRate: 3
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/sniper.ogg
@@ -67,6 +73,13 @@
   - type: Item
     shape:
     - 0,0,5,2
+  # BlackM weapon
+  - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
+    angleIncrease: 0
+    angleDecay: 0
+  # BlackM weapon
 
 - type: entity
   name: M-90
@@ -112,7 +125,20 @@
     zeroVisible: true
   - type: Appearance
   - type: Gun
+    # BlackM weapon
+    minAngle: 2
+    maxAngle: 16
+    angleIncrease: 3
+    angleDecay: 16
+    # BlackM weapon
     fireRate: 6
+  # BlackM weapon
+  - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
+    angleIncrease: 0
+    angleDecay: 0
+  # BlackM weapon
 
 - type: entity
   name: Annie
@@ -130,6 +156,12 @@
   - type: Clothing
     sprite: _Goobstation/Objects/Weapons/Guns/Rifles/annie.rsi
   - type: Gun
+    # BlackM weapon
+    minAngle: 2
+    maxAngle: 16
+    angleIncrease: 3
+    angleDecay: 16
+    # BlackM weapon
     availableModes:
     - FullAuto
     - Burst
@@ -170,6 +202,13 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
+  # BlackM weapon
+  - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
+    angleIncrease: 0
+    angleDecay: 0
+  # BlackM weapon
 
 - type: entity
   name: WSPR
@@ -187,6 +226,12 @@
   - type: Clothing
     sprite: _Goobstation/Objects/Weapons/Guns/Rifles/wspr.rsi
   - type: Gun
+    # BlackM weapon
+    minAngle: 2
+    maxAngle: 16
+    angleIncrease: 3
+    angleDecay: 16
+    # BlackM weapon
     fireRate: 5.5
     projectileSpeed: 35
     soundGunshot:
@@ -217,3 +262,10 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
+  # BlackM weapon
+  - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
+    angleIncrease: 0
+    angleDecay: 0
+  # BlackM weapon

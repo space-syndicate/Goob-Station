@@ -47,6 +47,12 @@
           tags:
           - ShellShotgunHeavy
   - type: Gun
+    # BlackM weapon
+    minAngle: 2
+    maxAngle: 16
+    angleIncrease: 3
+    angleDecay: 16
+    # BlackM weapon
     fireRate: 0.65
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/batrifle.ogg
@@ -81,3 +87,10 @@
     size: Large
     shape:
     - 0,0,4,1
+  # BlackM weapon
+  - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
+    angleIncrease: 0
+    angleDecay: 0
+  # BlackM weapon

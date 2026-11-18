@@ -88,6 +88,12 @@
     - suitStorage
   - type: AmmoCounter
   - type: Gun
+    # BlackM weapon
+    minAngle: 2
+    maxAngle: 16
+    angleIncrease: 3
+    angleDecay: 16
+    # BlackM weapon
     fireRate: 0.75
     selectedMode: SemiAuto
     availableModes:
@@ -154,6 +160,12 @@
     - suitStorage
   - type: AmmoCounter
   - type: Gun
+    # BlackM weapon
+    minAngle: 2
+    maxAngle: 16
+    angleIncrease: 3
+    angleDecay: 16
+    # BlackM weapon
     fireRate: 0.75
     selectedMode: SemiAuto
     availableModes:
@@ -190,6 +202,13 @@
   - type: StaticPrice
     price: 500
 # Goobstation - End
+  # BlackM weapon
+  - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
+    angleIncrease: 0
+    angleDecay: 0
+  # BlackM weapon
 
 - type: entity
   name: Kardashev-Mosin
@@ -213,6 +232,12 @@
     equippedFillBaseName: -fill-
     equippedMaxFillLevels: 1
   - type: Gun
+    # BlackM weapon
+    minAngle: 2
+    maxAngle: 16
+    angleIncrease: 3
+    angleDecay: 16
+    # BlackM weapon
     fireRate: 1.2
     requiresSkill: false # CorvaxGoob-Skills
   - type: MeleeWeapon
@@ -250,6 +275,13 @@
     storedRotation: 45
   - type: ScannableForPoints # goob edit
     points: 2
+  # BlackM weapon
+  - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
+    angleIncrease: 0
+    angleDecay: 0
+  # BlackM weapon
 
 - type: entity
   name: Hristov
@@ -263,6 +295,12 @@
     sprite: Objects/Weapons/Guns/Snipers/heavy_sniper.rsi
   - type: GunRequiresWield
   - type: Gun
+    # BlackM weapon
+    minAngle: 2
+    maxAngle: 16
+    angleIncrease: 3
+    angleDecay: 16
+    # BlackM weapon
     # fireRate: 0.4 # Goobstation
     selectedMode: SemiAuto
     availableModes:
@@ -285,6 +323,13 @@
     pvsIncrease: 0.8 # Goobstation - Sniper rifles buff
   - type: StaticPrice
     price: 3500
+  # BlackM weapon
+  - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
+    angleIncrease: 0
+    angleDecay: 0
+  # BlackM weapon
 
 - type: entity
   name: musket
@@ -301,6 +346,12 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Snipers/musket.rsi
   - type: Gun
+    # BlackM weapon
+    minAngle: 2
+    maxAngle: 16
+    angleIncrease: 3
+    angleDecay: 16
+    # BlackM weapon
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -324,6 +375,13 @@
   # soundHit:
   #   path: /Audio/Weapons/bladeslice.ogg
   - type: GunRequiresWield
+  # BlackM weapon
+  - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
+    angleIncrease: 0
+    angleDecay: 0
+  # BlackM weapon
 
 - type: entity
   name: flintlock pistol
@@ -332,8 +390,15 @@
   description: A pirate's companion. Yarrr! Loads one round of .45 Magnum.
   components:
   - type: Gun
-    minAngle: 0
-    maxAngle: 30 #miss him entirely because the barrel is smoothbore
+    # BlackM weapon
+    # Original code (kept for reference):
+    #     minAngle: 0
+    #     maxAngle: 30 #miss him entirely because the barrel is smoothbore
+    angleIncrease: 3
+    angleDecay: 16
+    minAngle: 2
+    maxAngle: 16 #miss him entirely because the barrel is smoothbore
+    # BlackM weapon
     requiresSkill: false # CorvaxGoob-Skills
   - type: Item
     size: Small
@@ -364,3 +429,10 @@
   components:
   - type: BallisticAmmoProvider
     proto: null
+  # BlackM weapon
+  - type: Gun
+    minAngle: 2
+    maxAngle: 16
+    angleIncrease: 3
+    angleDecay: 16
+  # BlackM weapon

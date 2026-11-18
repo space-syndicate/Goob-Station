@@ -5,6 +5,11 @@
   description: A reinforced MK58 with a tuned firing assembly that increases damage by 20 percent.
   components:
   - type: WeaponDamageMultiplier
+  - type: Gun
+    minAngle: 1
+    maxAngle: 14
+    angleIncrease: 2
+    angleDecay: 2
 
 - type: entity
   parent: WeaponSubMachineGunDrozd
@@ -29,3 +34,14 @@
   description: A reinforced Lecter with a tuned firing assembly that increases damage by 20 percent.
   components:
   - type: WeaponDamageMultiplier
+  - type: Gun
+    minAngle: 2
+    maxAngle: 16
+    angleIncrease: 3
+    angleDecay: 16
+  - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
+    angleIncrease: 0
+    angleDecay: 0
+

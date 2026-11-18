@@ -17,6 +17,10 @@
   - type: Clothing
     sprite: _BlackM/Objects/Weapons/Guns/SMGs/mp5/tiny.rsi
   - type: Gun
+    minAngle: 2
+    maxAngle: 16
+    angleIncrease: 3
+    angleDecay: 16
     fireRate: 8
     selectedMode: FullAuto
     availableModes:
@@ -27,6 +31,11 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
+  - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
+    angleIncrease: 0
+    angleDecay: 0
 
 - type: entity
   id: WeaponShotgunBlackMSpas12

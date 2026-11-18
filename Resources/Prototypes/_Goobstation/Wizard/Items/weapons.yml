@@ -75,9 +75,18 @@
       tags:
       - CartridgeMagicBullet
   - type: Gun
+    # BlackM weapon
+    angleIncrease: 3
+    angleDecay: 16
+    # BlackM weapon
     muzzleFlashRotationOffset: 45
-    minAngle: 20
-    maxAngle: 30
+    # BlackM weapon
+    # Original code (kept for reference):
+    #     minAngle: 20
+    #     maxAngle: 30
+    minAngle: 2
+    maxAngle: 16
+    # BlackM weapon
     fireRate: 2
     selectedMode: SemiAuto
     availableModes:
@@ -89,6 +98,13 @@
   - type: Wieldable
   - type: MeleeWeapon
     resetOnHandSelected: false
+  # BlackM weapon
+  - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
+    angleIncrease: 0
+    angleDecay: 0
+  # BlackM weapon
 
 - type: entity
   name: supermatter halberd
