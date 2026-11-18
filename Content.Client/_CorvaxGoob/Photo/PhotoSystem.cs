@@ -12,9 +12,9 @@ public sealed partial class PhotoSystem : SharedPhotoSystem
         base.Initialize();
     }
 
-    public override void Update(float frameTime)
+    public override void FrameUpdate(float frameTime) // _BlackM: moved from Update, visuals once per frame
     {
-        base.Update(frameTime);
+        base.FrameUpdate(frameTime);
 
         foreach (var (component, window) in ActiveCameras)
         {

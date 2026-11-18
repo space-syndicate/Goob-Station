@@ -19,6 +19,7 @@ public sealed class GManVoidVisualsSystem : EntitySystem
     }
 
     private readonly Dictionary<EntityUid, VoidState> _tracked = new();
+    private readonly List<EntityUid> _toRemove = new();
 
     public override void Initialize()
     {
@@ -46,9 +47,9 @@ public sealed class GManVoidVisualsSystem : EntitySystem
         state.FadeTime = ev.FadeTime;
     }
 
-    public override void Update(float frameTime)
+    public override void FrameUpdate(float frameTime)
     {
-        base.Update(frameTime);
+        base.FrameUpdate(frameTime);
 
         var query = EntityQueryEnumerator<GManVoidRectComponent, SpriteComponent>();
         while (query.MoveNext(out var uid, out _, out var sprite))
@@ -75,17 +76,14 @@ public sealed class GManVoidVisualsSystem : EntitySystem
         if (_tracked.Count == 0)
             return;
 
-        List<EntityUid>? toRemove = null;
+        _toRemove.Clear();
         foreach (var uid in _tracked.Keys)
         {
             if (!Exists(uid))
-                (toRemove ??= new List<EntityUid>()).Add(uid);
+                _toRemove.Add(uid);
         }
 
-        if (toRemove == null)
-            return;
-
-        foreach (var uid in toRemove)
+        foreach (var uid in _toRemove)
             _tracked.Remove(uid);
     }
 }

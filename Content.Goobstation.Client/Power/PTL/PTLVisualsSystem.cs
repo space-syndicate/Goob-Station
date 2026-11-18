@@ -13,9 +13,9 @@ public sealed partial class PTLVisualsSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _time = default!;
 
-    public override void Update(float frameTime)
+    public override void FrameUpdate(float frameTime) // _BlackM: moved from Update, visuals once per frame
     {
-        base.Update(frameTime);
+        base.FrameUpdate(frameTime);
 
         var eqe = EntityQueryEnumerator<PTLVisualsComponent>();
         while (eqe.MoveNext(out var uid, out var ptlv))
@@ -30,7 +30,7 @@ public sealed partial class PTLVisualsSystem : EntitySystem
 
         sprite.LayerSetVisible(PTLVisualLayers.Unpowered, ptl.Active);
 
-        var delta = (ptl.NextShotAt - _time.CurTime).Seconds;
+        var delta = (float) (ptl.NextShotAt - _time.CurTime).TotalSeconds; // _BlackM: was .Seconds (integer part only), charge bar jumped
         var norm = Math.Clamp(delta / ptl.ShootDelay * ent.Comp.MaxChargeStates, 1, ent.Comp.MaxChargeStates);
         sprite.LayerSetState(PTLVisualLayers.Charge, $"{ent.Comp.ChargePrefix}{(int) norm}");
     }

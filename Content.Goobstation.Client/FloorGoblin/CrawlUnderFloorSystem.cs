@@ -26,9 +26,9 @@ public sealed partial class HideUnderFloorAbilitySystem : SharedCrawlUnderFloorS
         base.Initialize();
     }
 
-    public override void Update(float frameTime)
+    public override void FrameUpdate(float frameTime) // _BlackM: moved from Update, visuals once per frame
     {
-        base.Update(frameTime);
+        base.FrameUpdate(frameTime);
 
         var query = EntityQueryEnumerator<CrawlUnderFloorComponent, VentCrawlerComponent, SpriteComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var comp, out var vent, out var sprite, out var xform))

@@ -19,18 +19,18 @@ public sealed class ClientBloodtrakSystem : SharedBloodtrakSystem
 {
     [Dependency] private readonly IEyeManager _eyeManager = default!;
 
-    public override void Update(float frameTime)
+    public override void FrameUpdate(float frameTime) // _BlackM: moved from Update, visuals once per frame
     {
-        base.Update(frameTime);
+        base.FrameUpdate(frameTime);
 
+        var eyeRotation = _eyeManager.CurrentEye.Rotation; // _BlackM: hoisted out of the loop
         var query = EntityQueryEnumerator<BloodtrakComponent, SpriteComponent>();
         while (query.MoveNext(out var pinpointer, out var sprite))
         {
             if (!pinpointer.HasTarget)
                 continue;
 
-            var eye = _eyeManager.CurrentEye;
-            var angle = pinpointer.ArrowAngle + eye.Rotation;
+            var angle = pinpointer.ArrowAngle + eyeRotation; // _BlackM: cached eye rotation
 
             switch (pinpointer.DistanceToTarget)
             {
