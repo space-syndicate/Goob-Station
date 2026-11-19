@@ -12,7 +12,8 @@ blackm-evac-observer-return = Вернуться
 blackm-elevator-ann-arrive = Лифт прибыл на уровень комплекса. Двери открываются.
 
 blackm-elevator-evac-sender = Лифт эвакуации
-blackm-elevator-evac-boarding = Лифт эвакуации прибыл и ждёт пассажиров, местонахождение под «Карго». Встаньте в зону посадки: через { $seconds } сек. после входа первого пассажира лифт отправится. Не успели — ждите следующего подъёма.
+blackm-elevator-evac-location-unknown = неизвестно
+blackm-elevator-evac-boarding = Лифт эвакуации прибыл и ждёт пассажиров, местонахождение: { $location }. Встаньте в зону посадки: через { $seconds } сек. после входа первого пассажира лифт отправится. Не успели — ждите следующего подъёма.
 blackm-elevator-evac-closing = Отправление через { $seconds } секунд. Все, кто в зоне посадки, будут эвакуированы.
 blackm-elevator-evac-fade-text = Подъём на поверхность...
 blackm-elevator-evac-ann-start = Лифт эвакуации начинает подъём. Оставайтесь на местах.
