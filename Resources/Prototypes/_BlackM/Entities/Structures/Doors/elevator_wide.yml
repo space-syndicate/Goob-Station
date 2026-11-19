@@ -39,4 +39,6 @@
   # Airtight in BaseShutter covers only the central tile, not the full doorway.
   - type: Airtight
     airBlocked: false
+  - type: Occluder
+    boundingBox: "-2.5,-0.5,2.5,0.5"
   - type: BlackMWideDoorSafety
