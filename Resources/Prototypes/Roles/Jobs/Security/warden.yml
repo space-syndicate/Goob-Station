@@ -49,7 +49,7 @@
   - GenpopLeave
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant ]
+    implants: [ MindShieldImplant, KravMagaImplant ] #CorvaxGoob KravMaga-Changes
   - !type:AddComponentSpecial # goobstation
     components:
       - type: SecurityStaff
