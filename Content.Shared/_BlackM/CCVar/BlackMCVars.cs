@@ -40,7 +40,7 @@ public sealed class BlackMCVars
         CVarDef.Create("blackm.replace_tts_with_barks", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     public static readonly CVarDef<float> BarksVolume =
-        CVarDef.Create("blackm.barks_volume", 1.5f, CVar.CLIENTONLY | CVar.ARCHIVE);
+        CVarDef.Create("blackm.barks_volume", 2f, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     public static readonly CVarDef<float> BarksMinPitch =
         CVarDef.Create("blackm.barks_min_pitch", 0.5f, CVar.SERVER | CVar.REPLICATED);

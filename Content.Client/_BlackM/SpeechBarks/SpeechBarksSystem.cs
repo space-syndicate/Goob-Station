@@ -24,7 +24,7 @@ public sealed class SpeechBarksSystem : EntitySystem
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
 
-    private const float BaseVolume = -10f;
+    private const float BaseVolume = -6f;
     private const float WhisperVolume = -6f;
     private const float LoudVolume = 2f;
     private const float NormalHearingDistance = 10f;
