@@ -1,0 +1,79 @@
+- type: entity
+  parent: BaseWallmountMetallic
+  id: WallMedkit
+  name: wall medkit
+  description: A wall-mounted first aid station. Injects a dose of serum and patches up minor wounds.
+  components:
+  - type: Sprite
+    sprite: _BlackM/Structures/Wallmounts/wall_medkit.rsi
+    layers:
+    - state: base
+      map: ["base"]
+    - state: lights
+      map: ["lights"]
+      shader: unshaded
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.WallMedkitVisuals.Using:
+        base:
+          True: { state: use }
+          False: { state: base }
+        lights:
+          True: { state: lights-use }
+          False: { state: lights }
+      enum.WallMedkitVisuals.Charged:
+        lights:
+          True: { visible: true }
+          False: { visible: false }
+  - type: WallMedkit
+    charges: 3
+    maxCharges: 3
+    heal:
+      groups:
+        Brute: -10
+        Burn: -5
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+- type: entity
+  parent: WallMedkit
+  id: WallMedkitEmpty
+  suffix: Empty
+  components:
+  - type: WallMedkit
+    charges: 0
+
+- type: entity
+  parent: BaseItem
+  id: WallMedkitRefill
+  name: wall medkit refill kit
+  description: A sealed cartridge set. Use it on a wall medkit to restore its charges.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/firstaidkits.rsi
+    state: firstaid
+    color: "#8fe39b"
+  - type: Item
+    size: Small
+  - type: WallMedkitRefill
+    charges: 3
+  - type: StaticPrice
+    price: 600
+
+- type: entity
+  parent: CrateMedical
+  id: CrateWallMedkitRefill
+  name: wall medkit refill crate
+  description: Contains refill kits for wall medkits.
+  components:
+  - type: StorageFill
+    contents:
+    - id: WallMedkitRefill
+      amount: 3
