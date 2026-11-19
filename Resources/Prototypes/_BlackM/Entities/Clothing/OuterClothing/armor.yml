@@ -36,7 +36,7 @@
 - type: entity
   parent: [ClothingOuterBaseMedium, AllowSuitStorageClothing, BaseSecurityContraband]
   id: ClothingArmorHecuHigh
-  name: Жирный жилет HECU
+  name: Бронированный жилет HECU
   description: бронированный жилет HECU, обеспечивающий надёжную защиту от большинства видов урона.
   components:
   - type: Sprite
