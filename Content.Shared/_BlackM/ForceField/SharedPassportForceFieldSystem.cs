@@ -1,5 +1,6 @@
 using Content.Shared._BlackM.Passport;
 using Content.Shared.Inventory;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Physics.Events;
@@ -24,7 +25,13 @@ public sealed class SharedPassportForceFieldSystem : EntitySystem
     {
         var target = args.OtherEntity;
 
-        var authorized = HasAuthorizedPassportInSlot(target);
+        if (!HasComp<MobStateComponent>(target))
+        {
+            args.Cancelled = true;
+            return;
+        }
+
+        var authorized = HasAuthorizedPassport(target);
         var now = _timing.CurTime;
         var canPlayFeedback = !comp.NextInteractionAllowed.TryGetValue(target, out var nextTime) || now >= nextTime;
 
@@ -45,9 +52,16 @@ public sealed class SharedPassportForceFieldSystem : EntitySystem
         _popup.PopupClient(Loc.GetString("passport-forcefield-denied"), uid, target, PopupType.SmallCaution);
     }
 
-    private bool HasAuthorizedPassportInSlot(EntityUid mob)
+    private bool HasAuthorizedPassport(EntityUid mob)
     {
-        return _inventory.TryGetSlotEntity(mob, "passport", out var passport) && IsPassportAuthorized(passport);
+        var slots = _inventory.GetSlotEnumerator(mob);
+        while (slots.NextItem(out var item, out _))
+        {
+            if (IsPassportAuthorized(item))
+                return true;
+        }
+
+        return false;
     }
 
     private bool IsPassportAuthorized(EntityUid? uid)
