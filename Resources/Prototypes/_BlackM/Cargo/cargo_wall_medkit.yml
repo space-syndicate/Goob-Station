@@ -1,0 +1,9 @@
+- type: cargoProduct
+  id: WallMedkitRefillProduct
+  icon:
+    sprite: Objects/Specific/Medical/firstaidkits.rsi
+    state: firstaid
+  product: CrateWallMedkitRefill
+  cost: 2500
+  category: cargoproduct-category-name-medical
+  group: market

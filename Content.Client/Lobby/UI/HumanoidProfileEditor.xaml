@@ -155,33 +155,34 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                                 <BoxContainer Name="BarksSection" Orientation="Vertical" HorizontalExpand="True" Visible="False" Margin="0 5 0 0">
                                     <BoxContainer HorizontalExpand="True">
                                         <Label Text="{Loc 'blackm-bark-label'}" MinWidth="110" />
-                                        <Button Name="BarkPrevButton" Text="&lt;" StyleClasses="OpenRight" MinWidth="28" />
-                                        <Button Name="BarkPickButton" HorizontalExpand="True" ClipText="True" StyleClasses="OpenBoth" ToolTip="{Loc 'blackm-bark-picker-title'}" />
-                                        <Button Name="BarkNextButton" Text="&gt;" StyleClasses="OpenLeft" MinWidth="28" />
+                                        <OptionButton Name="BarkSelectButton" HorizontalExpand="True" />
                                         <Button Name="BarkVoicePlayButton" Text="{Loc 'blackm-bark-play'}" Margin="5 0 0 0" />
+                                        <Button Name="BarkAdvancedButton" Text="{Loc 'blackm-bark-advanced'}" ToggleMode="True" Margin="5 0 0 0" />
                                     </BoxContainer>
-                                    <BoxContainer HorizontalExpand="True">
-                                        <Label Text="{Loc 'blackm-bark-pitch-label'}" MinWidth="110" />
-                                        <Slider Name="BarkPitchSlider" MinValue="0.5" MaxValue="2" Value="1" HorizontalExpand="True" Margin="5 0 5 0" />
-                                        <Label Name="BarkPitchLabel" MinWidth="50" />
+                                    <BoxContainer Name="BarkAdvancedContainer" Orientation="Vertical" HorizontalExpand="True" Visible="False">
+                                        <BoxContainer HorizontalExpand="True">
+                                            <Label Text="{Loc 'blackm-bark-pitch-label'}" MinWidth="110" />
+                                            <Slider Name="BarkPitchSlider" MinValue="0.5" MaxValue="2" Value="1" HorizontalExpand="True" Margin="5 0 5 0" />
+                                            <Label Name="BarkPitchLabel" MinWidth="50" />
+                                        </BoxContainer>
+                                        <BoxContainer HorizontalExpand="True">
+                                            <Label Text="{Loc 'blackm-bark-variation-label'}" MinWidth="110" />
+                                            <Slider Name="BarkVariationSlider" MinValue="0" MaxValue="0.5" Value="0.1" HorizontalExpand="True" Margin="5 0 5 0" />
+                                            <Label Name="BarkVariationLabel" MinWidth="50" />
+                                        </BoxContainer>
+                                        <BoxContainer HorizontalExpand="True">
+                                            <Label Text="{Loc 'blackm-bark-speed-label'}" MinWidth="110" />
+                                            <Slider Name="BarkSpeedSlider" MinValue="0.5" MaxValue="2" Value="1" HorizontalExpand="True" Margin="5 0 5 0" />
+                                            <Label Name="BarkSpeedLabel" MinWidth="50" />
+                                        </BoxContainer>
+                                        <BoxContainer HorizontalExpand="True">
+                                            <Label Text="{Loc 'blackm-bark-mode-label'}" MinWidth="110" />
+                                            <OptionButton Name="BarkModeButton" HorizontalExpand="True" Margin="5 0 5 0" />
+                                            <Button Name="BarkResetButton" Text="{Loc 'blackm-bark-reset'}" />
+                                        </BoxContainer>
+                                        <LineEdit Name="BarkPreviewEdit" HorizontalExpand="True" PlaceHolder="{Loc 'blackm-bark-preview-placeholder'}" Margin="0 4 0 0" />
+                                        <Label Name="BarkPreviewLabel" HorizontalExpand="True" ClipText="True" FontColorOverride="#B8B8C8" Margin="2 2 0 0" />
                                     </BoxContainer>
-                                    <BoxContainer HorizontalExpand="True">
-                                        <Label Text="{Loc 'blackm-bark-variation-label'}" MinWidth="110" />
-                                        <Slider Name="BarkVariationSlider" MinValue="0" MaxValue="0.5" Value="0.1" HorizontalExpand="True" Margin="5 0 5 0" />
-                                        <Label Name="BarkVariationLabel" MinWidth="50" />
-                                    </BoxContainer>
-                                    <BoxContainer HorizontalExpand="True">
-                                        <Label Text="{Loc 'blackm-bark-speed-label'}" MinWidth="110" />
-                                        <Slider Name="BarkSpeedSlider" MinValue="0.5" MaxValue="2" Value="1" HorizontalExpand="True" Margin="5 0 5 0" />
-                                        <Label Name="BarkSpeedLabel" MinWidth="50" />
-                                    </BoxContainer>
-                                    <BoxContainer HorizontalExpand="True">
-                                        <Label Text="{Loc 'blackm-bark-mode-label'}" MinWidth="110" />
-                                        <OptionButton Name="BarkModeButton" HorizontalExpand="True" Margin="5 0 5 0" />
-                                        <Button Name="BarkResetButton" Text="{Loc 'blackm-bark-reset'}" />
-                                    </BoxContainer>
-                                    <LineEdit Name="BarkPreviewEdit" HorizontalExpand="True" PlaceHolder="{Loc 'blackm-bark-preview-placeholder'}" Margin="0 4 0 0" />
-                                    <Label Name="BarkPreviewLabel" HorizontalExpand="True" ClipText="True" FontColorOverride="#B8B8C8" Margin="2 2 0 0" />
                                 </BoxContainer>
                                 <!-- BlackM barks end -->
                                 <!-- Corvax-Frontier-Barks-End -->
@@ -210,16 +211,20 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                             </BoxContainer>
                             <!-- BlackM end -->
                             </BoxContainer>
-                            <!-- Hair -->
-                            <BoxContainer Margin="10" Orientation="Horizontal">
-                                <humanoid:SingleMarkingPicker Name="HairStylePicker" Category="Hair" />
-                                <humanoid:SingleMarkingPicker Name="FacialHairPicker" Category="FacialHair" />
-                            </BoxContainer>
-                            <!-- Eyes -->
-                            <BoxContainer Margin="10" Orientation="Vertical">
-                                <Label Text="{Loc 'humanoid-profile-editor-eyes-label'}" />
-                                <humanoid:EyeColorPicker Name="EyeColorPicker" />
-                            </BoxContainer>
+                            <!-- Hair, facial hair, and eye color -->
+                            <TabContainer Name="FaceAppearanceTabs" HorizontalExpand="True"
+                                          StyleClasses="TabContainerTerminalBlackM">
+                                <BoxContainer Orientation="Vertical" Margin="8">
+                                    <humanoid:SingleMarkingPicker Name="HairStylePicker" Category="Hair" />
+                                </BoxContainer>
+                                <BoxContainer Orientation="Vertical" Margin="8">
+                                    <humanoid:SingleMarkingPicker Name="FacialHairPicker" Category="FacialHair" />
+                                </BoxContainer>
+                                <BoxContainer Orientation="Vertical" Margin="8">
+                                    <Label Text="{Loc 'humanoid-profile-editor-eyes-label'}" />
+                                    <humanoid:EyeColorPicker Name="EyeColorPicker" />
+                                </BoxContainer>
+                            </TabContainer>
                         </BoxContainer>
                     </ScrollContainer>
                 </BoxContainer>

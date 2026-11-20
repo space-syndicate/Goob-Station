@@ -8,6 +8,7 @@ using Content.Shared.Buckle;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Chat;
 using Content.Shared.Examine;
+using Content.Shared.Item;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
@@ -121,15 +122,23 @@ public sealed class BlackMElevatorSystem : EntitySystem
         return TryComp(elevator, out comp!);
     }
 
-    private bool TryPickSpawn(EntityUid grid, out EntityCoordinates coords)
+    private bool TryPickSpawn(EntityUid grid, out EntityCoordinates coords, string? pointId = null)
     {
         var points = new List<EntityCoordinates>();
+        var matched = new List<EntityCoordinates>();
         var q = EntityQueryEnumerator<BlackMElevatorSpawnPointComponent, TransformComponent>();
-        while (q.MoveNext(out _, out _, out var xform))
+        while (q.MoveNext(out _, out var spawn, out var xform))
         {
-            if (xform.GridUid == grid)
-                points.Add(xform.Coordinates);
+            if (xform.GridUid != grid)
+                continue;
+
+            points.Add(xform.Coordinates);
+            if (!string.IsNullOrEmpty(pointId) && spawn.PointId == pointId)
+                matched.Add(xform.Coordinates);
         }
+
+        if (matched.Count > 0)
+            points = matched;
 
         coords = default;
         if (points.Count == 0)
@@ -326,6 +335,9 @@ public sealed class BlackMElevatorSystem : EntitySystem
     {
         CleanPassengers(comp);
 
+        if (!comp.Evacuation && comp.Id == "main" && !HasComp<BlackMElevatorCargoTripComponent>(uid))
+            AddLooseItemsOnGridToPassengers(uid, comp);
+
         if (comp.Passengers.Count == 0 && !HasComp<BlackMElevatorCargoTripComponent>(uid))
         {
             comp.State = BlackMElevatorState.Idle;
@@ -362,7 +374,7 @@ public sealed class BlackMElevatorSystem : EntitySystem
                && elapsed >= comp.Announcements[comp.AnnounceIndex].At)
         {
             var ann = comp.Announcements[comp.AnnounceIndex++];
-            Notify(uid, Loc.GetString(ann.Message), ann.Big);
+            Notify(uid, comp, Loc.GetString(ann.Message), ann.Big);
         }
 
         while (comp.HeavyIndex < comp.HeavyShakes.Count && elapsed >= comp.HeavyShakes[comp.HeavyIndex])
@@ -438,7 +450,9 @@ public sealed class BlackMElevatorSystem : EntitySystem
                 var dest = dests[i++ % dests.Count];
                 ReleaseHolds(p);
                 _xform.SetCoordinates(p, Transform(dest).Coordinates);
-                RaiseLocalEvent(new BlackMElevatorArrivedEvent(p, comp.Id));
+
+                if (HasComp<MobStateComponent>(p))
+                    RaiseLocalEvent(new BlackMElevatorArrivedEvent(p, comp.Id));
             }
 
             Jolt(comp.Passengers, comp.LandingStrength);
@@ -475,6 +489,7 @@ public sealed class BlackMElevatorSystem : EntitySystem
 
     public bool SetEvacuation(string elevatorId, bool enabled)
     {
+        var found = false;
         var q = EntityQueryEnumerator<BlackMElevatorComponent>();
         while (q.MoveNext(out _, out var comp))
         {
@@ -482,10 +497,52 @@ public sealed class BlackMElevatorSystem : EntitySystem
                 continue;
 
             comp.Enabled = enabled;
-            return true;
+            found = true;
         }
 
-        return false;
+        return found;
+    }
+
+    public bool TryStartRandomEvacuation(string elevatorId, out string location)
+    {
+        location = string.Empty;
+        var candidates = new List<BlackMElevatorComponent>();
+
+        var q = EntityQueryEnumerator<BlackMElevatorComponent>();
+        while (q.MoveNext(out _, out var comp))
+        {
+            if (!comp.Evacuation || comp.Id != elevatorId)
+                continue;
+
+            if (comp.Enabled)
+                return false;
+
+            candidates.Add(comp);
+        }
+
+        if (candidates.Count == 0)
+            return false;
+
+        var chosen = candidates[_random.Next(candidates.Count)];
+        chosen.Enabled = true;
+        location = GetLocationName(chosen);
+        return true;
+    }
+
+    public string GetLocationName(BlackMElevatorComponent comp)
+    {
+        if (!string.IsNullOrWhiteSpace(comp.LocationName))
+            return Loc.TryGetString(comp.LocationName, out var loc) ? loc : comp.LocationName;
+
+        if (!string.IsNullOrWhiteSpace(comp.PointId))
+            return comp.PointId;
+
+        return Loc.GetString("blackm-elevator-evac-location-unknown");
+    }
+
+    private static bool SamePoint(string? a, string? b)
+    {
+        return string.IsNullOrEmpty(a) ? string.IsNullOrEmpty(b) : a == b;
     }
 
     private const float ScanInterval = 0.5f;
@@ -496,7 +553,7 @@ public sealed class BlackMElevatorSystem : EntitySystem
         if (now >= comp.NextScan)
         {
             comp.NextScan = now + TimeSpan.FromSeconds(ScanInterval);
-            occupants = CollectEvacPassengers(comp.Id);
+            occupants = CollectEvacPassengers(comp);
         }
 
         switch (comp.State)
@@ -543,10 +600,12 @@ public sealed class BlackMElevatorSystem : EntitySystem
         comp.InZone.Clear();
         comp.Faded.Clear();
 
-        var boarding = Loc.GetString(comp.BoardingMessage, ("seconds", (int) comp.BoardingDelay));
+        var boarding = Loc.GetString(comp.BoardingMessage,
+            ("seconds", (int) comp.BoardingDelay),
+            ("location", GetLocationName(comp)));
         if (comp.GlobalAnnounce)
             AnnounceGlobal(Loc.GetString(comp.Sender), boarding, Color.Cyan);
-        SayAtBoarding(comp.Id, boarding);
+        SayAtBoarding(comp, boarding);
     }
 
     private void UpdateBoarding(EntityUid uid, BlackMElevatorComponent comp, TimeSpan now, HashSet<EntityUid>? occupants)
@@ -566,7 +625,7 @@ public sealed class BlackMElevatorSystem : EntitySystem
             comp.BoardingEnd = now + TimeSpan.FromSeconds(comp.BoardingDelay);
             comp.BoardingWarned = comp.BoardingDelay <= comp.ClosingWarningAt + 1f;
             comp.LastCountdownSecond = int.MaxValue;
-            SayAtBoarding(comp.Id, Loc.GetString(comp.CountdownStartMessage, ("seconds", (int) comp.BoardingDelay)));
+            SayAtBoarding(comp, Loc.GetString(comp.CountdownStartMessage, ("seconds", (int) comp.BoardingDelay)));
         }
 
         var remaining = (float) (comp.BoardingEnd - now).TotalSeconds;
@@ -578,7 +637,7 @@ public sealed class BlackMElevatorSystem : EntitySystem
         if (!comp.BoardingWarned && remaining <= comp.ClosingWarningAt)
         {
             comp.BoardingWarned = true;
-            SayAtBoarding(comp.Id, Loc.GetString(comp.ClosingMessage, ("seconds", (int) comp.ClosingWarningAt)));
+            SayAtBoarding(comp, Loc.GetString(comp.ClosingMessage, ("seconds", (int) comp.ClosingWarningAt)));
         }
 
         if (seconds > 0 && seconds <= comp.PopupCountdownFrom && seconds < comp.LastCountdownSecond)
@@ -611,26 +670,29 @@ public sealed class BlackMElevatorSystem : EntitySystem
     private void BeginEvacDeparture(EntityUid uid, BlackMElevatorComponent comp)
     {
         var grid = Transform(uid).GridUid;
-        var boarded = CollectEvacPassengers(comp.Id);
+        var boarded = CollectEvacPassengers(comp);
 
         if (boarded.Count == 0 || grid == null)
         {
             StopCountdown(comp, null);
-            SayAtBoarding(comp.Id, Loc.GetString(comp.CancelMessage));
+            SayAtBoarding(comp, Loc.GetString(comp.CancelMessage));
             return;
         }
 
-        SayAtBoarding(comp.Id, Loc.GetString(comp.DepartingMessage));
+        SayAtBoarding(comp, Loc.GetString(comp.DepartingMessage));
 
         foreach (var p in boarded)
         {
             ReleaseHolds(p);
 
-            if (TryPickSpawn(grid.Value, out var coords))
+            if (TryPickSpawn(grid.Value, out var coords, comp.PointId))
                 _xform.SetCoordinates(p, coords);
 
             comp.Passengers.Add(p);
         }
+
+        if (comp.Id == "evac")
+            AddEvacuationItems(comp, grid.Value);
 
         SendFade(boarded, false, comp.FadeInTime);
         StopCountdown(comp, boarded);
@@ -689,7 +751,7 @@ public sealed class BlackMElevatorSystem : EntitySystem
         var q = EntityQueryEnumerator<BlackMElevatorComponent>();
         while (q.MoveNext(out _, out var comp))
         {
-            if (!comp.Evacuation || comp.Id != id)
+            if (!comp.Evacuation || comp.Id != id || !SamePoint(comp.PointId, ent.Comp.PointId))
                 continue;
 
             args.PushMarkup(StatusText(comp));
@@ -720,14 +782,14 @@ public sealed class BlackMElevatorSystem : EntitySystem
         return Loc.GetString("blackm-elevator-examine-ready", ("seconds", (int) comp.BoardingDelay));
     }
 
-    private HashSet<EntityUid> CollectEvacPassengers(string elevatorId)
+    private HashSet<EntityUid> CollectEvacPassengers(BlackMElevatorComponent comp)
     {
         var result = new HashSet<EntityUid>();
         var q = EntityQueryEnumerator<BlackMElevatorBoardZoneComponent, TransformComponent>();
 
         while (q.MoveNext(out _, out var zone, out var xform))
         {
-            if (zone.ElevatorId != elevatorId)
+            if (zone.ElevatorId != comp.Id || !SamePoint(zone.PointId, comp.PointId))
                 continue;
 
             foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(xform.Coordinates, zone.Range))
@@ -743,6 +805,57 @@ public sealed class BlackMElevatorSystem : EntitySystem
         }
 
         return result;
+    }
+
+    private void AddLooseItemsOnGridToPassengers(EntityUid elevator, BlackMElevatorComponent comp)
+    {
+        if (Transform(elevator).GridUid is not { } grid)
+            return;
+
+        var query = EntityQueryEnumerator<ItemComponent, TransformComponent>();
+        while (query.MoveNext(out var item, out _, out var xform))
+        {
+            if (xform.GridUid != grid || xform.ParentUid != grid || xform.Anchored ||
+                (TryComp<PhysicsComponent>(item, out var physics) && physics.BodyType == BodyType.Static))
+            {
+                continue;
+            }
+
+            comp.Passengers.Add(item);
+        }
+    }
+
+    private void AddEvacuationItems(BlackMElevatorComponent comp, EntityUid elevatorGrid)
+    {
+        var moved = new HashSet<EntityUid>();
+        var zones = EntityQueryEnumerator<BlackMElevatorBoardZoneComponent, TransformComponent>();
+
+        while (zones.MoveNext(out _, out var zone, out var zoneXform))
+        {
+            if (zone.ElevatorId != comp.Id || !SamePoint(zone.PointId, comp.PointId) ||
+                zoneXform.GridUid == null || zoneXform.ParentUid != zoneXform.GridUid ||
+                !TryPickSpawn(elevatorGrid, out var spawn, comp.PointId))
+            {
+                continue;
+            }
+
+            foreach (var item in _lookup.GetEntitiesInRange<ItemComponent>(zoneXform.Coordinates, zone.Range))
+            {
+                var itemUid = item.Owner;
+                if (!moved.Add(itemUid) || !TryComp<TransformComponent>(itemUid, out var itemXform) ||
+                    itemXform.GridUid != zoneXform.GridUid || itemXform.ParentUid != zoneXform.GridUid ||
+                    itemXform.Anchored ||
+                    (TryComp<PhysicsComponent>(itemUid, out var physics) && physics.BodyType == BodyType.Static))
+                {
+                    continue;
+                }
+
+                var offset = itemXform.LocalPosition - zoneXform.LocalPosition;
+                ReleaseHolds(itemUid);
+                _xform.SetCoordinates(itemUid, new EntityCoordinates(spawn.EntityId, spawn.Position + offset));
+                comp.Passengers.Add(itemUid);
+            }
+        }
     }
 
     private void AnnounceGlobal(string sender, string message, Color color)
@@ -778,9 +891,9 @@ public sealed class BlackMElevatorSystem : EntitySystem
         }
     }
 
-    private void Notify(EntityUid elevator, string text, bool big)
+    private void Notify(EntityUid elevator, BlackMElevatorComponent comp, string text, bool big)
     {
-        if (!TryGetDispatcher(elevator, out var dispatcher))
+        if (!TryGetDispatcher(elevator, comp, out var dispatcher))
             return;
 
         if (big)
@@ -790,28 +903,35 @@ public sealed class BlackMElevatorSystem : EntitySystem
             hideChat: false, ignoreActionBlocker: true);
     }
 
-    private bool TryGetDispatcher(EntityUid elevator, out EntityUid dispatcher)
+    private bool TryGetDispatcher(EntityUid elevator, BlackMElevatorComponent comp, out EntityUid dispatcher)
     {
         var grid = Transform(elevator).GridUid;
+        EntityUid? fallback = null;
         var q = EntityQueryEnumerator<BlackMElevatorDispatcherComponent, TransformComponent>();
         while (q.MoveNext(out var uid, out var disp, out var xform))
         {
             if (xform.GridUid != grid || disp.ElevatorId != null)
                 continue;
-            dispatcher = uid;
-            return true;
+
+            if (SamePoint(disp.PointId, comp.PointId))
+            {
+                dispatcher = uid;
+                return true;
+            }
+
+            fallback ??= uid;
         }
 
-        dispatcher = default;
-        return false;
+        dispatcher = fallback ?? default;
+        return fallback != null;
     }
 
-    private void SayAtBoarding(string elevatorId, string text)
+    private void SayAtBoarding(BlackMElevatorComponent comp, string text)
     {
         var q = EntityQueryEnumerator<BlackMElevatorDispatcherComponent>();
         while (q.MoveNext(out var uid, out var disp))
         {
-            if (disp.ElevatorId != elevatorId)
+            if (disp.ElevatorId != comp.Id || !SamePoint(disp.PointId, comp.PointId))
                 continue;
 
             _chatSystem.TrySendInGameICMessage(uid, text, InGameICChatType.Speak,

@@ -1575,8 +1575,8 @@ namespace Content.Client.Stylesheets
                     {
                 new StyleProperty(Button.StylePropertyStyleBox, new StyleBoxFlat
                 {
-                        BackgroundColor = TerminalBlack.WithAlpha(0.76f),
-                        BorderColor = TerminalGreenDim.WithAlpha(0.3f) /* BlackM: calm borders */,
+                        BackgroundColor = Color.FromHex("#24180A"),
+                        BorderColor = TerminalGreenDim.WithAlpha(0.85f),
                         BorderThickness = new Thickness(1),
                         ContentMarginLeftOverride = 12,
                         ContentMarginRightOverride = 12,
@@ -1733,8 +1733,8 @@ namespace Content.Client.Stylesheets
                     {
                         new StyleProperty(ContainerButton.StylePropertyStyleBox, new StyleBoxFlat
                         {
-                            BackgroundColor = TerminalBlack.WithAlpha(0.72f),
-                            BorderColor = TerminalGreenDim.WithAlpha(0.3f) /* BlackM: calm borders */,
+                            BackgroundColor = Color.FromHex("#24180A"),
+                            BorderColor = TerminalGreenDim.WithAlpha(0.85f),
                             BorderThickness = new Thickness(1),
                             ContentMarginLeftOverride = 10,
                             ContentMarginRightOverride = 10,
@@ -1933,6 +1933,28 @@ namespace Content.Client.Stylesheets
                             BorderColor = TerminalGreenDim.WithAlpha(0.3f) /* BlackM: calm borders */,
                             BorderThickness = new Thickness(1),
                         }),
+                        new StyleProperty(TabContainer.StylePropertyTabStyleBox, new StyleBoxFlat
+                        {
+                            BackgroundColor = Color.FromHex("#49300F"),
+                            BorderColor = TerminalGreen,
+                            BorderThickness = new Thickness(1),
+                            ContentMarginLeftOverride = 8,
+                            ContentMarginRightOverride = 8,
+                            ContentMarginTopOverride = 3,
+                            ContentMarginBottomOverride = 3,
+                        }),
+                        new StyleProperty(TabContainer.StylePropertyTabStyleBoxInactive, new StyleBoxFlat
+                        {
+                            BackgroundColor = Color.FromHex("#19120A"),
+                            BorderColor = TerminalGreenDim,
+                            BorderThickness = new Thickness(1),
+                            ContentMarginLeftOverride = 8,
+                            ContentMarginRightOverride = 8,
+                            ContentMarginTopOverride = 3,
+                            ContentMarginBottomOverride = 3,
+                        }),
+                        new StyleProperty(TabContainer.stylePropertyTabFontColor, Color.FromHex("#FFD166")),
+                        new StyleProperty(TabContainer.StylePropertyTabFontColorInactive, Color.FromHex("#D0B987")),
                     }),
 
                 new StyleRule(new SelectorElement(typeof(ItemList), new[] {StyleClassItemListTerminalBlackM}, null, null), new[]
@@ -1950,11 +1972,11 @@ namespace Content.Client.Stylesheets
                 new StyleRule(new SelectorElement(typeof(Slider), new[] {StyleClassSliderTerminalBlackM}, null, null), new[]
                 {
                     new StyleProperty(Slider.StylePropertyBackground,
-                        new StyleBoxFlat {BackgroundColor = TerminalBlack.WithAlpha(0.72f), BorderColor = TerminalGreenDim.WithAlpha(0.3f) /* BlackM: calm borders */, BorderThickness = new Thickness(1), ContentMarginTopOverride = 7, ContentMarginBottomOverride = 7}),
+                        new StyleBoxFlat {BackgroundColor = Color.FromHex("#24180A"), BorderColor = TerminalGreenDim.WithAlpha(0.85f), BorderThickness = new Thickness(1), ContentMarginTopOverride = 7, ContentMarginBottomOverride = 7}),
                     new StyleProperty(Slider.StylePropertyForeground,
                         new StyleBoxFlat {BackgroundColor = Color.Transparent}),
                     new StyleProperty(Slider.StylePropertyFill,
-                        new StyleBoxFlat {BackgroundColor = TerminalGreenDim.WithAlpha(0.45f) /* BlackM: was 0.8 */}),
+                        new StyleBoxFlat {BackgroundColor = TerminalGreenDim.WithAlpha(0.65f)}),
                     new StyleProperty(Slider.StylePropertyGrabber,
                         new StyleBoxFlat {BackgroundColor = TerminalGreen, ContentMarginLeftOverride = 5, ContentMarginRightOverride = 5, ContentMarginTopOverride = 9, ContentMarginBottomOverride = 9}),
                 }),
@@ -1962,7 +1984,7 @@ namespace Content.Client.Stylesheets
                 new StyleRule(new SelectorElement(typeof(LineEdit), new[] {StyleClassLineEditTerminalBlackM}, null, null), new[]
                 {
                     new StyleProperty(LineEdit.StylePropertyStyleBox,
-                        new StyleBoxFlat {BackgroundColor = TerminalBlack.WithAlpha(0.72f), BorderColor = TerminalGreenDim.WithAlpha(0.3f) /* BlackM: calm borders */, BorderThickness = new Thickness(1), ContentMarginLeftOverride = 6, ContentMarginRightOverride = 6, ContentMarginTopOverride = 3, ContentMarginBottomOverride = 3}),
+                        new StyleBoxFlat {BackgroundColor = Color.FromHex("#24180A"), BorderColor = TerminalGreenDim.WithAlpha(0.85f), BorderThickness = new Thickness(1), ContentMarginLeftOverride = 6, ContentMarginRightOverride = 6, ContentMarginTopOverride = 3, ContentMarginBottomOverride = 3}),
                 }),
                 // BlackM end
 

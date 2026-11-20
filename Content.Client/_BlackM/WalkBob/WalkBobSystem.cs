@@ -1,6 +1,7 @@
 using System.Numerics;
 using Content.Goobstation.Shared.Sprinting;
 using Content.Shared._BlackM.WalkBob;
+using Content.Shared._BlackM.Rappel;
 using Content.Shared.Damage.Components;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Mobs;
@@ -31,10 +32,30 @@ public sealed class WalkBobSystem : EntitySystem
     private const float KickCooldown = 0.05f;
     private const float FallbackSprintThreshold = 3.5f;
     private const float SpringStep = 1f / 120f;
+    // Entities further than this from the camera are not animated (they are off-screen).
+    private const float CullDistance = 24f;
+
+    private EntityQuery<PhysicsComponent> _physicsQuery;
+    private EntityQuery<SprinterComponent> _sprinterQuery;
+    private EntityQuery<StaminaComponent> _staminaQuery;
+    private EntityQuery<MovementSpeedModifierComponent> _speedQuery;
+    private EntityQuery<PullableComponent> _pullableQuery;
+    private EntityQuery<BuckleComponent> _buckleQuery;
+    private EntityQuery<MobStateComponent> _mobStateQuery;
+    private EntityQuery<RappellingComponent> _rappelQuery;
 
     public override void Initialize()
     {
         base.Initialize();
+
+        _physicsQuery = GetEntityQuery<PhysicsComponent>();
+        _sprinterQuery = GetEntityQuery<SprinterComponent>();
+        _staminaQuery = GetEntityQuery<StaminaComponent>();
+        _speedQuery = GetEntityQuery<MovementSpeedModifierComponent>();
+        _pullableQuery = GetEntityQuery<PullableComponent>();
+        _buckleQuery = GetEntityQuery<BuckleComponent>();
+        _mobStateQuery = GetEntityQuery<MobStateComponent>();
+        _rappelQuery = GetEntityQuery<RappellingComponent>();
 
         SubscribeLocalEvent<WalkBobComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<GunComponent, GunShotEvent>(OnGunShot);
@@ -164,15 +185,31 @@ public sealed class WalkBobSystem : EntitySystem
 
         var dt = Math.Clamp(frameTime, 0.0001f, 0.1f);
 
+        var eye = _eye.CurrentEye;
+        var eyePos = eye.Position;
+        var cull = CullDistance * MathF.Max(1f, MathF.Max(eye.Zoom.X, eye.Zoom.Y));
+        var cullSq = cull * cull;
+
         var query = EntityQueryEnumerator<WalkBobComponent, SpriteComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var bob, out var sprite, out var xform))
         {
+            if (xform.MapID != eyePos.MapId ||
+                (_transform.GetWorldPosition(xform) - eyePos.Position).LengthSquared() > cullSq)
+                continue;
+
             UpdateBob(uid, bob, sprite, xform, dt);
         }
     }
 
     private void UpdateBob(EntityUid uid, WalkBobComponent bob, SpriteComponent sprite, TransformComponent xform, float dt)
     {
+        if (_rappelQuery.TryComp(uid, out var rappel) &&
+            rappel.LifeStage <= ComponentLifeStage.Running)
+        {
+            Apply(uid, sprite, bob, Vector2.One, Vector2.Zero, Angle.Zero);
+            return;
+        }
+
         var alive = CanAnimate(uid);
         var k = 1f - MathF.Exp(-bob.Smoothing * dt);
         var mapCoords = _transform.GetMapCoordinates(uid, xform);
@@ -183,11 +220,11 @@ public sealed class WalkBobSystem : EntitySystem
         {
             velocity = WorldToScreen(mapCoords, FacingVector(uid)) * over;
         }
-        else if (alive && IsSelfMoving(uid) && TryComp<PhysicsComponent>(uid, out var physics))
+        else if (alive && IsSelfMoving(uid) && _physicsQuery.TryComp(uid, out var physics))
         {
             var parentRot = xform.ParentUid.IsValid() ? _transform.GetWorldRotation(xform.ParentUid) : Angle.Zero;
             velocity = WorldToScreen(mapCoords, parentRot.RotateVec(physics.LinearVelocity));
-            sprinting = TryComp<SprinterComponent>(uid, out var sprinter) && sprinter.IsSprinting;
+            sprinting = _sprinterQuery.TryComp(uid, out var sprinter) && sprinter.IsSprinting;
         }
 
         var speed = velocity.Length();
@@ -229,7 +266,7 @@ public sealed class WalkBobSystem : EntitySystem
             bob.Exertion = MathF.Max(0f, bob.Exertion - dt / MathF.Max(bob.ExertionRecoverTime, 0.01f));
 
         var exertion = bob.Exertion;
-        if (TryComp<StaminaComponent>(uid, out var stamina) && stamina.CritThreshold > 0f)
+        if (_staminaQuery.TryComp(uid, out var stamina) && stamina.CritThreshold > 0f)
             exertion = MathF.Max(exertion, Math.Clamp(stamina.StaminaDamage / stamina.CritThreshold * bob.StaminaExertion, 0f, 1f));
 
         if (!bob.BreathSeeded)
@@ -301,7 +338,7 @@ public sealed class WalkBobSystem : EntitySystem
 
         var walk = 2.5f;
         var run = FallbackSprintThreshold + 1f;
-        if (TryComp<MovementSpeedModifierComponent>(uid, out var mod))
+        if (_speedQuery.TryComp(uid, out var mod))
         {
             walk = mod.CurrentWalkSpeed;
             run = mod.CurrentSprintSpeed;
@@ -322,10 +359,10 @@ public sealed class WalkBobSystem : EntitySystem
 
     private bool IsSelfMoving(EntityUid uid)
     {
-        if (TryComp<PullableComponent>(uid, out var pullable) && pullable.BeingPulled)
+        if (_pullableQuery.TryComp(uid, out var pullable) && pullable.BeingPulled)
             return false;
 
-        if (TryComp<BuckleComponent>(uid, out var buckle) && buckle.Buckled)
+        if (_buckleQuery.TryComp(uid, out var buckle) && buckle.Buckled)
             return false;
 
         return true;
@@ -333,7 +370,7 @@ public sealed class WalkBobSystem : EntitySystem
 
     private bool CanAnimate(EntityUid uid)
     {
-        if (TryComp<MobStateComponent>(uid, out var mobState) && mobState.CurrentState != MobState.Alive)
+        if (_mobStateQuery.TryComp(uid, out var mobState) && mobState.CurrentState != MobState.Alive)
             return false;
 
         return !_standing.IsDown(uid);

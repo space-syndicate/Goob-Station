@@ -10,6 +10,7 @@ using Robust.Shared.Asynchronous;
 using Robust.Shared.Configuration;
 using Robust.Shared.Console;
 using Robust.Shared.Localization;
+using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
 
@@ -24,7 +25,7 @@ public sealed class ChatImageSystem : EntitySystem
 
     private int _nextId = 1;
 
-    public void SendFromUrl(IConsoleShell shell, string adminName, string rawUrl, string caption)
+    public void SendFromUrl(IConsoleShell shell, string adminName, NetUserId? adminUserId, string rawUrl, string caption)
     {
         if (!_cfg.GetCVar(BlackMCVars.ChatImageEnabled))
         {
@@ -58,7 +59,7 @@ public sealed class ChatImageSystem : EntitySystem
                 using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(20));
                 var result = await ChatImageProcessor.LoadAsync(uri, maxBytes, cts.Token);
 
-                _task.RunOnMainThread(() => Publish(shell, adminName, uri, caption, result));
+                _task.RunOnMainThread(() => Publish(shell, adminName, adminUserId, uri, caption, result));
             }
             catch (ChatImageException e)
             {
@@ -72,13 +73,13 @@ public sealed class ChatImageSystem : EntitySystem
         });
     }
 
-    private void Publish(IConsoleShell shell, string adminName, Uri uri, string caption, ChatImageProcessor.Result result)
+    private void Publish(IConsoleShell shell, string adminName, NetUserId? adminUserId, Uri uri, string caption, ChatImageProcessor.Result result)
     {
         var id = _nextId++;
 
         RaiseNetworkEvent(new ChatImageDataEvent(id, result.Frames, result.DelaysMs), Filter.Broadcast());
 
-        var text = string.IsNullOrWhiteSpace(caption)
+        var message = string.IsNullOrWhiteSpace(caption)
             ? string.Empty
             : FormattedMessage.EscapeText(caption) + "\n";
 
@@ -90,9 +91,11 @@ public sealed class ChatImageSystem : EntitySystem
 
         var spacer = new string('\n', lines) + "\u200B";
 
-        var wrapped = $"{text}[img={id}][/img]{spacer}";
+        var wrapped = Loc.GetString("chat-manager-send-ooc-wrap-message",
+            ("playerName", FormattedMessage.EscapeText(adminName)),
+            ("message", $"{message}\n[img={id}][/img]{spacer}"));
 
-        _chat.ChatMessageToAll(ChatChannel.Server, caption, wrapped, EntityUid.Invalid, false, false);
+        _chat.ChatMessageToAll(ChatChannel.OOC, caption, wrapped, EntityUid.Invalid, false, false, author: adminUserId);
 
         _adminLog.Add(LogType.AdminMessage, LogImpact.Low,
             $"{adminName} sent chat image {uri} (frames: {result.Frames.Count}, caption: {caption})");

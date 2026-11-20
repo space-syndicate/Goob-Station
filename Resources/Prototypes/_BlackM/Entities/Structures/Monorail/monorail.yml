@@ -245,11 +245,11 @@
       params:
         volume: -2
     doorsCloseSound:
-      path: /Audio/_BlackM/Monorail/doors_close.ogg
+      path: /Audio/Machines/airlock_ext_close.ogg
       params:
         volume: -3
     doorsOpenSound:
-      path: /Audio/_BlackM/Monorail/doors_open.ogg
+      path: /Audio/Machines/airlock_ext_open.ogg
       params:
         volume: -3
     departSound:

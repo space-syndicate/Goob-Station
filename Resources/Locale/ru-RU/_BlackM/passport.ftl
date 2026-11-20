@@ -47,7 +47,6 @@ passport-check-already-clean = Этот паспорт уже проверял {
 passport-check-already-violation = Этот паспорт уже проверял { $name }: было найдено нарушение!
 passport-examine-checked-clean = Нарушений не обнаружено.
 passport-examine-checked-violation = Обнаружено нарушение.
-passport-verb-check = Заверить паспорт
 passport-check-result = Паспорт отмечен как осмотренный вами.
 passport-check-already = Этот паспорт уже осматривал { $name }.
 passport-examine-checked-by = Осмотрено: { $name }.

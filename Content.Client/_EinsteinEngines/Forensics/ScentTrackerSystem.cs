@@ -23,6 +23,10 @@ public sealed class ScentTrackerSystem : SharedScentTrackerSystem
     {
         base.Update(frameTime);
 
+        // _BlackM: no duplicate effect spawns on prediction re-runs
+        if (!_timing.IsFirstTimePredicted)
+            return;
+
         // Goobstation - move trycomp, scent = empty outside of the while loop
         // If the player can't track scents, continuing beyond this point is a waste of processing power.
         if (!TryComp<ScentTrackerComponent>(_playerManager.LocalEntity, out var scentcomp) || scentcomp.Scent == string.Empty)

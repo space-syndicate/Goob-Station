@@ -28,7 +28,7 @@ public static class TerminalStyler
     {
         if (aggressive && control is Button)
         {
-            Enforce(control, StyleNano.StyleClassFlatButtonTerminalBlackM);
+            Enforce(control, StyleNano.StyleClassButtonTerminalBlackM);
             return;
         }
 

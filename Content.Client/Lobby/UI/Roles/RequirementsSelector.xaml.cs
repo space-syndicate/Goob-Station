@@ -8,6 +8,7 @@
 // using System.Numerics; // BlackM
 using System.Linq; // BlackM
 using System.Numerics; // BlackM
+using Robust.Client.GameObjects;
 using Content.Client._BlackM.Lobby.Terminal; // BlackM
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Controls;
@@ -78,7 +79,8 @@ public sealed partial class RequirementsSelector : BoxContainer
 
     // BlackM start
     private readonly TerminalPriorityMeter _meter = new();
-    private readonly Label _lockLabel;
+    private readonly TextureRect _statusIcon;
+    private readonly SpriteSystem _spriteSystem;
     private List<ProtoId<GuideEntryPrototype>>? _guides;
 
     private bool _meterMode;
@@ -93,6 +95,7 @@ public sealed partial class RequirementsSelector : BoxContainer
     public RequirementsSelector()
     {
         RobustXamlLoader.Load(this);
+        _spriteSystem = IoCManager.Resolve<IEntityManager>().System<SpriteSystem>();
         _options = new RadioOptions<int>(RadioOptionsLayout.Horizontal)
         {
             FirstButtonStyle = StyleNano.StyleClassButtonTerminalBlackM,
@@ -116,14 +119,15 @@ public sealed partial class RequirementsSelector : BoxContainer
             OnSelected?.Invoke(_meterSelectedValue);
         };
 
-        _lockLabel = new Label
+        _statusIcon = new TextureRect
         {
-            Text = "[ " + Loc.GetString("role-timer-locked").ToUpperInvariant() + " ]",
             Visible = false,
             VerticalAlignment = VAlignment.Center,
-            FontColorOverride = new Color(1f, 0.45f, 0.35f),
             MouseFilter = MouseFilterMode.Stop,
-            StyleClasses = { StyleNano.StyleClassLabelTerminalBlackM },
+            SetSize = new Vector2(16, 16),
+            TextureScale = new Vector2(0.25f, 0.25f),
+            Margin = new Thickness(3, 0, 6, 0),
+            Stretch = TextureRect.StretchMode.KeepCentered,
         };
 
         Help.OnPressed += _ =>
@@ -221,7 +225,7 @@ public sealed partial class RequirementsSelector : BoxContainer
             OptionsContainer.AddChild(_options);
         }
 
-        OptionsContainer.AddChild(_lockLabel);
+        OptionsContainer.AddChild(_statusIcon);
 
         Help.Visible = showHelp && guides != null;
         _guides = guides;
@@ -240,8 +244,11 @@ public sealed partial class RequirementsSelector : BoxContainer
     {
         var tooltip = new Tooltip();
         tooltip.SetMessage(requirements);
-        _lockLabel.TooltipSupplier = _ => tooltip;
-        _lockLabel.Visible = true;
+        _statusIcon.Texture = _spriteSystem.Frame0(
+            new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/lock-red.svg.192dpi.png")));
+        _statusIcon.Modulate = Color.FromHex("#FF786E");
+        _statusIcon.TooltipSupplier = _ => tooltip;
+        _statusIcon.Visible = true;
         _options.Visible = false;
         _meter.Visible = false;
     }
@@ -249,11 +256,12 @@ public sealed partial class RequirementsSelector : BoxContainer
     // BlackM start
     public void SetInfoOnly(string text, string? tooltip)
     {
-        _lockLabel.Text = "[ " + text.ToUpperInvariant() + " ]";
-        _lockLabel.FontColorOverride = Color.FromHex("#8FA3B8");
-        _lockLabel.TooltipSupplier = null;
-        _lockLabel.ToolTip = tooltip;
-        _lockLabel.Visible = true;
+        _statusIcon.Texture = _spriteSystem.Frame0(
+            new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/clock.svg.192dpi.png")));
+        _statusIcon.Modulate = Color.FromHex("#FFD166");
+        _statusIcon.TooltipSupplier = null;
+        _statusIcon.ToolTip = tooltip ?? text;
+        _statusIcon.Visible = true;
         _options.Visible = false;
         _meter.Visible = false;
         TitleLabel.FontColorOverride = Color.FromHex("#A8977A");
@@ -262,7 +270,7 @@ public sealed partial class RequirementsSelector : BoxContainer
 
     public void UnlockRequirements()
     {
-        _lockLabel.Visible = false;
+        _statusIcon.Visible = false;
         _options.Visible = true;
         _meter.Visible = true;
     }

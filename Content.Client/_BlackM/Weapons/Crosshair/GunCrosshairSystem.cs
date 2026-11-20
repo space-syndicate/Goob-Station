@@ -9,6 +9,7 @@ using Content.Shared.CombatMode;
 using Content.Shared.Mech.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
+using Content.Shared._BlackM.Weapons;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Wieldable.Components;
@@ -45,7 +46,6 @@ public sealed class GunCrosshairSystem : EntitySystem
     private const float SpreadSharpness = 18f;
     private const float ColorSharpness = 14f;
     private const float KickDecay = 6f;
-    private static readonly TimeSpan ResyncDelay = TimeSpan.FromSeconds(0.6);
 
     public static readonly Color NormalColor = new(0.96f, 0.97f, 0.98f, 0.92f);
     public static readonly Color TargetColor = new(1f, 0.38f, 0.34f, 0.95f);
@@ -57,9 +57,7 @@ public sealed class GunCrosshairSystem : EntitySystem
 
     private EntityUid? _lastGun;
     private TimeSpan _lastNextFire;
-    private TimeSpan _lastShot;
     private int _lastAmmo;
-    private double _angle;
     private float _cooldownTotal;
 
     public bool Active { get; private set; }
@@ -187,8 +185,6 @@ public sealed class GunCrosshairSystem : EntitySystem
         {
             _lastGun = gunUid;
             _lastNextFire = gun.NextFire;
-            _lastShot = TimeSpan.Zero;
-            _angle = gun.CurrentAngle.Theta;
             _cooldownTotal = 0f;
             Kick = 0f;
             Spread = GetNextShotSpread(gun, shooter, gunUid, curTime);
@@ -198,8 +194,6 @@ public sealed class GunCrosshairSystem : EntitySystem
             // NextFire also moves on empty clicks and melee, so require spent ammo.
             if (Capacity == 0 || Ammo < _lastAmmo)
             {
-                _angle = Math.Clamp(_angle + gun.AngleIncreaseModified.Theta - gun.AngleDecayModified.Theta * Math.Max(0d, (curTime - _lastNextFire).TotalSeconds), MinTheta(gun), MaxTheta(gun));
-                _lastShot = curTime;
                 _cooldownTotal = (float) (gun.NextFire - curTime).TotalSeconds;
                 Kick = 1f;
             }
@@ -208,10 +202,6 @@ public sealed class GunCrosshairSystem : EntitySystem
         }
 
         _lastAmmo = Ammo;
-
-        // Server spread lags by ping; resync once firing stops.
-        if (curTime - _lastShot > ResyncDelay)
-            _angle = gun.CurrentAngle.Theta;
 
         var spread = GetNextShotSpread(gun, shooter, gunUid, curTime);
         Spread += (spread - Spread) * (1f - MathF.Exp(-SpreadSharpness * frameTime));
@@ -233,19 +223,15 @@ public sealed class GunCrosshairSystem : EntitySystem
     // Mirrors server GetRecoilAngle: half-angle of the next shot cone.
     private float GetNextShotSpread(GunComponent gun, EntityUid shooter, EntityUid gunUid, TimeSpan curTime)
     {
-        var idle = Math.Max(0d, (curTime - gun.NextFire).TotalSeconds);
-        var theta = Math.Clamp(_angle + gun.AngleIncreaseModified.Theta - gun.AngleDecayModified.Theta * idle, MinTheta(gun), MaxTheta(gun));
+        var theta = BlackMGunSpreadMath.GetNextShotTheta(gun, curTime);
 
         var ev = new GetRecoilModifiersEvent { Gun = gunUid, User = shooter };
         RaiseLocalEvent(shooter, ev);
         RaiseLocalEvent(gunUid, ev);
 
-        return (float) Math.Abs(theta * 0.5 * ev.Modifier);
+        var oneHanded = TryComp<WieldableComponent>(gunUid, out var grip) && !grip.Wielded;
+        return (float) Math.Abs(theta * 0.5 * ev.Modifier * BlackMGunSpreadMath.GetGripMultiplier(oneHanded));
     }
-
-    private static double MinTheta(GunComponent gun) => Math.Min(gun.MinAngleModified.Theta, gun.MaxAngleModified.Theta);
-
-    private static double MaxTheta(GunComponent gun) => Math.Max(gun.MinAngleModified.Theta, gun.MaxAngleModified.Theta);
 
     private bool IsAimingAtMob(EntityUid user, EntityUid shooter, MapCoordinates mouse)
     {

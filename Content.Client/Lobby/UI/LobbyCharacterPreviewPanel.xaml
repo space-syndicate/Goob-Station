@@ -68,7 +68,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                             <gfx:StyleBoxFlat BackgroundColor="#80501930" />
                         </PanelContainer.PanelOverride>
                     </PanelContainer>
-                    <BoxContainer Name="DossierRow" Orientation="Horizontal" SeparationOverride="14">
+                    <BoxContainer Orientation="Horizontal" SeparationOverride="14">
                         <PanelContainer VerticalAlignment="Top">
                             <PanelContainer.PanelOverride>
                                 <gfx:StyleBoxFlat BackgroundColor="#241706"

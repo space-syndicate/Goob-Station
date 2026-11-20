@@ -28,7 +28,7 @@ SPDX-License-Identifier: MIT
 
     <!-- Item list -->
     <BoxContainer Name="MarkingSelectorContainer" Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
-        <ScrollContainer MinHeight="500" VerticalExpand="True" HorizontalExpand="True">
+        <ScrollContainer MinHeight="260" MaxHeight="360" VerticalExpand="True" HorizontalExpand="True">
             <!-- BlackM start -->
             <!--
             <ItemList Name="MarkingList" VerticalExpand="True" />
@@ -38,7 +38,7 @@ SPDX-License-Identifier: MIT
         </ScrollContainer>
 
         <!-- Color sliders -->
-        <ScrollContainer MinHeight="200" HorizontalExpand="True">
+        <ScrollContainer MinHeight="100" MaxHeight="150" HorizontalExpand="True">
             <BoxContainer Name="ColorSelectorContainer" HorizontalExpand="True" />
         </ScrollContainer>
     </BoxContainer>

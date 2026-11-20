@@ -44,6 +44,10 @@ public sealed partial class BlackMElevatorComponent : Component
 
     [DataField] public bool GlobalAnnounce = true;
 
+    [DataField] public string? PointId;
+
+    [DataField] public string? LocationName;
+
     [DataField] public LocId Sender = "blackm-elevator-evac-sender";
     [DataField] public LocId BoardingMessage = "blackm-elevator-evac-boarding";
     [DataField] public LocId ClosingMessage = "blackm-elevator-evac-closing";
@@ -106,7 +110,10 @@ public sealed partial class BlackMElevatorComponent : Component
 }
 
 [RegisterComponent]
-public sealed partial class BlackMElevatorSpawnPointComponent : Component;
+public sealed partial class BlackMElevatorSpawnPointComponent : Component
+{
+    [DataField] public string? PointId;
+}
 
 [RegisterComponent]
 public sealed partial class BlackMElevatorDestinationComponent : Component
@@ -125,6 +132,8 @@ public sealed partial class BlackMElevatorLightComponent : Component
 public sealed partial class BlackMElevatorDispatcherComponent : Component
 {
     [DataField] public string? ElevatorId;
+
+    [DataField] public string? PointId;
 }
 
 [RegisterComponent]
@@ -132,5 +141,6 @@ public sealed partial class BlackMElevatorBoardZoneComponent : Component
 {
     [DataField] public string ElevatorId = "evac";
     [DataField] public float Range = 2.5f;
+    [DataField] public string? PointId;
     [DataField] public List<ProtoId<TagPrototype>> RestrictedTags = new();
 }

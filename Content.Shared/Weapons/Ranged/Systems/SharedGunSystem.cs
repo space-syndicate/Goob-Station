@@ -700,9 +700,31 @@ public abstract partial class SharedGunSystem : EntitySystem
 
         RaiseLocalEvent(gun, ref ev);
 
-        // BlackM: precise two-handed weapons still need a nonzero firing cone.
-        if (TryComp<WieldableComponent>(gun, out var wieldable) && wieldable.Wielded)
+        // BlackM edit
+        // Original code (kept for reference):
+        //         // BlackM: precise two-handed weapons still need a nonzero firing cone.
+        //         if (TryComp<WieldableComponent>(gun, out var wieldable) && wieldable.Wielded)
+        // Keep recoil in a common two-handed reference space for both grips.
+        // Only the final shot cone is multiplied, so changing grip preserves
+        // accumulated recoil and does not change the recovery duration.
+        if (TryComp<WieldableComponent>(gun, out var wieldable))
+        // BlackM edit end
         {
+            // BlackM edit
+            if (!wieldable.Wielded)
+            {
+                // The wield system already adds these offsets when wielded.
+                // Apply the same reference offsets here for an unwielded gun.
+                if (TryComp<GunWieldBonusComponent>(gun, out var bonus))
+                {
+                    ev.MinAngle += bonus.MinAngle;
+                    ev.MaxAngle += bonus.MaxAngle;
+                    ev.AngleIncrease += bonus.AngleIncrease;
+                    ev.AngleDecay += bonus.AngleDecay;
+                }
+            }
+
+            // BlackM edit end
             var minimumSpread = Angle.FromDegrees(8);
             ev.MinAngle = new Angle(Math.Max(ev.MinAngle.Theta * 1.4, minimumSpread.Theta));
             ev.MaxAngle = new Angle(Math.Max(ev.MaxAngle.Theta * 1.4, ev.MinAngle.Theta));

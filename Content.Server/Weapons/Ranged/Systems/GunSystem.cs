@@ -130,6 +130,9 @@ using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
 using Content.Shared.Effects;
 using Content.Shared.Projectiles;
+using Content.Shared._BlackM.ProjectileTrauma; // BlackM
+using Content.Shared._BlackM.Weapons; // BlackM
+using Content.Shared.Wieldable.Components;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Ranged;
 using Content.Shared.Weapons.Ranged.Components;
@@ -164,6 +167,7 @@ public sealed partial class GunSystem : SharedGunSystem
     [Dependency] private readonly DamageExamineSystem _damageExamine = default!;
     [Dependency] private readonly PricingSystem _pricing = default!;
     [Dependency] private readonly SharedColorFlashEffectSystem _color = default!;
+    [Dependency] private readonly ProjectileTraumaSystem _projectileTrauma = default!; // BlackM
     [Dependency] private readonly SharedStaminaSystem _stamina = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly PowerCellSystem _powerCell = default!;
@@ -385,6 +389,10 @@ public sealed partial class GunSystem : SharedGunSystem
                         }
                         // Goob edit end
 
+                        // BlackM edit
+                        _projectileTrauma.ApplyHit(hitEntity, dmg);
+
+                        // BlackM edit end
                         // check null again, as TryChangeDamage returns modified damage values
                         if (dmg != null)
                         {
@@ -563,13 +571,21 @@ public sealed partial class GunSystem : SharedGunSystem
 
     private Angle GetRecoilAngle(TimeSpan curTime, GunComponent component, Angle direction, EntityUid? user = null) // Goobstation user
     {
-        var timeSinceLastFire = (curTime - component.LastFire).TotalSeconds;
-        var minTheta = Math.Min(component.MinAngleModified.Theta, component.MaxAngleModified.Theta); // goob edit make min max work properly
-        var maxTheta = Math.Max(component.MinAngleModified.Theta, component.MaxAngleModified.Theta); // goob edit reverse recoil direction for funny mechanics
-        var newTheta = MathHelper.Clamp(component.CurrentAngle.Theta + component.AngleIncreaseModified.Theta - component.AngleDecayModified.Theta * timeSinceLastFire, minTheta, maxTheta); // goob edit
-        component.CurrentAngle = new Angle(newTheta);
-        DirtyField(component.Owner, component, nameof(GunComponent.CurrentAngle)); // BlackM
-        component.LastFire = component.NextFire;
+        // BlackM edit
+        // Original code (kept for reference):
+        //         var timeSinceLastFire = (curTime - component.LastFire).TotalSeconds;
+        //         var minTheta = Math.Min(component.MinAngleModified.Theta, component.MaxAngleModified.Theta); // goob edit make min max work properly
+        //         var maxTheta = Math.Max(component.MinAngleModified.Theta, component.MaxAngleModified.Theta); // goob edit reverse recoil direction for funny mechanics
+        //         var newTheta = MathHelper.Clamp(component.CurrentAngle.Theta + component.AngleIncreaseModified.Theta - component.AngleDecayModified.Theta * timeSinceLastFire, minTheta, maxTheta); // goob edit
+        //         component.CurrentAngle = new Angle(newTheta);
+        //         DirtyField(component.Owner, component, nameof(GunComponent.CurrentAngle)); // BlackM
+        //         component.LastFire = component.NextFire;
+        var maxTheta = Math.Max(component.MinAngleModified.Theta, component.MaxAngleModified.Theta);
+        component.CurrentAngle = new Angle(BlackMGunSpreadMath.GetNextShotTheta(component, curTime));
+        component.LastFire = curTime;
+        DirtyField(component.Owner, component, nameof(GunComponent.CurrentAngle));
+        DirtyField(component.Owner, component, nameof(GunComponent.LastFire));
+        // BlackM edit end
 
         // Convert it so angle can go either side.
         var random = Random.NextFloat(-0.5f, 0.5f);
@@ -583,7 +599,12 @@ public sealed partial class GunSystem : SharedGunSystem
         if (user != null)
             RaiseLocalEvent(user.Value, angleEv);
         RaiseLocalEvent(component.Owner, angleEv);
-        random *= angleEv.Modifier;
+        // BlackM edit
+        // Original code (kept for reference):
+        //         random *= angleEv.Modifier;
+        var oneHanded = TryComp<WieldableComponent>(component.Owner, out var wieldable) && !wieldable.Wielded;
+        random *= angleEv.Modifier * BlackMGunSpreadMath.GetGripMultiplier(oneHanded);
+        // BlackM edit end
         // Goobstation end
 
         var spread = component.CurrentAngle.Theta * random;

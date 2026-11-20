@@ -1,4 +1,4 @@
-﻿using System.Numerics;
+using System.Numerics;
 using Content.Shared._BlackM.CCVar;
 using Content.Shared._BlackM.Shot;
 using Content.Shared.Damage.Components;
@@ -32,7 +32,6 @@ public sealed class ShotSystem : EntitySystem, IShotWorld
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
 
-    private const string ImpactLight = "BlackMImpactLight";
     private const float TrailSpacing = 0.22f;
 
     private const float MuzzleOffset = 0.45f;
@@ -54,7 +53,6 @@ public sealed class ShotSystem : EntitySystem, IShotWorld
 
     private bool _enabled = true;
     private bool _trails = true;
-    private bool _impacts = true;
 
     public override void Initialize()
     {
@@ -68,7 +66,6 @@ public sealed class ShotSystem : EntitySystem, IShotWorld
 
         Subs.CVar(_cfg, BlackMCVars.ShotEffectsEnabled, OnEnabledChanged, invokeImmediately: true);
         Subs.CVar(_cfg, BlackMCVars.ShotTrailsEnabled, OnTrailsChanged, invokeImmediately: true);
-        Subs.CVar(_cfg, BlackMCVars.ShotImpactsEnabled, OnImpactsChanged, invokeImmediately: true);
     }
 
     private void OnEnabledChanged(bool value)
@@ -93,13 +90,6 @@ public sealed class ShotSystem : EntitySystem, IShotWorld
         _trails = value;
         if (!value)
             _overlay.ClearTrails();
-    }
-
-    private void OnImpactsChanged(bool value)
-    {
-        _impacts = value;
-        if (!value)
-            _overlay.ClearParticles();
     }
 
     public override void Shutdown()
@@ -235,23 +225,7 @@ public sealed class ShotSystem : EntitySystem, IShotWorld
     private void OnShutdown(Entity<ShotComponent> ent, ref ComponentShutdown args)
     {
         _overlay.EndTrail(ent.Owner);
-
-        if (!_states.Remove(ent.Owner, out var st))
-            return;
-
-        if (!_enabled || !_impacts)
-            return;
-
-        if (!ent.Comp.Impact || st.Dist < 0.6f || st.Age > 4f)
-            return;
-
-        if (!Visible(st.Map, st.Pos - st.Dir * 0.35f))
-            return;
-
-        _overlay.Impact(st.Map, st.Pos, st.Dir, ent.Comp, st.Smoke);
-
-        if (ent.Comp.Light)
-            Spawn(ImpactLight, new MapCoordinates(st.Pos, st.Map));
+        _states.Remove(ent.Owner);
     }
 
     public bool Visible(MapId map, Vector2 pos)

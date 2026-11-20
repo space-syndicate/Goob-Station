@@ -21,6 +21,7 @@ using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Charges.Components;
 using Content.Shared.Charges.Systems;
 using Content.Shared.Examine;
+using Content.Shared._BlackM.Rappel; // BlackM
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Flash.Components;
 using Content.Shared.IdentityManagement;
@@ -243,6 +244,12 @@ public abstract class SharedFlashSystem : EntitySystem
         _entityLookup.GetEntitiesInRange(transform.Coordinates, range, _entSet);
         foreach (var entity in _entSet)
         {
+            // Blackm: rope
+            if (TryComp<RappellingComponent>(entity, out var rappel) &&
+                !rappel.Preparing && rappel.LifeStage <= ComponentLifeStage.Running)
+                continue;
+            // Blackm: end
+
             // TODO: Use RandomPredicted https://github.com/space-wizards/RobustToolbox/pull/5849
             var rand = new System.Random((int)_timing.CurTick.Value + GetNetEntity(entity).Id);
             if (!rand.Prob(probability))

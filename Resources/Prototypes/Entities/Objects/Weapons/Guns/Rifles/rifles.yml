@@ -102,6 +102,12 @@
     - suitStorage
   - type: AmmoCounter
   - type: Gun
+    # BlackM weapon
+    minAngle: 2
+    maxAngle: 16
+    angleIncrease: 3
+    angleDecay: 16
+    # BlackM weapon
     fireRate: 5
     selectedMode: FullAuto
     availableModes:
@@ -170,6 +176,13 @@
     sound:
       collection: RiflesDrop
   # Goobstation edit end
+  # BlackM weapon
+  - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
+    angleIncrease: 0
+    angleDecay: 0
+  # BlackM weapon
 
 - type: entity
   name: AKM
@@ -185,6 +198,12 @@
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
   - type: Gun
+    # BlackM weapon
+    minAngle: 2
+    maxAngle: 16
+    angleIncrease: 3
+    angleDecay: 16
+    # BlackM weapon
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/rifle2.ogg
   - type: ChamberMagazineAmmoProvider
@@ -219,6 +238,13 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
+  # BlackM weapon
+  - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
+    angleIncrease: 0
+    angleDecay: 0
+  # BlackM weapon
 
 - type: entity
   name: M-90GL # Goobstation
@@ -264,7 +290,20 @@
     zeroVisible: true
   - type: Appearance
   - type: Gun
+    # BlackM weapon
+    minAngle: 2
+    maxAngle: 16
+    angleIncrease: 3
+    angleDecay: 16
+    # BlackM weapon
     fireRate: 6
+  # BlackM weapon
+  - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
+    angleIncrease: 0
+    angleDecay: 0
+  # BlackM weapon
 
 - type: entity
   name: Lecter
@@ -282,6 +321,12 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Rifles/lecter.rsi
   - type: Gun
+    # BlackM weapon
+    minAngle: 2
+    maxAngle: 16
+    angleIncrease: 3
+    angleDecay: 16
+    # BlackM weapon
     fireRate: 5
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/ltrifle.ogg
@@ -313,6 +358,13 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
+  # BlackM weapon
+  - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
+    angleIncrease: 0
+    angleDecay: 0
+  # BlackM weapon
 
 - type: entity
   name: Estoc # Goob
@@ -330,18 +382,34 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Rifles/estoc.rsi
   - type: Gun
+    # BlackM weapon
+    angleIncrease: 3
+    angleDecay: 16
+    # BlackM weapon
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/estocshot.ogg
-    minAngle: 30 # Goob
-    maxAngle: 45 # Goob
+    # BlackM weapon
+    # Original code (kept for reference):
+    #     minAngle: 30 # Goob
+    #     maxAngle: 45 # Goob
+    minAngle: 2 # Goob
+    maxAngle: 16 # Goob
+    # BlackM weapon
     shotsPerBurst: 3
     selectedMode: Burst
     availableModes:
     - Burst
     burstFireRate: 10 # Goob
   - type: GunWieldBonus
-    minAngle: -30 # Goob
-    maxAngle: -40 # Goob
+    # BlackM weapon
+    # Original code (kept for reference):
+    #     minAngle: -30 # Goob
+    #     maxAngle: -40 # Goob
+    angleIncrease: 0
+    angleDecay: 0
+    minAngle: 0 # Goob
+    maxAngle: 0 # Goob
+    # BlackM weapon
   - type: ItemSlots
     slots:
       gun_magazine:

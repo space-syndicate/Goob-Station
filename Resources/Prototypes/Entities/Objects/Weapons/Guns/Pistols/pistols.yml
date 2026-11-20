@@ -128,6 +128,12 @@
     - suitStorage
     - Belt
   - type: Gun
+    # BlackM weapon
+    minAngle: 1
+    maxAngle: 14
+    angleIncrease: 2
+    angleDecay: 2
+    # BlackM weapon
     fireRate: 6
     selectedMode: SemiAuto
     availableModes:
@@ -235,6 +241,13 @@
       gun_chamber: !type:ContainerSlot
   - type: StaticPrice
     price: 1000
+  # BlackM weapon
+  - type: Gun
+    minAngle: 1
+    maxAngle: 14
+    angleIncrease: 2
+    angleDecay: 2
+  # BlackM weapon
 
 - type: entity
   name: Echis
@@ -289,6 +302,12 @@
   - type: ChamberMagazineAmmoProvider
     boltClosed: null
   - type: Gun
+    # BlackM weapon
+    minAngle: 1
+    maxAngle: 14
+    angleIncrease: 2
+    angleDecay: 2
+    # BlackM weapon
     fireRate: 4
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/silenced.ogg
@@ -339,6 +358,12 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Pistols/mk58.rsi
   - type: Gun
+    # BlackM weapon
+    minAngle: 1
+    maxAngle: 14
+    angleIncrease: 2
+    angleDecay: 2
+    # BlackM weapon
     fireRate: 5
     availableModes:
     - SemiAuto
@@ -363,9 +388,15 @@
   - type: Gun
     minAngle: 1
     # Goob edit start
-    maxAngle: 8
-    angleIncrease: 3
-    angleDecay: 4
+    # BlackM weapon
+    # Original code (kept for reference):
+    #     maxAngle: 8
+    #     angleIncrease: 3
+    #     angleDecay: 4
+    maxAngle: 14
+    angleIncrease: 2
+    angleDecay: 2
+    # BlackM weapon
     fireRate: 3
     # Goob edit end
     availableModes:

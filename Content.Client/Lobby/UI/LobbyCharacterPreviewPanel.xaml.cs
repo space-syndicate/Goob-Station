@@ -97,12 +97,6 @@ public sealed partial class LobbyCharacterPreviewPanel : Control
         Unloaded.Visible = !value;
     }
 
-    // BlackM
-    public void SetCompact(bool compact)
-    {
-        DossierRow.Visible = !compact;
-    }
-
     public void SetSummaryText(string value)
     {
         Summary.Text = value;

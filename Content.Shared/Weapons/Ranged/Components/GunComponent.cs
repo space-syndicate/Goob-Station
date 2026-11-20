@@ -92,7 +92,12 @@ public sealed partial class GunComponent : Component
     /// Last time the gun fired.
     /// Used for recoil purposes.
     /// </summary>
-    [DataField]
+    // BlackM edit
+    // Original code (kept for reference):
+    //     [DataField]
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
+    [AutoNetworkedField, AutoPausedField]
+    // BlackM edit end
     public TimeSpan LastFire = TimeSpan.Zero;
 
     /// <summary>

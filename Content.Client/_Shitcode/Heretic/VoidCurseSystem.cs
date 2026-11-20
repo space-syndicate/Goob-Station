@@ -29,9 +29,9 @@ public sealed class VoidCurseSystem : SharedVoidCurseSystem
     private readonly string _overlayStateNormal = "void_chill_partial",
                             _overlayStateMax = "void_chill_oh_fuck";
 
-    public override void Update(float frameTime)
+    public override void FrameUpdate(float frameTime) // _BlackM: moved from Update, visuals once per frame
     {
-        base.Update(frameTime);
+        base.FrameUpdate(frameTime);
 
         var eqe = EntityQueryEnumerator<VoidCurseComponent>();
         while (eqe.MoveNext(out var uid, out var comp))

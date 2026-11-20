@@ -75,6 +75,7 @@ using Content.Shared.Database;
 using Content.Goobstation.Maths.FixedPoint;
 using Content.Shared._Shitmed.Targeting;
 using Content.Shared.Projectiles;
+using Content.Shared._BlackM.ProjectileTrauma; // BlackM
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Player;
 
@@ -87,6 +88,7 @@ public sealed class ProjectileSystem : SharedProjectileSystem
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly DestructibleSystem _destructibleSystem = default!;
     [Dependency] private readonly GunSystem _guns = default!;
+    [Dependency] private readonly ProjectileTraumaSystem _projectileTrauma = default!; // BlackM
     [Dependency] private readonly SharedCameraRecoilSystem _sharedCameraRecoil = default!;
     [Dependency] private readonly SharedTransformSystem _xform = default!;
 
@@ -139,6 +141,9 @@ public sealed class ProjectileSystem : SharedProjectileSystem
             targetPart: targetPart);
         // Goob edit end
         var deleted = Deleted(target);
+        // BlackM edit
+        _projectileTrauma.ApplyHit(target, modifiedDamage);
+        // BlackM edit end
 
         if (modifiedDamage is not null && Exists(component.Shooter))
         {

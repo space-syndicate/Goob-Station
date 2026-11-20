@@ -14,6 +14,7 @@
 using Content.Goobstation.Common.Flash;
 using Content.Goobstation.Shared.Flashbang;
 using Content.Server.Flash;
+using Content.Shared._BlackM.Rappel; // blackm: Rappel
 using Content.Server.Stunnable;
 using Content.Shared.Examine;
 using Content.Shared.Flash;
@@ -61,6 +62,11 @@ public sealed class FlashbangSystem : EntitySystem
 
     private void OnFlash(Entity<FlashbangComponent> ent, ref AreaFlashEvent args)
     {
+        // blackm: Rappel
+        if (TryComp<RappellingComponent>(args.Target, out var rappel) &&
+            !rappel.Preparing && rappel.LifeStage <= ComponentLifeStage.Running)
+            return;
+
         var comp = ent.Comp;
 
         if (comp is { KnockdownTime: <= 0, StunTime: <= 0 })

@@ -66,7 +66,6 @@ public sealed class LobbyChangelogPanel : PanelContainer
             SeparationOverride = 6,
             Children = { _title },
         });
-        root.AddChild(new HLine { Color = StyleNano.TerminalGreenDim.WithAlpha(0.3f), Thickness = 1 });
 
         // Body
         _body = new BoxContainer
@@ -199,7 +198,6 @@ public sealed class LobbyChangelogPanel : PanelContainer
                     Orientation = LayoutOrientation.Horizontal,
                     Children = { name, count },
                 },
-                new HLine { Color = StyleNano.TerminalGreenDim.WithAlpha(0.22f), Thickness = 1 },
             },
         };
     }

@@ -262,6 +262,9 @@
   id: AirlockEngineeringLocked
   suffix: Engineering, Locked
   components:
+  - type: Door
+    clickOpen: false
+    bumpOpen: false
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsEngineering ]
@@ -839,6 +842,9 @@
   id: AirlockChiefMedicalOfficerGlassLocked
   suffix: ChiefMedicalOfficer, Locked
   components:
+  - type: Door
+    clickOpen: false
+    bumpOpen: false
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsChiefMedicalOfficer ]
@@ -1137,6 +1143,9 @@
   parent: AirlockScienceLocked
   id: AirlockMaintRnDLocked
   components:
+  - type: Door
+    clickOpen: false
+    bumpOpen: false
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/maint.rsi
 

@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "blackM",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "base"
+    },
+    {
+      "name": "rope"
+    },
+    {
+      "name": "light_idle",
+      "delays": [
+        [
+          1.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "light_linked",
+      "delays": [
+        [
+          0.3,
+          0.3
+        ]
+      ]
+    }
+  ]
+}

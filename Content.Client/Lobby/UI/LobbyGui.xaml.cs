@@ -264,7 +264,6 @@ namespace Content.Client.Lobby.UI
 
         private void ApplyCompactLevel()
         {
-            CharacterPreview.SetCompact(_compactLevel >= 1);
             ServerInfo.Visible = _compactLevel < 2;
             ServerInfoPanel.Visible = _compactLevel < 3;
             Balance.Visible = _compactLevel < 3;

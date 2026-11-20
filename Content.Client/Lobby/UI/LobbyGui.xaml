@@ -290,7 +290,6 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                                 <Label Text="{Loc 'blackm-lobby-chat-status'}" StyleClasses="LabelTerminalBlackM"
                                        Modulate="#FFFFFFA0" VerticalAlignment="Center" />
                             </BoxContainer>
-                            <controls:HLine Color="#80501938" Thickness="1" />
                             <widgets:ChatBox Name="Chat" Access="Public" VerticalExpand="True" HorizontalExpand="True"
                                              MinHeight="120" Margin="0 2 0 0" />
                         </BoxContainer>

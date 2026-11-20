@@ -68,14 +68,12 @@ public sealed class WelcomeMessageControl : Control
 
     private readonly BoxContainer _content;
     private readonly FrameOverlay _frame;
-    private readonly PanelContainer _lamp;
     private readonly List<(Label Label, string Text)> _lines = new();
     private readonly string _fullText;
     private readonly float _hold;
 
     private Phase _phase = Phase.Open;
     private float _phaseTime;
-    private float _time;
     private float _typed;
     private int _shown;
     private int _soundCounter;
@@ -144,14 +142,6 @@ public sealed class WelcomeMessageControl : Control
             HorizontalExpand = true,
             ClipText = true,
         });
-
-        _lamp = new PanelContainer
-        {
-            SetSize = new Vector2(5, 5),
-            VerticalAlignment = VAlignment.Center,
-            PanelOverride = new StyleBoxFlat { BackgroundColor = accent },
-        };
-        header.AddChild(_lamp);
 
         column.AddChild(new Label
         {
@@ -248,7 +238,6 @@ public sealed class WelcomeMessageControl : Control
 
         var dt = args.DeltaSeconds;
         _phaseTime += dt;
-        _time += dt;
         _sinceTypeSound += dt;
 
         switch (_phase)
@@ -408,11 +397,6 @@ public sealed class WelcomeMessageControl : Control
             _ => 1f,
         };
         _frame.Highlight = _hovered;
-
-        var lamp = _phase is Phase.Open or Phase.Type
-            ? 0.6f + 0.4f * MathF.Cos(_time * 9f)
-            : 1f;
-        _lamp.Modulate = Color.White.WithAlpha(lamp);
     }
 
     private static float Lerp(float a, float b, float t)

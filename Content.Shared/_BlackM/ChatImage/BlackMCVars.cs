@@ -12,7 +12,7 @@ public sealed class BlackMCVars : CVars
     public static readonly CVarDef<string> ChatImageHosts =
         CVarDef.Create(
             "blackm.chatimage.hosts",
-            "i.imgur.com,cdn.discordapp.com,media.discordapp.net,i.postimg.cc,files.catbox.moe,media.tenor.com",
+            "i.imgur.com,cdn.discordapp.com,media.discordapp.net,i.postimg.cc,files.catbox.moe,media.tenor.com,c.tenor.com,media.giphy.com,i.giphy.com",
             CVar.SERVERONLY);
 
     public static readonly CVarDef<int> ChatImageMaxKb =

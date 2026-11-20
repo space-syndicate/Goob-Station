@@ -33,9 +33,9 @@ public sealed class AmsVisualsSystem : EntitySystem
         });
     }
 
-    public override void Update(float frameTime)
+    public override void FrameUpdate(float frameTime)
     {
-        base.Update(frameTime);
+        base.FrameUpdate(frameTime);
 
         var query = EntityQueryEnumerator<AmsComponent, SpriteComponent>();
         while (query.MoveNext(out var uid, out var ams, out var sprite))
@@ -51,6 +51,8 @@ public sealed class AmsVisualsSystem : EntitySystem
             _sprite.LayerSetRsiState((uid, sprite), Layer, state);
         }
     }
+
+    private static readonly Color FlickerGreen = Color.FromHex("#9dff8a");
 
     private readonly HashSet<EntityUid> _tinted = new();
 
@@ -68,8 +70,7 @@ public sealed class AmsVisualsSystem : EntitySystem
         var t = (float) _timing.RealTime.TotalSeconds;
         var progress = AmsHelpers.GetDetonationProgress(ams, _timing.CurTime);
         var flicker = 0.5f + 0.5f * MathF.Sin(t * (8f + 22f * progress)) * MathF.Sin(t * 3.1f);
-        var green = Color.FromHex("#9dff8a");
-        _sprite.SetColor((uid, sprite), Color.InterpolateBetween(Color.White, green, 0.35f + 0.5f * flicker * progress));
+        _sprite.SetColor((uid, sprite), Color.InterpolateBetween(Color.White, FlickerGreen, 0.35f + 0.5f * flicker * progress));
     }
 
     private string GetDesiredState(AmsComponent ams)

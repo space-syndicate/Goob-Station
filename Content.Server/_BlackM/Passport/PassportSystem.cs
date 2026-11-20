@@ -12,7 +12,6 @@ using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Jobs;
-using Content.Shared.Verbs;
 using Robust.Server.GameObjects;
 using Robust.Server.GameStates;
 using Robust.Shared.Localization;
@@ -70,7 +69,6 @@ public sealed class PassportSystem : EntitySystem
         SubscribeLocalEvent<PassportComponent, BoundUIOpenedEvent>(OnUiOpened);
         SubscribeLocalEvent<PassportComponent, ActivateInWorldEvent>(OnActivate);
         SubscribeLocalEvent<PassportComponent, UseInHandEvent>(OnUseInHand);
-        SubscribeLocalEvent<PassportComponent, GetVerbsEvent<AlternativeVerb>>(OnGetAltVerbs);
         SubscribeLocalEvent<PassportComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<PassportComponent, ComponentShutdown>(OnPassportShutdown);
     }
@@ -94,36 +92,6 @@ public sealed class PassportSystem : EntitySystem
         UpdateUiState(uid, comp);
         _ui.TryToggleUi(uid, PassportUiKey.Key, args.User);
         args.Handled = true;
-    }
-
-    private void OnGetAltVerbs(EntityUid uid, PassportComponent comp, GetVerbsEvent<AlternativeVerb> args)
-    {
-        if (!args.CanAccess || !args.CanInteract)
-            return;
-
-        var user = args.User;
-        args.Verbs.Add(new AlternativeVerb
-        {
-            Text = Loc.GetString("passport-verb-check"),
-            Priority = 10,
-            Act = () => SignPassport(uid, comp, user),
-        });
-    }
-
-    private void SignPassport(EntityUid uid, PassportComponent comp, EntityUid user)
-    {
-        if (comp.Checked)
-        {
-            var already = Loc.GetString("passport-check-already", ("name", comp.CheckedBy));
-            _popup.PopupEntity(already, uid, user);
-            return;
-        }
-
-        comp.Checked   = true;
-        comp.CheckedBy = MetaData(user).EntityName;
-        Dirty(uid, comp);
-
-        _popup.PopupEntity(Loc.GetString("passport-check-result"), uid, user);
     }
 
     private void OnExamined(EntityUid uid, PassportComponent comp, ExaminedEvent args)

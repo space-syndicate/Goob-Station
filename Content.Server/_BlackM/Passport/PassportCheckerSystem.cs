@@ -27,6 +27,7 @@ public sealed class PassportCheckerSystem : EntitySystem
 
     private static readonly SoundSpecifier OkSound    = new SoundPathSpecifier("/Audio/_BlackM/Machines/shtamp.ogg");
     private static readonly SoundSpecifier ErrorSound  = new SoundPathSpecifier("/Audio/_BlackM/Machines/shtamp.ogg");
+    private static readonly SoundSpecifier FineSound   = new SoundPathSpecifier("/Audio/_BlackM/Announcements/terminal_alert.ogg");
 
     public override void Initialize()
     {
@@ -202,6 +203,7 @@ public sealed class PassportCheckerSystem : EntitySystem
 
         _cargo.UpdateBankAccount((stationUid.Value, bank), -amount, bank.PrimaryAccount);
 
+        _audio.PlayPvs(FineSound, checkerUid, AudioParams.Default.WithVolume(6f).WithMaxDistance(20f));
         _popup.PopupEntity(Loc.GetString("passport-checker-fine", ("amount", amount)), checkerUid, actor);
     }
 

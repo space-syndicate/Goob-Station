@@ -310,8 +310,8 @@ public sealed class AmsSystem : EntitySystem
 
         Try("evacuation", () =>
         {
-            if (_elevator.SetEvacuation(EvacuationElevatorId, true))
-                Announce(Loc.GetString("ams-announce-evac-available"), AnnounceSound, Color.Gray);
+            if (_elevator.TryStartRandomEvacuation(EvacuationElevatorId, out var location))
+                Announce(Loc.GetString("ams-announce-evac-available", ("location", location)), AnnounceSound, Color.Gray);
             else
                 Log.Warning($"AMS: лифт эвакуации '{EvacuationElevatorId}' не найден или уже запущен.");
         });

@@ -57,11 +57,14 @@ public sealed class SprintingSystem : SharedSprintingSystem
     {
         base.Update(frameTime);
 
+        // _BlackM: IsFirstTimePredicted check moved out of the loop
+        if (!_timing.IsFirstTimePredicted)
+            return;
+
         var query = EntityQueryEnumerator<SprinterComponent>();
         while (query.MoveNext(out var uid, out var component))
         {
             if (!component.IsSprinting
-                || !_timing.IsFirstTimePredicted
                 || _timing.CurTime - component.LastStep < component.TimeBetweenSteps)
                 continue;
 
