@@ -1090,3 +1090,18 @@ Entries:
       message: Добавлена система десантирования по верёвке для HECU и Black Ops.
   id: 152
   time: '2026-11-20T02:14:35.0000000+00:00'
+# PR #167
+- author: deleteddata271-ship-it
+  changes:
+    - type: Add
+      message: Добавлена м16
+    - type: Add
+      message: Добавлен кит для хеку
+    - type: Tweak
+      message: Изменен спрайт мп5
+    - type: Tweak
+      message: Изменен спрайт рюкзака HECU
+    - type: Tweak
+      message: Изменен спас-12, чтобы он стал более балансным.
+  id: 153
+  time: '2026-11-20T09:30:14.0000000+00:00'
