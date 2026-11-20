@@ -194,25 +194,6 @@ public sealed class BMExplosionOverlay : Overlay
 
         if (age < 0.5f)
             DrawTex(handle, _glow, fx.Epicenter, 0f, new Vector2(r * 2f + 4f), fx.Mid.WithAlpha(0.35f * (1f - age / 0.5f)));
-
-        // Shockwave ring built from stretched glow segments, stays smooth at any radius.
-        var duration = 0.3f + 0.025f * r;
-        if (age >= duration)
-            return;
-
-        var k = age / duration;
-        var radius = EaseOut(k) * (r + 1.5f);
-        var segments = Math.Clamp((int) (radius * 6f), 16, 96);
-        var length = MathF.Tau * radius / segments * 1.8f;
-        var thickness = 0.25f + 0.35f * (1f - k);
-        var color = Color.White.WithAlpha(0.35f * MathF.Pow(1f - k, 1.5f));
-
-        for (var i = 0; i < segments; i++)
-        {
-            var angle = MathF.Tau * i / segments;
-            var dir = new Vector2(MathF.Cos(angle), MathF.Sin(angle));
-            DrawTex(handle, _glow, fx.Epicenter + dir * radius, angle + MathF.PI / 2f, new Vector2(length, thickness), color);
-        }
     }
 
     private static bool TryWorld(BMExplosionEffect fx, int group, Vector2 local, out Vector2 world)
