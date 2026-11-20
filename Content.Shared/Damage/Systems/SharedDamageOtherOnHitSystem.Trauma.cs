@@ -58,7 +58,7 @@ public abstract partial class SharedDamageOtherOnHitSystem
 
         // Log damage only for mobs. Useful for when people throw spears at each other, but also avoids log-spam when explosions send glass shards flying.
         if (_mobQuery.HasComp(args.Target))
-            _adminLogger.Add(LogType.ThrowHit, $"{ToPrettyString(args.Target):target} received {dmg.GetTotal():damage} damage from collision");
+            _adminLogger.Add(LogType.ThrowHit, $"{ToPrettyString(args.Target):target} received {dmg.GetTotal():damage} damage from collision to {(dmg.HitPart?.ToString() ?? "none"):part}"); // CorvaxGoob-LogHitPart-Edit
 
         // Goob - not predicted so you know if it flashes its 100% a hit, same as projectiles
         if (!dmg.Empty && _net.IsServer)

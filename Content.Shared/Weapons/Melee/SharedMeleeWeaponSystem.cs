@@ -730,13 +730,13 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem // Goob - p
             {
                 AdminLogger.Add(LogType.MeleeHit,
                     LogImpact.Medium,
-                    $"{ToPrettyString(user):actor} melee attacked (light) {ToPrettyString(target.Value):subject} using their hands and dealt {damageResult.GetTotal():damage} damage");
+                    $"{ToPrettyString(user):actor} melee attacked (light) {ToPrettyString(target.Value):subject} using their hands and dealt {damageResult.GetTotal():damage} damage to {(damageResult.HitPart?.ToString() ?? "none"):part}"); // CorvaxGoob-LogHitPart-Edit
             }
             else
             {
                 AdminLogger.Add(LogType.MeleeHit,
                     LogImpact.Medium,
-                    $"{ToPrettyString(user):actor} melee attacked (light) {ToPrettyString(target.Value):subject} using {ToPrettyString(meleeUid):tool} and dealt {damageResult.GetTotal():damage} damage");
+                    $"{ToPrettyString(user):actor} melee attacked (light) {ToPrettyString(target.Value):subject} using {ToPrettyString(meleeUid):tool} and dealt {damageResult.GetTotal():damage} damage to {(damageResult.HitPart?.ToString() ?? "none"):part}"); // CorvaxGoob-LogHitPart-Edit
             }
 
         }
@@ -937,13 +937,13 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem // Goob - p
                 {
                     AdminLogger.Add(LogType.MeleeHit,
                         LogImpact.Medium,
-                        $"{ToPrettyString(user):actor} melee attacked (heavy) {ToPrettyString(entity):subject} using their hands and dealt {damageResult.GetTotal():damage} damage");
+                        $"{ToPrettyString(user):actor} melee attacked (heavy) {ToPrettyString(entity):subject} using their hands and dealt {damageResult.GetTotal():damage} damage to {(damageResult.HitPart?.ToString() ?? "none"):part}"); // CorvaxGoob-LogHitPart-Edit
                 }
                 else
                 {
                     AdminLogger.Add(LogType.MeleeHit,
                         LogImpact.Medium,
-                        $"{ToPrettyString(user):actor} melee attacked (heavy) {ToPrettyString(entity):subject} using {ToPrettyString(meleeUid):tool} and dealt {damageResult.GetTotal():damage} damage");
+                        $"{ToPrettyString(user):actor} melee attacked (heavy) {ToPrettyString(entity):subject} using {ToPrettyString(meleeUid):tool} and dealt {damageResult.GetTotal():damage} damage to {(damageResult.HitPart?.ToString() ?? "none"):part}"); // CorvaxGoob-LogHitPart-Edit
                 }
             }
         }
