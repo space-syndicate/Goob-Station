@@ -19,6 +19,7 @@ using Content.Client.Gameplay;
 using Content.Client.Info;
 using Content.Shared.Guidebook;
 using Content.Shared.Info;
+using Robust.Client;
 using Robust.Client.Audio;
 using Robust.Client.Console;
 using Robust.Client.ResourceManagement;
@@ -34,6 +35,7 @@ namespace Content.Client.UserInterface.Systems.Info;
 public sealed class InfoUIController : UIController, IOnStateExited<GameplayState>
 {
     [Dependency] private readonly IClientConsoleHost _consoleHost = default!;
+    [Dependency] private readonly IBaseClient _baseClient = default!;
     [Dependency] private readonly INetManager _netManager = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IAudioManager _audioManager = default!; // #BlackM
@@ -43,6 +45,7 @@ public sealed class InfoUIController : UIController, IOnStateExited<GameplayStat
     private RulesArrivalPopup? _rulesPopup; // BlackM: arrival and paper folder.
     private RulesAndInfoWindow? _infoWindow;
     private IAudioSource? _rulesMusic; // #BlackM
+    private float? _pendingRulesTime;
 
     private static readonly ProtoId<GuideEntryPrototype> DefaultRuleset = "DefaultRuleset";
 
@@ -57,6 +60,7 @@ public sealed class InfoUIController : UIController, IOnStateExited<GameplayStat
         _netManager.RegisterNetMessage<RulesAcceptedMessage>();
         _netManager.RegisterNetMessage<SendRulesInformationMessage>(OnRulesInformationMessage);
         _netManager.Disconnect += OnRulesDisconnected;
+        _baseClient.PlayerJoinedServer += OnPlayerJoinedServer;
 
         _consoleHost.RegisterCommand("fuckrules",
             "",
@@ -72,14 +76,21 @@ public sealed class InfoUIController : UIController, IOnStateExited<GameplayStat
         RulesEntryId = message.CoreRules;
 
         if (message.ShouldShowRules)
-        {
-            _entitySystemManager.GetEntitySystem<ContentAudioSystem>().PauseForRules(); // #BlackM
             ShowRules(message.PopupTime);
-        }
+    }
+
+    private void OnPlayerJoinedServer(object? sender, PlayerEventArgs args)
+    {
+        if (_pendingRulesTime is not { } time)
+            return;
+
+        _pendingRulesTime = null;
+        ShowRules(time);
     }
 
     private void OnRulesDisconnected(object? sender, NetDisconnectedArgs args)
     {
+        _pendingRulesTime = null;
         var popup = _rulesPopup;
         _rulesPopup = null;
         popup?.Dispose();
@@ -97,9 +108,17 @@ public sealed class InfoUIController : UIController, IOnStateExited<GameplayStat
 
     private void ShowRules(float time)
     {
+        // Network rules can arrive before GameStartedSetup initializes entity systems.
+        if (_baseClient.RunLevel < ClientRunLevel.Connected)
+        {
+            _pendingRulesTime = time;
+            return;
+        }
+
         if (_rulesPopup != null)
             return;
 
+        _entitySystemManager.GetEntitySystem<ContentAudioSystem>().PauseForRules();
         _rulesPopup = new RulesArrivalPopup();
         _rulesPopup.Initialize(time, false);
 

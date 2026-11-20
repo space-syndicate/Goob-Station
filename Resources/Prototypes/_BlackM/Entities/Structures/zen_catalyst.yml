@@ -32,7 +32,7 @@
     energy: 1.6
   - type: ZenCatalyst
     spawnInterval: 600
-    spawnAmount: 2
+    spawnAmount: 3
     zenMobPrototypes:
     - MobXenInfected
   - type: Damageable

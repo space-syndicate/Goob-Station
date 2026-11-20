@@ -16,16 +16,16 @@ public sealed partial class ZenInterventionComponent : Component
     public float MaxLevel = 100f;
 
     [DataField, AutoNetworkedField]
-    public float GainPerMinute = 1.5f;
+    public float GainPerMinute = 1f;
 
     [DataField, AutoNetworkedField]
     public float BreachThreshold = 60f;
 
     [DataField, AutoNetworkedField]
-    public List<float> IntermediateBreachThresholds = new() { 20f, 40f };
+    public List<float> IntermediateBreachThresholds = new() { 40f };
 
     [DataField, AutoNetworkedField]
-    public int IntermediateBreachSpawnAmount = 2;
+    public int IntermediateBreachSpawnAmount = 4;
 
     [ViewVariables]
     public readonly HashSet<float> TriggeredIntermediateBreaches = new();
@@ -42,7 +42,7 @@ public sealed partial class ZenInterventionComponent : Component
     };
 
     [DataField, AutoNetworkedField]
-    public int BreachSpawnAmount = 6;
+    public int BreachSpawnAmount = 8;
 
     [DataField, AutoNetworkedField]
     public bool WaveActive;
@@ -54,7 +54,7 @@ public sealed partial class ZenInterventionComponent : Component
     public TimeSpan WaveInterval = TimeSpan.FromMinutes(5);
 
     [DataField, AutoNetworkedField]
-    public int WaveSpawnAmount = 2;
+    public int WaveSpawnAmount = 4;
 
     [DataField, AutoNetworkedField]
     public EntProtoId WaveMobPrototype = "MobXenInfected";

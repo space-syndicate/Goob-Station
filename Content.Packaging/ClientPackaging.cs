@@ -195,6 +195,11 @@ public static class ClientPackaging
             .Union(ContentClientIgnoredResources).ToHashSet();
 
         await RobustSharedPackaging.DoResourceCopy(Path.Combine(contentDir, "Resources"), pass, ignoreSet, cancel: cancel);
+
+        // The rules arrival scene loads this map locally; other maps stay server-only.
+        pass.InjectFileFromDisk(
+            "Maps/_BlackM/evacmap.yml",
+            Path.Combine(contentDir, "Resources", "Maps", "_BlackM", "evacmap.yml"));
     }
     // CorvaxGoob-Secrets-End
 }

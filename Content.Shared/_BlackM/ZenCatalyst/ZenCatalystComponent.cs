@@ -11,7 +11,7 @@ public sealed partial class ZenCatalystComponent : Component
     public TimeSpan SpawnInterval = TimeSpan.FromMinutes(10);
 
     [DataField, AutoNetworkedField]
-    public int SpawnAmount = 2;
+    public int SpawnAmount = 3;
 
     [DataField, AutoNetworkedField]
     public List<EntProtoId> ZenMobPrototypes = new()
