@@ -16,6 +16,8 @@
 
 using Content.Shared.Audio;
 using Content.Shared.GameTicking;
+using Content.Client.Lobby;
+using Robust.Client.Audio;
 using AudioComponent = Robust.Shared.Audio.Components.AudioComponent;
 
 namespace Content.Client.Audio;
@@ -55,9 +57,27 @@ public sealed partial class ContentAudioSystem : SharedContentAudioSystem
         base.Initialize();
 
         UpdatesOutsidePrediction = true;
+        UpdatesAfter.Add(typeof(AudioSystem));
         InitializeAmbientMusic();
         InitializeLobbyMusic();
         SubscribeNetworkEvent<RoundRestartCleanupEvent>(OnRoundCleanup);
+    }
+
+    public override void FrameUpdate(float frameTime)
+    {
+        base.FrameUpdate(frameTime);
+
+        if (_state.CurrentState is not LobbyState)
+            return;
+
+        // Lobby users can retain a world listener position from the previous round.
+        // Mute positional streams so sounds from that map do not leak into the lobby.
+        var query = AllEntityQuery<AudioComponent>();
+        while (query.MoveNext(out var uid, out var component))
+        {
+            if (!component.Global)
+                Audio.SetVolume(uid, MinVolume, component);
+        }
     }
 
     private void OnRoundCleanup(RoundRestartCleanupEvent ev)

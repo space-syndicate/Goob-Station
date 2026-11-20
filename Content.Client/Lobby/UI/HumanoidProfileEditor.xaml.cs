@@ -352,6 +352,9 @@ namespace Content.Client.Lobby.UI
             #region Appearance
 
             TabContainer.SetTabTitle(0, Loc.GetString("humanoid-profile-editor-appearance-tab"));
+            FaceAppearanceTabs.SetTabTitle(0, Loc.GetString("markings-category-Hair"));
+            FaceAppearanceTabs.SetTabTitle(1, Loc.GetString("markings-category-FacialHair"));
+            FaceAppearanceTabs.SetTabTitle(2, Loc.GetString("humanoid-profile-editor-eyes-label"));
 
             #region Sex
 
@@ -1297,6 +1300,14 @@ namespace Content.Client.Lobby.UI
 
             departments.Sort(DepartmentUIComparer.Instance);
 
+            var blackOpsDepartment = departments.FirstOrDefault(department =>
+                string.Equals(department.ID, "BlackOps", StringComparison.OrdinalIgnoreCase));
+            if (blackOpsDepartment != null)
+            {
+                departments.Remove(blackOpsDepartment);
+                departments.Add(blackOpsDepartment);
+            }
+
             var items = new[]
             {
                 ("humanoid-profile-editor-job-priority-never-button", (int) JobPriority.Never),
@@ -1356,7 +1367,7 @@ namespace Content.Client.Lobby.UI
                                 // Text = Loc.GetString("humanoid-profile-editor-department-jobs-label",
                                     // ("departmentName", departmentName)),
                                 // Margin = new Thickness(5f, 0, 0, 0)
-                                Text = "// " + Loc.GetString("humanoid-profile-editor-department-jobs-label",
+                                Text = Loc.GetString("humanoid-profile-editor-department-jobs-label",
                                     ("departmentName", departmentName)).ToUpperInvariant(),
                                 StyleClasses = { StyleNano.StyleClassLabelTerminalBlackM },
                                 Margin = new Thickness(6f, 2f, 0, 2f)

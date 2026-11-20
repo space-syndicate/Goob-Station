@@ -3,9 +3,6 @@ using Content.Server.Administration;
 using Content.Shared.Administration;
 using Robust.Shared.Console;
 using Robust.Shared.Localization;
-using Content.Shared.Administration;
-using Robust.Shared.Console;
-using Robust.Shared.Localization;
 
 namespace Content.Server._BlackM.ChatImage;
 
@@ -29,7 +26,7 @@ public sealed class SendImageCommand : IConsoleCommand
         var caption = string.Join(' ', args.Skip(1));
         var adminName = shell.Player?.Name ?? "server";
 
-        _entMan.System<ChatImageSystem>().SendFromUrl(shell, adminName, args[0], caption);
+        _entMan.System<ChatImageSystem>().SendFromUrl(shell, adminName, shell.Player?.UserId, args[0], caption);
     }
 
     public CompletionResult GetCompletion(IConsoleShell shell, string[] args)

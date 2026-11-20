@@ -4,7 +4,6 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 using Content.Client._BlackM.SpeechBarks;
-using Content.Client._BlackM.SpeechBarks.UI;
 using Content.Shared._BlackM.CCVar;
 using Content.Shared._BlackM.SpeechBarks;
 
@@ -13,7 +12,6 @@ namespace Content.Client.Lobby.UI;
 public sealed partial class HumanoidProfileEditor
 {
     private List<BlackMBarkPrototype> _barkList = new();
-    private BarkPickerWindow? _barkPicker;
     private bool _barkUpdating;
 
     private static readonly BarkMode[] BarkModes = { BarkMode.Syllables, BarkMode.Letters, BarkMode.Words };
@@ -28,6 +26,11 @@ public sealed partial class HumanoidProfileEditor
 
         BarksSection.Visible = true;
         _barkList = SpeechBarksSystem.GetSelectableBarks(_prototypeManager);
+        BarkSelectButton.Clear();
+        for (var i = 0; i < _barkList.Count; i++)
+        {
+            BarkSelectButton.AddItem(GetBarkName(_barkList[i].ID), i);
+        }
 
         BarkPitchSlider.MinValue = _cfgManager.GetCVar(BlackMCVars.BarksMinPitch);
         BarkPitchSlider.MaxValue = Math.Max(BarkPitchSlider.MinValue, _cfgManager.GetCVar(BlackMCVars.BarksMaxPitch));
@@ -42,10 +45,14 @@ public sealed partial class HumanoidProfileEditor
             BarkModeButton.AddItem(Loc.GetString($"blackm-bark-mode-{BarkModes[i].ToString().ToLowerInvariant()}"), i);
         }
 
-        BarkPrevButton.OnPressed += _ => CycleBark(-1);
-        BarkNextButton.OnPressed += _ => CycleBark(1);
-        BarkPickButton.OnPressed += _ => OpenBarkPicker();
+        BarkSelectButton.OnItemSelected += args =>
+        {
+            BarkSelectButton.SelectId(args.Id);
+            if (args.Id >= 0 && args.Id < _barkList.Count)
+                SetBarkProto(_barkList[args.Id].ID);
+        };
         BarkVoicePlayButton.OnPressed += _ => PlayBarkPreview();
+        BarkAdvancedButton.OnToggled += args => BarkAdvancedContainer.Visible = args.Pressed;
         BarkResetButton.OnPressed += _ => ResetBark();
         BarkPreviewEdit.OnTextEntered += _ => PlayBarkPreview();
 
@@ -70,14 +77,15 @@ public sealed partial class HumanoidProfileEditor
         {
             var bark = Profile.Bark;
 
-            BarkPickButton.Text = GetBarkName(bark.Proto);
+            var barkIndex = _barkList.FindIndex(b => b.ID == bark.Proto);
+            if (barkIndex >= 0)
+                BarkSelectButton.SelectId(barkIndex);
             BarkPitchSlider.Value = bark.Pitch;
             BarkVariationSlider.Value = bark.Variation;
             BarkSpeedSlider.Value = bark.Speed;
             BarkModeButton.SelectId(Math.Max(0, Array.IndexOf(BarkModes, bark.Mode)));
 
             UpdateBarkLabels(bark);
-            _barkPicker?.SetSelected(bark.Proto);
         }
         finally
         {
@@ -113,48 +121,15 @@ public sealed partial class HumanoidProfileEditor
             : protoId;
     }
 
-    private void SetBarkProto(string barkId, bool preview)
+    private void SetBarkProto(string barkId)
     {
         if (Profile is null)
             return;
 
         UpdateBark(b => b.WithProto(barkId));
-        BarkPickButton.Text = GetBarkName(barkId);
-        _barkPicker?.SetSelected(barkId);
-
-        if (preview)
-            PlayBarkPreview();
-    }
-
-    private void CycleBark(int delta)
-    {
-        if (Profile is null || _barkList.Count == 0)
-            return;
-
-        var index = _barkList.FindIndex(b => b.ID == Profile.Bark.Proto);
-        index = index < 0 ? 0 : (index + delta + _barkList.Count) % _barkList.Count;
-        SetBarkProto(_barkList[index].ID, true);
-    }
-
-    private void OpenBarkPicker()
-    {
-        if (Profile is null)
-            return;
-
-        if (_barkPicker == null)
-        {
-            _barkPicker = new BarkPickerWindow(_barkList);
-            _barkPicker.OnBarkSelected += id => SetBarkProto(id, false);
-            _barkPicker.OnBarkPreview += PlayBarkPreview;
-            _barkPicker.OnClose += () =>
-            {
-                _barkPicker = null;
-                _entManager.System<SpeechBarksSystem>().StopPreview();
-            };
-        }
-
-        _barkPicker.SetSelected(Profile.Bark.Proto);
-        _barkPicker.OpenCentered();
+        var barkIndex = _barkList.FindIndex(b => b.ID == barkId);
+        if (barkIndex >= 0)
+            BarkSelectButton.SelectId(barkIndex);
     }
 
     private string GetBarkPreviewText()
