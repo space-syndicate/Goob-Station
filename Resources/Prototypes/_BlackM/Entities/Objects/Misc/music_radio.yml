@@ -5,16 +5,15 @@
   description: Старое радио. Играет музыку, пока включено.
   components:
   - type: Sprite
-    sprite: _BlackM/Objects/Misc/radio.rsi
-    state: radio_off
+    sprite: _BlackM/Objects/Misc/music_radio.rsi
+    layers:
+    - state: icon
+    - state: unlit
+      shader: unshaded
+      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+    drawdepth: SmallObjects
   - type: Appearance
   - type: InteractionOutline
-  - type: GenericVisualizer
-    visuals:
-      enum.MusicRadioVisuals.Playing:
-        sprite:
-          True:  { state: radio }
-          False: { state: radio_off }
   - type: Physics
     bodyType: Dynamic
   - type: Fixtures
@@ -84,3 +83,63 @@
     - name: "103.5 FM — Бодрая-3"
       sound:
         path: /Audio/_BlackM/Radiolist/radio_track_7.ogg
+    - name: "Радио Чёрной Мезы — Klaxon Beat"
+      sound:
+        path: /Audio/Lobby/Klaxon_Beat.ogg
+    - name: "Радио Чёрной Мезы — CP Violation"
+      sound:
+        path: /Audio/Lobby/CP_Violation.ogg
+    - name: "Радио Чёрной Мезы — Phosphor"
+      sound:
+        path: /Audio/Lobby/Phosphor.ogg
+    - name: "Радио Чёрной Мезы — Anomalous Materials"
+      sound:
+        path: /Audio/Lobby/Anomalous_Materials.ogg
+    - name: "Радио Чёрной Мезы — Ascension"
+      sound:
+        path: /Audio/Lobby/Ascension_v2.ogg
+    - name: "Радио Чёрной Мезы — Black Mesa Theme"
+      sound:
+        path: /Audio/Lobby/Black_Mesa_Theme.ogg
+    - name: "Радио Чёрной Мезы — Catalyst"
+      sound:
+        path: /Audio/Lobby/Catalyst.ogg
+    - name: "Радио Чёрной Мезы — Forget About Freeman"
+      sound:
+        path: /Audio/Lobby/Forget_About_Freeman.ogg
+    - name: "Радио Чёрной Мезы — Noisecream Spaceboy"
+      sound:
+        path: /Audio/Lobby/Noisecream_Spaceboy.ogg
+    - name: "Радио Чёрной Мезы — Neon Fog"
+      sound:
+        path: /Audio/Lobby/Neon_Fog.ogg
+    - name: "Радио Чёрной Мезы — Office Complex"
+      sound:
+        path: /Audio/Lobby/Office_Complex.ogg
+    - name: "Радио Чёрной Мезы — On a Rail"
+      sound:
+        path: /Audio/Lobby/On_a_Rail_1.ogg
+    - name: "Радио Чёрной Мезы — On Little Cat Feet"
+      sound:
+        path: /Audio/Lobby/On_Little_Cat_Feet.ogg
+    - name: "Радио Чёрной Мезы — Questionable Ethics"
+      sound:
+        path: /Audio/Lobby/Questionable_Ethics_1.ogg
+    - name: "Радио Чёрной Мезы — Rain on Brick"
+      sound:
+        path: /Audio/Lobby/Rain_On_Brick.ogg
+    - name: "Радио Чёрной Мезы — Silverpoint"
+      sound:
+        path: /Audio/Lobby/Silverpoint.ogg
+    - name: "Радио Чёрной Мезы — Snow"
+      sound:
+        path: /Audio/Lobby/Snow.ogg
+    - name: "Радио Чёрной Мезы — We've Got Hostiles"
+      sound:
+        path: /Audio/Lobby/Weve_Got_Hostiles.ogg
+    - name: "Радио Чёрной Мезы — You Will Never Know"
+      sound:
+        path: /Audio/Lobby/You_Will_Never_Know.ogg
+    - name: "Радио Чёрной Мезы — Half-Life 3"
+      sound:
+        path: /Audio/Lobby/halflife3.ogg
