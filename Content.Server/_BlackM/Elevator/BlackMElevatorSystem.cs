@@ -8,6 +8,7 @@ using Content.Shared.Buckle;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Chat;
 using Content.Shared.Examine;
+using Content.Shared.Item;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
@@ -334,6 +335,9 @@ public sealed class BlackMElevatorSystem : EntitySystem
     {
         CleanPassengers(comp);
 
+        if (!comp.Evacuation && comp.Id == "main" && !HasComp<BlackMElevatorCargoTripComponent>(uid))
+            AddLooseItemsOnGridToPassengers(uid, comp);
+
         if (comp.Passengers.Count == 0 && !HasComp<BlackMElevatorCargoTripComponent>(uid))
         {
             comp.State = BlackMElevatorState.Idle;
@@ -446,7 +450,9 @@ public sealed class BlackMElevatorSystem : EntitySystem
                 var dest = dests[i++ % dests.Count];
                 ReleaseHolds(p);
                 _xform.SetCoordinates(p, Transform(dest).Coordinates);
-                RaiseLocalEvent(new BlackMElevatorArrivedEvent(p, comp.Id));
+
+                if (HasComp<MobStateComponent>(p))
+                    RaiseLocalEvent(new BlackMElevatorArrivedEvent(p, comp.Id));
             }
 
             Jolt(comp.Passengers, comp.LandingStrength);
@@ -685,6 +691,9 @@ public sealed class BlackMElevatorSystem : EntitySystem
             comp.Passengers.Add(p);
         }
 
+        if (comp.Id == "evac")
+            AddEvacuationItems(comp, grid.Value);
+
         SendFade(boarded, false, comp.FadeInTime);
         StopCountdown(comp, boarded);
         StartDescent(uid, comp);
@@ -796,6 +805,57 @@ public sealed class BlackMElevatorSystem : EntitySystem
         }
 
         return result;
+    }
+
+    private void AddLooseItemsOnGridToPassengers(EntityUid elevator, BlackMElevatorComponent comp)
+    {
+        if (Transform(elevator).GridUid is not { } grid)
+            return;
+
+        var query = EntityQueryEnumerator<ItemComponent, TransformComponent>();
+        while (query.MoveNext(out var item, out _, out var xform))
+        {
+            if (xform.GridUid != grid || xform.ParentUid != grid || xform.Anchored ||
+                (TryComp<PhysicsComponent>(item, out var physics) && physics.BodyType == BodyType.Static))
+            {
+                continue;
+            }
+
+            comp.Passengers.Add(item);
+        }
+    }
+
+    private void AddEvacuationItems(BlackMElevatorComponent comp, EntityUid elevatorGrid)
+    {
+        var moved = new HashSet<EntityUid>();
+        var zones = EntityQueryEnumerator<BlackMElevatorBoardZoneComponent, TransformComponent>();
+
+        while (zones.MoveNext(out _, out var zone, out var zoneXform))
+        {
+            if (zone.ElevatorId != comp.Id || !SamePoint(zone.PointId, comp.PointId) ||
+                zoneXform.GridUid == null || zoneXform.ParentUid != zoneXform.GridUid ||
+                !TryPickSpawn(elevatorGrid, out var spawn, comp.PointId))
+            {
+                continue;
+            }
+
+            foreach (var item in _lookup.GetEntitiesInRange<ItemComponent>(zoneXform.Coordinates, zone.Range))
+            {
+                var itemUid = item.Owner;
+                if (!moved.Add(itemUid) || !TryComp<TransformComponent>(itemUid, out var itemXform) ||
+                    itemXform.GridUid != zoneXform.GridUid || itemXform.ParentUid != zoneXform.GridUid ||
+                    itemXform.Anchored ||
+                    (TryComp<PhysicsComponent>(itemUid, out var physics) && physics.BodyType == BodyType.Static))
+                {
+                    continue;
+                }
+
+                var offset = itemXform.LocalPosition - zoneXform.LocalPosition;
+                ReleaseHolds(itemUid);
+                _xform.SetCoordinates(itemUid, new EntityCoordinates(spawn.EntityId, spawn.Position + offset));
+                comp.Passengers.Add(itemUid);
+            }
+        }
     }
 
     private void AnnounceGlobal(string sender, string message, Color color)
