@@ -2,7 +2,7 @@
   id: WeaponSubMachineGunBlackMMP5
   parent: [BaseWeaponSubMachineGun, BaseGunWieldable, BaseSecurityContraband]
   name: MP5
-  description: A compact submachine gun. Uses .35 Auto SMG magazines.
+  description: Компактный пистолет-пулемет, стрялющий пулями 35 калибра.
   components:
   - type: Sprite
     sprite: _BlackM/Objects/Weapons/Guns/SMGs/mp5/big.rsi
@@ -39,9 +39,9 @@
 
 - type: entity
   id: WeaponShotgunBlackMSpas12
-  parent: WeaponShotgunEnforcer
+  parent: [BaseWeaponShotgun, BaseGunWieldable]
   name: SPAS-12
-  description: A semi-automatic shotgun. Uses shotgun shells.
+  description: Полу-автоматичесткий дробовик спас 12.
   components:
   - type: Sprite
     sprite: _BlackM/Objects/Weapons/Guns/Shotguns/spas_12/big.rsi
@@ -49,3 +49,66 @@
     sprite: _BlackM/Objects/Weapons/Guns/Shotguns/spas_12/tiny.rsi
   - type: Clothing
     sprite: _BlackM/Objects/Weapons/Guns/Shotguns/spas_12/tiny.rsi
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - ShellShotgun
+    capacity: 9
+    proto: ShellShotgun
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/ltrifle_cock.ogg
+    autoCycle: false
+
+
+- type: entity
+  name: M16
+  description: Винтовка для дального боя. Стреляет пулями 20 калибра.
+  parent: [BaseWeaponRifle, BaseSecurityContraband, BaseGunWieldable]
+  id: WeaponRifleBlackMM16
+  components:
+  - type: Sprite
+    sprite: _BlackM/Objects/Weapons/Guns/Rifels/M16/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _BlackM/Objects/Weapons/Guns/Rifels/M16/tiny.rsi
+  - type: Item
+    sprite:  _BlackM/Objects/Weapons/Guns/Rifels/M16/tiny.rsi
+    size: Large
+  - type: Gun
+    minAngle: 1
+    maxAngle: 1
+    fireRate: 2
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/batrifle.ogg
+  - type: GunRequiresWield
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        # name: Magazine # CorvaxGoob-Loc-in-UI
+        startingItem: MagazineRifle
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineRifle
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        startingItem: CartridgeRifle
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeRifle
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+

@@ -1,0 +1,69 @@
+- type: entity
+  id: HecuUndeterminedWeaponBlacM
+  name: Набор вооружения HECU
+  description: Личный набор вооружения каждого солдата HECU.
+  parent: [ BaseItem, BaseSetSelector, BaseCentcommContraband ]
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Objects/Specific/Security/ertundetermined.rsi
+    state: icon
+  - type: SetSelector
+    possibleSets:
+    - HecuMP5Set
+    - HecuSPAS12SET
+    - HecuM16SET
+    maxSelectedSets: 1
+
+
+- type: selectableSet
+  id: HecuMP5Set
+  name: Набор с МП5
+  description: Набор для ближнего боя с противниками.
+  sprite:
+    sprite: _BlackM/Objects/Weapons/Guns/SMGs/mp5/big.rsi
+    state: icon
+  content:
+    - WeaponSubMachineGunBlackMMP5
+    - MagazinePistolSubMachineGun
+    - MagazinePistolSubMachineGun
+    - MagazinePistolSubMachineGun
+    - MagazinePistolSubMachineGun
+    - ExGrenade
+    - ExGrenade
+    - C4
+
+
+- type: selectableSet
+  id: HecuSPAS12SET
+  name: Набор с дробовиком SPAS-12
+  description: Набор для подавления фауны zen. Идеально подходит для зачистки различной нечисти.
+  sprite:
+    sprite: _BlackM/Objects/Weapons/Guns/Shotguns/spas_12/big.rsi
+    state: icon
+  content:
+    - ClothingArmorHecuHigh
+    - WeaponShotgunBlackMSpas12
+    - BoxLethalshot
+    - BoxLethalshot
+    - BoxShotgunIncendiary
+    - ExGrenade
+    - C4
+    - C4
+    - XenInfectionSerumAutoInjector
+    - XenInfectionSerumAutoInjector
+
+- type: selectableSet
+  id: HecuM16SET
+  name: Набор с винтовкой М16
+  description: Набор дальнего боя, идеально подходит для неуверенных в себе.
+  sprite:
+    sprite: _BlackM/Objects/Weapons/Guns/Rifels/M16/big.rsi
+    state: Icon
+  content:
+    - WeaponRifleBlackMM16
+    - MagazineRifle
+    - MagazineRifle
+    - MagazineRifle
+    - MagazineBoxRifle
+    - ExGrenade
+    - C4

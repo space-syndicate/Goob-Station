@@ -1,9 +1,9 @@
 # _BlackM HECU Science Backpack
 - type: entity
   parent: ClothingBackpack
-  id: ClothingBackpackHecuScience
-  name: HECU science backpack
-  description: A sturdy HECU backpack designed for researchers in the field.
+  id: ClothingBackpackHecuBlackM
+  name: Рюкзак HECU
+  description: Походный рюкзак HECU, идеально подходит для боевых условий.
   components:
   - type: Sprite
     sprite: _BlackM/Clothing/Back/Backpacks/hecu_backpack.rsi

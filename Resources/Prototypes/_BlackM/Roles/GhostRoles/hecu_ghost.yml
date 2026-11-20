@@ -24,14 +24,15 @@
     jumpsuit: ClothingUniformJumpsuitHecuRandom
     mask: ClothingMaskGasHECU
     shoes: ClothingShoesBootsHecu
-    back: ClothingBackpackMerc
+    back: ClothingBackpackHecuBlackM
+    belt: ClothingBeltMercWebbing
     id: AccessCardHolderHecu
     ears: ClothingHeadsetAltCentCom
     hand: WeaponSubMachineGunDrozd
     gloves: ClothingHandsGlovesMercFingerless
   storage:
     back:
-    - MagazinePistolSubMachineGun
-    - MagazinePistolSubMachineGun
-    - MagazinePistolSubMachineGun
-    - Brutepack
+    - MedkitCombatFilled
+    - KukriKnife
+    - WeaponPistolViper
+    - HecuUndeterminedWeaponBlacM
