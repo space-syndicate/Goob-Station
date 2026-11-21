@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Shared.Procedural; // CorvaxGoob
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Salvage.Expeditions;
