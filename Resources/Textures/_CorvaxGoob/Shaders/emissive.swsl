@@ -1,0 +1,8 @@
+uniform lowp float glowEnergy; // how strong the emissive should be
+
+void fragment() {
+    highp vec4 color = zTexture(UV);
+    lowp vec3 glow = mix(lightSample.rgb, vec3(1.0), glowEnergy);
+    COLOR =  vec4(color.rgb * glow, color.a);
+    lightSample = vec3(1.0);
+}
