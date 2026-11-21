@@ -58,8 +58,7 @@ public sealed class SalvageExpeditionConsoleBoundUserInterface : BoundUserInterf
             offering.Title = Loc.GetString($"salvage-expedition-type");
 
             var difficultyId = missionParams.Difficulty; // CorvaxGoob-Edit
-            var difficultyProto =
-                _protoManager.Index<SalvageDifficultyPrototype>(difficultyId);
+            var difficultyProto = _protoManager.Index<SalvageDifficultyPrototype>(difficultyId);
             // TODO: Selectable difficulty soon.
             var mission = salvage.GetMission(difficultyProto, missionParams.Seed);
 
