@@ -233,6 +233,9 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
 
         foreach (var entry in faction.MobGroups)
         {
+            if (entry.Cost > mobBudget) // CorvaxGoob
+                continue;
+
             budgetEntries.Add(entry);
         }
 
