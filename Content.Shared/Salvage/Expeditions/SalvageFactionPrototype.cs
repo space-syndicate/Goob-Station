@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Shared.Procedural; // CorvaxGoob
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Salvage.Expeditions;
@@ -11,7 +12,7 @@ public sealed partial class SalvageFactionPrototype : IPrototype
 
     /// Allowed difficulties. null — all difficulties are available. Added for CorvaxGoob.
     [DataField]
-    public List<string>? AllowedDifficulties;
+    public List<ProtoId<SalvageDifficultyPrototype>>? AllowedDifficulties;
 
     [DataField("desc")] public LocId Description { get; private set; } = string.Empty;
 
