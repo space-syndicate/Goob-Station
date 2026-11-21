@@ -44,7 +44,7 @@ public abstract partial class SharedSalvageSystem : EntitySystem
         var temp = GetBiomeMod<SalvageTemperatureMod>(biome.ID, rand, ref modifierBudget);
         var air = GetBiomeMod<SalvageAirMod>(biome.ID, rand, ref modifierBudget);
         var dungeon = GetBiomeMod<SalvageDungeonModPrototype>(biome.ID, rand, ref modifierBudget);
-        // Fraction difficulty added for CorvaxGoob
+        // CorvaxGoob-Start
         var factionProtos = _proto
             .EnumeratePrototypes<SalvageFactionPrototype>()
             .Where(faction =>
@@ -54,9 +54,10 @@ public abstract partial class SharedSalvageSystem : EntitySystem
 
         if (factionProtos.Count == 0)
         {
-            throw new InvalidOperationException(
-                $"No salvage factions available for difficulty '{difficulty.ID}'.");
+            Log.Error($"No salvage factions available for difficulty '{difficulty.ID}', using all factions.");
+            factionProtos = _proto.EnumeratePrototypes<SalvageFactionPrototype>().ToList();
         }
+        // CorvaxGoob-End
         factionProtos.Sort((x, y) => string.Compare(x.ID, y.ID, StringComparison.Ordinal));
         var faction = factionProtos[rand.Next(factionProtos.Count)];
 
