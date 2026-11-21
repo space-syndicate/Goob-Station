@@ -269,6 +269,9 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
 
                     foreach (var entry in randomLoot.Entries)
                     {
+                        if (entry.Cost > lootBudget) // CorvaxGoob
+                            continue;
+
                         budgetEntries.Add(entry);
                     }
 
