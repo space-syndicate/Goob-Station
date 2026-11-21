@@ -19,13 +19,17 @@ public sealed class FaxUiState : BoundUserInterfaceState
     public bool IsPaperInserted { get; }
     public bool CanSend { get; }
     public bool CanCopy { get; }
+    public string?[] OutputDocuments { get; }
+    public bool ReminderEnabled { get; }
 
     public FaxUiState(string deviceName,
         Dictionary<string, string> peers,
         bool canSend,
         bool canCopy,
         bool isPaperInserted,
-        string? destAddress)
+        string? destAddress,
+        string?[] outputDocuments,
+        bool reminderEnabled)
     {
         DeviceName = deviceName;
         AvailablePeers = peers;
@@ -33,7 +37,21 @@ public sealed class FaxUiState : BoundUserInterfaceState
         CanSend = canSend;
         CanCopy = canCopy;
         DestinationAddress = destAddress;
+        OutputDocuments = outputDocuments;
+        ReminderEnabled = reminderEnabled;
     }
+}
+
+[Serializable, NetSerializable]
+public sealed class FaxEjectOutputMessage(int slot) : BoundUserInterfaceMessage
+{
+    public int Slot = slot;
+}
+
+[Serializable, NetSerializable]
+public sealed class FaxSetReminderMessage(bool enabled) : BoundUserInterfaceMessage
+{
+    public bool Enabled = enabled;
 }
 
 [Serializable, NetSerializable]
