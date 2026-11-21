@@ -100,7 +100,7 @@ public sealed class SalvageExpeditionConsoleBoundUserInterface : BoundUserInterf
             });
 
             var faction = mission.Faction;
-            // CorvaxGoob Extreme threat - Unknown
+            
             offering.AddContent(new Label
             {
                 Text = difficultyProto.ID == "Extreme"
