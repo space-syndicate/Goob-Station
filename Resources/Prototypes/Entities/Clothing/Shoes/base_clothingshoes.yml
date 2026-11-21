@@ -47,6 +47,7 @@
     - ClothMade
     - Recyclable
     - WhitelistChameleon
+    - WrappebelShoes
   - type: ProtectedFromStepTriggers
   - type: Armor # provide minimal covering to your feet
     coverage:

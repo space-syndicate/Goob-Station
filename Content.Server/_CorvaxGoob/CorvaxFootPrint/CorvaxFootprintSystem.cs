@@ -16,7 +16,7 @@ using Content.Goobstation.Common.CCVar;
 using Content.Shared.Chemistry.Reagent;
 using Robust.Shared.Configuration;
 using Content.Server._CorvaxGoob.Footprints.Components;
-
+using Content.Goobstation.Shared.ShoeCovers.Components;
 namespace Content.Server._CorvaxGoob.Footprints;
 
 public sealed class CorvaxFootprintSystem : EntitySystem
@@ -30,7 +30,7 @@ public sealed class CorvaxFootprintSystem : EntitySystem
     [Dependency] private readonly DecalSystem _decals = default!;
 
     private EntityQuery<CannotLeaveTracesComponent> _noFootprintsQuery = default!;
-
+    private EntityQuery<ShoeCoversWearerComponent> _alternativnoFootprintsQuery = default!;
     public const string FootPrintSolution = "print";
 
     public const string PuddleSolution = "puddle";
@@ -50,7 +50,7 @@ public sealed class CorvaxFootprintSystem : EntitySystem
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypesReloaded);
 
         _noFootprintsQuery = GetEntityQuery<CannotLeaveTracesComponent>();
-
+        _alternativnoFootprintsQuery = GetEntityQuery<ShoeCoversWearerComponent>();
         Subs.CVar(_configuration, GoobCVars.MinimumPuddleSizeForFootprints, value => _minimumPuddleSize = value, true);
 
         CacheSticky();
@@ -74,7 +74,9 @@ public sealed class CorvaxFootprintSystem : EntitySystem
     {
         if (_noFootprintsQuery.HasComp(entity))
             return;
-
+        // Если надеты бахилы, следы не оставляются
+        if (_alternativnoFootprintsQuery.HasComp(entity))
+            return;
         if (!e.OldPosition.IsValid(EntityManager) || !e.NewPosition.IsValid(EntityManager))
             return;
 
@@ -187,7 +189,7 @@ public sealed class CorvaxFootprintSystem : EntitySystem
         var deposit = feetSol.SplitSolution(GetFootprintVolume(entity, solution.Value));
         puddleSol.AddSolution(deposit, _prototype);
 
-        // Следы оставляют только в том случае, если в луже содержится 
+        // Следы оставляют только в том случае, если в луже содержится
         // достаточное количество вещества, прилипающего к ногам, чтобы их образовать.
         if (stickyVolume < _minimumPuddleSize)
         {

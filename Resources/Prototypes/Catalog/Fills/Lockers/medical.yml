@@ -41,6 +41,7 @@
   id: LockerFillMedicalDoctor
   table: !type:AllSelector
     children:
+    - id: BoxShoeCovers
     - id: HandheldHealthAnalyzer
       prob: 0.6
     - id: ClothingHeadMirror
