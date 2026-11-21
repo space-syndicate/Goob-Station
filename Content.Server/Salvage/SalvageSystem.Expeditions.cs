@@ -144,15 +144,15 @@ public sealed partial class SalvageSystem
     {
         component.Missions.Clear();
 
-        string[] difficulties = { "Easy", "Moderate", "Hard", "Extreme" };
+        var difficulties = _prototypeManager.EnumeratePrototypes<SalvageDifficultyPrototype>().OrderBy(x => x.LootBudget); // CorvaxGoob
 
-        foreach (var difficulty in difficulties)
+        foreach (var difficulty in difficulties) // CorvaxGoob
         {
             var mission = new SalvageMissionParams
             {
                 Index = component.NextIndex,
                 Seed = _random.Next(),
-                Difficulty = difficulty,
+                Difficulty = difficulty.ID, // CorvaxGoob
             };
 
             component.Missions[component.NextIndex++] = mission;

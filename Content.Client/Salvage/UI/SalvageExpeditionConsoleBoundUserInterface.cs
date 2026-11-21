@@ -101,6 +101,7 @@ public sealed class SalvageExpeditionConsoleBoundUserInterface : BoundUserInterf
 
             var faction = mission.Faction;
             
+            // CorvaxGoob-Start
             offering.AddContent(new Label
             {
                 Text = difficultyProto.ID == "Extreme"
@@ -114,7 +115,7 @@ public sealed class SalvageExpeditionConsoleBoundUserInterface : BoundUserInterf
                 Margin = new Thickness(0f, 0f, 0f, 5f),
                 StyleClasses = { StyleClass.LabelKeyText },
             });
-
+            // CorvaxGoob-End
             string LogAndReturnDefaultFactionDescription(string faction)
             {
                 Logger.Error($"Description is null or white space for SalvageFactionPrototype: {faction}");
