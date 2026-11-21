@@ -79,7 +79,7 @@
   id: Haunted
   layers:
   - !type:PrefabDunGen
-    roomWhitelist:
+    roomWhitelist: # CorvaxGoob
       tags:
       - Haunted
     presets:
