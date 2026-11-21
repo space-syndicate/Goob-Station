@@ -35,15 +35,19 @@
     #- proto: MobCarpHolo
     #  cost: 5
     #  prob: 0.1
-    #- proto: MobCarpMagic
-    #  cost: 5
-    #  prob: 0.1
+    - proto: MobCarpMagic #CorvaxGoob returned
+      cost: 5
+      prob: 0.1
     - proto: MobCarpRainbow # carp version of rouny...
       cost: 3
-      prob: 0.05
+      prob: 0.3 #CorvaxGoob 0.05 -> 0.3
     - proto: MobDragonDungeon
       cost: 10
       prob: 0.02
   configs:
     DefenseStructure: CarpStatue
     Megafauna: MobDragonDungeon
+  allowedDifficulties: #added for CorvaxGoob
+  - Easy
+  - Moderate
+  - Hard

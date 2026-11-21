@@ -5,6 +5,7 @@ using System.Threading;
 using Content.Server.Salvage.Expeditions;
 using Content.Shared.CCVar;
 using Content.Shared.Examine;
+using Content.Shared.Procedural; // CorvaxGoob
 using Content.Shared.Salvage.Expeditions;
 using Content.Shared.Shuttles.Components;
 using Robust.Shared.CPUJob.JobQueues;
@@ -144,13 +145,15 @@ public sealed partial class SalvageSystem
     {
         component.Missions.Clear();
 
-        for (var i = 0; i < MissionLimit; i++)
+        string[] difficulties = { "Easy", "Moderate", "Hard", "Extreme" };
+
+        foreach (var difficulty in difficulties)
         {
             var mission = new SalvageMissionParams
             {
                 Index = component.NextIndex,
                 Seed = _random.Next(),
-                Difficulty = "Moderate",
+                Difficulty = difficulty,
             };
 
             component.Missions[component.NextIndex++] = mission;
