@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Numerics;
+using Content.Client._CorvaxGoob.Weapons.Melee.SwipeCombat; // CorvaxGoob-SwipeCombat
 using Content.Client.Hands.Systems;
 using Content.Shared.Weapons.Ranged.Components;
 using Robust.Client.GameObjects;
@@ -25,6 +26,7 @@ public sealed class CombatModeIndicatorsOverlay : Overlay
     private readonly IEyeManager _eye;
     private readonly CombatModeSystem _combat;
     private readonly HandsSystem _hands = default!;
+    private readonly SwipeCombatInputSystem _swipeCombat; // CorvaxGoob-SwipeCombat
 
     private readonly Texture _gunSight;
     private readonly Texture _gunBoltSight;
@@ -44,6 +46,7 @@ public sealed class CombatModeIndicatorsOverlay : Overlay
         _eye = eye;
         _combat = combatSys;
         _hands = hands;
+        _swipeCombat = _entMan.System<SwipeCombatInputSystem>(); // CorvaxGoob-SwipeCombat
 
         var spriteSys = _entMan.EntitySysManager.GetEntitySystem<SpriteSystem>();
         _gunSight = spriteSys.Frame0(new SpriteSpecifier.Rsi(new ResPath("/Textures/Interface/Misc/crosshair_pointers.rsi"),
@@ -64,7 +67,8 @@ public sealed class CombatModeIndicatorsOverlay : Overlay
 
     protected override void Draw(in OverlayDrawArgs args)
     {
-        var mouseScreenPosition = _inputManager.MouseScreenPosition;
+        // CorvaxGoob-SwipeCombat: во время свайпа прицел застывает вместе с курсором
+        var mouseScreenPosition = _swipeCombat.IsSwiping ? _swipeCombat.FrozenCursor : _inputManager.MouseScreenPosition;
         var mousePosMap = _eye.PixelToMap(mouseScreenPosition);
         if (mousePosMap.MapId != args.MapId)
             return;

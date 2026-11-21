@@ -12,6 +12,7 @@
   - DragonKungFu
   - HellRip
   - Mimejutsu #CorvaxGoob
+  - SwipeCrowbar #CorvaxGoob
 
 - type: guideEntry
   id: CQC
@@ -57,3 +58,9 @@
   id: Mimejutsu
   name: guide-entry-mimejutsu
   text: "/ServerInfo/_CorvaxGoob/Guidebook/MartialArts/Mimejutsu.xml"
+
+# CorvaxGoob-SwipeCombat
+- type: guideEntry
+  id: SwipeCrowbar
+  name: guide-entry-swipe-crowbar
+  text: "/ServerInfo/_CorvaxGoob/Guidebook/MartialArts/SwipeCrowbar.xml"

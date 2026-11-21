@@ -3,6 +3,7 @@
 using System.Linq;
 using System.Numerics;
 using Content.Client.Gameplay;
+using Content.Shared._CorvaxGoob.Weapons.Melee.SwipeCombat; // CorvaxGoob-SwipeCombat
 using Content.Goobstation.Common.Weapons;
 using Content.Goobstation.Common.Weapons.MeleeDash;
 using Content.Shared._Goobstation.Heretic.Components;
@@ -148,6 +149,10 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
 
             return;
         }
+
+        // CorvaxGoob-SwipeCombat: у свайп-оружия нет обычных атак, ЛКМ обрабатывает SwipeCombatInputSystem
+        if (HasComp<SwipeCombatComponent>(weaponUid))
+            return;
 
         // Heavy attack.
         if (altDown == BoundKeyState.Down)

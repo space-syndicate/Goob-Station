@@ -1,0 +1,14 @@
+# Эффект свайп-удара дуэльной монтировки. Анимацию проигрывает SwipeCombatVisualsSystem на клиенте.
+- type: entity
+  id: SwipeCombatEffect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 1.0
+  - type: Sprite
+    sprite: _CorvaxGoob/Effects/swipe_crowbar.rsi
+    state: combo
+    drawdepth: Effects
+  - type: Tag
+    tags:
+    - HideContextMenu
