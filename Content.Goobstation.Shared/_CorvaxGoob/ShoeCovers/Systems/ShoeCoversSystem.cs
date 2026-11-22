@@ -15,7 +15,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 
-namespace Content.Goobstation.Shared.ShoeCovers.Systems;
+namespace Content.Goobstation.Shared._CorvaxGoob.ShoeCovers.Systems;
 
 public sealed partial class ShoeCoversSystem : EntitySystem
 {
