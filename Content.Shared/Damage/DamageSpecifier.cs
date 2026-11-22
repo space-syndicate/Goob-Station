@@ -2,6 +2,7 @@
 
 using System.Linq;
 using System.Text.Json.Serialization;
+using Content.Shared._Shitmed.Targeting; // CorvaxGoob-LogHitPart
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Goobstation.Maths.FixedPoint;
@@ -61,6 +62,9 @@ namespace Content.Shared.Damage
         // CorvaxGoob
         [DataField]
         public bool BypassFlatReductions { get; set; }
+
+        // CorvaxGoob-LogHitPart
+        public TargetBodyPart? HitPart { get; set; } 
 
         /// <summary>
         ///     Returns a sum of the damage values.

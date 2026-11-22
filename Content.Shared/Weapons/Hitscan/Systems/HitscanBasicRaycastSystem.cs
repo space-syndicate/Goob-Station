@@ -66,7 +66,7 @@ public sealed class HitscanBasicRaycastSystem : EntitySystem
         FireEffects(args.FromCoordinates, distanceTried, args.ShotDirection.ToAngle(), ent.Owner, CompOrNull<PredictedShooterComponent>(ent)?.Shooter);
 
         // Admin logging
-        if (result?.HitEntity != null)
+        if (result?.HitEntity != null && !HasComp<HitscanBasicDamageComponent>(ent)) // CorvaxGoob-LogHitPart-Edit
         {
             _log.Add(LogType.HitScanHit,
                 $"{ToPrettyString(shooter):user} hit {ToPrettyString(result.Value.HitEntity):target}"

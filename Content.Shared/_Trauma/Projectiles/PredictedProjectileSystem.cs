@@ -195,7 +195,7 @@ public sealed class PredictedProjectileSystem : EntitySystem
 
             _adminLogger.Add(LogType.BulletHit,
                 LogImpact.Medium,
-                $"Projectile {ToPrettyString(uid):projectile} shot by {ToPrettyString(component.Shooter!.Value):user} hit {otherName:target} and dealt {damage:damage} damage");
+                $"Projectile {ToPrettyString(uid):projectile} shot by {ToPrettyString(component.Shooter!.Value):user} hit {otherName:target} and dealt {damage:damage} damage to {(damage.HitPart?.ToString() ?? "none"):part}"); // CorvaxGoob-LogHitPart-Edit
 
             component.ProjectileSpent = !TryPenetrate((uid, component), damage, damageRequired, target); // Goob
         }

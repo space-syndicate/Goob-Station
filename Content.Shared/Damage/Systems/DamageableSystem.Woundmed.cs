@@ -283,6 +283,7 @@ public sealed partial class DamageableSystem
             var partDamageDict = ApplySplitDamageBehaviors(splitDamageBehavior, adjustedDamage, targettedParts);
             var appliedDamage = new DamageSpecifier();
             var surplusHealing = new DamageSpecifier();
+            TargetBodyPart hitParts = 0; // CorvaxGoob-LogHitPart
 
             foreach (var pair in partDamageDict)
             {
@@ -302,7 +303,10 @@ public sealed partial class DamageableSystem
                 );
 
                 if (partDamageResult != null && !partDamageResult.Empty)
+                {
                     appliedDamage += partDamageResult;
+                    hitParts |= _body.GetTargetBodyPart(part.Comp1); // CorvaxGoob-LogHitPart
+                }
 
                 /*
                     Why this ugly shitcode? Its so that we can track chems and other sorts of healing surpluses.
@@ -324,6 +328,11 @@ public sealed partial class DamageableSystem
             }
 
             totalAppliedDamage = appliedDamage;
+
+            // CorvaxGoob-LogHitPart-Start
+            if (hitParts != 0) 
+                totalAppliedDamage.HitPart = hitParts;
+            // CorvaxGoob-LogHitPart-End
         }
         else
         {
@@ -371,6 +380,10 @@ public sealed partial class DamageableSystem
 
             totalAppliedDamage = ChangeDamage((chosenTarget.Id, partDamageable), adjustedDamage, ignoreResistances,
                 interruptsDoAfters, origin, ignoreBlockers: ignoreBlockers);
+            // CorvaxGoob-LogHitPart-Start
+            if (!totalAppliedDamage.Empty)
+                totalAppliedDamage.HitPart = _body.GetTargetBodyPart(chosenTarget.Component);
+            // CorvaxGoob-LogHitPart-End
         }
 
         return totalAppliedDamage;
@@ -468,6 +481,8 @@ public sealed partial class DamageableSystem
             totalDamage += appliedRegularDamage;
         if (appliedVitalDamage is not null)
             totalDamage += appliedVitalDamage;
+
+        totalDamage.HitPart = appliedRegularDamage?.HitPart; // CorvaxGoob-LogHitPart
 
         if (!_damageableQuery.TryComp(body, out var damageableComp))
         {
