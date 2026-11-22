@@ -7,18 +7,18 @@
     - !type:RandomSpawnsLoot
       entries:
         - proto: AdvMopItem
-          prob: 1 #CorvaxGoob 0.5 -> 1
+          prob: 1 #CorvaxGoob-Edit 0.5 -> 1
         - proto: AmmoTechFabCircuitboard
           cost: 3
-          prob: 0.2 #CorvaxGoob 1 -> 0.2
+          prob: 0.2 #CorvaxGoob-Edit 1 -> 0.2
         - proto: AutolatheMachineCircuitboard
           cost: 2
         - proto: BiomassReclaimerMachineCircuitboard
           cost: 2
         - proto: BluespaceBeaker
           cost: 2
-          prob: 0.4 #CorvaxGoob 1 -> 0.4
-        # - proto: CyborgEndoskeleton #CorvaxGoob - deleted
+          prob: 0.4 #CorvaxGoob-Edit 1 -> 0.4
+        # - proto: CyborgEndoskeleton #CorvaxGoob-Deleted
         #   cost: 3
         #   prob: 0.5
         - proto: ChemDispenserMachineCircuitboard
@@ -27,12 +27,12 @@
           cost: 2
         - proto: CloningConsoleComputerCircuitboard
           cost: 2
-          prob: 0.9 #CorvaxGoob 1 -> 0.9
+          prob: 0.9 #CorvaxGoob-Edit 1 -> 0.9
         - proto: CloningPodMachineCircuitboard
           cost: 2
-          prob: 0.9 #CorvaxGoob 1 -> 0.9
+          prob: 0.9 #CorvaxGoob-Edit 1 -> 0.9
         - proto: ChemistryBottleCognizine
-          prob: 0.6 #CorvaxGoob 1 -> 0.6
+          prob: 0.6 #CorvaxGoob-Edit 1 -> 0.6
         - proto: FoodBoxDonkpocketCarp
           prob: 0.5
         - proto: CrateSalvageEquipment
@@ -41,17 +41,17 @@
         - proto: GasRecycler
           cost: 2
         - proto: GeneratorRTG
-          cost: 4 #CorvaxGoob 5 -> 4
+          cost: 4 #CorvaxGoob-Edit 5 -> 4
         - proto: GravityGeneratorMini
           cost: 2
         - proto: GyroscopeUnanchored
-          cost: 3 #CorvaxGoob 2 -> 3
-          prob: 1 #CorvaxGoob 0.1 -> 1
+          cost: 3 #CorvaxGoob-Edit 2 -> 3
+          prob: 1 #CorvaxGoob-Edit 0.1 -> 1
         - proto: MedicalScannerMachineCircuitboard
           cost: 2
-          prob: 0.9 #CorvaxGoob 1 -> 0.9
+          prob: 0.9 #CorvaxGoob-Edit 1 -> 0.9
         - proto: NuclearBombKeg
-          cost: 3 #CorvaxGoob 5 -> 3
+          cost: 3 #CorvaxGoob-Edit 5 -> 3
         - proto: ChemistryBottleOmnizine
           prob: 0.5
         - proto: PortableGeneratorPacman
@@ -59,10 +59,10 @@
         - proto: PortableGeneratorSuperPacman
           cost: 3
         - proto: PowerCellAntiqueProto
-          cost: 3 #CorvaxGoob 5 -> 3
+          cost: 3 #CorvaxGoob-Edit 5 -> 3
           prob: 0.5
         - proto: ProtolatheMachineCircuitboard
-          cost: 2 #CorvaxGoob 1 -> 2
+          cost: 2 #CorvaxGoob-Edit 1 -> 2
         - proto: RandomArtifactSpawner
           cost: 2
         - proto: RandomCargoCorpseSpawner
@@ -87,35 +87,36 @@
           cost: 2
           prob: 0.5
         - proto: ResearchAndDevelopmentServerMachineCircuitboard
-          cost: 3 #CorvaxGoob 5 -> 3
+          cost: 3 #CorvaxGoob-Edit 5 -> 3
           prob: 0.5
         - proto: ResearchDisk10000
-          prob: 1 #CorvaxGoob 0.5 -> 1
+          prob: 1 #CorvaxGoob-Edit 0.5 -> 1
         - proto: ResearchDisk5000
-          prob: 1 #CorvaxGoob 0.5 -> 1
+          prob: 1 #CorvaxGoob-Edit 0.5 -> 1
         # - proto: RipleyHarness #CorvaxGoob - deleted
         #   cost: 3
         #   prob: 0.5
         - proto: SpaceCash1000
         - proto: SpaceCash10000
-          cost: 4 #CorvaxGoob 10 -> 4
+          cost: 4 #CorvaxGoob-Edit 10 -> 4
         - proto: SpaceCash2500
-          cost: 1 #CorvaxGoob 3 -> 1
+          cost: 1 #CorvaxGoob-Edit 3 -> 1
         - proto: SpaceCash5000
-          cost: 2 #CorvaxGoob 5 -> 2
+          cost: 2 #CorvaxGoob-Edit 5 -> 2
         - proto: TechnologyDiskRare
-          cost: 4 #CorvaxGoob 5 -> 4
-          prob: 0.8 #CorvaxGoob 0.5 -> 0.8
+          cost: 4 #CorvaxGoob-Edit 5 -> 4
+          prob: 0.8 #CorvaxGoob-Edit 0.5 -> 0.8
         - proto: ThrusterUnanchored
-          cost: 2 #CorvaxGoob 1 -> 2
+          cost: 2 #CorvaxGoob-Edit 1 -> 2
         - proto: WaterTankHighCapacity
-          cost: 2 #CorvaxGoob 1 -> 2
+          cost: 2 #CorvaxGoob-Edit 1 -> 2
         - proto: WeldingFuelTankHighCapacity
           cost: 3
         - proto: WeaponTeslaGun
-          prob: 0.05 #CorvaxGoob 0.1 -> 0.05
-          cost: 4 #CorvaxGoob 2 -> 4
-        - proto: AnomalyCorePyroclastic #From this until end - added for CorvaxGoob
+          prob: 0.05 #CorvaxGoob-Edit 0.1 -> 0.05
+          cost: 4 #CorvaxGoob-Edit 2 -> 4
+          #CorvaxGoob-Start
+        - proto: AnomalyCorePyroclastic
           prob: 0.3
           cost: 2
         - proto: AnomalyCoreGravity
@@ -408,9 +409,6 @@
         - proto: BorgModuleAdvancedCleaning
           prob: 0.2
           cost: 5
-        - proto: BorgModuleAdvancedCleaning
-          prob: 0.2
-          cost: 5
         - proto: BorgModuleAdvancedSurgery
           prob: 0.2
           cost: 5
@@ -525,19 +523,10 @@
         - proto: SalvageMaterialCrateSpawner
           prob: 1
           cost: 2
-        - proto: SyndicateSpawner #random loot
+        - proto: SyndicateSpawner
           prob: 0.0001
           cost: 20
-        - proto: PlayerBorgDerelictGhostRole
-          prob: 0.001
-          cost: 5
-        - proto: PlayerBorgSyndicateSaboteurGhostRole
-          prob: 0.0005
-          cost: 10
-        - proto: CrateBluespaceLimitedSingularity #just a joke
-          prob: 0.00001
-          cost: 1
-
+        #CorvaxGoob-End
 
 # Mob loot table
 
@@ -618,8 +607,7 @@
     - !type:BiomeMarkerLoot
       proto: OreArtifactFragment
 
-# CorvaxGoob - Bananium ore
-- type: salvageLoot
+- type: salvageLoot #CorvaxGoob
   id: OreBananium
   guaranteed: true
   loots:

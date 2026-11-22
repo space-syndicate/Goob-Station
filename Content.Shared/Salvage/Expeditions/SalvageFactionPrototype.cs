@@ -10,9 +10,11 @@ public sealed partial class SalvageFactionPrototype : IPrototype
 {
     [IdDataField] public string ID { get; private set; } = default!;
 
-    /// Allowed difficulties. null — all difficulties are available. Added for CorvaxGoob.
+    // CorvaxGoob-Start
+    /// Allowed difficulties. null — all difficulties are available.
     [DataField]
     public List<ProtoId<SalvageDifficultyPrototype>>? AllowedDifficulties;
+    // CorvaxGoob-End
 
     [DataField("desc")] public LocId Description { get; private set; } = string.Empty;
 
