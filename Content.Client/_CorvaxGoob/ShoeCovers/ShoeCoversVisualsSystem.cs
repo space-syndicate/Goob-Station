@@ -14,8 +14,8 @@ namespace Content.Client._CorvaxGoob.ShoeCovers;
 public sealed class ShoeCoversVisualsSystem : EntitySystem
 {
     private const string LayerKey = "shoe-covers";
-    [Dependency] private readonly SpriteSystem _sprite = default!;
-    [Dependency] private readonly SharedItemSystem _item = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
+    [Dependency] private SharedItemSystem _item = default!;
 
     public override void Initialize()
     {
