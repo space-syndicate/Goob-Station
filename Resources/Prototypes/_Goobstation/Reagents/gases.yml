@@ -298,6 +298,10 @@
           type: [Hydrakin]
     Gas:
       effects:
+      - !type:GenericStatusEffect # CorvaxGoob - HealiumChanges
+        key: Pacified
+        component: Pacified
+        time: 1
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition
