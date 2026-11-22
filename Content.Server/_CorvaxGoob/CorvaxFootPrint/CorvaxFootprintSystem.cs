@@ -16,7 +16,8 @@ using Content.Goobstation.Common.CCVar;
 using Content.Shared.Chemistry.Reagent;
 using Robust.Shared.Configuration;
 using Content.Server._CorvaxGoob.Footprints.Components;
-using Content.Goobstation.Shared.ShoeCovers.Components;
+using Content.Goobstation.Shared._CorvaxGoob.ShoeCovers.Components;
+
 namespace Content.Server._CorvaxGoob.Footprints;
 
 public sealed class CorvaxFootprintSystem : EntitySystem
@@ -30,7 +31,8 @@ public sealed class CorvaxFootprintSystem : EntitySystem
     [Dependency] private readonly DecalSystem _decals = default!;
 
     private EntityQuery<CannotLeaveTracesComponent> _noFootprintsQuery = default!;
-    private EntityQuery<ShoeCoversWearerComponent> _alternativnoFootprintsQuery = default!;
+    private EntityQuery<ShoeCoversWearerComponent> _shoeCoversQuery = default!;
+
     public const string FootPrintSolution = "print";
 
     public const string PuddleSolution = "puddle";
@@ -50,7 +52,8 @@ public sealed class CorvaxFootprintSystem : EntitySystem
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypesReloaded);
 
         _noFootprintsQuery = GetEntityQuery<CannotLeaveTracesComponent>();
-        _alternativnoFootprintsQuery = GetEntityQuery<ShoeCoversWearerComponent>();
+        _shoeCoversQuery = GetEntityQuery<ShoeCoversWearerComponent>();
+
         Subs.CVar(_configuration, GoobCVars.MinimumPuddleSizeForFootprints, value => _minimumPuddleSize = value, true);
 
         CacheSticky();
@@ -75,7 +78,7 @@ public sealed class CorvaxFootprintSystem : EntitySystem
         if (_noFootprintsQuery.HasComp(entity))
             return;
         // Если надеты бахилы, следы не оставляются
-        if (_alternativnoFootprintsQuery.HasComp(entity))
+        if (_shoeCoversQuery.HasComp(entity))
             return;
         if (!e.OldPosition.IsValid(EntityManager) || !e.NewPosition.IsValid(EntityManager))
             return;

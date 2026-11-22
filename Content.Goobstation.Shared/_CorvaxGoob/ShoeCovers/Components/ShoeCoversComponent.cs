@@ -3,7 +3,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
-namespace Content.Goobstation.Shared.ShoeCovers.Components;
+namespace Content.Goobstation.Shared._CorvaxGoob.ShoeCovers.Components;
 
 [RegisterComponent]
 public sealed partial class ShoeCoversWrapComponent : Component

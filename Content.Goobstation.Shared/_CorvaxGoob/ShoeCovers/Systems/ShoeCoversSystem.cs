@@ -33,11 +33,7 @@ public sealed partial class ShoeCoversSystem : EntitySystem
     {
         base.Initialize();
         // Обрабатываем снятие раньше быстрого надевания обуви. Событие помечается обработанным и на клиенте.
-        SubscribeLocalEvent<WrappedShoesComponent, UseInHandEvent>(OnRemoveInHand, before: [typeof(ClothingSystem)]);
-        // Сервер применяет покрытие, меняет износ и создаёт предметы при снятии бахил.
-        if (!_net.IsServer)
-            return;
-
+        SubscribeLocalEvent<WrappedShoesComponent, GetVerbsEvent<AlternativeVerb>>(OnGetVerbs);
         SubscribeLocalEvent<ShoeCoversWrapComponent, AfterInteractEvent>(OnApply);
         SubscribeLocalEvent<ShoeCoversWrapComponent, WrappedShoesDoAfterEvent>(OnApplyFinished);
         SubscribeLocalEvent<ShoeCoversWearerComponent, MoveEvent>(OnMove);
@@ -106,20 +102,22 @@ public sealed partial class ShoeCoversSystem : EntitySystem
         }
 
         args.Handled = true;
-        _audio.PlayPvs(covers.Comp.WrapSound, shoes);
+        _audio.PlayPredicted(covers.Comp.WrapSound, shoes, args.User);
         // Расходуем предмет бахил после того, как покрытие и выдача успешно добавлены.
         QueueDel(covers);
     }
 
-    private void OnRemoveInHand(Entity<WrappedShoesComponent> shoes, ref UseInHandEvent args)
+ private void OnGetVerbs(Entity<WrappedShoesComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
     {
-        if (args.Handled)
+        if (!args.CanAccess || !args.CanInteract)
             return;
 
-        args.Handled = true;
-        if (_net.IsServer)
-            // Обувь сейчас в руке. args.User задаёт место для мусора, а надетой пары здесь нет.
-            RemoveCovers(shoes, args.User, wearer: null);
+        var user = args.User;
+        args.Verbs.Add(new AlternativeVerb
+        {
+            Text = Loc.GetString("shoe-covers-verb-remove"),
+            Act = () => RemoveCovers(ent, user, Transform(ent).ParentUid, user),
+        });
     }
 
     private void OnMove(Entity<ShoeCoversWearerComponent> wearer, ref MoveEvent args)
@@ -138,7 +136,7 @@ public sealed partial class ShoeCoversSystem : EntitySystem
         // Износ хранится на ботинках, поэтому при снятии и повторном надевании счётчик сохраняется.
         coating.Distance += distance;
         if (coating.Distance >= coating.MaxDistance)
-            RemoveCovers((shoes.Value, coating), wearer.Owner, wearer.Owner);
+            RemoveCovers((shoes.Value, coating), wearer.Owner, wearer.Owner, null);
     }
 
     private float GetDistance(in MoveEvent args)
@@ -156,7 +154,7 @@ public sealed partial class ShoeCoversSystem : EntitySystem
         return 0f;
     }
 
-    private void RemoveCovers(Entity<WrappedShoesComponent> shoes, EntityUid dropAt, EntityUid? wearer)
+    private void RemoveCovers(Entity<WrappedShoesComponent> shoes, EntityUid dropAt, EntityUid? wearer, EntityUid? user)
     {
         // Звук и прототип мусора берём из покрытия до его удаления. Этот метод используется и при разрыве, и при снятии.
         var trash = shoes.Comp.UnwrapTrash;
@@ -167,7 +165,7 @@ public sealed partial class ShoeCoversSystem : EntitySystem
             var key = Factory.GetComponentName<ShoeCoversWearerComponent>();
             grant.Components.Remove(key);
             if (grant.Active.Remove(key, out var active) && active && wearer != null)
-                RemComp<ShoeCoversWearerComponent>(wearer.Value);
+                RemCompDeferred<ShoeCoversWearerComponent>(wearer.Value);
 
             // Компонент выдачи удаляем целиком, только если бахилы создали его и записей в нём больше нет.
             if (shoes.Comp.CreatedGrantComponent && grant.Components.Count == 0)
@@ -176,8 +174,8 @@ public sealed partial class ShoeCoversSystem : EntitySystem
 
         // Удаление компонента снимает слой на клиенте и прекращает подсчёт износа этой пары.
         RemComp<WrappedShoesComponent>(shoes);
-        _audio.PlayPvs(sound, dropAt);
+        _audio.PlayPredicted(sound, dropAt, user);
         if (trash != null)
-            Spawn(trash.Value, Transform(dropAt).Coordinates);
+            PredictedSpawnAtPosition(trash.Value, Transform(dropAt).Coordinates);
     }
 }
