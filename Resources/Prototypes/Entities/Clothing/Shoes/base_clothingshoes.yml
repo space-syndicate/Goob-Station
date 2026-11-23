@@ -47,7 +47,7 @@
     - ClothMade
     - Recyclable
     - WhitelistChameleon
-    - WrappebelShoes
+    - WrappebelShoes # CorvaxGoob edit
   - type: ProtectedFromStepTriggers
   - type: Armor # provide minimal covering to your feet
     coverage:
