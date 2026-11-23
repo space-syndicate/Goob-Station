@@ -21,6 +21,7 @@
     - id: SlotMachineHighRollerFlatPack # Goob - gambling
     - id: ComputerFundingAllocationFlatpack #CorvaxGoob-QuarterMaster-finance
     - id: HoloprojectorCrate #CorvaxGoob-CargoHoloprojector
+    - id: SalvageExpeditionsComputerCircuitboard #CorvaxGoob - Salvage Expeditions Board
 
 - type: entity
   id: LockerQuarterMasterFilled
