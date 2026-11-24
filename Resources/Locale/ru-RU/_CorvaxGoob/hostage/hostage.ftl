@@ -2,13 +2,13 @@ alert-execute-hostage-name = Казнить
 alert-execute-hostage-desc = Нажмите, чтобы убить жертву, нанеся смертельное ранение. Оружие должно быть у вас в руках.
 
 alert-free-hostage-name = Освободить
-alert-free-hostage-desc = Опустить заложника. При отпуске состояние "Сдаться" останется.
+alert-free-hostage-desc = Отпустить заложника. При отпуске состояние "Сдаться" останется.
 
 alert-hostage-auto-kill-name = Переключить автоматическую казнь
-alert-hostage-auto-kill-desc = При включённом режиме, заложник будет автоматически казнён при достижении минимального расстояния.
+alert-hostage-auto-kill-desc = При включённом режиме, заложник будет автоматически казнён при разрыве дистанции.
 
 hostage-popup-initial-hostage = Вы в заложниках! Любая попытка сбежать может привести к вашей смерти!
-hostage-popup-initial-hostage-taker = Вы взяли в заложники! При любой попытки сбежать вы убьёте его!
+hostage-popup-initial-hostage-taker = Вы взяли это существо в заложники! При разрыве дистанции, произойдёт автоматическая казнь!
 
 hostage-popup-initial-external = { CAPITALIZE($attacker) } хватает и удерживает { $victim } держа { $weapon } у головы.
 

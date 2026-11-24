@@ -1,7 +1,6 @@
 using Content.Shared._CorvaxGoob.Surrender;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Alert;
-using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Damage.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.Execution;
@@ -18,27 +17,18 @@ public sealed partial class SharedHostageSystem : EntitySystem
 {
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
-    [Dependency] private AlertsSystem _alerts = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private IGameTiming _timing = default!;
 
-
     public const float MinDistance = 1.5f;
     public const int HostagingTime = 5;
-
-
-
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<HostageTakerComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovementSpeed);
-
     }
-
-
-
 
     public void TryTakeHostage(EntityUid taker, EntityUid victim, EntityUid gun)
     {
@@ -49,7 +39,6 @@ public sealed partial class SharedHostageSystem : EntitySystem
             return;
 
         _popup.PopupPredicted(Loc.GetString("hostage-popup-taking-external", ("attacker", Identity.Entity(taker, EntityManager)), ("victim", Identity.Entity(victim, EntityManager))), victim, taker, type: Shared.Popups.PopupType.LargeCaution);
-
 
         _doAfter.TryStartDoAfter(
             new DoAfterArgs(EntityManager, taker, HasComp<SurrenderComponent>(victim) ? 0 : SharedHostageSystem.HostagingTime, new StartTakeHostageDoAfterEvent(gun), victim, target: victim)
@@ -64,7 +53,6 @@ public sealed partial class SharedHostageSystem : EntitySystem
     {
         ev.ModifySpeed(entity.Comp.MovementSpeedMod);
     }
-
 
     public bool CanHostage(EntityUid taker, EntityUid victim, EntityUid gun)
     {

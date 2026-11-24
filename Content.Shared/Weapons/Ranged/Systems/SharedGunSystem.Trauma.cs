@@ -66,8 +66,7 @@ public abstract partial class SharedGunSystem
         EntityCoordinates toCoordinates,
         out bool userImpulse,
         EntityUid? user = null,
-        bool throwItems = false,
-        bool spawnBullet = true)
+        bool throwItems = false)
     {
         userImpulse = false;
 
@@ -140,17 +139,8 @@ public abstract partial class SharedGunSystem
                 case CartridgeAmmoComponent cartridge:
                     if (!cartridge.Spent)
                     {
-                        if (spawnBullet)
-                        {
-                            var uid = PredictedSpawnAtPosition(cartridge.Prototype, fromEnt);
-                            CreateAndFireProjectiles(uid, cartridge);
-                        }
-                        else
-                        {
-                            MuzzleFlash(gun, cartridge, mapDirection.ToAngle(), user);
-                            Audio.PlayPredicted(gun.Comp.SoundGunshotModified, gun, user);
-                        }
-
+                        var uid = PredictedSpawnAtPosition(cartridge.Prototype, fromEnt);
+                        CreateAndFireProjectiles(uid, cartridge);
                         Recoil(user, recoilDirection, gun.Comp.CameraRecoilScalarModified);
 
                         RaiseLocalEvent(ent!.Value, new AmmoShotEvent()
@@ -179,17 +169,8 @@ public abstract partial class SharedGunSystem
                 case AmmoComponent newAmmo:
                     if (ent == null)
                         break;
-                    if (spawnBullet)
-                    {
-                        CreateAndFireProjectiles(ent.Value, newAmmo);
-                        Recoil(user, recoilDirection, gun.Comp.CameraRecoilScalarModified);
-                    }
-                    else
-                    {
-                        MuzzleFlash(gun, newAmmo, mapDirection.ToAngle(), user);
-                        Audio.PlayPredicted(gun.Comp.SoundGunshotModified, gun, user);
-                    }
-
+                    CreateAndFireProjectiles(ent.Value, newAmmo);
+                    Recoil(user, recoilDirection, gun.Comp.CameraRecoilScalarModified);
 
                     break;
                 case HitscanAmmoComponent:
@@ -236,39 +217,39 @@ public abstract partial class SharedGunSystem
 
         void CreateAndFireProjectiles(EntityUid ammoEnt, AmmoComponent ammoComp)
         {
-                if (TryComp<ProjectileSpreadComponent>(ammoEnt, out var ammoSpreadComp))
+            if (TryComp<ProjectileSpreadComponent>(ammoEnt, out var ammoSpreadComp))
+            {
+                var spreadEvent = new GunGetAmmoSpreadEvent(ammoSpreadComp.Spread);
+                RaiseLocalEvent(gun, ref spreadEvent);
+
+                var angles = LinearSpread(mapAngle - spreadEvent.Spread / 2,
+                    mapAngle + spreadEvent.Spread / 2, ammoSpreadComp.Count);
+
+                ShootOrThrow(ammoEnt, angles[0].ToVec(), gunVelocity, gun, user,
+                    targetCoordinates: toMapBeforeRecoil); // Goobstation
+                shotProjectiles.Add(ammoEnt);
+
+                for (var i = 1; i < ammoSpreadComp.Count; i++)
                 {
-                    var spreadEvent = new GunGetAmmoSpreadEvent(ammoSpreadComp.Spread);
-                    RaiseLocalEvent(gun, ref spreadEvent);
-
-                    var angles = LinearSpread(mapAngle - spreadEvent.Spread / 2,
-                        mapAngle + spreadEvent.Spread / 2, ammoSpreadComp.Count);
-
-                    ShootOrThrow(ammoEnt, angles[0].ToVec(), gunVelocity, gun, user,
-                        targetCoordinates: toMapBeforeRecoil); // Goobstation
-                    shotProjectiles.Add(ammoEnt);
-
-                    for (var i = 1; i < ammoSpreadComp.Count; i++)
+                    var newuid = PredictedSpawnAtPosition(ammoSpreadComp.Proto, fromEnt);
+                    // Lavaland Change: Raise event when a projectile/pellet is fired from a gun.
+                    RaiseLocalEvent(gun, new ProjectileShotEvent()
                     {
-                        var newuid = PredictedSpawnAtPosition(ammoSpreadComp.Proto, fromEnt);
-                        // Lavaland Change: Raise event when a projectile/pellet is fired from a gun.
-                        RaiseLocalEvent(gun, new ProjectileShotEvent()
-                        {
-                            FiredProjectile = newuid
-                        });
-                        SetProjectilePerfectHitEntities(newuid, user, new MapCoordinates(toMap, fromMap.MapId), shotRandom);
-                        // Lavaland end
-                        ShootOrThrow(newuid, angles[i].ToVec(), gunVelocity, gun, user,
-                            targetCoordinates: toMapBeforeRecoil); // Goob
-                        shotProjectiles.Add(newuid);
-                    }
+                        FiredProjectile = newuid
+                    });
+                    SetProjectilePerfectHitEntities(newuid, user, new MapCoordinates(toMap, fromMap.MapId), shotRandom);
+                    // Lavaland end
+                    ShootOrThrow(newuid, angles[i].ToVec(), gunVelocity, gun, user,
+                        targetCoordinates: toMapBeforeRecoil); // Goob
+                    shotProjectiles.Add(newuid);
                 }
-                else
-                {
-                    ShootOrThrow(ammoEnt, mapDirection, gunVelocity, gun, user,
-                        targetCoordinates: toMapBeforeRecoil); // Goobstation
-                    shotProjectiles.Add(ammoEnt);
-                }
+            }
+            else
+            {
+                ShootOrThrow(ammoEnt, mapDirection, gunVelocity, gun, user,
+                    targetCoordinates: toMapBeforeRecoil); // Goobstation
+                shotProjectiles.Add(ammoEnt);
+            }
 
             MuzzleFlash(gun, ammoComp, mapDirection.ToAngle(), user);
             Audio.PlayPredicted(gun.Comp.SoundGunshotModified, gun, user);

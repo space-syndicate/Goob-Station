@@ -4,24 +4,18 @@ using Content.Server.Inventory;
 using Content.Shared._CorvaxGoob.Surrender;
 using Content.Shared.Alert;
 using Content.Shared.CombatMode.Pacification;
-using Content.Shared.Cuffs;
 using Content.Shared.DoAfter;
 using Content.Shared.Hands.Components;
-using Content.Shared.Interaction.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Movement.Systems;
-using NetCord;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Prototypes;
-using Robust.Shared.Timing;
 
 namespace Content.Server._CorvaxGoob.Surrender;
 
 public sealed partial class SurrenderSystem : EntitySystem
 {
     [Dependency] private readonly AlertsSystem _alerts = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _modifier = default!;
     [Dependency] private readonly SharedTransformSystem _xform = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
@@ -29,8 +23,6 @@ public sealed partial class SurrenderSystem : EntitySystem
     [Dependency] private readonly DoAfterSystem _doAfter = default!;
     [Dependency] private readonly VirtualItemSystem _virtual = default!;
     [Dependency] private readonly HandsSystem _hands = default!;
-
-
 
     public override void Initialize()
     {
@@ -61,7 +53,7 @@ public sealed partial class SurrenderSystem : EntitySystem
     }
     private void OnSurronderAlert(Entity<SurrenderComponent> entity, ref SurrenderAlertEvent args)
     {
-        if (entity.Comp.SurrenderEffect is not { } effect)
+        if (entity.Comp.SurrendEffectUid is not { } effect)
             return;
 
         var ev = new TryStopSurrendingEvent();
@@ -88,10 +80,7 @@ public sealed partial class SurrenderSystem : EntitySystem
         }
 
         if (TryComp<AppearanceComponent>(effect, out var appearance))
-        {
             _appearance.SetData(effect, StopSurrendingStatus.StopSurrending, entity.Comp.StopSurrendDoAfter is not null, appearance);
-            Dirty(effect, appearance);
-        }
     }
 
     private void OnComponentInit(Entity<SurrenderComponent> entity, ref ComponentInit ev)
@@ -103,9 +92,9 @@ public sealed partial class SurrenderSystem : EntitySystem
         _alerts.ShowAlert(entity.Owner, entity.Comp.Alert);
         _modifier.RefreshMovementSpeedModifiers(entity);
 
-        var effect = SpawnAtPosition(entity.Comp.SurrendEffect, Transform(entity).Coordinates);
+        var effect = SpawnAtPosition(entity.Comp.SurrendEffectProto, Transform(entity).Coordinates);
         _xform.SetParent(effect, entity);
-        entity.Comp.SurrenderEffect = effect;
+        entity.Comp.SurrendEffectUid = effect;
 
         _audio.PlayPvs(entity.Comp.SurrendSound, entity);
 
@@ -121,11 +110,11 @@ public sealed partial class SurrenderSystem : EntitySystem
 
         _alerts.ClearAlert(entity.Owner, entity.Comp.Alert);
 
-        if (entity.Comp.SurrenderEffect is null)
+        if (entity.Comp.SurrendEffectUid is null)
             return;
 
-        _virtual.DeleteInHandsMatching(entity.Comp.SurrenderEffect.Value, entity, true);
+        _virtual.DeleteInHandsMatching(entity.Comp.SurrendEffectUid.Value, entity, true);
 
-        QueueDel(entity.Comp.SurrenderEffect);
+        QueueDel(entity.Comp.SurrendEffectUid);
     }
 }

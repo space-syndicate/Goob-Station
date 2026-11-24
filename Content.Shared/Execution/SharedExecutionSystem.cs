@@ -61,6 +61,7 @@ public sealed class SharedExecutionSystem : EntitySystem
         var weapon = args.Using.Value;
         var victim = args.Target;
 
+        // CorvaxGoob-Start
         if (CanBeExecuted(victim, attacker))
         {
             UtilityVerb verb = new()
@@ -94,6 +95,7 @@ public sealed class SharedExecutionSystem : EntitySystem
 
                 args.Verbs.Add(hostageVerb);
             }
+            // CorvaxGoob-End
         }
     }
 

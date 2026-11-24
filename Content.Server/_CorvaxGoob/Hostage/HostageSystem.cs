@@ -1,12 +1,9 @@
-using Content.Goobstation.Shared.Sprinting;
 using Content.Server._CorvaxGoob.Surrender;
 using Content.Server.Camera;
-using Content.Server.Chat;
 using Content.Server.CombatMode;
 using Content.Server.Hands.Systems;
 using Content.Server.Popups;
 using Content.Server.Weapons.Melee;
-using Content.Server.Weapons.Ranged.Systems;
 using Content.Shared._CorvaxGoob.Appearance;
 using Content.Shared._CorvaxGoob.Hostage;
 using Content.Shared._CorvaxGoob.Surrender;
@@ -15,10 +12,8 @@ using Content.Shared.Chat;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Execution;
-using Content.Shared.Ghost;
 using Content.Shared.Hands.Components;
 using Content.Shared.IdentityManagement;
-using Content.Shared.Interaction.Events;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Movement.Pulling.Systems;
@@ -31,17 +26,10 @@ using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
-using Robust.Server.Player;
-using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Numerics;
-using System.Text;
-using YamlDotNet.Core.Tokens;
 
 namespace Content.Server._CorvaxGoob.Hostage;
 
@@ -103,13 +91,13 @@ public sealed partial class HostageSystem : EntitySystem
 
     private void OnComponentInit(Entity<HostageTakerComponent> ent, ref ComponentInit args)
     {
-        if (_proto.TryIndex<AlertPrototype>(ent.Comp.FreeAlert, out var freeAlert))
+        if (_proto.TryIndex(ent.Comp.FreeAlert, out var freeAlert))
             _alerts.ShowAlert(ent.Owner, freeAlert);
 
-        if (_proto.TryIndex<AlertPrototype>(ent.Comp.ExecuteAlert, out var executeAlert))
+        if (_proto.TryIndex(ent.Comp.ExecuteAlert, out var executeAlert))
             _alerts.ShowAlert(ent.Owner, executeAlert);
 
-        if (_proto.TryIndex<AlertPrototype>(ent.Comp.ToggleKillAlert, out var autoKillAlert))
+        if (_proto.TryIndex(ent.Comp.ToggleKillAlert, out var autoKillAlert))
             _alerts.ShowAlert(ent.Owner, autoKillAlert, 0);
 
         _modifier.RefreshMovementSpeedModifiers(ent);
@@ -117,37 +105,29 @@ public sealed partial class HostageSystem : EntitySystem
         var effect = SpawnAtPosition(ent.Comp.HostageTakerEffect, Transform(ent).Coordinates);
         _xform.SetParent(effect, ent);
 
-        
-
         ent.Comp.HostageTakerEffectUid = effect;
     }
 
     private void OnComponentShutdown(Entity<HostageTakerComponent> ent, ref ComponentShutdown args)
     {
-        if (_proto.TryIndex<AlertPrototype>(ent.Comp.ExecuteAlert, out var executeAlert))
+        if (_proto.TryIndex(ent.Comp.ExecuteAlert, out var executeAlert))
             _alerts.ClearAlert(ent.Owner, executeAlert);
 
-        if (_proto.TryIndex<AlertPrototype>(ent.Comp.FreeAlert, out var freeAlert))
+        if (_proto.TryIndex(ent.Comp.FreeAlert, out var freeAlert))
             _alerts.ClearAlert(ent.Owner, freeAlert);
 
-        if (_proto.TryIndex<AlertPrototype>(ent.Comp.ToggleKillAlert, out var autoKillAlert))
+        if (_proto.TryIndex(ent.Comp.ToggleKillAlert, out var autoKillAlert))
             _alerts.ClearAlert(ent.Owner, autoKillAlert);
 
-        if (TryComp<SurrenderComponent>(ent.Comp.Hostage, out var surrender) && TryComp<AppearanceComponent>(surrender.SurrenderEffect, out var surrenderEffectAppearance))
-        {
-            _appearance.SetData(surrender.SurrenderEffect.Value, SurrendVisualType.IsHostaged, false, surrenderEffectAppearance);
-            Dirty(surrender.SurrenderEffect.Value, surrenderEffectAppearance);
-        }
+        if (TryComp<SurrenderComponent>(ent.Comp.Hostage, out var surrender) && TryComp<AppearanceComponent>(surrender.SurrendEffectUid, out var surrenderEffectAppearance))
+            _appearance.SetData(surrender.SurrendEffectUid.Value, SurrendVisualType.IsHostaged, false, surrenderEffectAppearance);
 
         QueueDel(ent.Comp.HostageTakerEffectUid);
     }
 
     private void OnExecuteHostageAlert(Entity<HostageTakerComponent> entity, ref ExecuteHostageAlertEvent ev) => TryExecute(entity, ignoreMinDistance: true);
 
-    private void OnFreeHostageAlert(Entity<HostageTakerComponent> entity, ref FreeHostageAlertEvent ev)
-    {
-        StopHostaging(entity, entity.Comp.Hostage);
-    }
+    private void OnFreeHostageAlert(Entity<HostageTakerComponent> entity, ref FreeHostageAlertEvent ev) => StopHostaging(entity, entity.Comp.Hostage);
 
     private void OnDoAfter(Entity<MobStateComponent> entity, ref StartTakeHostageDoAfterEvent ev)
     {
@@ -175,14 +155,10 @@ public sealed partial class HostageSystem : EntitySystem
         {
             _appearance.SetData(hostageTaker.HostageTakerEffectUid.Value, CopySpriteAppearance.NetEntity, GetNetEntity(ev.Gun));
             _appearance.SetData(hostageTaker.HostageTakerEffectUid.Value, CopySpriteAppearance.NoRot, true);
-
         }
 
-        if (TryComp<AppearanceComponent>(surrender.SurrenderEffect, out var surrenderEffectAppearance))
-        {
-            _appearance.SetData(surrender.SurrenderEffect.Value, SurrendVisualType.IsHostaged, true, surrenderEffectAppearance);
-            Dirty(surrender.SurrenderEffect.Value, surrenderEffectAppearance);
-        }
+        if (TryComp<AppearanceComponent>(surrender.SurrendEffectUid, out var surrenderEffectAppearance))
+            _appearance.SetData(surrender.SurrendEffectUid.Value, SurrendVisualType.IsHostaged, true, surrenderEffectAppearance);
 
         Dirty(ev.User, hostageTaker);
         Dirty(ev.Target.Value, hostage);
@@ -224,14 +200,12 @@ public sealed partial class HostageSystem : EntitySystem
             && TryComp<HandsComponent>(entity, out var hands)
             && _hands.IsHolding((entity.Owner, hands), entity.Comp.Weapon))
         {
-            // Get the direction for the recoil
             Vector2 direction = Vector2.Zero;
             var attackerXform = Transform(entity);
             var victimXform = Transform(entity.Comp.Hostage);
             var diff = victimXform.WorldPosition - attackerXform.WorldPosition;
             if (diff != Vector2.Zero)
-                direction = -diff.Normalized(); // recoil opposite of shot
-
+                direction = -diff.Normalized();
 
             if (!_hostage.CanHostage(entity, entity.Comp.Hostage, entity.Comp.Weapon)
                 || !TryComp<DamageableComponent>(entity.Comp.Hostage, out var damageableComponent))
@@ -239,12 +213,10 @@ public sealed partial class HostageSystem : EntitySystem
 
             if (TryComp<GunComponent>(entity.Comp.Weapon, out var gunComp))
             {
-                // Take some ammunition for the shot (one bullet)
                 var fromCoordinates = Transform(entity).Coordinates;
                 var ev = new TakeAmmoEvent(1, new List<(EntityUid? Entity, IShootable Shootable)>(), fromCoordinates, entity);
                 RaiseLocalEvent(entity.Comp.Weapon, ev);
 
-                // Check if there's any ammo left
                 if (ev.Ammo.Count <= 0)
                 {
                     _audio.PlayPvs(gunComp.SoundEmpty, entity.Comp.Weapon);
@@ -253,7 +225,6 @@ public sealed partial class HostageSystem : EntitySystem
 
                 DamageSpecifier damage = new DamageSpecifier();
                 string? mainDamageType = null;
-                // Get some information from IShootable
                 var ammoUid = ev.Ammo[0].Entity;
 
                 switch (ev.Ammo[0].Shootable)
@@ -268,7 +239,7 @@ public sealed partial class HostageSystem : EntitySystem
 
                             var prototype = _proto.Index<EntityPrototype>(cartridge.Prototype);
 
-                            prototype.TryGetComponent<ProjectileComponent>(out var projectileA, _factory); // sloth forgive me
+                            prototype.TryGetComponent<ProjectileComponent>(out var projectileA, _factory);
 
                             if (projectileA != null)
                             {
@@ -276,13 +247,13 @@ public sealed partial class HostageSystem : EntitySystem
                                 mainDamageType = GetDamage(damage, mainDamageType);
                             }
 
-                            cartridge.Spent = true; // Expend the cartridge
+                            cartridge.Spent = true;
                             _appearance.SetData(ammoUid!.Value, AmmoVisuals.Spent, true);
                             Dirty(ammoUid.Value, cartridge);
 
                             break;
                         }
-                    case AmmoComponent newAmmo: // This stops revolvers from hitting the user while executing someone, somehow
+                    case AmmoComponent newAmmo:
                         TryComp<ProjectileComponent>(ammoUid, out var projectileB);
 
                         if (projectileB != null)
@@ -292,11 +263,11 @@ public sealed partial class HostageSystem : EntitySystem
                         }
 
                         if (ammoUid != null)
-                            PredictedDel(ammoUid.Value); // Trauma - ammo spawning is predicted
+                            PredictedDel(ammoUid.Value);
                         break;
                 }
 
-                if (HasComp<BatteryAmmoProviderComponent>(entity.Comp.Weapon)) // Almost all hitscans are heat so this should work fine
+                if (HasComp<BatteryAmmoProviderComponent>(entity.Comp.Weapon))
                     mainDamageType = "Heat";
 
                 var prev = _combat.IsInCombatMode(entity);
@@ -327,7 +298,6 @@ public sealed partial class HostageSystem : EntitySystem
                 _combat.SetInCombatMode(entity, prev);
                 execution.Executing = false;
             }
-
         }
 
         StopHostaging(entity, entity.Comp.Hostage);
@@ -346,7 +316,6 @@ public sealed partial class HostageSystem : EntitySystem
 
     private string GetDamage(DamageSpecifier damage, string? mainDamageType)
     {
-        // Default fallback if nothing valid found
         mainDamageType ??= "Blunt";
 
         if (damage == null || damage.DamageDict.Count == 0)

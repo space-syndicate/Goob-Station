@@ -14,13 +14,13 @@ public sealed partial class SurrenderComponent : Component
     public bool HadPacifismBefore = false;
 
     [DataField]
-    public SoundSpecifier SurrendSound = new SoundPathSpecifier("/Audio/Effects/chime.ogg"); // Добавить
+    public SoundSpecifier SurrendSound = new SoundPathSpecifier("/Audio/Effects/chime.ogg");
 
     [DataField]
-    public EntProtoId SurrendEffect = "SurrendEffect";
+    public EntProtoId SurrendEffectProto = "SurrendEffect";
 
     [DataField]
-    public EntityUid? SurrenderEffect = null;
+    public EntityUid? SurrendEffectUid = null;
 
     [DataField]
     public ProtoId<AlertPrototype> Alert = "Surrend";
@@ -43,6 +43,14 @@ public enum StopSurrendingStatus
 {
     StopSurrending
 }
+
+[Serializable, NetSerializable]
+public enum SurrendVisualType
+{
+    IsHostaged
+}
+
+
 public sealed partial class SurrenderAlertEvent : BaseAlertEvent;
 
 [ByRefEvent]
@@ -50,9 +58,3 @@ public record struct TryStopSurrendingEvent(bool Cancelled = false);
 
 [Serializable, NetSerializable]
 public sealed partial class StopSurrendDoAfterEvent : SimpleDoAfterEvent;
-
-[Serializable, NetSerializable]
-public enum SurrendVisualType
-{
-    IsHostaged
-}

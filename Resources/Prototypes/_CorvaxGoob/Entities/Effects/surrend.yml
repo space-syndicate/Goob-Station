@@ -52,7 +52,6 @@
   - type: Transform
     noRot: true
   - type: Appearance
-
   - type: Tag
     tags:
     - HideContextMenu

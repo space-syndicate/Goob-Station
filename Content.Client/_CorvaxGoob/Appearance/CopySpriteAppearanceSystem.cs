@@ -1,10 +1,5 @@
 using Content.Shared._CorvaxGoob.Appearance;
-using Content.Shared.Alert;
 using Robust.Client.GameObjects;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Content.Client._CorvaxGoob.Appearance;
 

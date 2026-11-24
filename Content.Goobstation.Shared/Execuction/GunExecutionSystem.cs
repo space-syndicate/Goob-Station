@@ -76,6 +76,7 @@ public sealed partial class SharedGunExecutionSystem : EntitySystem
         var victim = args.Target;
         var gunexecutiontime = component.GunExecutionTime;
 
+        // CorvaxGoob-Start
         if (HasComp<GunExecutionBlacklistComponent>(weapon)
             || HasComp<PacifismAllowedGunComponent>(weapon))
             return;
@@ -113,7 +114,7 @@ public sealed partial class SharedGunExecutionSystem : EntitySystem
                 args.Verbs.Add(hostageVerb);
             }
         }
-
+        // CorvaxGoob-Start-End
     }
 
     private bool CanExecuteWithGun(EntityUid weapon, EntityUid victim, EntityUid user)
