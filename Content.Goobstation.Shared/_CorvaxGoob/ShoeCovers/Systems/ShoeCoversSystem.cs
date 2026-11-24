@@ -72,9 +72,6 @@ public sealed partial class ShoeCoversSystem : EntitySystem
 
     private void OnApplyFinished(Entity<ShoeCoversWrapComponent> covers, ref WrappedShoesDoAfterEvent args)
     {
-        if (_net.IsClient)
-            return;
-
         var target = args.Target;
         // Пока шло действие, ботинки могли переместить, удалить или покрыть другой парой бахил.
         if (args.Handled || args.Cancelled || target == null || !CanCover(covers, target.Value)
@@ -93,7 +90,7 @@ public sealed partial class ShoeCoversSystem : EntitySystem
         var key = Factory.GetComponentName<ShoeCoversWearerComponent>();
         // TryAdd сообщает, принадлежит ли новая запись этим бахилам. От этого зависит, можно ли удалить её позже.
         coating.AddedWearerGrant = grant.Components.TryAdd(key,
-            new EntityPrototype.ComponentRegistryEntry(Factory.GetComponent<ShoeCoversWearerComponent>(), new()));
+            new EntityPrototype.ComponentRegistryEntry(Factory.GetComponent<ShoeCoversWearerComponent>()));
 
         // Если обувь уже надета, событие экипировки не повторится. Выдаём маркер текущему носителю сразу.
         var parent = Transform(shoes).ParentUid;
@@ -107,7 +104,7 @@ public sealed partial class ShoeCoversSystem : EntitySystem
         }
 
         args.Handled = true;
-        _audio.PlayPvs(covers.Comp.WrapSound, shoes);
+        _audio.PlayPredicted(covers.Comp.WrapSound, shoes, args.User);
         // Расходуем предмет бахил после того, как покрытие и выдача успешно добавлены.
         QueueDel(covers);
     }
@@ -121,7 +118,7 @@ public sealed partial class ShoeCoversSystem : EntitySystem
         args.Verbs.Add(new AlternativeVerb
         {
             Text = Loc.GetString("shoe-covers-verb-remove"),
-            Act = () => RemoveCovers(ent, user, Transform(ent).ParentUid),
+            Act = () => RemoveCovers(ent, user, Transform(ent).ParentUid, user),
         });
     }
 
@@ -143,7 +140,7 @@ public sealed partial class ShoeCoversSystem : EntitySystem
         // Износ хранится на ботинках, поэтому при снятии и повторном надевании счётчик сохраняется.
         coating.Distance += distance;
         if (coating.Distance >= coating.MaxDistance)
-            RemoveCovers((shoes.Value, coating), wearer.Owner, wearer.Owner);
+            RemoveCovers((shoes.Value, coating), wearer.Owner, wearer.Owner, null);
     }
 
     private float GetDistance(in MoveEvent args)
@@ -161,11 +158,8 @@ public sealed partial class ShoeCoversSystem : EntitySystem
         return 0f;
     }
 
-    private void RemoveCovers(Entity<WrappedShoesComponent> shoes, EntityUid dropAt, EntityUid? wearer)
+    private void RemoveCovers(Entity<WrappedShoesComponent> shoes, EntityUid dropAt, EntityUid? wearer, EntityUid? user)
     {
-        if (_net.IsClient)
-            return;
-
         // Звук и прототип мусора берём из покрытия до его удаления. Этот метод используется и при разрыве, и при снятии.
         var trash = shoes.Comp.UnwrapTrash;
         var sound = shoes.Comp.UnwrapSound;
@@ -184,8 +178,8 @@ public sealed partial class ShoeCoversSystem : EntitySystem
 
         // Удаление компонента снимает слой на клиенте и прекращает подсчёт износа этой пары.
         RemComp<WrappedShoesComponent>(shoes);
-        _audio.PlayPvs(sound, dropAt);
+        _audio.PlayPredicted(sound, dropAt, user);
         if (trash != null)
-            SpawnAtPosition(trash.Value, Transform(dropAt).Coordinates);
+            PredictedSpawnAtPosition(trash.Value, Transform(dropAt).Coordinates);
     }
 }
