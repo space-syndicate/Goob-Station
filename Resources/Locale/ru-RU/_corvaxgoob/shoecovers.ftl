@@ -6,3 +6,5 @@ ent-ShoeCoversWrapTrash = порванные бахилы
     .desc = Подошвы протёрлись насквозь.
 ent-BoxShoeCovers = коробка бахил
     .desc = Запас одноразовых медицинских бахил.
+
+shoe-covers-verb-remove = Снять бахилы

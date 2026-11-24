@@ -2,7 +2,7 @@
 
 using Content.Client.Clothing;
 using Content.Client.Items.Systems;
-using Content.Goobstation.Shared.ShoeCovers.Components;
+using Content.Goobstation.Shared._CorvaxGoob.ShoeCovers.Components;
 using Content.Shared.Clothing;
 using Content.Shared.Hands;
 using Content.Shared.Hands.Components;

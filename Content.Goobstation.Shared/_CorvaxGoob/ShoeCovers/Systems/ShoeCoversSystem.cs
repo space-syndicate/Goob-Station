@@ -1,7 +1,8 @@
 using System.Numerics;
 
+using Content.Goobstation.Shared._CorvaxGoob.ShoeCovers.Components;
+using Content.Goobstation.Shared._CorvaxGoob.ShoeCovers.Events;
 using Content.Goobstation.Shared.Clothing.Components;
-using Content.Goobstation.Shared.ShoeCovers.Components;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Clothing.EntitySystems;
 using Content.Shared.DoAfter;
@@ -9,6 +10,7 @@ using Content.Shared.Gravity;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory;
+using Content.Shared.Verbs;
 using Content.Shared.Whitelist;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
@@ -88,7 +90,7 @@ public sealed partial class ShoeCoversSystem : EntitySystem
         var key = Factory.GetComponentName<ShoeCoversWearerComponent>();
         // TryAdd сообщает, принадлежит ли новая запись этим бахилам. От этого зависит, можно ли удалить её позже.
         coating.AddedWearerGrant = grant.Components.TryAdd(key,
-            new EntityPrototype.ComponentRegistryEntry(Factory.GetComponent<ShoeCoversWearerComponent>()));
+            new EntityPrototype.ComponentRegistryEntry(Factory.GetComponent<ShoeCoversWearerComponent>(), new()));
 
         // Если обувь уже надета, событие экипировки не повторится. Выдаём маркер текущему носителю сразу.
         var parent = Transform(shoes).ParentUid;
@@ -107,7 +109,7 @@ public sealed partial class ShoeCoversSystem : EntitySystem
         QueueDel(covers);
     }
 
- private void OnGetVerbs(Entity<WrappedShoesComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
+    private void OnGetVerbs(Entity<WrappedShoesComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
     {
         if (!args.CanAccess || !args.CanInteract)
             return;
@@ -123,6 +125,8 @@ public sealed partial class ShoeCoversSystem : EntitySystem
     private void OnMove(Entity<ShoeCoversWearerComponent> wearer, ref MoveEvent args)
     {
         // Маркер находится на персонаже, а счётчик — на обуви. Получаем именно предмет из слота shoes.
+        if (_net.IsClient)
+            return;
         if (!_inventory.TryGetSlotEntity(wearer.Owner, ShoesSlot, out var shoes)
             || !TryComp<WrappedShoesComponent>(shoes, out var coating)
             || !args.OldPosition.IsValid(EntityManager) || !args.NewPosition.IsValid(EntityManager))
@@ -141,7 +145,7 @@ public sealed partial class ShoeCoversSystem : EntitySystem
 
     private float GetDistance(in MoveEvent args)
     {
-        // если еремещение в рамках одного грида.
+        // если перемещение в рамках одного грида.
         if (args.OldPosition.EntityId == args.NewPosition.EntityId)
             return Vector2.Distance(args.OldPosition.Position, args.NewPosition.Position);
 
