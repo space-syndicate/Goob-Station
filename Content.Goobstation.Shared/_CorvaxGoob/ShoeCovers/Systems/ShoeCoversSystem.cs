@@ -51,7 +51,7 @@ public sealed partial class ShoeCoversSystem : EntitySystem
             && TryComp<ClothingComponent>(shoes, out var clothing)
             // Slots — набор флагов. Проверяем, можно ли одеть на слот ног
             && (clothing.Slots & SlotFlags.FEET) != 0
-            && _whitelist.CheckBoth(shoes, covers.Comp.Blacklist, covers.Comp.Whitelist);
+            && _whitelist.CheckBoth(shoes, blacklist: covers.Comp.Blacklist);
     }
 
     private void OnApply(Entity<ShoeCoversWrapComponent> covers, ref AfterInteractEvent args)

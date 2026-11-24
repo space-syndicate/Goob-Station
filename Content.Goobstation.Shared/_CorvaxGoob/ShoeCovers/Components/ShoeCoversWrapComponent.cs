@@ -13,8 +13,6 @@ public sealed partial class ShoeCoversWrapComponent : Component
     [DataField]
     public SoundSpecifier? WrapSound;
 
-    [DataField]
-    public EntityWhitelist? Whitelist;
 
     [DataField]
     public EntityWhitelist? Blacklist;

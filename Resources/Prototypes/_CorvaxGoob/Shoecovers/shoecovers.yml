@@ -27,12 +27,9 @@
       params:
         volume: -5
         variation: 0.05
-    whitelist:
-      tags:
-      - WrappebelShoes
     blacklist:
-      components:
-      - WrappedShoes
+      tags:
+      - CantBeWrapped
     addedComponents:
     - type: WrappedShoes
       maxDistance: 300
