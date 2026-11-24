@@ -380,7 +380,7 @@ namespace Content.Client.RoundEnd
             };
             var StationReportLabel = new RichTextLabel();
             var StationReportmessage = new FormattedMessage();
-            StationReportmessage.AddMarkupOrThrow(stationReportText);
+            StationReportmessage.AddMarkupPermissive(stationReportText);
             StationReportLabel.SetMessage(StationReportmessage);
             StationReportContainer.AddChild(StationReportLabel);
 

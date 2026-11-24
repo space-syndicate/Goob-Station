@@ -1,23 +1,13 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-using Content.Client.Hands;
 using Content.Shared.Containers.ItemSlots;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
-using Robust.Client.Input;
 using Robust.Shared.Containers;
 using Robust.Shared.Enums;
 using Robust.Shared.Graphics;
-using Robust.Shared.Map;
-using Robust.Shared.Player;
 using Robust.Shared.Reflection;
 using Robust.Shared.Timing;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Content.Client._White.ItemSlotRenderer;
 
@@ -41,7 +31,7 @@ public sealed class ItemSlotRendererSystem : EntitySystem
     }
     private void OnInsertIntoContainer(EntityUid uid, ItemSlotRendererComponent comp, EntInsertedIntoContainerMessage args)
     {
-        if (args.Container is not ContainerSlot || !_timing.IsFirstTimePredicted)
+        if (args.Container is not ContainerSlot) // CorvaxGoob : Удалено условие на IsFirstTimePredicted. Не даёт отображаться другим клиентам
             return;
 
         comp.CachedEntities[args.Container.ID] = args.Entity;
@@ -49,7 +39,7 @@ public sealed class ItemSlotRendererSystem : EntitySystem
 
     private void OnRemoveFromContainer(EntityUid uid, ItemSlotRendererComponent comp, EntRemovedFromContainerMessage args)
     {
-        if (args.Container is not ContainerSlot || !_timing.IsFirstTimePredicted)
+        if (args.Container is not ContainerSlot) // CorvaxGoob : Удалено условие на IsFirstTimePredicted. Не даёт отображаться другим клиентам
             return;
 
         comp.CachedEntities[args.Container.ID] = null;
@@ -138,7 +128,7 @@ public sealed class SpriteToLayerBullshitOverlay : Overlay
 
                 handle.RenderInRenderTarget(renderTarget, () =>
                 {
-                    handle.DrawEntity(item, renderTarget.Size / 2, Vector2.One, 0); // If this throws due to a missing spritecomp, it's your fault.
+                    handle.DrawEntity(item, renderTarget.Size / 2, comp.RenderSlotScale, 0); // If this throws due to a missing spritecomp, it's your fault. // CorvaxGoob : Добавлено изменение размера
                 }, Color.Transparent);
                 sprite.LayerSetTexture(layerIndex, renderTarget.Texture);
             }

@@ -44,7 +44,7 @@
   - MachineBluespaceHarvesterCircuitboard
   - MachineBluespaceTransitorCircuitboard
   # Goobstation R&D Console rework start
-  position: -5,-2
+  position: -4,-3
   technologyPrerequisites:
     - BluespaceTheory
   # Goobstation R&D Console rework end

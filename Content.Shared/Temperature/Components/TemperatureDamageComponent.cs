@@ -68,6 +68,10 @@ public sealed partial class TemperatureDamageComponent : Component
     [DataField]
     public bool TakingDamage;
 
+    // CorvaxGoob
+    [DataField]
+    public bool Enabled = true;
+
     /// <summary>
     /// The id of the alert thrown when the entity is too hot.
     /// </summary>

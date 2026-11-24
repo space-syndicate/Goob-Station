@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: AGPL-3.0-or-later
+    // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Linq;
 using System.Numerics;
@@ -6,7 +6,7 @@ using Content.Server.Cargo.Systems;
 using Content.Server.Power.Components;
 using Content.Shared.Cargo;
 using Content.Server.Vocalization.Systems;
-using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Emp;
 using Content.Shared.Power;
 using Content.Shared.Throwing;
@@ -86,6 +86,9 @@ namespace Content.Server.VendingMachines
             if (!args.DamageIncreased && component.Broken)
             {
                 component.Broken = false;
+
+                RaiseLocalEvent(uid, new VendingMachineStateChangeEvent(false)); // CorvaxGoob-Start
+
                 Dirty(uid, component);
                 TryUpdateVisualState((uid, component));
                 return;
@@ -218,7 +221,8 @@ namespace Content.Server.VendingMachines
             {
                 var range = vendComponent.NonLimitedEjectRange;
                 var direction = new Vector2(_random.NextFloat(-range, range), _random.NextFloat(-range, range));
-                _throwingSystem.TryThrow(ent, direction, vendComponent.NonLimitedEjectForce);
+                _throwingSystem.TryThrow(ent, direction, vendComponent.NonLimitedEjectForce,
+                    predicted: false); // Trauma
             }
 
             vendComponent.NextItemToEject = null;

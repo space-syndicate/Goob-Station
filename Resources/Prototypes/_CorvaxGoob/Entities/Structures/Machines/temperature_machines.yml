@@ -1,0 +1,40 @@
+- type: entity
+  abstract: true
+  id: BaseOverTemperatureDisabled
+  components:
+  - type: AtmosExposed
+  - type: OverTemperature
+    temperatureThresholdEnabled: false
+  - type: Temperature
+  - type: TemperatureDamage
+    enabled: false
+
+- type: entity
+  abstract: true
+  id: BaseOverTemperatureDamageOnly
+  parent: BaseOverTemperatureDisabled
+  components:
+  - type: AtmosExposed
+  - type: OverTemperature
+    temperatureThresholdEnabled: false
+  - type: Temperature
+  - type: TemperatureDamage
+    enabled: true
+    heatDamageThreshold: 873.15
+    coldDamageThreshold: 0
+    heatDamage:
+      types:
+        Heat: 2
+    damageCap: 4
+
+- type: entity
+  abstract: true
+  id: BaseOverTemperatureThresholdOnly
+  parent: BaseOverTemperatureDisabled
+  components:
+  - type: AtmosExposed
+  - type: OverTemperature
+    temperatureThresholdEnabled: true
+  - type: Temperature
+  - type: TemperatureDamage
+    enabled: false

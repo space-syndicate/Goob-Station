@@ -49,6 +49,7 @@
     - EngineeringWeapons
     - PowerCells
     - Equipment
+    - ModsuitEngineering
     # - ServiceWeapons
     - SpecOpsGoogles
     - EngineeringBoards
@@ -144,6 +145,7 @@
     - MiningLavaland # Lavaland Change
     - PowerCells
     - Equipment
+    - ModsuitSupply
     # - ServiceWeapons
     - MiningWeapons
     - MiningBoards
@@ -248,6 +250,7 @@
     - Janitor
     - Equipment
     - MedicalBoards #Goob
+    - ModsuitService
     # - ServiceWeapons
     - Surgery
     - SpecOpsGoogles
@@ -342,6 +345,7 @@
     - Janitor
     - Instruments
     - FauxTiles
+    - ModsuitService
     # - ServiceWeapons
     - MedicalMisc
     - MechBoardsCivilian

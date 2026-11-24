@@ -1,10 +1,3 @@
-# SPDX-FileCopyrightText: 2024 Aiden <aiden@djkraz.com>
-# SPDX-FileCopyrightText: 2024 Fiftyllama <45442346+Fiftyllama@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-#
-# SPDX-License-Identifier: AGPL-3.0-or-later
-
 #!/usr/bin/env python3
 
 import requests
@@ -16,13 +9,13 @@ PUBLISH_TOKEN = os.environ["PUBLISH_TOKEN"]
 ARTIFACT_ID = os.environ["ARTIFACT_ID"]
 GITHUB_REPOSITORY = os.environ["GITHUB_REPOSITORY"]
 VERSION = os.environ['GITHUB_SHA']
+FORK_ID = os.environ['FORK_ID']
 
 #
 # CONFIGURATION PARAMETERS
 # Forks should change these to publish to their own infrastructure.
 #
-ROBUST_CDN_URL = "https://cdn.simplestation.org/"
-FORK_ID = "goobstation-lrp"
+ROBUST_CDN_URL = "https://cdn.station14.ru/"
 
 def main():
     print("Fetching artifact URL from API...")

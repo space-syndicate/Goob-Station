@@ -11,6 +11,19 @@
     sprite: _CorvaxGoob/Clothing/Shoes/Boots/atmos-magboots.rsi
 
 - type: entity
+  parent: ClothingShoesBootsMag
+  id: ClothingShoesBootsMagSec
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Clothing/Shoes/Boots/sec-magboots.rsi
+    layers:
+    - state: icon
+      map: [ "enum.ToggleableVisuals.Layer" ]
+  - type: Clothing
+    sprite: _CorvaxGoob/Clothing/Shoes/Boots/sec-magboots.rsi
+
+
+- type: entity
   id: ClothingShoesBootsMagSyndieUnremoveable
   parent: ClothingShoesBootsMagSyndie
   suffix: Unremoveable

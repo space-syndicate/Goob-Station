@@ -248,7 +248,7 @@
         VentCrawlerTube: !type:Container
 
 - type: entity
-  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  parent: [ BaseOverTemperatureDisabled, BaseMachinePowered, ConstructibleMachine ] # CorvaxGoob
   id: BaseGasThermoMachine
   name: thermomachine
   abstract: true

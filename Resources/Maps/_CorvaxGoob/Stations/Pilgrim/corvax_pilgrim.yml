@@ -299317,8 +299317,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -48.5,26.5
       parent: 2
-    - type: Occluder
-      boundingBox: -0.5,-0.5,0.5,-0.3
 - proto: WindowReinforcedDirectional
   entities:
   - uid: 845

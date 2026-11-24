@@ -7,6 +7,7 @@ CorvaxGoob-Coins-end */
 using Content.Client.Administration.Managers;
 using Content.Client.Changelog;
 using Content.Client.Chat.Managers;
+using Content.Client.Chat.UI; // Goob
 using Content.Client.Clickable;
 using Content.Client.Corvax.ExportSprites;
 using Content.Client.DebugMon;
@@ -75,6 +76,7 @@ namespace Content.Client.IoC
             collection.Register<LinkAccountManager>(); // RMC14
             CorvaxGoob-Coins-end */
             collection.Register<ClientsidePlaytimeTrackingManager>();
+            collection.Register<RunechatFontCache>(); // Goob
         }
     }
 }

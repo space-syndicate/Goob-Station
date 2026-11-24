@@ -19,7 +19,11 @@
     delay: 4
     fx: EffectRCDDeconstruct4
   - type: Occluder
-    boundingBox: "-0.5, -0.5, 0.5, -0.3"
+    polygon:
+    - "-0.5,-0.3"
+    - "0.5,-0.3"
+    - "0.5,-0.5"
+    - "-0.5,-0.5"
   - type: TintedWindow
     arc: 170
   - type: Damageable

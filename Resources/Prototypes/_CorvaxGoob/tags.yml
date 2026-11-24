@@ -70,6 +70,9 @@
   id: Hemostat
 
 - type: Tag
+  id: IgnoreInteractionParticle
+
+- type: Tag
   id: IgnorGrab
 
 - type: Tag
@@ -104,6 +107,9 @@
 
 - type: Tag
   id: Photo
+
+- type: Tag
+  id: PlantAnalyzer
 
 - type: Tag
   id: PokerChip

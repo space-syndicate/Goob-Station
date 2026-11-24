@@ -51,6 +51,15 @@ public abstract class SharedItemSystem : EntitySystem
 
         component.Size = size;
         Dirty(uid, component);
+
+        // CorvaxGoob-Start
+        var parentUid = Transform(uid).ParentUid;
+
+        if (TryComp<StorageComponent>(parentUid, out var parentStorage))
+            if (!_storage.CanInsert(parentUid, uid, out _, parentStorage))
+                Container.Remove(uid, parentStorage.Container);
+        // CorvaxGoob-End
+
         var ev = new ItemSizeChangedEvent(uid);
         RaiseLocalEvent(uid, ref ev, broadcast: true);
     }
@@ -62,6 +71,15 @@ public abstract class SharedItemSystem : EntitySystem
 
         component.Shape = shape;
         Dirty(uid, component);
+
+        // CorvaxGoob-Start
+        var parentUid = Transform(uid).ParentUid;
+
+        if (TryComp<StorageComponent>(parentUid, out var parentStorage))
+            if (!_storage.CanInsert(parentUid, uid, out _, parentStorage))
+                Container.Remove(uid, parentStorage.Container);
+        // CorvaxGoob-End   
+
         var ev = new ItemSizeChangedEvent(uid);
         RaiseLocalEvent(uid, ref ev, broadcast: true);
     }

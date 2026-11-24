@@ -29,16 +29,16 @@ namespace Content.Goobstation.Server.AlertLevel;
 /// <summary>
 /// Controls whether the amber alert level is unlocked.
 /// </summary>
-public sealed class AmberAlertSystem : EntitySystem
+public sealed partial class AmberAlertSystem : EntitySystem
 {
-    [Dependency] private readonly AccessReaderSystem _accessReader = default!;
-    [Dependency] private readonly IdCardSystem _idCard = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly RadioSystem _radio = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private AccessReaderSystem _accessReader = default!;
+    [Dependency] private IdCardSystem _idCard = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private RadioSystem _radio = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public override void Initialize()
     {
@@ -50,7 +50,7 @@ public sealed class AmberAlertSystem : EntitySystem
         SubscribeLocalEvent<SlasherAscendedEvent>(OnSlasherAscend);
         SubscribeLocalEvent<XenomorphsAnnouncedEvent>(OnXenomorphsAnnounced);
         SubscribeLocalEvent<AlertLevelSelectAttemptEvent>(OnAlertSelectAttempt);
-        SubscribeLocalEvent<CommunicationsConsoleComponent, GetVerbsEvent<AlternativeVerb>>(OnGetVerbs);
+        SubscribeLocalEvent<CommunicationsConsoleComponent, GetVerbsEvent<Verb>>(OnGetVerbs); // CorvaxGoob : AltVert - Verb
     }
 
 
@@ -104,7 +104,7 @@ public sealed class AmberAlertSystem : EntitySystem
         }
     }
 
-    private void OnGetVerbs(Entity<CommunicationsConsoleComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
+    private void OnGetVerbs(Entity<CommunicationsConsoleComponent> ent, ref GetVerbsEvent<Verb> args) // CorvaxGoob : AltVert - Verb
     {
         if (!args.CanAccess || !args.CanInteract)
             return;
@@ -119,7 +119,7 @@ public sealed class AmberAlertSystem : EntitySystem
         var console = ent.Owner;
         var stationUid = station.Value;
 
-        args.Verbs.Add(new AlternativeVerb
+        args.Verbs.Add(new Verb // CorvaxGoob : AltVert - Verb
         {
             Text = Loc.GetString("alert-level-amber-verb-text"),
             Message = Loc.GetString("alert-level-amber-verb-message"),

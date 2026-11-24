@@ -3,7 +3,6 @@
 using Content.Goobstation.Common.Effects;
 using Content.Shared.Actions;
 using Content.Shared.Coordinates;
-using Content.Shared.Damage;
 using Content.Shared.Hands;
 using Content.Shared.Interaction;
 using Content.Shared.Item;
@@ -19,6 +18,7 @@ using Robust.Shared.Serialization.Manager;
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Item.ItemToggle;
 using Content.Shared.Item.ItemToggle.Components;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Shared.Polymorph.Systems;
 
@@ -350,6 +350,27 @@ public abstract class SharedChameleonProjectorSystem : EntitySystem
             return false;
 
         return proto.TryGetComponent(out src, EntityManager.ComponentFactory);
+    }
+
+    // CorvaxGoob-Fix
+    protected bool GetSrcEntity<T>(ChameleonDisguiseComponent comp, out Entity<T?> src) where T : Component, new()
+    {
+        if (TryComp<T>(comp.SourceEntity, out var liveComp))
+        {
+            src = (comp.SourceEntity, liveComp);
+            return true;
+        }
+
+        if (comp.SourceProto is { } protoId
+            && ProtoMan.TryIndex<EntityPrototype>(protoId, out var proto)
+            && proto.TryComp<T>(out var protoComp, EntityManager.ComponentFactory))
+        {
+            src = (EntityUid.Invalid, protoComp);
+            return true;
+        }
+
+        src = default;
+        return false;
     }
 }
 

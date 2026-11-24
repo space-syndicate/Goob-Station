@@ -11,7 +11,7 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared.SubFloor;
 
-public abstract class SharedTrayScannerSystem : EntitySystem
+public abstract partial class SharedTrayScannerSystem : EntitySystem // Goob
 {
     [Dependency] private readonly INetManager _netMan = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
@@ -22,6 +22,8 @@ public abstract class SharedTrayScannerSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
+
+        GoobInitialize(); // Goob
 
         SubscribeLocalEvent<TrayScannerComponent, ComponentGetState>(OnTrayScannerGetState);
         SubscribeLocalEvent<TrayScannerComponent, ComponentHandleState>(OnTrayScannerHandleState);
@@ -113,6 +115,7 @@ public abstract class SharedTrayScannerSystem : EntitySystem
 
         scanner.Enabled = enabled;
         Dirty(uid, scanner);
+        GoobScannerEnabledChanged(uid, enabled); // Goob
 
         // We don't remove from _activeScanners on disabled, because the update function will handle that, as well as
         // managing the revealed subfloor entities

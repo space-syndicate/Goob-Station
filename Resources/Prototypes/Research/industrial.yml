@@ -280,6 +280,8 @@
   - ClothingBackpackSatchelHolding
   - ClothingBackpackDuffelHolding
   - ClothingBackpackMessengerHolding # Frontier
+  - ModsuitModuleStorageBluespace # Goob
+  - ModsuitModuleStorageHolding # Goob
   # Goobstation R&D Console rework start
   position: 2,-7
   technologyPrerequisites:
@@ -298,6 +300,7 @@
   recipeUnlocks:
   - PowerCellMicroreactor
   - PowerCellHyper
+  - ModsuitCoreStandardMicroreactor # Goob
   technologyPrerequisites:
   - AdvancedToolsTechnology  # Goobstation R&D Console rework
   - AdvancedPowercells  # Goobstation R&D Console rework

@@ -7,29 +7,35 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-using Content.Goobstation.Client.Voice;
+// using Content.Goobstation.Client.VoiceChat; // CorvaxGoob
 using Content.Goobstation.Client.JoinQueue;
+using Content.Goobstation.Client.News;
 using Content.Goobstation.Common.ServerCurrency;
 using Robust.Shared.ContentPack;
-using Robust.Shared.Timing;
+using Robust.Shared.Prototypes;
 
 namespace Content.Goobstation.Client.Entry;
 
-public sealed class EntryPoint : GameClient
+public sealed partial class EntryPoint : GameClient
 {
     /* CorvaxGoob
-    [Dependency] private readonly IVoiceChatManager _voiceManager = default!;
-    [Dependency] private readonly JoinQueueManager _joinQueue = default!;
-    [Dependency] private readonly PollManager _pollManager = default!;
-    [Dependency] private readonly ICommonCurrencyManager _currMan = default!;
+    [Dependency] private VoiceChatManager _voiceManager = default!;
+    [Dependency] private JoinQueueManager _joinQueue = default!;
+    [Dependency] private PollManager _pollManager = default!;
+    [Dependency] private ICommonCurrencyManager _currMan = default!;
     */
+    [Dependency] private NewsManager _news = default!; // CorvaxGoob
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     public override void Init()
     {
         // ContentGoobClientIoC.Register(); CorvaxGoob
+        IoCManager.Register<NewsManager>(); // CorvaxGoob
 
         IoCManager.BuildGraph();
         IoCManager.InjectDependencies(this);
+
+        _prototypeManager.RegisterIgnore("achievement");
     }
 
     public override void PostInit()
@@ -37,26 +43,15 @@ public sealed class EntryPoint : GameClient
         base.PostInit();
 
         /* CorvaxGoob
-        _voiceManager.Initalize();
+        _voiceManager.Initialize();
         _joinQueue.Initialize();
         _pollManager.Initialize();
         _currMan.Initialize();
         */
+        _news.Initialize(); // CorvaxGoob
     }
 
     /*
-    public override void Update(ModUpdateLevel level, FrameEventArgs frameEventArgs)
-    {
-        base.Update(level, frameEventArgs);
-
-        switch (level)
-        {
-            case ModUpdateLevel.FramePreEngine:
-                _voiceManager.Update();
-                break;
-        }
-    }
-
     protected override void Dispose(bool disposing)
     {
         base.Dispose(disposing);

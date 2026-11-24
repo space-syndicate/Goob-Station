@@ -7,7 +7,7 @@
   description: A cheap and light 20mm autocannon. Can be remotely activated, or linked up to a GCS.
   components:
   - type: ApcPowerReceiver
-    powerLoad: 200
+    powerLoad: 1100 # CorvaxGoob-ShuttleGuns-Rebalance
   - type: StaticPrice
     price: 250
   - type: Sprite
@@ -102,7 +102,7 @@
   - type: ShipGunClass
     shipClass: Medium
   - type: ApcPowerReceiver
-    powerLoad: 970
+    powerLoad: 30 # CorvaxGoob-ShuttleGuns-Rebalance
 
 # AK570 90mm
 
@@ -113,7 +113,7 @@
   description: A dual barrel, heavy autocannon. Can be remotely activated, or linked up to a GCS.
   components:
   - type: ApcPowerReceiver
-    powerLoad: 725
+    powerLoad: 400 # CorvaxGoob-ShuttleGuns-Rebalance
   - type: StaticPrice
     price: 1250
   - type: Sprite
@@ -167,7 +167,7 @@
   description: A heavy EMP Cannon made by Aetherion Dynamics. It can disable massive parts of an enemy ship, making it effective in asymmetric combat. Can be remotely activated, or linked up to a GCS.
   components:
   - type: ApcPowerReceiver
-    powerLoad: 3714
+    powerLoad: 214 # CorvaxGoob-ShuttleGuns-Rebalance
   - type: StaticPrice
     price: 10000
   - type: Sprite
@@ -216,7 +216,7 @@
   description: A dual barrel, main-battery cannon firing 220mm auto shells with slight reduction in brute strength. Can be remotely activated, or linked up to a GCS.
   components:
   - type: ApcPowerReceiver
-    powerLoad: 13500
+    powerLoad: 12000 # CorvaxGoob-ShuttleGuns-Rebalance
   - type: StaticPrice
     price: 20000
   - type: Sprite
@@ -282,7 +282,7 @@
   description: One of the largest chemical-based kinetic weapons in the sector. Its power is only rivaled by mass drivers such as the M381.
   components:
   - type: ApcPowerReceiver
-    powerLoad: 13500
+    powerLoad: 1000 # CorvaxGoob-ShuttleGuns-Rebalance
   - type: StaticPrice
     price: 40000
   - type: Sprite

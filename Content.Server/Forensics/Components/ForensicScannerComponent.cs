@@ -3,7 +3,6 @@
 using System.Threading;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Server.Forensics
 {
@@ -42,6 +41,13 @@ namespace Content.Server.Forensics
         /// </summary>
         [ViewVariables(VVAccess.ReadOnly), DataField("residues")]
         public List<string> Residues = new();
+
+        // CorvaxGoob
+        /// <summary>
+        /// Время сканирования
+        /// </summary>
+        [DataField("scanTime")]
+        public TimeSpan ScanTime = TimeSpan.Zero;
 
         /// <summary>
         /// What is the name of the entity that was scanned last?
@@ -93,8 +99,7 @@ namespace Content.Server.Forensics
         /// <summary>
         /// What the machine will print
         /// </summary>
-        [DataField("machineOutput", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-        public string MachineOutput = "ForensicReportPaper";
-
+        [DataField("machineOutput")]
+        public EntProtoId MachineOutput = "ForensicReportPaper";
     }
 }

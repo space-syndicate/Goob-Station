@@ -11,6 +11,19 @@
     - state: box_security
     - sprite: _DV/Objects/Storage/boxes.rsi
       state: recorder
+  - type: Storage # CorvaxGoob-Start
+    maxItemSize: Small
+    grid:
+    - 0,0,2,2
+    whitelist:
+      components:
+      - TapeRecorder
+      - TapeCassette
+  - type: Item
+    sprite: Objects/Storage/boxes.rsi
+    size: Large
+    shape:
+    - 0,0,1,1 # CorvaxGoob-End
   - type: StorageFill
     contents:
     - id: CassetteTape

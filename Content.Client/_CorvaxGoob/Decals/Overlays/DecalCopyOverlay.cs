@@ -14,10 +14,10 @@ public sealed class DecalCopyOverlay : Overlay
 {
     [Dependency] private readonly IEyeManager _eyeManager = default!;
     [Dependency] private readonly IInputManager _inputManager = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     private readonly SharedTransformSystem _transform;
+    private readonly SharedMapSystem _map;
     private readonly SpriteSystem _sprite;
     private readonly SharedDecalSystem _sharedDecalSystem;
 
@@ -31,6 +31,7 @@ public sealed class DecalCopyOverlay : Overlay
         IoCManager.InjectDependencies(this);
 
         _transform = _entityManager.System<SharedTransformSystem>();
+        _map = _entityManager.System<SharedMapSystem>();
         _sprite = _entityManager.System<SpriteSystem>();
         _sharedDecalSystem = _entityManager.System<SharedDecalSystem>();
     }
@@ -43,7 +44,7 @@ public sealed class DecalCopyOverlay : Overlay
         if (mousePos.MapId != args.MapId)
             return;
 
-        if (!_mapManager.TryFindGridAt(mousePos, out var gridUid, out var grid))
+        if (!_map.TryFindGridAt(mousePos, out var gridUid, out var grid))
             return;
 
         var worldMatrix = _transform.GetWorldMatrix(gridUid);

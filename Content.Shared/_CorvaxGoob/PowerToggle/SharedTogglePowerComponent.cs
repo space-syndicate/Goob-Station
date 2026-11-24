@@ -31,3 +31,6 @@ public sealed class TogglePowerMessage : EntityEventArgs
         Entity = entity;
     }
 }
+
+[ByRefEvent]
+public record struct AttemptTogglePowerEvent(bool Powered, EntityUid? User, bool Cancelled = false);

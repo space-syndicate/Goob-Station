@@ -14,7 +14,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Content.Server.Database
 {
-    public abstract class ServerDbContext : DbContext
+    public abstract partial class ServerDbContext : DbContext // Goob
     {
         protected ServerDbContext(DbContextOptions options) : base(options)
         {
@@ -298,6 +298,7 @@ namespace Content.Server.Database
                 .HasDefaultValue(HwidType.Legacy);
 
             ModelBan.OnModelCreating(modelBuilder);
+            // GoobOnModelCreating(modelBuilder); // Goob // CorvaxGoob - achievements removed
 
             // Corvax-Goob нам такое не надо
             /*

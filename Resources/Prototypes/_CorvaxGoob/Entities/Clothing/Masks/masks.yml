@@ -16,6 +16,15 @@
         Piercing: 0.9
         Heat: 0.9
         Caustic: 0.9
+  - type: Hailer
+    availableModes:
+      calm: HailerMessagersCalm
+      agressive: HailerMessagersAgressive
+    emagedModes:
+      emag: HailerMessagersEmag
+  - type: HailerDeathSound
+    sound:
+      path: /Audio/_CorvaxGoob/Misc/hailer_user_death.ogg
 
 - type: entity
   id: ClothingMaskGasSyndicateUnremoveable

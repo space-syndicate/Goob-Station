@@ -463,3 +463,9 @@
   background: /Textures/_CorvaxGoob/LobbyScreens/night-glacier.webp
   name: "Ночной «Гласир»"
   artist: "Yashastepanov"
+
+- type: lobbyBackground
+  id: FullChaos
+  background: /Textures/_CorvaxGoob/LobbyScreens/full-chaos.webp
+  name: "Full-Chaos"
+  artist: "Qulezz"

@@ -95,7 +95,7 @@ public abstract class SharedItemSwitchSystem : EntitySystem
                 continue;
             args.Verbs.Add(new ActivationVerb()
             {
-                Text = Loc.TryGetString($"itemswitch-component-state-{state.Value.Verb}", out var title) ? title : state.Value.Verb, // CorvaxGoob-shitcode-localization
+                Text = Loc.TryGetString($"itemswitch-component-state-{state.Value.Verb}", out var title) ? title : state.Value.Verb, // CorvaxGoob-localization
                 Category = VerbCategory.Switch,
                 Act = () => Switch((ent.Owner, ent.Comp), state.Key, user, ent.Comp.Predictable)
             });
@@ -202,8 +202,7 @@ public abstract class SharedItemSwitchSystem : EntitySystem
 
         if (TryComp<ItemComponent>(uid, out var item) && _container.TryGetContainingContainer((uid, null, null), out var container))
         {
-            if (TryComp(container.Owner, out StorageComponent? storage)
-                && storage.StoredItems.ContainsKey(uid)) //CorvaxGoob edit
+            if (TryComp(container.Owner, out StorageComponent? storage) && storage.Container == container)
             {
                 _transform.AttachToGridOrMap(uid);
                 if (!_storage.Insert(container.Owner, uid, out _, null, storage, false))

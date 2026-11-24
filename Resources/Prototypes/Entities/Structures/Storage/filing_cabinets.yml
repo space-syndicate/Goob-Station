@@ -50,7 +50,7 @@
   - type: Storage
     grid:
     - 0,0,9,3
-    maxItemSize: Normal
+    maxItemSize: Large # CorvaxGoob
   - type: Sprite
     sprite: Structures/Storage/cabinets.rsi
     noRot: true

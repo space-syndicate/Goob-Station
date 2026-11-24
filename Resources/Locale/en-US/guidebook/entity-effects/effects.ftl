@@ -1,23 +1,3 @@
-# SPDX-FileCopyrightText: 2023 LankLTE <135308300+LankLTE@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2023 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2023 Sailor <109166122+Equivocateur@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2023 mhamster <81412348+mhamsterr@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Aidenkrz <aiden@djkraz.com>
-# SPDX-FileCopyrightText: 2024 Eris <eris@erisws.com>
-# SPDX-FileCopyrightText: 2024 Flesh <62557990+PolterTzi@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Gotimanga <127038462+Gotimanga@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Steve <marlumpy@gmail.com>
-# SPDX-FileCopyrightText: 2024 Zonespace <41448081+Zonespace27@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 alex-georgeff <54858069+taurie@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 marc-pelletier <113944176+marc-pelletier@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 slarticodefast <161409025+slarticodefast@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
-# SPDX-FileCopyrightText: 2025 SX-7 <92227810+SX-7@users.noreply.github.com>
-#
-# SPDX-License-Identifier: AGPL-3.0-or-later
-
 -create-3rd-person =
     { $chance ->
         [1] Creates
@@ -158,19 +138,19 @@ entity-effect-guidebook-status-effect =
     [update]{ $chance ->
     [1] Causes
     *[other] cause
-                     } {LOC($key)} for at least {NATURALFIXED($time, 3)} {MANY("second", $time)} without accumulation
+                     } {$key} for at least {NATURALFIXED($time, 3)} {MANY("second", $time)} without accumulation
     [add]   { $chance ->
     [1] Causes
     *[other] cause
-                    } {LOC($key)} for at least {NATURALFIXED($time, 3)} {MANY("second", $time)} with accumulation
+                    } {$key} for at least {NATURALFIXED($time, 3)} {MANY("second", $time)} with accumulation
     [set]  { $chance ->
     [1] Causes
     *[other] cause
-                    } {LOC($key)} for at least {NATURALFIXED($time, 3)} {MANY("second", $time)} without accumulation
+                    } {$key} for at least {NATURALFIXED($time, 3)} {MANY("second", $time)} without accumulation
     *[remove]{ $chance ->
     [1] Removes
     *[other] remove
-                    } {NATURALFIXED($time, 3)} {MANY("second", $time)} of {LOC($key)}
+                    } {NATURALFIXED($time, 3)} {MANY("second", $time)} of {$key}
         } { $delay ->
     [0] immediately
     *[other] after a {NATURALFIXED($delay, 3)} second delay
@@ -197,39 +177,43 @@ entity-effect-guidebook-status-effect-indef =
     [update]{ $chance ->
     [1] Causes
     *[other] cause
-                     } permanent {LOC($key)}
+                     } permanent {$key}
     [add]   { $chance ->
     [1] Causes
     *[other] cause
-                    } permanent {LOC($key)}
+                    } permanent {$key}
     [set]  { $chance ->
     [1] Causes
     *[other] cause
-                    } permanent {LOC($key)}
+                    } permanent {$key}
     *[remove]{ $chance ->
     [1] Removes
     *[other] remove
-                    } {LOC($key)}
+                    } {$key}
         } { $delay ->
     [0] immediately
     *[other] after a {NATURALFIXED($delay, 3)} second delay
         }
 
-reagent-effect-guidebook-knockdown =
+entity-effect-guidebook-knockdown =
     { $type ->
+        [update]{ $chance ->
+                    [1] Causes
+                    *[other] cause
+                } knockdown for at least {NATURALFIXED($time, 3)} {MANY("second", $time)} without accumulation
         [add]   { $chance ->
                     [1] Causes
                     *[other] cause
-                } {LOC($key)} for at least {NATURALFIXED($time, 3)} {MANY("second", $time)} with accumulation
+                } knockdown for at least {NATURALFIXED($time, 3)} {MANY("second", $time)} with accumulation
         *[set]  { $chance ->
                     [1] Causes
                     *[other] cause
-                } {LOC($key)} for at least {NATURALFIXED($time, 3)} {MANY("second", $time)} without accumulation
+                } knockdown for at least {NATURALFIXED($time, 3)} {MANY("second", $time)} without accumulation
         [remove]{ $chance ->
                     [1] Removes
                     *[other] remove
-                } {NATURALFIXED($time, 3)} {MANY("second", $time)} of {LOC($key)}
-    } after a {NATURALFIXED($delay, 3)} second delay
+                } {NATURALFIXED($time, 3)} {MANY("second", $time)} of knockdown
+    }
 
 entity-effect-guidebook-set-solution-temperature-effect =
     { $chance ->

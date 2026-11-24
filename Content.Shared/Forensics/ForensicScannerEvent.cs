@@ -15,6 +15,7 @@ namespace Content.Shared.Forensics
         public readonly string LastScannedName = string.Empty;
         public readonly TimeSpan PrintCooldown = TimeSpan.Zero;
         public readonly TimeSpan PrintReadyAt = TimeSpan.Zero;
+        public readonly TimeSpan ScanTime = TimeSpan.Zero; // CorvaxGoob
 
         public ForensicScannerBoundUserInterfaceState(
             List<string> fingerprints,
@@ -24,7 +25,8 @@ namespace Content.Shared.Forensics
             List<string> residues,
             string lastScannedName,
             TimeSpan printCooldown,
-            TimeSpan printReadyAt)
+            TimeSpan printReadyAt,
+            TimeSpan scanTime) // CorvaxGoob
         {
             Fingerprints = fingerprints;
             Fibers = fibers;
@@ -34,6 +36,7 @@ namespace Content.Shared.Forensics
             LastScannedName = lastScannedName;
             PrintCooldown = printCooldown;
             PrintReadyAt = printReadyAt;
+            ScanTime = scanTime; // CorvaxGoob
         }
     }
 

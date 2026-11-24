@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ BaseSecurityContraband, ClothingHeadHelmetAtmosFire ]
+  parent: [ BaseSecurityContraband, ClothingHeadHardsuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitSecPilot
   name: helmet pilot security services
   description: Helmet for the security service pilot's suit. It has a more powerful flashlight for better patrolling.

@@ -295279,6 +295279,10 @@ entities:
     - type: Transform
       pos: 9.535449,-31.48146
       parent: 2
+    - type: RevolverAmmoProvider
+      whitelist:
+        tags:
+        - GrenadeCleanade
 - proto: WeaponMakeshiftLaser
   entities:
   - uid: 42541

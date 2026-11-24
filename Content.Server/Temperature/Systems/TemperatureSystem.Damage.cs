@@ -82,6 +82,13 @@ public sealed partial class TemperatureSystem
             if (entity.Comp.TakingDamage && deltaTime < entity.Comp.UpdateInterval)
                 continue;
 
+            // CorvaxGoob-Start
+            entity.Comp.LastUpdate = _gameTiming.CurTime;
+
+            if (!entity.Comp.Enabled)
+                continue;
+            // CorvaxGoob-End
+
             ChangeDamage(entity, deltaTime);
         }
 
@@ -90,7 +97,6 @@ public sealed partial class TemperatureSystem
 
     private void ChangeDamage(Entity<TemperatureDamageComponent> entity, TimeSpan deltaTime)
     {
-        entity.Comp.LastUpdate = _gameTiming.CurTime;
 
         if (!HasComp<DamageableComponent>(entity) || !TemperatureQuery.TryComp(entity, out var temperature))
             return;

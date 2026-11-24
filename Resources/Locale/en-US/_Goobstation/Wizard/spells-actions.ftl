@@ -1,10 +1,3 @@
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
-# SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-#
-# SPDX-License-Identifier: AGPL-3.0-or-later
-
 action-speech-spell-clown = NWOLC YRGNA
 action-speech-spell-cluwne-goob = NWOLC EGNEVER
 action-speech-spell-magic-missile = FORTI GY AMA
@@ -36,3 +29,4 @@ action-speech-spell-summon-stick-minions = Rise, my creations! Off your page int
 action-speech-spell-tile-toggle = RUK'AT
 action-speech-spell-curse-of-byond = CURSE OF BYOND!!
 action-speech-spell-rathen = ARSE NATH!!
+action-speech-spell-summon-supermatter = GY'T OH'O RI'LER'!!! 

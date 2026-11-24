@@ -10,6 +10,7 @@ using Content.Shared.Emag.Components;
 using Content.Shared.Emag.Systems;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
+using Content.Shared.Popups;
 using Content.Shared.Verbs;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -18,17 +19,18 @@ using System.Linq;
 
 namespace Content.Goobstation.Server.Hailer;
 
-public sealed class HailerSystem : EntitySystem
+public sealed partial class HailerSystem : EntitySystem
 {
-    [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
+    [Dependency] private SharedActionsSystem _actionsSystem = default!;
     // CorvaxGoob-HailerRework-Start
-    //[Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly EmagSystem _emag = default!;
+    //[Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private EmagSystem _emag = default!;
     // CorvaxGoob-HailerRework-End
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -156,6 +158,7 @@ public sealed class HailerSystem : EntitySystem
             return;
 
         var priority = 0;
+        var user = args.User;
         foreach (var entry in entity.Comp.AvailableModes)
         {
             AlternativeVerb selection = new()
@@ -163,7 +166,12 @@ public sealed class HailerSystem : EntitySystem
                 Text = Loc.GetString($"hail-mode-{entry.Key}-name"),
                 Category = VerbCategory.SelectType,
                 Priority = priority,
-                Act = () => entity.Comp.SelectedMode = entry.Key
+                Act = () =>
+                {
+                    entity.Comp.SelectedMode = entry.Key;
+
+                    _popup.PopupClient(Loc.GetString("hailer-mode-changed", ("mode", Loc.GetString($"hail-mode-{entry.Key}-name"))), user);
+                }
             };
 
             priority--;

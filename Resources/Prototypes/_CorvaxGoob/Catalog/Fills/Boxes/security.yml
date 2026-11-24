@@ -1,0 +1,25 @@
+- type: entity
+  parent: BoxCardboard
+  id: BoxEvidenceBag
+  name: evidence bags box
+  description: A box with empty evidence bags.
+  components:
+  - type: Sprite
+    layers:
+    - state: box_security
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,9,1
+    whitelist:
+      components:
+      - EvidenceBag
+  - type: Item
+    sprite: Objects/Storage/boxes.rsi
+    size: Small
+    shape:
+    - 0,0,1,1
+  - type: StorageFill
+    contents:
+    - id: EvidenceBag
+      amount: 5

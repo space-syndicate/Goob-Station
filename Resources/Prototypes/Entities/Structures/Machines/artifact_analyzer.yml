@@ -2,7 +2,7 @@
 
 - type: entity
   id: MachineArtifactAnalyzer
-  parent: [ BaseMachinePowered, SmallConstructibleMachine ]
+  parent: [ BaseOverTemperatureDisabled, BaseMachinePowered, SmallConstructibleMachine ] # CorvaxGoob
   name: artifact analyzer
   description: A platform capable of performing analysis on various types of artifacts.
   components:

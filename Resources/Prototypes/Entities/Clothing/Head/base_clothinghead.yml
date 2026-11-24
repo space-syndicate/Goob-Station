@@ -76,7 +76,7 @@
     enabled: false
     radius: 3
     energy: 1
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
     netsync: false
   - type: Appearance
@@ -152,6 +152,7 @@
     - Snout
     - HeadTop
     - HeadSide
+  - type: SuitBreathing # CorvaxGoob
 
 - type: entity
   abstract: true
@@ -203,6 +204,8 @@
       NerveDamage: 0
   - type: GroupExamine
   - type: IngestionBlocker
+  - type: GlowShielding # Goobstation - hardsuit helmet moderately dims the plasmaman body glow
+    reduction: 0.3
   - type: Tag
     tags:
     - WhitelistChameleon
@@ -215,6 +218,7 @@
     - HeadTop
     - HeadSide
   - type: FaceHuggerBlocker # Goobstation
+  - type: SuitBreathing # CorvaxGoob
 
 - type: entity
   abstract: true
@@ -241,7 +245,7 @@
     enabled: false
     radius: 3
     energy: 2
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
     netsync: false
   - type: Appearance

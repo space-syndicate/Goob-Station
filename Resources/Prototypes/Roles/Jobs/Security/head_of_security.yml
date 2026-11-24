@@ -70,7 +70,7 @@
     id: HoSPDA
     #gloves: ClothingHandsGlovesCombat - Goobstation, moved to loadouts
     ears: ClothingHeadsetAltSecurity
-    pocket1: WeaponPistolMk58Empty # CorvaxGoob : поставлен пустой прототип пистолета
+    #pocket1: WeaponPistolMk58 - Goob, moved to loadouts
   storage:
     back:
     - Flash

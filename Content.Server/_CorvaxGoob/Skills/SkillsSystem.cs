@@ -1,61 +1,26 @@
 using System.Linq;
 using System.Diagnostics;
-using Content.Shared._CorvaxGoob.CCCVars;
 using Content.Shared._CorvaxGoob.Skills;
 using SkillTypes = Content.Shared._CorvaxGoob.Skills.Skills;
 using Content.Shared.Implants;
 using Content.Shared.Mind;
 using Content.Shared.Tag;
-using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._CorvaxGoob.Skills;
 
 public sealed partial class SkillsSystem : SharedSkillsSystem
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
 
     public static readonly ProtoId<TagPrototype> SkillsTag = "Skills";
-    private bool _skillsEnabled = true;
 
     public override void Initialize()
     {
         base.Initialize();
 
-        _skillsEnabled = _cfg.GetCVar(CCCVars.SkillsEnabled);
-        Subs.CVar(_cfg, CCCVars.SkillsEnabled, value => _skillsEnabled = value);
-
         SubscribeLocalEvent<ImplantImplantedEvent>(OnImplantImplanted);
-    }
-
-    public bool IsSkillsEnabled()
-    {
-        return _skillsEnabled;
-    }
-
-    /// <summary>
-    /// Check does entity has current skill
-    /// </summary>
-    /// <param name="entity"></param>
-    /// <param name="skill"></param>
-    /// <returns>true if has, else false</returns>
-    public override bool HasSkill(EntityUid entity, SkillTypes skill)
-    {
-        if (!_skillsEnabled)
-            return true;
-
-        if (HasComp<IgnoreSkillsComponent>(entity))
-            return true;
-
-        if (!_mind.TryGetMind(entity, out _, out var mind))
-            return false;
-
-        if (mind.Skills.Contains(SkillTypes.All))
-            return true;
-
-        return mind.Skills.Contains(skill);
     }
 
     private void OnImplantImplanted(ref ImplantImplantedEvent ev)
@@ -92,7 +57,10 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
         HashSet<SkillTypes> oldSkills = new HashSet<SkillTypes>(mindComp.Skills);
 
         if (clearSkills)
+        {
             mindComp.Skills.Clear();
+            Dirty(mind, mindComp);
+        }
 
         if (skills.Count < 1)
         {
@@ -107,6 +75,8 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
         }
         else
             mindComp.Skills.UnionWith(skills);
+
+        Dirty(mind, mindComp);
 
         HashSet<SkillTypes> newSkills = new HashSet<SkillTypes>(mindComp.Skills);
         newSkills.ExceptWith(oldSkills);
@@ -174,6 +144,8 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
                 mindComp.Skills.Remove(skill);
             }
         }
+
+        Dirty(mind, mindComp);
 
         HashSet<SkillTypes> revokedSkills = new HashSet<SkillTypes>(oldSkills);
         revokedSkills.ExceptWith(mindComp.Skills);

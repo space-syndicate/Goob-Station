@@ -104,7 +104,8 @@ public sealed class AirlockSystem : SharedAirlockSystem
                 if (state == DoorState.Closing || state == DoorState.Opening || state == DoorState.Denying)
                     showBaseUnlit = true;
 
-                if (state == DoorState.Open && comp.OpenUnlitVisible)
+                if (state == DoorState.Open && comp.OpenUnlitVisible
+                    || state == DoorState.Closed && comp.OpenUnlitVisible) // CorvaxGoob-Resprite-Airlocks-Edit
                     showBaseUnlit = true;
 
                 _appearanceSystem.TryGetData<bool>(uid, DoorVisuals.ClosedLights, out var closedLightsVisible, args.Component);

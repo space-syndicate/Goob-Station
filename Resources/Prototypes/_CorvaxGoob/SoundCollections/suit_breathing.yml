@@ -1,0 +1,11 @@
+- type: soundCollection
+  id: SuitBreathingSounds
+  files:
+    - /Audio/_CorvaxGoob/Effects/Breathing/internals_breathing1.ogg
+    - /Audio/_CorvaxGoob/Effects/Breathing/internals_breathing2.ogg
+    - /Audio/_CorvaxGoob/Effects/Breathing/internals_breathing3.ogg
+    - /Audio/_CorvaxGoob/Effects/Breathing/internals_breathing4.ogg
+    - /Audio/_CorvaxGoob/Effects/Breathing/internals_breathing5.ogg
+    - /Audio/_CorvaxGoob/Effects/Breathing/internals_breathing6.ogg
+    - /Audio/_CorvaxGoob/Effects/Breathing/internals_breathing7.ogg
+    - /Audio/_CorvaxGoob/Effects/Breathing/internals_breathing8.ogg

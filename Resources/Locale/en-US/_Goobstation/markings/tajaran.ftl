@@ -1,10 +1,3 @@
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
-# SPDX-FileCopyrightText: 2025 Piras314 <p1r4s@proton.me>
-# SPDX-FileCopyrightText: 2025 SX-7 <92227810+SX-7@users.noreply.github.com>
-#
-# SPDX-License-Identifier: AGPL-3.0-or-later
-
 marking-TajaranTorsoBelly = Chest Fur
 marking-TajaranTorsoBelly-belly = Fur
 marking-TajaranTorsoCrest = Chest Fur (Crest)
@@ -86,3 +79,21 @@ marking-TajaranEarsTorn-torn_inner = Inner ear
 marking-TajaranEarsWide = Wide Ears
 marking-TajaranEarsWide-wide_outer = Outer ear
 marking-TajaranEarsWide-wide_inner = Inner ear
+
+marking-TajaranLeopardChest = Leopard Spots (Chest)
+marking-TajaranLeopardChest-leopard_chest = Spots
+
+marking-TajaranLeopardAltChest = Leopard Spots (Chest, Alt)
+marking-TajaranLeopardAltChest-leopard_alt_chest = Spots
+
+marking-TajaranLeopardLArm = Leopard Spots (Left Arm)
+marking-TajaranLeopardLArm-leopard_l_arm = Spots
+
+marking-TajaranLeopardRArm = Leopard Spots (Right Arm)
+marking-TajaranLeopardRArm-leopard_r_arm = Spots
+
+marking-TajaranLeopardLHand = Leopard Spots (Left Hand)
+marking-TajaranLeopardLHand-leopard_l_hand = Spots
+
+marking-TajaranLeopardRHand = Leopard Spots (Right Hand)
+marking-TajaranLeopardRHand-leopard_r_hand = Spots

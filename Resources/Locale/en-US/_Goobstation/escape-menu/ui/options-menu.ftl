@@ -1,7 +1,3 @@
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Ted Lukin <66275205+pheenty@users.noreply.github.com>
-#
-# SPDX-License-Identifier: AGPL-3.0-or-later
 ui-options-preferences = Preferences
 
 ui-options-function-resist-grab = Resist Grab
@@ -9,6 +5,7 @@ ui-options-coalesce-identical-messages = Coalesce identical messages in chat
 ui-options-detailed-examine = Show detailed examine text
 ui-options-auto-focus-search-on-build-menu = Automatically focus the search input when the build menu is opened
 ui-options-lock-action-bar-drag = Only allow dragging actions on the hotbar while the actions menu is open
+ui-options-inhand-interaction-particle-scale = Overhead interaction icon size
 
 ui-options-hud-theme-coscult = Cosmic Cult
 

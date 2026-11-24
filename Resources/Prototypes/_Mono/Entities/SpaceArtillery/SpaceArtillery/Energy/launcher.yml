@@ -6,6 +6,10 @@
   parent: BallisticArtillery
   description: Launches EMP projectiles at ships. Can be remotely activated, or linked up to a GCS.
   components:
+  # CorvaxGoob-ShuttleGuns-Rebalance-Start
+  - type: ApcPowerReceiver
+    powerLoad: 2005
+  # CorvaxGoob-ShuttleGuns-Rebalance-End
   - type: StaticPrice
     price: 5000
   - type: Sprite
@@ -70,6 +74,10 @@
   parent: BallisticArtillery
   description: Launches magnetically contained balls of plasma at targets. Can be remotely activated, or linked up to a GCS.
   components:
+  # CorvaxGoob-ShuttleGuns-Rebalance-Start
+  - type: ApcPowerReceiver
+    powerLoad: 205
+  # CorvaxGoob-ShuttleGuns-Rebalance-End
   - type: StaticPrice
     price: 2500
   - type: Sprite
@@ -134,6 +142,10 @@
   parent: BallisticArtilleryUnanchorable
   description: Aetherion Dynamics Weapons Development Branch's most iconic product. Ionized gas projectiles will melt through anything you put in front of them. Can be remotely activated, or linked up to a GCS.
   components:
+  # CorvaxGoob-ShuttleGuns-Rebalance-Start
+  - type: ApcPowerReceiver
+    powerLoad: 20100
+  # CorvaxGoob-ShuttleGuns-Rebalance-End
   - type: StaticPrice
     price: 20000
   - type: Sprite

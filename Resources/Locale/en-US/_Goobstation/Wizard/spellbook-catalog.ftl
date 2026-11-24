@@ -1,9 +1,3 @@
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
-# SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-#
-# SPDX-License-Identifier: AGPL-3.0-or-later
-
 spellbook-mime-malaise-name = Mime Malaise
 spellbook-mime-malaise-desc =
     A spell popular with theater nerd wizards and contrarian pranksters, this spell will put on a mime costume on the target, stun them so that they may contemplate Art, and silence them.
@@ -185,6 +179,13 @@ spellbook-smite-name = Smite
 spellbook-smite-desc =
     This spell charges your hand with an unholy energy that can be used to cause a touched victim to violently explode.
     Requires wizard's robe and hat to cast.
+
+spellbook-summon-supermatter-name = Summon Supermatter
+spellbook-summon-supermatter-desc =
+    Summons an active supermatter crystal. Imbues you with some supermatter, giving you resistance to its ashing and radiation immunity.
+    Upgrading this spell takes one minute off its cooldown per level.
+    Cannot be refunded.
+    Requires wizards robe and hat to cast.
 
 spellbook-rathen-name = Rathen's Secret
 spellbook-rathen-desc =

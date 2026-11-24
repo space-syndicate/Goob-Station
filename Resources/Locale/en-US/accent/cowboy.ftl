@@ -1,9 +1,3 @@
-# SPDX-FileCopyrightText: 2024 themias <89101928+themias@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
-#
-# SPDX-License-Identifier: AGPL-3.0-or-later
-
 accent-cowboy-words-1 = alcohol
 accent-cowboy-replacement-1 = firewater
 
@@ -230,7 +224,7 @@ accent-cowboy-words-75 = secoff
 accent-cowboy-replacement-75 = deputy
 
 accent-cowboy-words-76 = security
-accent-cowboy-replacement-76 = law 
+accent-cowboy-replacement-76 = law
 
 accent-cowboy-words-77 = shitsec
 accent-cowboy-replacement-77 = crooked law

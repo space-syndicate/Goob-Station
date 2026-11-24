@@ -49,7 +49,7 @@
   - GenpopLeave
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant ]
+    implants: [ MindShieldImplant, KravMagaImplant ] #CorvaxGoob KravMaga-Changes
   - !type:AddComponentSpecial # goobstation
     components:
       - type: SecurityStaff
@@ -60,7 +60,7 @@
     eyes: ClothingEyesGlassesSecurityContraDetect # Goobstation
     id: WardenPDA
     ears: ClothingHeadsetAltWarden # Goobstation
-    pocket1: WeaponPistolMk58Empty # CorvaxGoob : поставлен пустой прототип пистолета
+    #pocket1: WeaponPistolMk58 - Goob, moved to loadouts
   storage:
     back:
     - Flash

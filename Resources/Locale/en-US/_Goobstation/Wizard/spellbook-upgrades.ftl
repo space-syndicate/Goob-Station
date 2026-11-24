@@ -1,9 +1,3 @@
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
-# SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-#
-# SPDX-License-Identifier: AGPL-3.0-or-later
-
 spellbook-upgrade-mime-malaise-name = Mime Malaise Upgrade
 spellbook-upgrade-mime-malaise-desc = Upgrades Mime Malaise to a maximum of level 5!
 
@@ -84,6 +78,9 @@ spellbook-upgrade-smite-desc = Upgrades Smite to a maximum of level 3!
 
 spellbook-upgrade-rathen-name = Rathen's Secret Upgrade
 spellbook-upgrade-rathen-desc = Upgrades Rathen's Secret to a maximum of level 3!
+
+spellbook-upgrade-summon-supermatter-name = Summon Supermatter Upgrade
+spellbook-upgrade-summon-supermatter-desc = Upgrades Summon Supermatter to a maximum of level 5! Each level takes one minute off the cooldown.
 
 spellbook-upgrade-knock-name = Knock Upgrade
 spellbook-upgrade-knock-desc = Upgrades Knock to a maximum of level 3!

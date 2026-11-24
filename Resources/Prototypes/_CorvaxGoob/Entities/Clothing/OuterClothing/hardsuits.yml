@@ -16,6 +16,9 @@
   - type: PressureProtection
     highPressureMultiplier: 0.05
     lowPressureMultiplier: 1000
+  - type: ToggleableClothing # Goobstation - Modsuits change
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitSecPilot
   - type: TemperatureProtection
     heatingCoefficient: 0.001
     coolingCoefficient: 0.05
@@ -26,11 +29,11 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.9
-        Slash: 0.9
-        Piercing: 0.9
-        Heat: 0.5
-        Radiation: 0.4
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.7
+        Heat: 0.45
+        Radiation: 0.3
         Caustic: 0.7
   - type: ClothingSpeedModifier
     walkModifier: 1.0
@@ -55,7 +58,7 @@
   - type: GasTank
     outputPressure: 42.6
     air:
-      volume: 2
+      volume: 4
 
 - type: entity
   parent: ClothingOuterHardsuitSecPilot
@@ -66,7 +69,7 @@
   - type: GasTank
     outputPressure: 42.6
     air:
-      volume: 2
+      volume: 4
       temperature: 293.15
       moles:
         - 0.41571197 # oxygen

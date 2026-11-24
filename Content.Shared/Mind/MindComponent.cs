@@ -126,6 +126,6 @@ public sealed partial class MindComponent : Component
     [DataField]
     public LocId? Subtype;
 
-    [DataField]
+    [DataField, AutoNetworkedField]
     public HashSet<Skills> Skills = []; // CorvaxGoob-Skills
 }

@@ -35,6 +35,7 @@ using Content.Goobstation.Maths.FixedPoint;
 using Content.Goobstation.Shared.Mind.Components;
 using Content.Server.Maps;
 using Content.Shared.Maps;
+using Content.Shared.Damage.Components;
 
 namespace Content.Server.GameTicking
 {
@@ -102,7 +103,7 @@ namespace Content.Server.GameTicking
         /// </remarks>
         private void LoadMaps()
         {
-            if (_mapManager.MapExists(DefaultMap))
+            if (_map.MapExists(DefaultMap))
                 return;
 
             AddGamePresetRules();
@@ -444,6 +445,7 @@ namespace Content.Server.GameTicking
 
             _roundStartDateTime = DateTime.UtcNow;
             RunLevel = GameRunLevel.InRound;
+            RecordPresetHistory(); // Goob
 
             RoundStartTimeSpan = _gameTiming.CurTime;
             SendStatusToAll();
@@ -767,8 +769,6 @@ namespace Content.Server.GameTicking
             RaiseNetworkEvent(ev);
 
             EntityManager.FlushEntities();
-
-            _mapManager.Restart();
 
             _banManager.Restart();
 

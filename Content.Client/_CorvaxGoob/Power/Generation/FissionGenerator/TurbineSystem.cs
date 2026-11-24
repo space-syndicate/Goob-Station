@@ -1,6 +1,5 @@
 ﻿using Robust.Shared.Map;
 using Robust.Client.GameObjects;
-using Content.Shared.Repairable;
 using Content.Shared._CorvaxGoob.Power.Generation.FissionGenerator;
 using Content.Client.Popups;
 using Content.Client.Examine;

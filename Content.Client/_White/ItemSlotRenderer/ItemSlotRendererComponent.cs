@@ -5,6 +5,7 @@ using Robust.Client.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -34,4 +35,8 @@ public sealed partial class ItemSlotRendererComponent : Component
 
     [DataField]
     public Vector2i RenderTargetSize = new Vector2i(32, 32);
+
+    // CorvaxGoob
+    [DataField]
+    public Vector2 RenderSlotScale = new Vector2(1, 1);
 }

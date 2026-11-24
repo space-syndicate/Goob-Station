@@ -124,7 +124,7 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
         if (!CheckSelected(ent, msg.Actor, out var mob, out var key))
             return;
 
-        if (!_records.TryGetRecord<CriminalRecord>(key.Value, out var record) || record.Status == msg.Status)
+        if (!_records.TryGetRecord<CriminalRecord>(key.Value, out var record)) // CorvaxGoob
             return;
 
         // validate the reason

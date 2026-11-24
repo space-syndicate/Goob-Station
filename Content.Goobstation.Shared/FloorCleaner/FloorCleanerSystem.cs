@@ -15,15 +15,15 @@ namespace Content.Goobstation.Shared.FloorCleaner;
 // CorvaxGoob-Footprint-Refactoring 
 // очистка сущностей удалена, т.к. следы переделаны в decals
 // добавлена трата чистящего реагента для очистки декалей.
-public sealed class FloorCleanerSystem : EntitySystem
+public sealed partial class FloorCleanerSystem : EntitySystem
 {
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedDecalSystem _decal = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
-    [Dependency] private readonly SharedPuddleSystem _puddle = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedDecalSystem _decal = default!;
+    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
+    [Dependency] private SharedPuddleSystem _puddle = default!;
 
     public override void Initialize()
     {

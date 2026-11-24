@@ -43,6 +43,9 @@ namespace Content.Client.Forensics
 
             var text = new StringBuilder();
 
+            // CorvaxGoob
+            text.AppendLine(Loc.GetString("forensic-scanner-interface-scan-time", ("time", msg.ScanTime.ToString("hh\\:mm\\:ss"))));
+
             text.AppendLine(Loc.GetString("forensic-scanner-interface-fingerprints"));
             foreach (var fingerprint in msg.Fingerprints)
             {

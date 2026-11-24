@@ -1,0 +1,14 @@
+selectable-set-bible-holy-name = Святая Библия
+selectable-set-bible-holy-description = Разорви все узы, кроме тех, что связывают меня с твоей службой и сердцем.
+selectable-set-bible-quran-name = Коран
+selectable-set-bible-quran-description = Так какое же из милостей вашего Господа вы, "люди и джинны", отвергнете?
+selectable-set-bible-tanakh-name = Свитки Танаха
+selectable-set-bible-tanakh-description = Обучая других, ты учишься сам.
+selectable-set-bible-druid-name = Священная Скрижаль Друидов
+selectable-set-bible-druid-description = Повелеваю построить здесь заповедник.
+selectable-set-bible-narsie-name = Том Нар'Си
+selectable-set-bible-narsie-description = Том, покрытый кровью неверных.
+selectable-set-bible-nanotrasen-name = Кодекс Нанотрейзимус
+selectable-set-bible-nanotrasen-description = Книга жалоб и предложений для Директората.
+selectable-set-bible-honk-name = Радость Хонкоматери
+selectable-set-bible-honk-description = Возможно это книга анекдотов.

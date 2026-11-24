@@ -42,6 +42,7 @@
     interfaces:
       enum.BatteryUiKey.Key:
         type: BatteryBoundUserInterface
+  - type: ESForcedFacingUi # Goob
   - type: ActivatableUI
     key: enum.BatteryUiKey.Key
 
@@ -74,7 +75,7 @@
 - type: entity
   abstract: true
   id: BaseSubstation
-  parent: [ CoreSubstation, BaseMachine, ConstructibleMachine ]
+  parent: [ CoreSubstation, BaseMachine, ConstructibleMachine, BaseOverTemperatureDisabled ] # CorvaxGoob : Отключен урон от темпы
   name: substation
   description: Reduces the voltage of electricity put into it.
   placement:
@@ -129,8 +130,9 @@
           moles:
             CarbonDioxide: 340.5701689 # carbon dioxide
           temperature: 373.15
+  - type: ExplosionEffect # Goob
   - type: Explosive
-    explosionType: Default
+    explosionType: Transparent # Goob
     maxIntensity: 100
     intensitySlope: 2
     totalIntensity: 200
