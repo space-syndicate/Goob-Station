@@ -24,7 +24,7 @@
       enum.SurrendVisualType.IsHostaged:
         enum.SurrendVisualType.IsHostaged:
           True: { state: hostaged, sprite: /Textures/_CorvaxGoob/Effects/hostage.rsi }
-          False: { state: icon, sprite: /Textures/Objects/Misc/Handy_Flags/blank_handy_flag.rsi }
+          False: { state: icon, sprite: /Textures/Objects/Misc/Handy_Flags/blank_handy_flag.rsi, map: ["enum.StopSurrendingStatus.StopSurrending", "enum.SurrendVisualType.IsHostaged"] }
   - type: Transform
     noRot: true
   - type: Appearance
