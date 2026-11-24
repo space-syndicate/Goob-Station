@@ -177153,7 +177153,7 @@ entities:
 
         Откуда у меня Оппорозидон и как я узнал его рецепт?
 
-        Всё очень просто! 
+        Всё очень просто!
 
                   [head=2]ГЛУПЕНЬКИЙ ХОНК-ХОООНК!!![/head]
   - uid: 25326
@@ -245093,13 +245093,6 @@ entities:
     components:
     - type: Transform
       pos: 58.475845,17.747644
-      parent: 2
-- proto: WeaponRevolverMateba
-  entities:
-  - uid: 36658
-    components:
-    - type: Transform
-      pos: 40.592552,17.601572
       parent: 2
 - proto: WeaponRifleLecter
   entities:
