@@ -29,6 +29,7 @@ namespace Content.Server.Entry
             "HideClothingLayerClothing", // Goobstation
             "ItemSlotRenderer", // WWDP EDIT
             "SuitBreathing", // CorvaxGoob
+            "CopySpriteAppearance", // CorvaxGoob
         };
     }
 }

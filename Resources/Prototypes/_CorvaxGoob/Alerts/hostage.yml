@@ -1,0 +1,30 @@
+- type: alert
+  id: ExecuteHostage
+  icons:
+  - sprite: /Textures/_CorvaxGoob/Interface/Alerts/alerts.rsi
+    state: cancel
+  name: alert-execute-hostage-name
+  description: alert-execute-hostage-desc
+  clickEvent: !type:ExecuteHostageAlertEvent
+
+- type: alert
+  id: FreeHostage
+  icons:
+  - sprite: /Textures/_CorvaxGoob/Effects/hostage.rsi
+    state: let_go
+  name: alert-free-hostage-name
+  description: alert-free-hostage-desc
+  clickEvent: !type:FreeHostageAlertEvent
+
+- type: alert
+  id: ToggleKillHostage
+  icons:
+  - sprite: /Textures/_CorvaxGoob/Effects/hostage.rsi
+    state: auto_kill0
+  - sprite: /Textures/_CorvaxGoob/Effects/hostage.rsi
+    state: auto_kill1
+  name: alert-hostage-auto-kill-name
+  description: alert-hostage-auto-kill-desc
+  clickEvent: !type:AutoKillAlertEvent
+  minSeverity: 0
+  maxSeverity: 1

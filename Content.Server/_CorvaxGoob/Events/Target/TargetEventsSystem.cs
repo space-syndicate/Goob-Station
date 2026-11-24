@@ -2,6 +2,8 @@ using Content.Goobstation.Common.Effects;
 using Content.Server._CorvaxGoob.Animation;
 using Content.Shared._CorvaxGoob.Events.Animation;
 using Content.Shared._CorvaxGoob.Events.StatusEffects;
+using Content.Shared._CorvaxGoob.Events.Surrend;
+using Content.Shared._CorvaxGoob.Surrender;
 using Content.Shared.StatusEffect;
 using Robust.Server.GameObjects;
 
@@ -21,6 +23,12 @@ public sealed class TargetEventsSystem : EntitySystem
         SubscribeLocalEvent<PlayAnimationTargetEvent>(OnPlayAnimation);
         SubscribeLocalEvent<DoSparksTargetEvent>(OnDoSparkle);
         SubscribeLocalEvent<ApplyStatusEffectTargetEvent>(OnApplyStatusEffect);
+        SubscribeLocalEvent<SurrendTargetEvent>(OnSurrend);
+    }
+
+    private void OnSurrend(SurrendTargetEvent ev)
+    {
+        EnsureComp<SurrenderComponent>(ev.Target);
     }
 
     private void OnPlayAnimation(PlayAnimationTargetEvent ev)

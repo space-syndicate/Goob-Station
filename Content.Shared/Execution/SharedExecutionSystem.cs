@@ -18,7 +18,8 @@ using Robust.Shared.Player;
 using Robust.Shared.Audio.Systems;
 using Content.Shared.Body.Part; // Goobstation decapitation
 using Content.Shared.Body.Systems; // Goobstation decapitation
-using Content.Shared._Shitmed.Medical.Surgery.Wounds.Systems; // Goobstation decapitation
+using Content.Shared._Shitmed.Medical.Surgery.Wounds.Systems;
+using Content.Shared._CorvaxGoob.Hostage; // Goobstation decapitation
 namespace Content.Shared.Execution;
 
 /// <summary>
@@ -35,6 +36,8 @@ public sealed class SharedExecutionSystem : EntitySystem
     [Dependency] private readonly SharedCombatModeSystem _combat = default!;
     [Dependency] private readonly SharedExecutionSystem _execution = default!;
     [Dependency] private readonly SharedMeleeWeaponSystem _melee = default!;
+    [Dependency] private readonly SharedTransformSystem _xform = default!;
+    [Dependency] private readonly SharedHostageSystem _hostage = default!;
     [Dependency] private readonly WoundSystem _wounds = default!; // Goobstation decapitation
     [Dependency] private readonly SharedBodySystem _body = default!; // Goobstation decapitation
 
@@ -58,18 +61,40 @@ public sealed class SharedExecutionSystem : EntitySystem
         var weapon = args.Using.Value;
         var victim = args.Target;
 
-        if (!CanBeExecuted(victim, attacker))
-            return;
-
-        UtilityVerb verb = new()
+        if (CanBeExecuted(victim, attacker))
         {
-            Act = () => TryStartExecutionDoAfter(weapon, victim, attacker, comp),
-            Impact = LogImpact.High,
-            Text = Loc.GetString("execution-verb-name"),
-            Message = Loc.GetString("execution-verb-message"),
-        };
+            UtilityVerb verb = new()
+            {
+                Act = () => TryStartExecutionDoAfter(weapon, victim, attacker, comp),
+                Impact = LogImpact.High,
+                Text = Loc.GetString("execution-verb-name"),
+                Message = Loc.GetString("execution-verb-message"),
+            };
 
-        args.Verbs.Add(verb);
+            args.Verbs.Add(verb);
+        }
+
+
+        if (_hostage.CanHostage(attacker, victim, weapon))
+        {
+            var pos = _xform.GetWorldPosition(attacker);
+            var posHostage = _xform.GetWorldPosition(victim);
+
+            var distance = (pos - posHostage).Length();
+
+            if (distance <= SharedHostageSystem.MinDistance)
+            {
+                UtilityVerb hostageVerb = new()
+                {
+                    Act = () => _hostage.TryTakeHostage(attacker, victim, uid),
+                    Impact = LogImpact.High,
+                    Text = Loc.GetString("hostage-take-verb-name"),
+                    Message = Loc.GetString("hostage-take-verb-message"),
+                };
+
+                args.Verbs.Add(hostageVerb);
+            }
+        }
     }
 
     private void TryStartExecutionDoAfter(EntityUid weapon, EntityUid victim, EntityUid attacker, ExecutionComponent comp)

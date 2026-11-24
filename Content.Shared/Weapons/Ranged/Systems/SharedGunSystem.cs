@@ -270,38 +270,38 @@ public abstract partial class SharedGunSystem : EntitySystem
     /// <summary>
     /// Attempts to shoot at the target coordinates. Resets the shot counter after every shot.
     /// </summary>
-    public bool AttemptShoot(EntityUid user, Entity<GunComponent> gun, EntityCoordinates toCoordinates, EntityUid? target = null)
+    public bool AttemptShoot(EntityUid user, Entity<GunComponent> gun, EntityCoordinates toCoordinates, EntityUid? target = null, bool spawnBullet = true)
     {
         gun.Comp.ShootCoordinates = toCoordinates;
         gun.Comp.Target = target;
-        var result = AttemptShoot(user, gun);
+        var result = AttemptShoot(user, gun, spawnBullet);
         gun.Comp.ShotCounter = 0;
         DirtyField(gun.AsNullable(), nameof(GunComponent.ShotCounter));
         return result;
     }
 
     // Goobstation - Crawling turret fix
-    public void AttemptShoot(EntityUid user, EntityUid gunUid, GunComponent gun, EntityCoordinates toCoordinates, EntityUid target)
+    public void AttemptShoot(EntityUid user, EntityUid gunUid, GunComponent gun, EntityCoordinates toCoordinates, EntityUid target, bool spawnBullet = true)
     {
         gun.Target = target;
         gun.ShootCoordinates = toCoordinates;
-        AttemptShoot(user, (gunUid, gun));
+        AttemptShoot(user, (gunUid, gun), spawnBullet);
         gun.ShotCounter = 0;
     }
 
     /// <summary>
     /// Shoots by assuming the gun is the user at default coordinates.
     /// </summary>
-    public bool AttemptShoot(Entity<GunComponent> gun)
+    public bool AttemptShoot(Entity<GunComponent> gun, bool spawnBullet = true)
     {
         var coordinates = new EntityCoordinates(gun, gun.Comp.DefaultDirection);
         gun.Comp.ShootCoordinates = coordinates;
-        var result = AttemptShoot(gun, gun);
+        var result = AttemptShoot(gun, gun, spawnBullet);
         gun.Comp.ShotCounter = 0;
         return result;
     }
 
-    private bool AttemptShoot(EntityUid user, Entity<GunComponent> gun)
+    private bool AttemptShoot(EntityUid user, Entity<GunComponent> gun, bool spawnBullet = true)
     {
         if (gun.Comp.FireRateModified <= 0f ||
             !_actionBlockerSystem.CanAttack(user))
@@ -474,7 +474,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         }
 
         // Shoot confirmed - sounds also played here in case it's invalid (e.g. cartridge already spent).
-        Shoot(gun, ev.Ammo, fromCoordinates, toCoordinates.Value, out var userImpulse, user, throwItems: attemptEv.ThrowItems);
+        Shoot(gun, ev.Ammo, fromCoordinates, toCoordinates.Value, out var userImpulse, user, throwItems: attemptEv.ThrowItems, spawnBullet);
         var shotEv = new GunShotEvent(user, ev.Ammo);
         RaiseLocalEvent(gun, ref shotEv);
         var shotBodyEv = new GunShotBodyEvent(gun, gun); // Shitmed Change

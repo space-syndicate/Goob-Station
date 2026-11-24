@@ -31,6 +31,7 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Numerics;
 using Content.Shared.Damage.Components;
+using Content.Shared._CorvaxGoob.Hostage;
 
 namespace Content.Goobstation.Shared.Execution;
 
@@ -50,7 +51,9 @@ public sealed partial class SharedGunExecutionSystem : EntitySystem
     [Dependency] private SharedAppearanceSystem _appearanceSystem = default!;
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private SharedCameraRecoilSystem _recoil = default!;
+    [Dependency] private SharedTransformSystem _xform = default!;
     [Dependency] private INetManager _net = default!;
+    [Dependency] private SharedHostageSystem _hostage = default!;
 
     private const float GunExecutionTime = 4.0f;
 
@@ -74,19 +77,43 @@ public sealed partial class SharedGunExecutionSystem : EntitySystem
         var gunexecutiontime = component.GunExecutionTime;
 
         if (HasComp<GunExecutionBlacklistComponent>(weapon)
-            || HasComp<PacifismAllowedGunComponent>(weapon)
-            || !CanExecuteWithGun(weapon, victim, attacker))
+            || HasComp<PacifismAllowedGunComponent>(weapon))
             return;
 
-        UtilityVerb verb = new()
+        if (CanExecuteWithGun(weapon, victim, attacker))
         {
-            Act = () => TryStartGunExecutionDoafter(weapon, victim, attacker, gunexecutiontime),
-            Impact = LogImpact.High,
-            Text = Loc.GetString("execution-verb-name"),
-            Message = Loc.GetString("execution-verb-message"),
-        };
+            UtilityVerb verb = new()
+            {
+                Act = () => TryStartGunExecutionDoafter(weapon, victim, attacker, gunexecutiontime),
+                Impact = LogImpact.High,
+                Text = Loc.GetString("execution-verb-name"),
+                Message = Loc.GetString("execution-verb-message"),
+            };
 
-        args.Verbs.Add(verb);
+            args.Verbs.Add(verb);
+        }
+
+        if (_hostage.CanHostage(attacker, victim, weapon))
+        {
+            var pos = _xform.GetWorldPosition(attacker);
+            var posHostage = _xform.GetWorldPosition(victim);
+
+            var distance = (pos - posHostage).Length();
+
+            if (distance <= SharedHostageSystem.MinDistance)
+            {
+                UtilityVerb hostageVerb = new()
+                {
+                    Act = () => _hostage.TryTakeHostage(attacker, victim, uid),
+                    Impact = LogImpact.High,
+                    Text = Loc.GetString("hostage-take-verb-name"),
+                    Message = Loc.GetString("hostage-take-verb-message"),
+                };
+
+                args.Verbs.Add(hostageVerb);
+            }
+        }
+
     }
 
     private bool CanExecuteWithGun(EntityUid weapon, EntityUid victim, EntityUid user)

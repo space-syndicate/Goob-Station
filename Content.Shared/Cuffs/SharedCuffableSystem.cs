@@ -559,6 +559,10 @@ namespace Content.Shared.Cuffs
             RaiseLocalEvent(user, ref cuffEv); // Goob
             cuffTime = cuffEv.Duration; // Goob
 
+            var beingCuffEv = new ModifyBeingCuffDurationEvent(user, cuffTime); // CorvaxGoob
+            RaiseLocalEvent(target, ref beingCuffEv); // CorvaxGoob
+            cuffTime = beingCuffEv.Duration; // CorvaxGoob
+
             if (HasComp<DisarmProneComponent>(target))
                 cuffTime = 0.0f; // cuff them instantly.
 

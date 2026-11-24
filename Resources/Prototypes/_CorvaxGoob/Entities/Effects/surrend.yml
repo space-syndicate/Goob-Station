@@ -1,0 +1,58 @@
+- type: entity
+  id: SurrendEffect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: /Textures/Objects/Misc/Handy_Flags/blank_handy_flag.rsi
+    drawdepth: Effects
+    offset: 0, 0.9
+    noRot: true
+    layers:
+    - state: icon
+      map: ["enum.StopSurrendingStatus.StopSurrending", "enum.SurrendVisualType.IsHostaged"]
+  - type: TriggerOnSpawn
+  - type: ExecuteTargetEventsOnTrigger
+    events:
+    - !type:PlayAnimationTargetEvent
+      animationID: EffectSurrend
+  - type: GenericVisualizer
+    visuals:
+      enum.StopSurrendingStatus.StopSurrending:
+        enum.StopSurrendingStatus.StopSurrending:
+          True: { state: icon_blink, sprite: /Textures/Objects/Misc/Handy_Flags/blank_handy_flag.rsi }
+          False: { state: icon, sprite: /Textures/Objects/Misc/Handy_Flags/blank_handy_flag.rsi }
+      enum.SurrendVisualType.IsHostaged:
+        enum.SurrendVisualType.IsHostaged:
+          True: { state: hostaged, sprite: /Textures/_CorvaxGoob/Effects/hostage.rsi }
+          False: { state: icon, sprite: /Textures/Objects/Misc/Handy_Flags/blank_handy_flag.rsi }
+  - type: Transform
+    noRot: true
+  - type: Appearance
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: HostageTakerEffect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: /Textures/_CorvaxGoob/Effects/hostage.rsi
+    drawdepth: Effects
+    offset: 0, 0.9
+    noRot: true
+    layers:
+    - state: hostage_taker
+  - type: TriggerOnSpawn
+  - type: CopySpriteAppearance
+  - type: ExecuteTargetEventsOnTrigger
+    events:
+    - !type:PlayAnimationTargetEvent
+      animationID: EffectSurrend
+  - type: Transform
+    noRot: true
+  - type: Appearance
+
+  - type: Tag
+    tags:
+    - HideContextMenu
