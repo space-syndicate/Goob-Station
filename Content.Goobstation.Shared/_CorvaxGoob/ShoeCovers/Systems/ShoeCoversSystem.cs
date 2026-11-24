@@ -90,7 +90,7 @@ public sealed partial class ShoeCoversSystem : EntitySystem
         var key = Factory.GetComponentName<ShoeCoversWearerComponent>();
         // TryAdd сообщает, принадлежит ли новая запись этим бахилам. От этого зависит, можно ли удалить её позже.
         coating.AddedWearerGrant = grant.Components.TryAdd(key,
-            new EntityPrototype.ComponentRegistryEntry(Factory.GetComponent<ShoeCoversWearerComponent>(), new()));
+            new EntityPrototype.ComponentRegistryEntry(Factory.GetComponent<ShoeCoversWearerComponent>()));
 
         // Если обувь уже надета, событие экипировки не повторится. Выдаём маркер текущему носителю сразу.
         var parent = Transform(shoes).ParentUid;
