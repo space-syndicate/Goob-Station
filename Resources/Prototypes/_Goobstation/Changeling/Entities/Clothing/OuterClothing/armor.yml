@@ -39,9 +39,10 @@
       coefficients:
         Blunt: 0.45
         Slash: 0.45
-        Piercing: 0.45
+        Piercing: 0.35 # CorvaxGoob 0.45 > 0.35
         Heat: 0.65
         Caustic: 0.55
+        Radiation: 0.55 # CorvaxGoob
   - type: FireProtection
     reduction: -0.25 # Ling armor should be counterable given you get this for eating two tiders
   - type: ClothingSpeedModifier

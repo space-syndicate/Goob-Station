@@ -207,8 +207,8 @@
   - type: Projectile
     damage:
       types:
-        Radiation: 5
-        Piercing: 5
+        Radiation: 2 # CorvaxGoob 5 > 2
+        Piercing: 6 # CorvaxGoob 5 > 6
 
 - type: entity
   parent: PelletShotgunUranium

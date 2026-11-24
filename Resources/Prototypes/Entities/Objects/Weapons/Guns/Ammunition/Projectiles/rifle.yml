@@ -44,5 +44,5 @@
   - type: Projectile
     damage:
       types:
-        Radiation: 9 # Goobstation
+        Radiation: 3.5 # 9 > 3.5 CorvaxGoob
         Piercing: 10 # Goobstation

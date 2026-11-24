@@ -97,7 +97,7 @@
     - type: Projectile
       damage:
         types:
-          Radiation: 8
+          Radiation: 4 # CorvaxGoob 8 > 4 
           Piercing: 8
 
 - type: entity
