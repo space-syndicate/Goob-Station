@@ -15,7 +15,7 @@ public sealed partial class WrappedShoesComponent : Component
     [DataField(required: true)]
     public float MaxDistance;
 
-    [DataField]
+    [DataField, AutoNetworkedField]
     public SoundSpecifier? UnwrapSound;
 
     // Идентификатор прототипа мусора. Пустое значение оставляет снятие без создания предмета.
