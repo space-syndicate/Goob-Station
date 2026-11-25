@@ -68,6 +68,7 @@
   - JetInjector
   - SprayBottleStypticPowderEmpty #CorvaxGoob
   - SprayBottleSilverSulfadiazineEmpty #CorvaxGoob
+  - ShoeCovers #CorvaxGoob
 
 - type: latheRecipePack
   id: RollerBedsStatic

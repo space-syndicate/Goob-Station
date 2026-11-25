@@ -29,9 +29,7 @@
         blacklist:
           components:
           - Sharp
-  - type: Tag
-    tags:
-    - CantBeWrapped # CorvaxGoob edit
+  - type: CantBeWrapped # CorvaxGoob edit
 
 - type: entity
   parent: ClothingShoesClownBase
@@ -53,7 +51,7 @@
     tags:
     - ClownShoes
     - WhitelistChameleon
-    - CantBeWrapped # CorvaxGoob-Changes
+  - type: CantBeWrapped
 
 - type: entity
   parent: ClothingShoesClown

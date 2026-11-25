@@ -134,7 +134,9 @@ public sealed partial class ShoeCoversSystem : EntitySystem
 
         var distance = GetDistance(args);
         // Поворот на месте тоже вызывает MoveEvent, но даёт нулевое расстояние. В невесомости бахилы не изнашиваются.
-        if (distance == 0 || _gravity.IsWeightless(wearer.Owner))
+        if (distance == 0
+        || _gravity.IsWeightless(wearer.Owner)
+        || distance > 2) // На случай теллепортации
             return;
 
         // Износ хранится на ботинках, поэтому при снятии и повторном надевании счётчик сохраняется.

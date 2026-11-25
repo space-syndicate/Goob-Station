@@ -146,6 +146,3 @@
 
 - type: Tag
   id: GasTurbineStator
-
-- type: Tag
-  id: CantBeWrapped
