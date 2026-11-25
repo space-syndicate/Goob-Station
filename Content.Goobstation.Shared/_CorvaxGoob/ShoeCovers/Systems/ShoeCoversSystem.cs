@@ -22,6 +22,7 @@ namespace Content.Goobstation.Shared._CorvaxGoob.ShoeCovers.Systems;
 public sealed partial class ShoeCoversSystem : EntitySystem
 {
     private const string ShoesSlot = "shoes";
+    private const float TeleportDistance = 2f;
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
     [Dependency] private SharedGravitySystem _gravity = default!;
