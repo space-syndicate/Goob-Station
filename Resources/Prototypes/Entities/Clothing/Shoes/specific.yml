@@ -51,7 +51,6 @@
     tags:
     - ClownShoes
     - WhitelistChameleon
-  - type: CantBeWrapped
 
 - type: entity
   parent: ClothingShoesClown
