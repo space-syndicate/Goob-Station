@@ -20,8 +20,6 @@ public sealed partial class SharedSurrenderSystem : EntitySystem
         SubscribeLocalEvent<SurrenderComponent, AttemptStopPullingEvent>(OnAttemptStopPulling);
     }
 
-
-
     private void OnModifyCuffDuration(Entity<SurrenderComponent> entity, ref ModifyBeingCuffDurationEvent ev) => ev.Duration *= entity.Comp.InteractionWithUserMod;
 
     private void OnInteractionAttempt(Entity<SurrenderComponent> entity, ref InteractionAttemptEvent ev) => ev.Cancelled = true;

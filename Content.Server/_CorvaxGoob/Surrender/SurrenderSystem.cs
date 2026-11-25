@@ -1,6 +1,7 @@
 using Content.Server.DoAfter;
 using Content.Server.Hands.Systems;
 using Content.Server.Inventory;
+using Content.Shared._CorvaxGoob.Hostage;
 using Content.Shared._CorvaxGoob.Surrender;
 using Content.Shared.Alert;
 using Content.Shared.CombatMode.Pacification;
@@ -38,6 +39,9 @@ public sealed partial class SurrenderSystem : EntitySystem
     private void OnDoAfter(Entity<SurrenderComponent> entity, ref StopSurrendDoAfterEvent ev)
     {
         if (ev.Cancelled)
+            return;
+
+        if (HasComp<HostageComponent>(entity))
             return;
 
         RemComp<SurrenderComponent>(entity);

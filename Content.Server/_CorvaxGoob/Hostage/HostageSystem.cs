@@ -7,6 +7,7 @@ using Content.Server.Weapons.Melee;
 using Content.Shared._CorvaxGoob.Appearance;
 using Content.Shared._CorvaxGoob.Hostage;
 using Content.Shared._CorvaxGoob.Surrender;
+using Content.Shared.ActionBlocker;
 using Content.Shared.Alert;
 using Content.Shared.Chat;
 using Content.Shared.Damage;
@@ -35,7 +36,6 @@ namespace Content.Server._CorvaxGoob.Hostage;
 
 public sealed partial class HostageSystem : EntitySystem
 {
-    [Dependency] private SurrenderSystem _surrender = default!;
     [Dependency] private SharedHostageSystem _hostage = default!;
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private TransformSystem _xform = default!;
@@ -52,6 +52,7 @@ public sealed partial class HostageSystem : EntitySystem
     [Dependency] private AlertsSystem _alerts = default!;
     [Dependency] private MovementSpeedModifierSystem _modifier = default!;
     [Dependency] private MeleeWeaponSystem _melee = default!;
+    [Dependency] private ActionBlockerSystem _actionBlocker = default!;
 
     private TimeSpan _nextUpdate = TimeSpan.Zero;
     private TimeSpan _updateInterval = TimeSpan.FromSeconds(0.25);
@@ -197,6 +198,7 @@ public sealed partial class HostageSystem : EntitySystem
 
         if (distance <= entity.Comp.MaxKillDistance
             && tryKill
+            && _actionBlocker.CanInteract(entity, entity.Comp.Hostage)
             && TryComp<HandsComponent>(entity, out var hands)
             && _hands.IsHolding((entity.Owner, hands), entity.Comp.Weapon))
         {

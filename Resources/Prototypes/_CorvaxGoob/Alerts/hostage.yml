@@ -1,8 +1,8 @@
 - type: alert
   id: ExecuteHostage
   icons:
-  - sprite: /Textures/_CorvaxGoob/Interface/Alerts/alerts.rsi
-    state: cancel
+  - sprite: /Textures/_CorvaxGoob/Effects/hostage.rsi
+    state: let_go
   name: alert-execute-hostage-name
   description: alert-execute-hostage-desc
   clickEvent: !type:ExecuteHostageAlertEvent

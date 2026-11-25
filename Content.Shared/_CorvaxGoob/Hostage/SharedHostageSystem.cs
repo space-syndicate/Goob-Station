@@ -67,6 +67,12 @@ public sealed partial class SharedHostageSystem : EntitySystem
             if (!TryComp<MobStateComponent>(victim, out var mobState))
                 return false;
 
+            if (HasComp<HostageComponent>(victim))
+                return false;
+
+            if (HasComp<HostageTakerComponent>(taker))
+                return false;
+
             if (mobState.CurrentState != Mobs.MobState.Alive)
                 return false;
 

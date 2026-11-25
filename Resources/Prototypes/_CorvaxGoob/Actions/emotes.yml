@@ -67,7 +67,7 @@
 - type: emote
   id: Surrend
   name: chat-emote-name-surrend
-  icon: /Textures/Objects/Misc/Handy_Flags/blank_handy_flag.rsi/icon.png
+  icon: _CorvaxGoob/Interface/Emotes/blank_flag.png
   chatMessages: ["chat-emote-msg-surrend-1", "chat-emote-msg-surrend-2"]
   chatTriggers:
   - поднимает руки.
