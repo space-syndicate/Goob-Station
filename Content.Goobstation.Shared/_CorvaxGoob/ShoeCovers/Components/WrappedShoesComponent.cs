@@ -19,7 +19,7 @@ public sealed partial class WrappedShoesComponent : Component
     public SoundSpecifier? UnwrapSound;
 
     // Идентификатор прототипа мусора. Пустое значение оставляет снятие без создания предмета.
-    [DataField]
+    [DataField, AutoNetworkedField]
     public EntProtoId? UnwrapTrash;
 
     // Путь к RSI. AutoNetworkedField передаёт его клиенту, когда на обуви появляется покрытие.
