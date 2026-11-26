@@ -31,7 +31,7 @@
         stomach: OrganMothStomach # CorvaxGoob organs resprite
         liver: OrganMothLiver # CorvaxGoob organs resprite
         kidneys: OrganMothKidneys # CorvaxGoob organs resprite
-        butt: Butt # Goob
+        # butt: Butt # Goob # CorvaxGoob delete butt
     right arm:
       part: RightArmMoth
       connections:

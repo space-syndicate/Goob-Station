@@ -29,7 +29,7 @@
         stomach: OrganYowieStomach
         liver: OrganYowieLiver
         kidneys: OrganHumanKidneys
-        butt: Butt
+        # butt: Butt # CorvaxGoob delete butt
     right arm:
       part: RightArmYowie
       connections:

@@ -29,7 +29,7 @@
         stomach: OrganPlasmamanStomach
         liver: OrganPlasmamanLiver
         kidneys: OrganPlasmamanKidneys
-        butt: Butt # Goob
+        # butt: Butt # Goob # CorvaxGoob delete butt
     right arm:
       part: RightArmPlasmaman
       connections:

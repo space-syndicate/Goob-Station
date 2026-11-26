@@ -31,7 +31,7 @@
         stomach: OrganTajaranStomach # CorvaxGoob organs resprite
         liver:  OrganTajaranLiver # CorvaxGoob organs resprite
         kidneys: OrganTajaranKidneys # CorvaxGoob organs resprite
-        butt: Butt
+        # butt: Butt # CorvaxGoob delete butt
     right arm:
       part: RightArmTajaran
       connections:
