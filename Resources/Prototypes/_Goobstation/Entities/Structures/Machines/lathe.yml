@@ -25,6 +25,7 @@
     idleState: icon
     runningState: icon
     staticPacks:
+    - DepartmentBasicToolsStatic # CorvaxGoob - dept-techfab-tools-materials
     - SharedBoardsStatic
     - EngineeringBoardsStatic
     - CircuitFloorsStatic
@@ -128,6 +129,7 @@
     idleState: icon
     runningState: icon
     staticPacks:
+    - DepartmentBasicToolsStatic # CorvaxGoob - dept-techfab-tools-materials
     - ToolsStatic
     - SharedBoardsStatic
     - CargoBoardsStatic
@@ -217,6 +219,7 @@
     idleState: icon
     runningState: icon
     staticPacks:
+    - DepartmentBasicToolsStatic # CorvaxGoob - dept-techfab-tools-materials
     - SharedBoardsStatic
     - EngineeringBoardsStatic
     - CircuitFloorsStatic
@@ -329,6 +332,7 @@
     idleState: icon
     runningState: icon
     staticPacks:
+    - DepartmentBasicToolsStatic # CorvaxGoob - dept-techfab-tools-materials
     - ServiceBoardsStatic
     - ServiceBoardsStaticGoob
     - MaterialsStatic

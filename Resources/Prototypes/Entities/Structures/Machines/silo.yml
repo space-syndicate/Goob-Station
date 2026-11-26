@@ -24,6 +24,11 @@
       - Sheet
       - RawMaterial
       - Ingot
+      # CorvaxGoob Start - dept-techfab-tools-materials
+      - SiloMaterialCloth
+      - SheetPlasma
+      - SiloMaterialWood
+      # CorvaxGoob End
   - type: ActivatableUI
     key: enum.OreSiloUiKey.Key
   - type: ActivatableUIRequiresPower
