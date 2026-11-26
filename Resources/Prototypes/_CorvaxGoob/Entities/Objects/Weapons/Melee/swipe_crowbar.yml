@@ -1,0 +1,11 @@
+# Прототип: монтировка со свайп-боевкой (зажать ЛКМ и провести мышью).
+- type: entity
+  parent: Crowbar
+  id: CrowbarSwipe
+  name: duelist crowbar
+  description: A well-balanced crowbar. Hold the attack button and drag the mouse to choose a strike.
+  components:
+  - type: SwipeCombat
+  - type: GuideHelp
+    guides:
+    - SwipeCrowbar
