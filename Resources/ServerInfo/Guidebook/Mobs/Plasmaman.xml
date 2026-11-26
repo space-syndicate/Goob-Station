@@ -72,4 +72,31 @@
     <GuideEntityEmbed Entity="Syringe" Caption=""/>
   </Box>
 
+
+
+  ### All Bones!
+  - They don't experience hunger nor thirst.
+  - They don't have blood and cannot bleed out.
+
+  - Due to their skeleton body, they can consume Milk to gain a positive moodlet and slowly heal Brute, Heat, Shock, and Caustic damage.
+  - They can also consume Plasma to gain a bigger positive moodlet and heal every damage type faster, except for Cellular damage.
+
+  <Box>
+    <GuideEntityEmbed Entity="DrinkCartonMilk" />
+    <GuideEntityEmbed Entity="SheetPlasma1" />
+  </Box>
+
+  ## Benefits
+  
+  - They infuse their fists with plasma dust that combusts when they punch, dealing [color=orange]5 Heat[/color] and [color=red]2.25 Blunt[/color] damage. 
+  - They take [color=#1e90ff]25% less Piercing, 20% less Poison, and 15% less Slash damage[/color]
+  - They are [color=#1e90ff]immune to Radiation and Cold damage[/color]. Due to their [color=#1e90ff]Cold immunity[/color], they can live in cold environments without the need of a winter coat.
+  
+  ## Drawbacks
+
+  - Each successful punch deals [color=orange]2 Heat[/color] damage to their hands.
+  - They take [color=#ffa500]50% more Blunt and 50% more Heat damage[/color].
+  - They have a slightly lower density than the average species. This results in weaknesses such as but not limited to: being slightly more vulnerable to being shoved, picked up, and thrown by Space Wind, and having a harder time pulling heavy objects.
+
+
 </Document>
