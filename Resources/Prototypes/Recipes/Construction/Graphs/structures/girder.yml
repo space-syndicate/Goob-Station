@@ -42,6 +42,14 @@
               amount: 2
               doAfter: 2
 
+        - to: secretDoorCabled # CorvaxGoob - enhance-secret-door
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - material: Cable
+              amount: 4
+              doAfter: 2.5
+
         - to: reinforcedGirder
           completed:
             - !type:SnapToGrid
@@ -254,6 +262,148 @@
             - tool: Prying
               doAfter: 5
 
+# CorvaxGoob Start - enhance-secret-door
+    - node: secretDoorCabled
+      entity: Girder
+      edges:
+        - to: secretDoorRodded
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - material: MetalRod
+              amount: 4
+              doAfter: 4
+
+        - to: girder
+          completed:
+            - !type:GivePrototype
+              prototype: CableApcStack1
+              amount: 4
+          steps:
+            - tool: Cutting
+              doAfter: 2
+
+    - node: secretDoorRodded
+      entity: Girder
+      edges:
+        - to: secretDoorFrame
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 2
+
+        - to: secretDoorCabled
+          completed:
+            - !type:GivePrototype
+              prototype: PartRodMetal1
+              amount: 4
+          steps:
+            - tool: Cutting
+              doAfter: 2
+
+    - node: secretDoorFrame
+      entity: CorvaxGoobSecretDoorAssembly
+      edges:
+        - to: secretDoorElectronics
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - component: PowerCell
+              name: construction-graph-component-power-cell
+              store: battery-container
+              icon:
+                sprite: Objects/Power/power_cells.rsi
+                state: small
+              doAfter: 1
+
+        - to: secretDoorRodded
+          completed:
+            - !type:GivePrototype
+              prototype: SheetSteel1
+              amount: 2
+          steps:
+            - tool: Prying
+              doAfter: 5
+
+    - node: secretDoorElectronics
+      entity: CorvaxGoobSecretDoorAssembly
+      edges:
+        - to: solidSecretDoor
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+        - to: secretDoorAirlockElectronics
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - component: DoorElectronics
+              store: board
+              name: construction-graph-component-door-electronics-circuit-board
+              icon:
+                sprite: "Objects/Misc/module.rsi"
+                state: "door_electronics"
+              doAfter: 3
+
+        - to: secretDoorFrame
+          conditions:
+            - !type:EntityAnchored {}
+          completed:
+            - !type:EmptyContainer
+              container: battery-container
+              pickup: true
+          steps:
+            - tool: Prying
+              doAfter: 5
+
+    - node: secretDoorAirlockElectronics
+      entity: CorvaxGoobSecretDoorAssembly
+      edges:
+        - to: solidSecretDoorAirlock
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+        - to: secretDoorElectronics
+          conditions:
+            - !type:EntityAnchored {}
+          completed:
+            - !type:EmptyContainer
+              container: board
+              pickup: true
+          steps:
+            - tool: Prying
+              doAfter: 5
+
+    - node: solidSecretDoor
+      entity: SolidSecretDoor
+      edges:
+        - to: secretDoorElectronics
+          conditions:
+            - !type:EntityAnchored {}
+            - !type:DoorWelded {}
+          steps:
+            - tool: Prying
+              doAfter: 5
+
+    - node: solidSecretDoorAirlock
+      entity: SolidSecretDoorAirlock
+      edges:
+        - to: secretDoorAirlockElectronics
+          conditions:
+            - !type:EntityAnchored {}
+            - !type:DoorWelded {}
+          steps:
+            - tool: Prying
+              doAfter: 5
+ # CorvaxGoob End
+
     - node: reinforcedGirder
       entity: ReinforcedGirder
       edges:
@@ -284,6 +434,14 @@
               amount: 2
               doAfter: 1
 
+        - to: reinforcedSecretDoorCabled # CorvaxGoob - enhance-secret-door
+          conditions:
+            - !type:EntityAnchored { }
+          steps:
+            - material: Cable
+              amount: 4
+              doAfter: 2.5
+
 # CorvaxGoob-diagonal-walls-crafts-start
 #        - to: diagonalshuttleWall
 #          conditions:
@@ -311,6 +469,165 @@
           steps:
             - tool: Cutting
               doAfter: 2
+
+ # CorvaxGoob Start - enhance-secret-door
+    - node: reinforcedSecretDoorCabled
+      entity: ReinforcedGirder
+      edges:
+        - to: reinforcedSecretDoorRodded
+          conditions:
+            - !type:EntityAnchored { }
+          steps:
+            - material: MetalRod
+              amount: 4
+              doAfter: 4
+
+        - to: reinforcedGirder
+          completed:
+            - !type:GivePrototype
+              prototype: CableApcStack1
+              amount: 4
+          steps:
+            - tool: Cutting
+              doAfter: 2
+
+    - node: reinforcedSecretDoorRodded
+      entity: ReinforcedGirder
+      edges:
+        - to: reinforcedSecretDoorFrame
+          conditions:
+            - !type:EntityAnchored { }
+          steps:
+            - material: Plasteel
+              amount: 2
+              doAfter: 2
+
+        - to: reinforcedSecretDoorCabled
+          completed:
+            - !type:GivePrototype
+              prototype: PartRodMetal1
+              amount: 4
+          steps:
+            - tool: Cutting
+              doAfter: 2
+
+    - node: reinforcedSecretDoorFrame
+      entity: CorvaxGoobReinforcedSecretDoorAssembly
+      edges:
+        - to: reinforcedSecretDoorElectronics
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - component: PowerCell
+              name: construction-graph-component-power-cell
+              store: battery-container
+              icon:
+                sprite: Objects/Power/power_cells.rsi
+                state: small
+              doAfter: 1
+
+        - to: reinforcedSecretDoorRodded
+          completed:
+            - !type:GivePrototype
+              prototype: SheetPlasteel1
+              amount: 2
+          steps:
+            - tool: Prying
+              doAfter: 5
+
+    - node: reinforcedSecretDoorElectronics
+      entity: CorvaxGoobReinforcedSecretDoorAssembly
+      edges:
+        - to: reinforcedSecretDoorWelded
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - tool: Welding
+              doAfter: 2
+
+        - to: reinforcedSecretDoorFrame
+          conditions:
+            - !type:EntityAnchored {}
+          completed:
+            - !type:EmptyContainer
+              container: battery-container
+              pickup: true
+          steps:
+            - tool: Prying
+              doAfter: 5
+
+    - node: reinforcedSecretDoorWelded
+      entity: CorvaxGoobReinforcedSecretDoorAssembly
+      edges:
+        - to: ReinforcedSecretDoor
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+        - to: reinforcedSecretDoorAirlockElectronics
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - component: DoorElectronics
+              store: board
+              name: construction-graph-component-door-electronics-circuit-board
+              icon:
+                sprite: "Objects/Misc/module.rsi"
+                state: "door_electronics"
+              doAfter: 3
+
+        - to: reinforcedSecretDoorElectronics
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - tool: Welding
+              doAfter: 2
+
+    - node: reinforcedSecretDoorAirlockElectronics
+      entity: CorvaxGoobReinforcedSecretDoorAssembly
+      edges:
+        - to: ReinforcedSecretDoorAirlock
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+        - to: reinforcedSecretDoorWelded
+          conditions:
+            - !type:EntityAnchored {}
+          completed:
+            - !type:EmptyContainer
+              container: board
+              pickup: true
+          steps:
+            - tool: Prying
+              doAfter: 5
+
+    - node: ReinforcedSecretDoor
+      entity: ReinforcedSecretDoor
+      edges:
+        - to: reinforcedSecretDoorWelded
+          conditions:
+            - !type:EntityAnchored {}
+            - !type:DoorWelded {}
+          steps:
+            - tool: Prying
+              doAfter: 5
+
+    - node: ReinforcedSecretDoorAirlock
+      entity: ReinforcedSecretDoorAirlock
+      edges:
+        - to: reinforcedSecretDoorAirlockElectronics
+          conditions:
+            - !type:EntityAnchored {}
+            - !type:DoorWelded {}
+          steps:
+            - tool: Prying
+              doAfter: 5
+# CorvaxGoob End
 
     - node: reinforcedWall
       entity: WallReinforced
