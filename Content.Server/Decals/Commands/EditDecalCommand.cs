@@ -23,7 +23,9 @@ Possible modes are:\n
 - rotation <degrees>\n
 - zindex <zIndex>\n
 - clean <cleanable>
-";
+- glows <glows>\n
+- glowEnergy <glowEnergy>
+"; // "glows" part, CorvaxGoob-GlowingDecals
     public void Execute(IConsoleShell shell, string argStr, string[] args)
     {
         if (args.Length < 4)
@@ -155,6 +157,44 @@ Possible modes are:\n
                     shell.WriteError("Failed changing decal cleanable flag.");
                 }
                 break;
+    	    // CorvaxGoob-Start
+            case "glows":
+                if(args.Length != 4)
+                {
+                    shell.WriteError("Expected 5 arguments.");
+                    return;
+                }
+
+                if (!bool.TryParse(args[3], out var glows))
+                {
+                    shell.WriteError("Failed parsing glows.");
+                    return;
+                }
+
+                if (!decalSystem.SetDecalGlows(gridId.Value, uid, glows))
+                {
+                    shell.WriteError("Failed changing decal glows flag.");
+                }
+                break;
+            case "glowEnergy":
+                if(args.Length != 4)
+                {
+                    shell.WriteError("Expected 5 arguments.");
+                    return;
+                }
+
+                if (!float.TryParse(args[3], out var glowEnergy))
+                {
+                    shell.WriteError("Failed parsing glows.");
+                    return;
+                }
+
+                if (!decalSystem.SetDecalGlowEnergy(gridId.Value, uid, glowEnergy))
+                {
+                    shell.WriteError("Failed changing decal glowsEnergy value.");
+                }
+                break;
+    	    // CorvaxGoob-End
             default:
                 shell.WriteError("Invalid mode.");
                 return;
