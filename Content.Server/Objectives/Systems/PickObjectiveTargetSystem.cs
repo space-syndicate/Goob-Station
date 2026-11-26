@@ -55,7 +55,9 @@ public sealed class PickObjectiveTargetSystem : EntitySystem
         }
 
         // CorvaxGoob antag-target-immunity start
-        if (HasComp<AntagObjectiveImmunityComponent>(ent.Owner))
+        if (TryComp<MindComponent>(targetComp.Target.Value, out var targetMind) &&
+            targetMind.OwnedEntity != null &&
+            HasComp<AntagObjectiveImmunityComponent>(targetMind.OwnedEntity.Value))
         {
             args.Cancelled = true;
             return;
@@ -86,7 +88,9 @@ public sealed class PickObjectiveTargetSystem : EntitySystem
         }
 
         // CorvaxGoob antag-target-immunity start
-        if (HasComp<AntagObjectiveImmunityComponent>(ent.Owner))
+        if (TryComp<MindComponent>(picked, out var pickedMind) &&
+            pickedMind.OwnedEntity != null &&
+            HasComp<AntagObjectiveImmunityComponent>(pickedMind.OwnedEntity.Value))
         {
             args.Cancelled = true;
             return;
