@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-using Content.Goobstation.Common.ServerCurrency;
+// Fully deleted by CorvaxGoob
+/*using Content.Goobstation.Common.ServerCurrency;
 using Content.Server.Destructible;
 using Content.Server.Destructible.Thresholds.Behaviors;
 using Robust.Shared.Player;
@@ -23,4 +24,4 @@ public sealed partial class GiveGoobcoinsToKillerBehaviour : IThresholdBehavior
 
         IoCManager.Resolve<ICommonCurrencyManager>().AddCurrency(actor.PlayerSession.UserId, Amount);
     }
-}
+}*/

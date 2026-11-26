@@ -85,8 +85,8 @@
         !type:DamageTrigger
         damage: 120
       behaviors:
-      - !type:GiveGoobcoinsToKillerBehaviour
-        amount: 1
+      # - !type:GiveGoobcoinsToKillerBehaviour # deleted by CorvaxGoob
+      #   amount: 1
       - !type:SpawnEntitiesBehavior
         spawn:
           EffectConfettiBurst:
