@@ -20,10 +20,12 @@
       ]
     },
     {
-      "name": "implanter-inhand-left"
+      "name": "implanter-inhand-left",
+      "directions": 4
     },
     {
-      "name": "implanter-inhand-right"
+      "name": "implanter-inhand-right",
+      "directions": 4
     }
   ]
 }
