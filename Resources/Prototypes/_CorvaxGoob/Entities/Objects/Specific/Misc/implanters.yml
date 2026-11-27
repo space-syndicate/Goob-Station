@@ -9,4 +9,3 @@
   - type: Implanter
     implant: AdminAntagImmuneImplant
     implantOnly: true
-    currentUses: 1
