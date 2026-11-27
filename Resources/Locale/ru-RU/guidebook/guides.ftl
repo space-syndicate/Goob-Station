@@ -129,6 +129,7 @@ guide-entry-other-recipes = Другие
 guide-entry-secret-recipes = Секретные
 guide-entry-antagonists = Антагонисты
 guide-entry-nuclear-operatives = Ядерные оперативники
+guide-entry-cosmic-colossus = Энтропийный Колосс
 guide-entry-traitors = Предатели
 guide-entry-zombies = Зомби
 guide-entry-revolutionaries = Революционеры

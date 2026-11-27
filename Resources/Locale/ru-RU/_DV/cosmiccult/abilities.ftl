@@ -15,3 +15,17 @@ cosmicability-monument-spawn-error-grid = Недопустимое место! �
 cosmicability-monument-spawn-error-station = Недопустимое место! Монумент может быть призван только на станции.
 cosmicability-monument-spawn-error-intersection = Слишком тесно! Для призыва Монумента требуется свободная область 3x1.
 cosmicability-monument-spawn-error-space = Слишком близко к космосу! Монумент должен находиться как минимум в { $DISTANCE } м. отсюда.
+cosmicability-hibernate-confirm = ЭТО ДЕЙСТВИЕ ОБЕЗДВИЖИТ ВАС НА МЕСТЕ! Используйте снова, чтобы подтвердить.
+
+# Способности Колосса
+ent-ActionCosmicColossusSunder = Энтропический Разлом
+    .desc = Переместитесь в указанную точку и вызовите каскадную детонацию пагубной энергии.
+
+ent-ActionCosmicColossusIngress = Колоссальный Вход
+    .desc = Используйте свою колоссальную силу, чтобы силой распахнуть дверной проём.
+
+ent-ActionCosmicColossusHibernate = Панцирь Дрёмы
+    .desc = Погрузите своё тело в дрёму на некоторое время, чтобы восстановить целостность. Применять можно только на твёрдой поверхности.
+
+ent-ActionCosmicColossusEffigy = Призвать Изваяние
+    .desc = Призовите Изваяние Энтропии в реальное пространство.
