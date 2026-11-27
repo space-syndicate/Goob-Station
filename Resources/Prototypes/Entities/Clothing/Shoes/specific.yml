@@ -29,6 +29,7 @@
         blacklist:
           components:
           - Sharp
+  - type: CantBeWrapped # CorvaxGoob edit
 
 - type: entity
   parent: ClothingShoesClownBase
