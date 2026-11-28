@@ -60493,15 +60493,6 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: WeaponRifleAk
-  entities:
-  - uid: 18
-    components:
-    - type: Transform
-      parent: 3
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: WeaponRifleLecter
   entities:
   - uid: 6382

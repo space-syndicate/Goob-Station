@@ -279749,15 +279749,6 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: SpeedLoaderMagnumAP
-  entities:
-  - uid: 23958
-    components:
-    - type: Transform
-      parent: 23956
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: SpiderWeb
   entities:
   - uid: 28170
@@ -395706,22 +395697,6 @@ entities:
     - type: Transform
       pos: 4.454509,-8.935495
       parent: 2
-- proto: WeaponRevolverMateba
-  entities:
-  - uid: 23959
-    components:
-    - type: Transform
-      parent: 23956
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 54379
-    components:
-    - type: Transform
-      parent: 54374
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: WeaponRevolverPirate
   entities:
   - uid: 41469

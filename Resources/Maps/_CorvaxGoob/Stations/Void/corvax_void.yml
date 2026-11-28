@@ -130545,14 +130545,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 47.998272,128.32661
       parent: 1
-- proto: SpeedLoaderMagnumAP
-  entities:
-  - uid: 7068
-    components:
-    - type: Transform
-      rot: -6.283185307179586 rad
-      pos: 148.53683,143.69046
-      parent: 1
 - proto: SpiderWeb
   entities:
   - uid: 8693
@@ -163469,14 +163461,6 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: WeaponRevolverMatebaAP
-  entities:
-  - uid: 7063
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 148.47433,142.86234
-      parent: 1
 - proto: WeaponRifleLecter
   entities:
   - uid: 17474

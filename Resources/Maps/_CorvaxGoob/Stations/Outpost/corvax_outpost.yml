@@ -145500,20 +145500,6 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: WeaponRevolverMateba
-  entities:
-  - uid: 18317
-    components:
-    - type: Transform
-      pos: -51.434956,-24.461514
-      parent: 2
-- proto: WeaponRifleAk
-  entities:
-  - uid: 18318
-    components:
-    - type: Transform
-      pos: -53.58514,-19.436678
-      parent: 2
 - proto: WeaponRifleLecter
   entities:
   - uid: 18319
