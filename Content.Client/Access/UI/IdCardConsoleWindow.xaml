@@ -54,6 +54,15 @@ SPDX-License-Identifier: AGPL-3.0-or-later
             <LineEdit Name="SearchLineEdit" HorizontalExpand="True" />
         </GridContainer>
         <Control Name="AccessLevelControlContainer" />
+        <!-- CorvaxGoob Start - Extended-access -->
+        <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+            <Control HorizontalExpand="True" />
+            <BoxContainer Orientation="Horizontal">
+                <Button Name="StandardAccessButton" Text="{Loc 'id-card-console-window-standard-access-button'}" ToolTip="{Loc 'id-card-console-window-standard-access-tooltip'}" StyleClasses="OpenRight" Disabled="True" />
+                <Button Name="ExtendedAccessButton" Text="{Loc 'id-card-console-window-extended-access-button'}" ToolTip="{Loc 'id-card-console-window-extended-access-tooltip'}" StyleClasses="OpenLeft" Disabled="True" />
+            </BoxContainer>
+        </BoxContainer>
+        <!-- CorvaxGoob End -->
         <!-- Goobstation End -->
     </BoxContainer>
 </DefaultWindow>
