@@ -1,0 +1,8 @@
+- type: alert
+  id: Surrend
+  icons:
+  - sprite: /Textures/Objects/Misc/Handy_Flags/blank_handy_flag.rsi
+    state: icon
+  name: alert-surrend-name
+  description: alert-surrend-desc
+  clickEvent: !type:SurrenderAlertEvent

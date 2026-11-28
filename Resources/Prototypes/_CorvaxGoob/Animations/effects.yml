@@ -1,0 +1,30 @@
+- type: animation
+  id: EffectSurrend
+  length: 3
+  tracks:
+  - !type:AnimationTrackComponentPropertyData
+    componentType: Sprite
+    property: Offset
+    interpolationMode: Linear
+    keyFrames:
+      - !type:KeyFrameComponentPropertyData
+        value: 0, 0.6
+        type: vector2
+        keyframe: 0
+      - !type:KeyFrameComponentPropertyData
+        value: 0, 0.9
+        type: vector2
+        keyframe: 0.3
+  - !type:AnimationTrackComponentPropertyData
+    componentType: Sprite
+    property: Color
+    interpolationMode: Linear
+    keyFrames:
+      - !type:KeyFrameComponentPropertyData
+        type: color
+        value: "#ffffff00"
+        keyframe: 0
+      - !type:KeyFrameComponentPropertyData
+        type: color
+        value: "#ffffff"
+        keyframe: 0.3

@@ -532,7 +532,7 @@ public abstract partial class SharedGunSystem : EntitySystem
             projectile.TargetCoordinates = targetCoordinates.Value; // Goobstation
 
         // <Trauma>
-        if (user is {} userUid)
+        if (user is { } userUid)
         {
             // so you can't shoot yourself if you are moving fast enough to catch up with it
             // Goob - unless you are aiming at yourself on purpose, IgnoredEntities is checked before GunCanAimShooter
@@ -752,7 +752,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         }  // Goobstation - end
     }
 
-     // Goobstation
+    // Goobstation
     public void SetTarget(EntityUid projectile,
         EntityUid? target,
         out TargetedProjectileComponent targeted,
