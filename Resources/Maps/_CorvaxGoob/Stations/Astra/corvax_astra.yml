@@ -131327,17 +131327,6 @@ entities:
       invokeCounter: 1
     - type: SpawnOnTrigger
       proto: WeaponTemperatureGun
-  - uid: 19975
-    components:
-    - type: MetaData
-      name: ОВЕРЛУТ СПАВНЕР
-    - type: Transform
-      pos: 0.5,-43.5
-      parent: 2
-    - type: DeviceLinkSink
-      invokeCounter: 1
-    - type: SpawnOnTrigger
-      proto: ClothingOuterHardsuitMaxim
   - uid: 19976
     components:
     - type: MetaData
