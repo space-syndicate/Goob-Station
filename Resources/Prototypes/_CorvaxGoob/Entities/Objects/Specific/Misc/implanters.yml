@@ -1,0 +1,11 @@
+- type: entity
+  parent: MindShieldImplanter
+  id: AdminAntagImmuneImplanter
+  components:
+  - type: Sprite
+    sprite: _CorvaxGoob/Objects/Specific/Medical/admin_implanter.rsi
+  - type: Item
+    sprite: _CorvaxGoob/Objects/Specific/Medical/admin_implanter.rsi
+  - type: Implanter
+    implant: AdminAntagImmuneImplant
+    implantOnly: true
