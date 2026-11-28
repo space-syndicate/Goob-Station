@@ -26,3 +26,14 @@ fax-machine-ui-paper-not-inserted = No paper
 fax-machine-chat-notify = Received new fax message from "{$fax}" fax
 
 fax-machine-printed-paper-name = printed paper
+
+fax-machine-ui-output-count = Received documents: { $count } / { $capacity }
+fax-machine-ui-output-empty = { $slot }. Empty
+fax-machine-ui-output-eject = { $slot }. Eject: { $name }
+fax-machine-ui-reminder-disable = Notification: On
+fax-machine-ui-reminder-enable = Notification: Off
+fax-machine-output-slot-1 = Received document 1
+fax-machine-output-slot-2 = Received document 2
+fax-machine-output-slot-3 = Received document 3
+fax-machine-output-slot-4 = Received document 4
+fax-machine-output-slot-5 = Received document 5

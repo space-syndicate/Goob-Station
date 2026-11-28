@@ -22,12 +22,15 @@ using Content.Shared.Fax;
 using Content.Shared.Fax.Components;
 using Content.Shared.Fax.Systems;
 using Content.Shared.Interaction;
+using Content.Shared.Inventory;
 using Content.Shared.Labels.Components;
 using Content.Shared.Labels.EntitySystems;
 using Content.Shared.Mobs.Components;
 using Content.Shared.NameModifier.Components;
 using Content.Shared.Paper;
 using Content.Shared.Power;
+using Content.Shared.Storage;
+using Content.Shared.Storage.EntitySystems;
 using Content.Shared.Tools;
 using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
@@ -61,6 +64,9 @@ public sealed class FaxSystem : EntitySystem
     [Dependency] private readonly TransformSystem _transform = default!; // Goobstation
     [Dependency] private readonly ExplosionSystem _explosion = default!; // Goobstation
 
+    [Dependency] private readonly SharedStorageSystem _storage = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
+
     private static readonly ProtoId<ToolQualityPrototype> ScrewingQuality = "Screwing";
 
     private const string PaperSlotId = "Paper";
@@ -90,6 +96,8 @@ public sealed class FaxSystem : EntitySystem
         SubscribeLocalEvent<FaxMachineComponent, FaxSendMessage>(OnSendButtonPressed);
         SubscribeLocalEvent<FaxMachineComponent, FaxRefreshMessage>(OnRefreshButtonPressed);
         SubscribeLocalEvent<FaxMachineComponent, FaxDestinationMessage>(OnDestinationSelected);
+        SubscribeLocalEvent<FaxMachineComponent, FaxEjectOutputMessage>(OnEjectOutput);
+        SubscribeLocalEvent<FaxMachineComponent, FaxSetReminderMessage>(OnSetReminder);
     }
 
     public override void Update(float frameTime)
@@ -105,7 +113,42 @@ public sealed class FaxSystem : EntitySystem
             ProcessPrintingAnimation(uid, frameTime, fax);
             ProcessInsertingAnimation(uid, frameTime, fax);
             ProcessSendingTimeout(uid, frameTime, fax);
+            ProcessReminder(uid, frameTime, fax);
         }
+    }
+
+    private void ProcessReminder(EntityUid uid, float frameTime, FaxMachineComponent component)
+    {
+        if (!component.ReminderEnabled || !component.OutputSlots.Exists(slot => slot.HasItem))
+        {
+            component.ReminderTimeRemaining = component.ReminderInterval;
+            return;
+        }
+
+        component.ReminderTimeRemaining -= frameTime;
+        if (component.ReminderTimeRemaining > 0)
+            return;
+
+        _audioSystem.PlayPvs(component.ReminderSound, uid);
+        component.ReminderTimeRemaining = component.ReminderInterval;
+    }
+
+    private void OnEjectOutput(EntityUid uid, FaxMachineComponent component, FaxEjectOutputMessage args)
+    {
+        if (args.Slot < 0 || args.Slot >= component.OutputSlots.Count)
+            return;
+
+        _itemSlotsSystem.TryEjectToHands(uid, component.OutputSlots[args.Slot], args.Actor);
+    }
+
+    private void OnSetReminder(EntityUid uid, FaxMachineComponent component, FaxSetReminderMessage args)
+    {
+        if (component.OutputSlots.Count == 0)
+            return;
+
+        component.ReminderEnabled = args.Enabled;
+        component.ReminderTimeRemaining = component.ReminderInterval;
+        UpdateUserInterface(uid, component);
     }
 
     private void ProcessPrintingAnimation(EntityUid uid, float frameTime, FaxMachineComponent comp)
@@ -167,12 +210,16 @@ public sealed class FaxSystem : EntitySystem
         else
             _itemSlotsSystem.AddItemSlot(uid, PaperSlotId, component.PaperSlot);
         // </Goobstation>
+        for (var i = 0; i < component.OutputSlots.Count; i++)
+            _itemSlotsSystem.AddItemSlot(uid, $"FaxOutput{i}", component.OutputSlots[i]);
         UpdateAppearance(uid, component);
     }
 
     private void OnComponentRemove(EntityUid uid, FaxMachineComponent component, ComponentRemove args)
     {
         _itemSlotsSystem.RemoveItemSlot(uid, component.PaperSlot);
+        foreach (var slot in component.OutputSlots)
+            _itemSlotsSystem.RemoveItemSlot(uid, slot);
     }
 
     private void OnMapInit(EntityUid uid, FaxMachineComponent component, MapInitEvent args)
@@ -187,7 +234,15 @@ public sealed class FaxSystem : EntitySystem
             return;
 
         if (args.Container.ID != component.PaperSlot.ID)
+        {
+            if (component.OutputSlots.Exists(slot => slot.ID == args.Container.ID))
+            {
+                if (!component.OutputSlots.Exists(slot => slot.HasItem))
+                    component.ReminderTimeRemaining = component.ReminderInterval;
+                UpdateUserInterface(uid, component);
+            }
             return;
+        }
 
         var isPaperInserted = component.PaperSlot.Item.HasValue;
         if (isPaperInserted)
@@ -433,7 +488,14 @@ public sealed class FaxSystem : EntitySystem
         var canCopy = isPaperInserted &&
                       component.SendTimeoutRemaining <= 0 &&
                       component.InsertingTimeRemaining <= 0;
-        var state = new FaxUiState(component.FaxName, component.KnownFaxes, canSend, canCopy, isPaperInserted, component.DestinationFaxAddress);
+        var documents = new string?[component.OutputSlots.Count];
+        for (var i = 0; i < component.OutputSlots.Count; i++)
+        {
+            if (component.OutputSlots[i].Item is { } item)
+                documents[i] = Name(item);
+        }
+        var state = new FaxUiState(component.FaxName, component.KnownFaxes, canSend, canCopy,
+            isPaperInserted, component.DestinationFaxAddress, documents, component.ReminderEnabled);
         _userInterface.SetUiState(uid, FaxUiKey.Key, state);
     }
 
@@ -697,7 +759,35 @@ public sealed class FaxSystem : EntitySystem
             _labelSystem.Label(printed, label);
         }
 
+        if (component.StorePrintouts)
+            TryStorePrintout(uid, component, printed);
+
         _adminLogger.Add(LogType.Action, LogImpact.Low, $"\"{component.FaxName}\" {ToPrettyString(uid):tool} printed {ToPrettyString(printed):subject}: {printout.Content}");
+    }
+
+    private void TryStorePrintout(EntityUid uid, FaxMachineComponent component, EntityUid printed)
+    {
+        foreach (var slot in component.OutputSlots)
+        {
+            if (_itemSlotsSystem.TryInsert(uid, slot, printed, null))
+                return;
+        }
+
+        if (!_container.TryGetContainingContainer((uid, null, null), out var container))
+            return;
+
+        if (TryComp<StorageComponent>(container.Owner, out var storage) &&
+            container == storage.Container)
+        {
+            _storage.Insert(container.Owner, printed, out _, storageComp: storage, playSound: false);
+            return;
+        }
+
+        if (_inventory.TryGetSlotEntity(container.Owner, "back", out var backpack) &&
+            TryComp<StorageComponent>(backpack, out var backpackStorage))
+        {
+            _storage.Insert(backpack.Value, printed, out _, storageComp: backpackStorage, playSound: false);
+        }
     }
 
     private void NotifyAdmins(string faxName)
