@@ -55,5 +55,5 @@
   - type: Projectile
     damage:
       types:
-        Radiation: 15
+        Radiation: 10 # 15 > 10 CorvaxGoob
         Piercing: 20

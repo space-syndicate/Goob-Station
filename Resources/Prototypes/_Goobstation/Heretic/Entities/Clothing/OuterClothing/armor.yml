@@ -28,6 +28,7 @@
         Piercing: 0.5
         Heat: 0.5
         Caustic: 0.5
+        Radiation: 0.5 # CorvaxGoob
         Holy: 1.25
     traumaDeductions:
       Dismemberment: 0.5
