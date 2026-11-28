@@ -31,7 +31,7 @@
         stomach: OrganVoxStomach
         liver: OrganVoxLiver
         kidneys: OrganVoxKidneys
-        butt: Butt # Goob
+        # butt: Butt # Goob # CorvaxGoob delete butt
     right arm:
       part: RightArmVox
       connections:
