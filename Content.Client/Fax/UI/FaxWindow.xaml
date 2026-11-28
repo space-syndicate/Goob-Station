@@ -87,6 +87,12 @@
 
         </PanelContainer>
 
+        <BoxContainer Name="OutputPanel" Orientation="Vertical" Visible="False" SeparationOverride="2">
+            <Label Name="OutputCountLabel" />
+            <BoxContainer Name="OutputList" Orientation="Vertical" SeparationOverride="2" />
+            <Button Name="ReminderButton" />
+        </BoxContainer>
+
         <PanelContainer StyleClasses="PanelBackgroundBaseDark"
             HorizontalExpand="True" Margin="0 10 0 0"
             VerticalExpand="True" VerticalAlignment="Bottom">

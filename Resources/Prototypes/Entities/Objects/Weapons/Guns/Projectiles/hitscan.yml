@@ -111,8 +111,8 @@
   - type: HitscanBasicDamage
     damage:
       types:
-        Heat: 10
-        Radiation: 10
+        Heat: 5 # CorvaxGoob 10 > 5
+        Radiation: 15 # CorvaxGoob 10 > 15
         Ion: 15 #Goobstation
   - type: HitscanBasicVisuals
     muzzleFlash:

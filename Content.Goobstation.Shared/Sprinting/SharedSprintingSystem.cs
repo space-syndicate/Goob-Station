@@ -29,6 +29,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using System.Numerics;
 using Content.Shared.Movement.Events;
+using Content.Shared._CorvaxGoob.Surrender;
 
 namespace Content.Goobstation.Shared.Sprinting;
 public abstract partial class SharedSprintingSystem : EntitySystem
@@ -62,6 +63,7 @@ public abstract partial class SharedSprintingSystem : EntitySystem
         SubscribeLocalEvent<CuffableComponent, SprintAttemptEvent>(OnCuffableSprintAttempt);
         SubscribeLocalEvent<MechPilotComponent, SprintAttemptEvent>(OnMechPilotSprintAttempt);
         SubscribeLocalEvent<StandingStateComponent, SprintAttemptEvent>(OnStandingStateSprintAttempt);
+        SubscribeLocalEvent<SurrenderComponent, SprintAttemptEvent>(OnSurrendedSprintAttempt); // CorvaxGoob-Surrender
         SubscribeLocalEvent<BuckleComponent, SprintAttemptEvent>(OnBuckleSprintAttempt);
         SubscribeLocalEvent<SprinterComponent, EntityZombifiedEvent>(OnZombified);
         SubscribeLocalEvent<SprinterComponent, DisarmedEvent>(OnDisarm);
@@ -194,6 +196,12 @@ public abstract partial class SharedSprintingSystem : EntitySystem
             return;
 
         _popupSystem.PopupClient(Loc.GetString("no-sprint-while-lying"), uid, uid, PopupType.Medium);
+        args.Cancel();
+    }
+
+    // CorvaxGoob-Surrender
+    private void OnSurrendedSprintAttempt(Entity<SurrenderComponent> entity, ref SprintAttemptEvent args)
+    {
         args.Cancel();
     }
 

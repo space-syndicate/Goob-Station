@@ -31,6 +31,8 @@ public sealed class FaxBoundUi : BoundUserInterface
         _window.SendButtonPressed += OnSendButtonPressed;
         _window.RefreshButtonPressed += OnRefreshButtonPressed;
         _window.PeerSelected += OnPeerSelected;
+        _window.EjectOutputPressed += slot => SendMessage(new FaxEjectOutputMessage(slot));
+        _window.SetReminderPressed += enabled => SendMessage(new FaxSetReminderMessage(enabled));
     }
 
     private async void OnFileButtonPressed()

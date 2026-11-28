@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from BeeStation at https://github.com/BeeStation/BeeStation-Hornet/blob/master/icons/hud/radials/radial_aiming.dmi. Translated by KillanGenifer",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+ 	{
+      "name": "let_go"
+    },
+    {
+      "name": "auto_kill0"
+    },
+	{
+      "name": "auto_kill1"
+    },
+	{
+      "name": "hostaged",
+	  "delays": [
+		[0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.2, 0.2, 0.2, 0.2]
+      ]
+    },
+	{
+      "name": "hostage_taker",
+	  "delays": [
+        [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
+      ]
+    }
+  ]
+}

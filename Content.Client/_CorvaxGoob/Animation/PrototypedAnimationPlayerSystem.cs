@@ -76,6 +76,7 @@ public sealed class PrototypedAnimationPlayerSystem : EntitySystem
                         "float" => float.Parse(keyFrameInstance.Value),
                         "vector2" => YamlHelpers.AsVector2(keyFrameInstance.Value),
                         "angle" => Angle.FromDegrees(float.Parse(keyFrameInstance.Value)),
+                        "color" => Color.FromHex(keyFrameInstance.Value),
                         _ => 0
                     };
 

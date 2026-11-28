@@ -124,6 +124,38 @@
     needsPower: false
     powerLoad: 250
   - type: FaxMachine
+    storePrintouts: true
+    outputSlots:
+    - name: fax-machine-output-slot-1
+      insertOnInteract: false
+      insertSound: null
+      ejectSound: /Audio/Machines/tray_eject.ogg
+      whitelist:
+        components: [Paper]
+    - name: fax-machine-output-slot-2
+      insertOnInteract: false
+      insertSound: null
+      ejectSound: /Audio/Machines/tray_eject.ogg
+      whitelist:
+        components: [Paper]
+    - name: fax-machine-output-slot-3
+      insertOnInteract: false
+      insertSound: null
+      ejectSound: /Audio/Machines/tray_eject.ogg
+      whitelist:
+        components: [Paper]
+    - name: fax-machine-output-slot-4
+      insertOnInteract: false
+      insertSound: null
+      ejectSound: /Audio/Machines/tray_eject.ogg
+      whitelist:
+        components: [Paper]
+    - name: fax-machine-output-slot-5
+      insertOnInteract: false
+      insertSound: null
+      ejectSound: /Audio/Machines/tray_eject.ogg
+      whitelist:
+        components: [Paper]
     paperSlot:
       insertSound: /Audio/Machines/scanning.ogg
       ejectSound: /Audio/Machines/tray_eject.ogg

@@ -63,3 +63,18 @@
     key: SlowedDown
     componentType: SlowedDown
     time: 6
+
+- type: emote
+  id: Surrend
+  name: chat-emote-name-surrend
+  icon: _CorvaxGoob/Interface/Emotes/blank_flag.png
+  chatMessages: ["chat-emote-msg-surrend-1", "chat-emote-msg-surrend-2"]
+  chatTriggers:
+  - поднимает руки.
+  - поднимает руки!
+  - поднимает руки
+  - сдаётся.
+  - сдаётся!
+  - сдаётся
+  targetEvents:
+  - !type:SurrendTargetEvent
